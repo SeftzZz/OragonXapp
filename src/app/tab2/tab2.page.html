@@ -1,0 +1,310 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" id="main-content">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- Create -->
+  <section class="relative py-24">
+    <picture class="pointer-events-none absolute inset-0 -z-10 dark:hidden">
+      <img src="assets/img/dragons/gradient_light.jpg" alt="gradient" class="h-full w-full" />
+    </picture>
+    <div class="container">
+      <h1 class="font-display text-jacarta-700 py-16 text-center text-4xl font-medium dark:text-white">Background</h1>
+      <div class="mx-auto max-w-[48.125rem]">
+        <!-- File Upload -->
+        <!-- Collection -->
+        <div class="relative">
+          <div>
+            <label class="font-display text-jacarta-700 mb-2 block dark:text-white">Choose Dragon</label>
+            <div class="mb-3 flex items-center space-x-2">
+              <p class="dark:text-jacarta-300 text-2xs"> Make sure you already have a dragon to use this feature. <span class="inline-block" data-tippy-content="This is a feature to add a background in your dragon, where you will get royalties from the background.">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-300 fill-jacarta-500 ml-1 -mb-[3px] h-4 w-4">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z"></path>
+                  </svg>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="dropdown my-1 cursor-pointer">
+            <div class="dark:bg-jacarta-700 dropdown-toggle border-jacarta-100 dark:border-jacarta-600 dark:text-jacarta-300 flex items-center justify-between rounded-lg border bg-white py-3 px-3" role="button" id="item-collection" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="">Select your dragon</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-500 h-4 w-4 dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
+              </svg>
+            </div>
+            <div class="dropdown-menu dark:bg-jacarta-800 z-10 hidden w-full whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="item-collection">
+              <ul class="scrollbar-custom flex max-h-48 flex-col overflow-y-auto">
+                <li>
+                  <a href="#" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                    <span class="flex items-center space-x-3">
+                      <img src="assets/img/dragons/merupx.jpg" class="h-8 w-8 rounded-full" loading="lazy" alt="avatar" />
+                      <span class="text-jacarta-700 dark:text-white">Meru</span>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-accent mb-[3px] h-4 w-4">
+                      <path fill="none" d="M0 0h24v24H0z"></path>
+                      <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                    <span class="flex items-center space-x-3">
+                      <img src="assets/img/avatars/collection_ava_2.jpg" class="h-8 w-8 rounded-full" loading="lazy" alt="avatar" />
+                      <span class="text-jacarta-700 dark:text-white">Ritra</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                    <span class="flex items-center space-x-3">
+                      <img src="assets/img/avatars/collection_ava_3.png" class="h-8 w-8 rounded-full" loading="lazy" alt="avatar" />
+                      <span class="text-jacarta-700 dark:text-white">Akh</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                    <span class="flex items-center space-x-3">
+                      <img src="assets/img/avatars/collection_ava_4.jpg" class="h-8 w-8 rounded-full" loading="lazy" alt="avatar" />
+                      <span class="text-jacarta-700 dark:text-white">Feng</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                    <span class="flex items-center space-x-3">
+                      <img src="assets/img/avatars/collection_ava_5.png" class="h-8 w-8 rounded-full" loading="lazy" alt="avatar" />
+                      <span class="text-jacarta-700 dark:text-white">Metalicana</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                    <span class="flex items-center space-x-3">
+                      <img src="assets/img/avatars/collection_ava_6.jpg" class="h-8 w-8 rounded-full" loading="lazy" alt="avatar" />
+                      <span class="text-jacarta-700 dark:text-white">Dorch</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="md:flex md:flex-wrap">
+          <figure class="mb-8 md:w-2/5 md:flex-shrink-0 md:flex-grow-0 md:basis-auto lg:w-1/2">
+            <img src="assets/img/dragons/merupx.jpg" alt="item" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" />
+            <!-- Modal -->
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+              <div class="modal-dialog !my-0 flex h-full items-center justify-center p-4">
+                <img src="assets/img/dragons/merupx.jpg" alt="item" />
+              </div>
+              <button type="button" class="btn-close absolute top-6 right-6" data-bs-dismiss="modal" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-6 w-6 fill-white">
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                </svg>
+              </button>
+            </div>
+            <!-- end modal -->
+          </figure>
+          <!-- Details -->
+          <div class="md:w-3/5 md:basis-auto md:pl-8 lg:w-1/2 lg:pl-[3.75rem]">
+            <!-- Collection / Likes / Actions -->
+            <div class="mb-3 flex">
+              <!-- Collection -->
+              <div class="flex items-center">
+                <a href="collection.html" class="text-accent mr-2 text-sm font-bold">Owned</a>
+              </div>
+            </div>
+            <h1 class="font-display text-jacarta-700 mb-4 text-4xl font-semibold dark:text-white">MERU</h1>
+            <div class="mb-8 flex items-center space-x-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <span class="text-green text-sm font-medium tracking-tight">STATS</span>
+              </div>
+            </div>
+            <p class="dark:text-jacarta-300 mb-10"> Level: 1 <br> Attack Point: 90 <br> Deffense Point: 35 <br> Rarity: 2 </p>
+            <!-- Creator / Owner -->
+            <div class="mb-8 flex flex-wrap">
+              <div class="mr-8 mb-4 flex">
+                <!-- <figure class="mr-4 shrink-0"><a href="user.html" class="relative block"><img src="assets/img/avatars/avatar_7.jpg" alt="avatar 7" class="rounded-2lg" loading="lazy" /><div
+                      class="dark:border-jacarta-600 bg-green absolute -right-3 top-[60%] flex h-6 w-6 items-center justify-center rounded-full border-2 border-white"
+                      data-tippy-content="Verified Collection"
+                    ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        class="h-[.875rem] w-[.875rem] fill-white"
+                      ><path fill="none" d="M0 0h24v24H0z"></path><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path></svg></div></a></figure> -->
+                <div class="flex flex-col justify-center">
+                  <span class="text-jacarta-400 block text-sm dark:text-white">Background royalties: <strong>10%</strong>
+                  </span>
+                  <!-- <a href="user.html" class="text-accent block"><span class="text-sm font-bold">@creative_world</span></a> -->
+                </div>
+              </div>
+            </div>
+            <div class="mb-6">
+              <p class="dark:text-jacarta-300 text-2xs mb-3">Insert your background</p>
+              <div class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 group relative flex max-w-md flex-col items-center justify-center rounded-lg border-2 border-dashed bg-white py-6 px-5 text-center">
+                <div class="relative z-10 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-500 mb-4 inline-block dark:fill-white">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M16 13l6.964 4.062-2.973.85 2.125 3.681-1.732 1-2.125-3.68-2.223 2.15L16 13zm-2-7h2v2h5a1 1 0 0 1 1 1v4h-2v-3H10v10h4v2H9a1 1 0 0 1-1-1v-5H6v-2h2V9a1 1 0 0 1 1-1h5V6zM4 14v2H2v-2h2zm0-4v2H2v-2h2zm0-4v2H2V6h2zm0-4v2H2V2h2zm4 0v2H6V2h2zm4 0v2h-2V2h2zm4 0v2h-2V2h2z" />
+                  </svg>
+                  <p class="dark:text-jacarta-300 mx-auto max-w-xs text-xs"> JPG, PNG, GIF. Max size: 5 MB </p>
+                </div>
+                <div class="dark:bg-jacarta-600 bg-jacarta-50 absolute inset-4 cursor-pointer rounded opacity-0 group-hover:opacity-100"></div>
+                <input type="file" accept="image/*,video/*,audio/*,webgl/*,.glb,.gltf" id="file-upload" class="absolute inset-0 z-20 cursor-pointer opacity-0" />
+              </div>
+            </div>
+          </div>
+          <!-- end details -->
+        </div>
+        <!-- Price -->
+        <div class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 rounded-2lg border bg-white p-4">
+          <div class="mb-2 sm:flex sm:flex-wrap">
+            <!-- Price -->
+            <div class="sm:w-1/2 sm:pr-4 lg:pr-8">
+              <div class="block overflow-hidden text-ellipsis whitespace-nowrap">
+                <span class="dark:text-jacarta-300 text-jacarta-400 text-sm">Price</span>
+              </div>
+              <div class="mt-3 flex">
+                <div>
+                  <div class="flex items-center whitespace-nowrap">
+                    <span class="-ml-1" data-tippy-content="ETH">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="h-5 w-5">
+                        <path fill="#8A92B2" d="M959.8 80.7L420.1 976.3 959.8 731z"></path>
+                        <path fill="#62688F" d="M959.8 731L420.1 976.3l539.7 319.1zm539.8 245.3L959.8 80.7V731z"></path>
+                        <path fill="#454A75" d="M959.8 1295.4l539.8-319.1L959.8 731z"></path>
+                        <path fill="#8A92B2" d="M420.1 1078.7l539.7 760.6v-441.7z"></path>
+                        <path fill="#62688F" d="M959.8 1397.6v441.7l540.1-760.6z"></path>
+                      </svg>
+                    </span>
+                    <span class="text-green text-lg font-medium leading-tight tracking-tight">50.000.000.000 ORGN</span>
+                  </div>
+                  <span class="dark:text-jacarta-300 text-jacarta-400 text-sm">~$15 BUSD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end price -->
+        <br>
+        <!-- Disclaimer -->
+        <div class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 rounded-2lg border bg-white p-8">
+          <div class="mb-8 sm:flex sm:flex-wrap">
+            <span class="js-countdown-ends-label text-jacarta-400 dark:text-jacarta-300 text-sm">Disclaimer</span>
+          </div>
+          <p>1. the background must not contain SARA, pornography, and copyright infringement</p>
+          <p>2. If you violate existing regulations, there will be no refund</p>
+          <p>3. Please re-read the EULA & Privacy Policy</p>
+          <br>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#placeBidModal" class="bg-accent shadow-accent-volume hover:bg-accent-dark inline-block w-full rounded-full py-3 px-8 text-center font-semibold text-white transition-all">Apply Backgound</a>
+        </div>
+        <!-- end disclaimer -->
+        <br>
+        <!-- Activity -->
+        <div class="tab-pane fade" id="activity" role="tabpanel" aria-labelledby="activity-tab">
+          <!-- Filter -->
+          <div class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 bg-light-base border border-b-0 px-4 pt-5 pb-2.5">History </div>
+          <div role="table" class="scrollbar-custom dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 max-h-72 w-full overflow-y-auto rounded-lg rounded-tl-none border bg-white text-sm dark:text-white">
+            <div class="dark:bg-jacarta-600 bg-light-base sticky top-0 flex" role="row">
+              <div class="w-[17%] py-2 px-4" role="columnheader">
+                <span class="text-jacarta-700 dark:text-jacarta-100 w-full overflow-hidden text-ellipsis">Activity</span>
+              </div>
+              <div class="w-[17%] py-2 px-4" role="columnheader">
+                <span class="text-jacarta-700 dark:text-jacarta-100 w-full overflow-hidden text-ellipsis">Price</span>
+              </div>
+              <div class="w-[22%] py-2 px-4" role="columnheader">
+                <span class="text-jacarta-700 dark:text-jacarta-100 w-full overflow-hidden text-ellipsis">From</span>
+              </div>
+              <div class="w-[22%] py-2 px-4" role="columnheader">
+                <span class="text-jacarta-700 dark:text-jacarta-100 w-full overflow-hidden text-ellipsis">To</span>
+              </div>
+              <div class="w-[22%] py-2 px-4" role="columnheader">
+                <span class="text-jacarta-700 dark:text-jacarta-100 w-full overflow-hidden text-ellipsis">Date</span>
+              </div>
+            </div>
+            <div class="flex" role="row">
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[17%] items-center border-t py-4 px-4" role="cell"> Added Background </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[17%] items-center whitespace-nowrap border-t py-4 px-4" role="cell">
+                <span class="-ml-1" data-tippy-content="ETH"></span>
+                <span class="text-green text-sm font-medium tracking-tight">15 BUSD</span>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="user.html" class="text-accent">AD496A</a>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="user.html" class="text-accent">Polymorph: MORPH Token</a>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="#" class="text-accent flex flex-wrap items-center" target="_blank" rel="nofollow noopener" title="Opens in a new window" data-tippy-content="March 13 2022, 2:32 pm">
+                  <span class="mr-1">19 days ago</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 fill-current">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M10 6v2H5v11h11v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="flex" role="row">
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[17%] items-center border-t py-4 px-4" role="cell"> Changed Backgound </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[17%] items-center whitespace-nowrap border-t py-4 px-4" role="cell">
+                <span class="-ml-1" data-tippy-content="ETH"></span>
+                <span class="text-green text-sm font-medium tracking-tight">15 BUSD</span>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="user.html" class="text-accent">The_vikk</a>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="user.html" class="text-accent">Polymorph: MORPH Token</a>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="#" class="text-accent flex flex-wrap items-center" target="_blank" rel="nofollow noopener" title="Opens in a new window" data-tippy-content="March 13 2022, 2:32 pm">
+                  <span class="mr-1">19 days ago</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 fill-current">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M10 6v2H5v11h11v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="flex" role="row">
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[17%] items-center border-t py-4 px-4" role="cell"> Changed Backgound </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[17%] items-center whitespace-nowrap border-t py-4 px-4" role="cell">
+                <span class="-ml-1" data-tippy-content="ETH"></span>
+                <span class="text-green text-sm font-medium tracking-tight">15 BUSD</span>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="user.html" class="text-accent">CryptoGuysNFT</a>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="user.html" class="text-accent">Polymorph: MORPH Token</a>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 flex w-[22%] items-center border-t py-4 px-4" role="cell">
+                <a href="#" class="text-accent flex flex-wrap items-center" target="_blank" rel="nofollow noopener" title="Opens in a new window" data-tippy-content="March 13 2022, 2:32 pm">
+                  <span class="mr-1">19 days ago</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 fill-current">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M10 6v2H5v11h11v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end create -->
+</ion-content>

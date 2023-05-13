@@ -1,0 +1,24 @@
+<ion-content>
+  
+  <!-- Hero -->
+  <section class="relative pb-10 pt-20 md:pt-32 lg:h-[88vh]">
+    <picture class="pointer-events-none absolute inset-x-0 top-0 -z-10 dark:hidden">
+      <img src="assets/img/gradient.jpg" alt="gradient" />
+    </picture>
+    <picture class="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden dark:block">
+      <img src="assets/img/gradient_dark.jpg" alt="gradient dark" />
+    </picture>
+    <div class="container h-full">
+      <div class="grid h-full items-center gap-4 md:grid-cols-12">
+        <div class="col-span-6 flex h-full flex-col items-center justify-center py-10 md:items-start md:py-20 xl:col-span-4">
+          <h1 class="text-jacarta-700 font-display mb-6 text-center text-5xl dark:text-white md:text-left lg:text-6xl xl:text-7xl"> Under Development. </h1>
+          <p class="dark:text-jacarta-200 mb-8 text-center text-lg md:text-left"> Be Patiens... </p>
+          <div class="flex space-x-4">
+            <a [routerLink]="['/']" class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Home </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end hero -->
+</ion-content>

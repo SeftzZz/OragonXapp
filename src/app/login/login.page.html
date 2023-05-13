@@ -1,0 +1,138 @@
+<!-- Login -->
+<section class="relative h-screen" style="overflow: auto;">
+  <div class="lg:flex lg:h-full">
+    <!-- Left -->
+    <div class="relative text-center lg:w-1/2">
+      <img src="assets/img/login.jpg" alt="login" class="absolute h-full w-full object-cover" />
+      <!-- Logo -->
+      <!-- <a href="index.html" class="relative inline-block py-36">
+        <img src="img/logo_white.png" class="inline-block max-h-7" alt="Xhibiter | NFT Marketplace" />
+      </a> -->
+    </div> 
+    <!-- Right -->
+    <div class="relative flex items-center justify-center p-[10%] lg:w-1/2">
+      <picture class="pointer-events-none absolute inset-0 -z-10 dark:hidden">
+        <img src="img/gradient_light.jpg" alt="gradient" class="h-full w-full" />
+      </picture>
+      <div class="w-full max-w-[25.625rem] text-center">
+        <h1 class="text-jacarta-700 font-display mb-6 text-4xl dark:text-white">Sign in</h1>
+        <!-- Tabs Nav -->
+        <ul class="nav nav-tabs scrollbar-custom dark:border-jacarta-600 border-jacarta-100 mb-12 flex items-center justify-start overflow-x-hidden overflow-y-hidden border-b pb-px md:justify-center" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active hover:text-jacarta-700 text-jacarta-400 relative flex items-center whitespace-nowrap py-3 px-6 dark:hover:text-white" id="ethereum-tab" data-bs-toggle="tab" data-bs-target="#ethereum" type="button" role="tab" aria-controls="ethereum" aria-selected="true">
+              <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="mr-1 mb-[2px] h-4 w-4 fill-current">
+                <path fill="#8A92B2" d="M959.8 80.7L420.1 976.3 959.8 731z"></path>
+                <path fill="#62688F" d="M959.8 731L420.1 976.3l539.7 319.1zm539.8 245.3L959.8 80.7V731z"></path>
+                <path fill="#454A75" d="M959.8 1295.4l539.8-319.1L959.8 731z"></path>
+                <path fill="#8A92B2" d="M420.1 1078.7l539.7 760.6v-441.7z"></path>
+                <path fill="#62688F" d="M959.8 1397.6v441.7l540.1-760.6z"></path>
+              </svg> -->
+              <span class="font-display text-base font-medium">Login</span>
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link hover:text-jacarta-700 text-jacarta-400 relative flex items-center whitespace-nowrap py-3 px-6 dark:hover:text-white" id="torus-tab" data-bs-toggle="tab" data-bs-target="#torus" type="button" role="tab" aria-controls="torus" aria-selected="false">
+              <!-- <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-1 mb-[2px] h-4 w-4 fill-current">
+                <path d="M9.35098 3H4V5.93692H9.35098V3Z" fill="#0364FF" />
+                <path d="M9.35028 3.00403H6.44531V12.74H9.35028V3.00403Z" fill="#0364FF" />
+                <path d="M11.5221 5.93554C12.3239 5.93554 12.9739 5.27842 12.9739 4.46777C12.9739 3.65715 12.3239 3 11.5221 3C10.7203 3 10.0703 3.65715 10.0703 4.46777C10.0703 5.27842 10.7203 5.93554 11.5221 5.93554Z" fill="#0364FF" />
+              </svg> -->
+              <span class="font-display text-base font-medium">Register</span>
+            </button>
+          </li>  
+          <li class="nav-item" role="presentation">
+            <button class="nav-link hover:text-jacarta-700 text-jacarta-400 relative flex items-center whitespace-nowrap py-3 px-6 dark:hover:text-white" id="bnb-tab" data-bs-toggle="tab" data-bs-target="#bnb" type="button" role="tab" aria-controls="bnb" aria-selected="false">
+              <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="mr-1 mb-[2px] h-4 w-4 fill-current">
+                <path fill="#8A92B2" d="M959.8 80.7L420.1 976.3 959.8 731z"></path>
+                <path fill="#62688F" d="M959.8 731L420.1 976.3l539.7 319.1zm539.8 245.3L959.8 80.7V731z"></path>
+                <path fill="#454A75" d="M959.8 1295.4l539.8-319.1L959.8 731z"></path>
+                <path fill="#8A92B2" d="M420.1 1078.7l539.7 760.6v-441.7z"></path>
+                <path fill="#62688F" d="M959.8 1397.6v441.7l540.1-760.6z"></path>
+              </svg> -->
+              <span class="font-display text-base font-medium">Reset Password</span>
+            </button>
+          </li>        
+        </ul>
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <!-- Ethereum -->
+          <div class="tab-pane fade show active" id="ethereum" role="tabpanel" aria-labelledby="ethereum-tab">
+            <form (ngSubmit)="login()" [formGroup]="credentials">
+              <div class="mb-12 md:w-1 md:pr-8">
+                <div class="mb-6">
+                  <label for="email" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Email address <span class="text-red">*</span>
+                  </label>
+                  <input type="text" id="email" formControlName="email" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter email address" required />
+                  <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
+                </div>
+                <div class="mb-6">
+                  <label for="password" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Password <span class="text-red">*</span>
+                  </label>
+                  <input type="password" id="password" formControlName="password" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter password" required />
+                  <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 8 characters</ion-note>
+                </div>
+                <button class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" type="submit" [disabled]="!credentials.valid"> Login </button>
+              </div>
+            </form>
+          </div>
+          <!-- end ethereum -->
+          <!-- Torus -->
+          <div class="tab-pane fade" id="torus" role="tabpanel" aria-labelledby="torus-tab">
+            <form (ngSubmit)="register()" [formGroup]="credentialsregist">
+              <div class="mb-12 md:w-1 md:pr-8">
+                <div class="mb-6">
+                  <label for="text" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Username <span class="text-red">*</span>
+                  </label>
+                  <input type="text" id="username" formControlName="username" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter username" required />
+                  <ion-note slot="error" *ngIf="(username.dirty || username.touched) && username.errors">Username is invalid</ion-note>
+                </div>
+                <div class="mb-6">
+                  <label for="email" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Email address <span class="text-red">*</span>
+                  </label>
+                  <input type="text" id="email" formControlName="email" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter email address" required />
+                  <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
+                </div>
+                <div class="mb-6">
+                  <label for="text" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Binance Wallet <span class="text-red">*</span>
+                  </label>
+                  <input type="text" id="wallet_address" formControlName="wallet_address" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter wallet_address address" required />
+                  <ion-note slot="error" *ngIf="(wallet_address.dirty || wallet_address.touched) && wallet_address.errors">Wallet is invalid</ion-note>
+                </div>
+                <div class="mb-6">
+                  <label for="password" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Password <span class="text-red">*</span>
+                  </label>
+                  <input type="password" id="password" formControlName="password" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter password" required />
+                  <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 8 characters</ion-note>
+                </div>
+                <div class="mb-6">
+                  <label for="password" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Confirm Password <span class="text-red">*</span>
+                  </label>
+                  <input type="password" id="password" formControlName="password" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter confirm password" required />
+                  <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 8 characters</ion-note>
+                </div>
+                <button class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" type="submit" [disabled]="!credentialsregist.valid">Register</button>
+              </div>
+            </form>
+          </div>
+          <!-- end torus -->
+          <!-- Bnb -->
+          <div class="tab-pane fade" id="bnb" role="tabpanel" aria-labelledby="bnb-tab">
+            <form (ngSubmit)="resetpassword()" [formGroup]="credentialsreset">
+              <div class="mb-12 md:w-1 md:pr-8">
+                <div class="mb-6">
+                  <label for="emailreset" style="text-align: left;" class="font-display text-jacarta-700 mb-1 block text-sm dark:text-white">Email address <span class="text-red">*</span>
+                  </label>
+                  <input type="text" id="emailreset" formControlName="emailreset" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter email address" required />
+                  <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
+                </div>
+                <button class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" type="submit" [disabled]="!credentialsreset.valid"> Reset Password </button>
+              </div>
+            </form>
+          </div>
+          <!-- end bnb -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end login -->

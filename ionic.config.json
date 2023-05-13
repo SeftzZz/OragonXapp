@@ -1,0 +1,7 @@
+{
+  "name": "OragonX App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "oragonx-development",
+    "orgn-dev": "oragonx-development"
+  },
+  "targets": {}
+}

@@ -1,0 +1,76 @@
+<ion-content [fullscreen]="true" id="main-content">
+  <!-- Header -->
+  <header class="js-page-header z-20 fixed top-0 w-full backdrop-blur transition-colors">
+    <div class="flex items-center px-6 py-6 xl:px-24">
+      <!-- Logo -->
+      <a color="dark" href="/tabs/home">
+        <img src="assets/img/logo1.png" class="max-h-7 dark:hidden" alt="Xhibiter | NFT Marketplace" />
+        <img src="assets/img/logo_white.png" class="hidden max-h-7 dark:block" alt="Xhibiter | NFT Marketplace" />
+      </a>
+      <!-- Desktop Menu Actions -->
+        <div class="js-mobile-menu dark:bg-jacarta-800 invisible fixed inset-0 z-10 ml-auto items-center bg-white opacity-0 lg:visible lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent">
+          <!-- Mobile Logo / Menu Close -->
+          <div class="t-0 dark:bg-jacarta-800 fixed left-0 z-10 flex w-full items-center justify-between bg-white p-6 lg:hidden">
+            <!-- Mobile Logo -->
+            <a color="dark" href="/tabs/home">
+              <img src="assets/img/logo1.png" class="max-h-7 dark:hidden" alt="Xhibiter | NFT Marketplace" />
+              <img src="assets/img/logo_white.png" class="hidden max-h-7 dark:block" alt="Xhibiter | NFT Marketplace" />
+            </a>
+          </div>
+        </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+    <!-- Hero -->
+    <section class="relative pt-20 md:pt-32 lg:h-[88vh]">
+      <picture class="pointer-events-none absolute inset-x-0 top-0 -z-10 dark:hidden">
+        <img src="assets/img/gradient.jpg" alt="gradient" />
+      </picture>
+      <picture class="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden dark:block">
+        <img src="assets/img/gradient_dark.jpg" alt="gradient dark" />
+      </picture>
+      <div class="container h-full">
+        <div class="grid h-full items-center gap-4 md:grid-cols-12">
+          <div *ngIf="activation == true;else loading" class="col-span-8 flex h-full flex-col items-center justify-center py-10 md:items-start md:py-20 xl:col-span-4">
+            <h1 class="text-jacarta-700 font-display mb-6 text-center text-5xl dark:text-white md:text-left lg:text-6xl xl:text-7xl">OragonX Marketplace. </h1>
+            <p class="mb-8 text-center text-lg md:text-left text-green"> Your account has been activated !</p>
+            <div class="flex space-x-4 pb-12">
+              <a href="/tabs/home" class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-7 text-center font-semibold text-white transition-all"> Homepage </a>
+            </div>
+          </div>
+          <ng-template #loading>
+            <div class="col-span-8 flex h-full flex-col items-center justify-center py-10 md:items-start md:py-20 xl:col-span-4">
+              <h1 class="text-jacarta-700 font-display mb-6 text-center text-5xl dark:text-white md:text-left lg:text-6xl xl:text-7xl">Activating... </h1>
+              <p class="mb-8 text-center text-lg md:text-left text-green"> We are activating your account, don't close this page</p>
+              <div class="flex space-x-4 pb-12">
+                <a class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-7 text-center font-semibold text-white transition-all">Please wait</a>
+              </div>
+            </div>
+          </ng-template>
+          <div *ngIf="activation == 'exists'" class="col-span-8 flex h-full flex-col items-center justify-center py-10 md:items-start md:py-20 xl:col-span-4">
+            <p class="mb-8 text-center text-lg md:text-left text-green"> Your account already activated !</p>
+          </div>
+          <!-- Hero image -->
+          <div class="col-span-4 xl:col-span-8 overflow-hidden">
+            <div class="relative text-center md:pl-8 md:text-right">
+              <svg x="0" y="0" viewBox="0 0 250 300" xmlns="http://www.w3.org/2000/svg" class="mt-8 inline-block w-72 rotate-[8deg] sm:w-full lg:w-[24rem] xl:w-[35rem]">
+                <defs>
+                  <clipPath id="clipping" clipPathUnits="userSpaceOnUse">
+                    <path d="M 0, 100 C 0, 17.000000000000004 17.000000000000004, 0 100, 0 S 200, 17.000000000000004 200, 100 183, 200 100, 200 0, 183 0, 100" fill="#9446ED"></path>
+                  </clipPath>
+                </defs>
+                <g clip-path="url(#clipping)">
+                  <!-- Bg image -->
+                  <image href="assets/img/hero/hero.jpg" width="200" height="200" clip-path="url(#clipping)" />
+                </g>
+              </svg>
+              <img src="assets/img/hero/3D_elements.png" alt="" class="animate-fly absolute top-0 md:-right-[10%]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end hero -->
+  <!-- main -->
+</ion-content>

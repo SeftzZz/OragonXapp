@@ -1,0 +1,669 @@
+<ion-content [fullscreen]="true" id="main-content">
+  <!-- Header -->
+  <header class="js-page-header z-20 fixed top-0 w-full backdrop-blur transition-colors">
+    <div class="flex items-center px-6 py-6 xl:px-24">
+      <!-- Logo -->
+      <a color="dark" href="/tabs/home">
+        <img src="assets/img/logo1.png" class="max-h-7 dark:hidden" alt="Xhibiter | NFT Marketplace" />
+        <img src="assets/img/logo_white.png" class="hidden max-h-7 dark:block" alt="Xhibiter | NFT Marketplace" />
+      </a>
+      <!-- Desktop Menu Actions -->
+      <div class="js-mobile-menu dark:bg-jacarta-800 invisible fixed inset-0 z-10 ml-auto items-center bg-white opacity-0 lg:visible lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent">
+        <!-- Mobile Logo / Menu Close -->
+        <div class="t-0 dark:bg-jacarta-800 fixed left-0 z-10 flex w-full items-center justify-between bg-white p-6 lg:hidden">
+          <!-- Mobile Logo -->
+          <a color="dark" href="/tabs/home">
+            <img src="assets/img/logo1.png" class="max-h-7 dark:hidden" alt="Xhibiter | NFT Marketplace" />
+            <img src="assets/img/logo_white.png" class="hidden max-h-7 dark:block" alt="Xhibiter | NFT Marketplace" />
+          </a>
+        </div>
+        <!-- Primary Nav -->
+        <nav class="navbar w-full">
+          <ul class="flex flex-col lg:flex-row">
+            <li class="js-nav-dropdown group relative">
+              <a [routerLink]="['/tabs/home']" class="dropdown-toggle text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5">Home <i class="lg:hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 dark:fill-white">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
+                  </svg>
+                </i>
+              </a>
+            </li>
+            <!-- new menu -->
+            <li class="js-nav-dropdown group relative">
+              <a href="#" class="dropdown-toggle text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5" id="navDropdown-1" aria-expanded="false" role="button" data-bs-toggle="dropdown">Activity <i class="lg:hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 dark:fill-white">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
+                  </svg>
+                </i>
+              </a>
+              <ul class="dropdown-menu dark:bg-jacarta-800 left-0 top-[85%] z-10 hidden min-w-[200px] gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover:visible group-hover:opacity-100 lg:invisible lg:absolute lg:grid lg:translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl lg:group-hover:translate-y-2" aria-labelledby="navDropdown-1">
+                <li>
+                  <a [routerLink]="['/tabs/rankings']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-accent text-sm">Rankings</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/tabs/recently-sold']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-jacarta-700 text-sm dark:text-white">Recently Sold</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="js-nav-dropdown group relative">
+              <a href="#" class="dropdown-toggle text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5" id="navDropdown-4" aria-expanded="false" role="button" data-bs-toggle="dropdown">Resources <i class="lg:hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 dark:fill-white">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
+                  </svg>
+                </i>
+              </a>
+              <ul class="dropdown-menu dark:bg-jacarta-800 left-0 top-[85%] z-10 hidden min-w-[200px] gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover:visible group-hover:opacity-100 lg:invisible lg:absolute lg:grid lg:translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl lg:group-hover:translate-y-2" aria-labelledby="navDropdown-4">
+                <li>
+                  <a [routerLink]="['/tabs/help-center']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-jacarta-700 text-sm dark:text-white">Help Center</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/tabs/platform']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-jacarta-700 text-sm dark:text-white">Platform Status</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/tabs/partners']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-jacarta-700 text-sm dark:text-white">Partners</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/tabs/blogs']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-jacarta-700 text-sm dark:text-white">Newsletter</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="js-nav-dropdown group relative">
+              <a href="#" class="dropdown-toggle text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5" id="navDropdown-1" aria-expanded="false" role="button" data-bs-toggle="dropdown">Create <i class="lg:hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 dark:fill-white">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
+                  </svg>
+                </i>
+              </a>
+              <ul class="dropdown-menu dark:bg-jacarta-800 left-0 top-[85%] z-10 hidden min-w-[200px] gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover:visible group-hover:opacity-100 lg:invisible lg:absolute lg:grid lg:translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl lg:group-hover:translate-y-2" aria-labelledby="navDropdown-1">
+                <li>
+                  <a [routerLink]="['/tabs/background']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-accent text-sm">Background</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/tabs/advertise']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center rounded-xl px-5 py-2 transition-colors">
+                    <span class="font-display text-jacarta-700 text-sm dark:text-white">Advertise</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- new menu -->
+            <li class="js-nav-dropdown group relative">
+              <a href="https://chatting.page/zhgxl6yxqqwat7pzj48lgzh7afhddd0m" target="_blank" class="dropdown-toggle text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5">Support <i class="lg:hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 dark:fill-white">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
+                  </svg>
+                </i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- Mobile Connect Wallet / Socials -->
+        <!-- Actions -->
+        <div class="ml-8 hidden lg:flex xl:ml-12">
+          <!-- cart -->
+          <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
+              <g>
+                <path d="M84.176,379.875c-26.762,0-48.535,21.772-48.535,48.534s21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534S110.938,379.875,84.176,379.875z M84.176,446.944c-10.22,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534c10.22,0,18.534,8.314,18.534,18.534S94.396,446.944,84.176,446.944z" />
+                <path d="M474.946,30V0h-61.624l-9.835,60H1.999l28.736,175.88c4.044,24.67,26.794,43.995,51.794,43.995h130.756c-0.001,0.19-0.007,0.38-0.007,0.57c0,13.744,2.161,26.992,6.149,39.429H50.641v30H233.52c15.742,24.669,39.607,43.675,67.799,53.214c-4.53,7.377-7.147,16.048-7.147,25.32c0,26.762,21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534c0-9.273-2.617-17.944-7.147-25.32c51.133-17.302,88.042-65.743,88.042-122.644c0-44.48-22.556-83.789-56.828-107.097L438.804,30H474.946z M361.241,428.41c0,10.22-8.314,18.534-18.534,18.534c-10.221,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534C352.927,409.875,361.241,418.19,361.241,428.41zM442.136,280.446c0,54.826-44.604,99.43-99.429,99.43c-54.826,0-99.431-44.604-99.431-99.43s44.604-99.429,99.431-99.429C397.532,181.016,442.136,225.62,442.136,280.446z M342.707,151.016c-60.839,0-112,42.197-125.773,98.859H82.529c-10.174,0-20.543-8.808-22.188-18.841L37.298,90h361.271l-11.298,68.924C373.371,153.81,358.36,151.016,342.707,151.016z" />
+                <polygon points="357.707,218.83 327.707,218.83 327.707,265.446 281.091,265.446 281.091,295.446 327.707,295.446 327.707,342.062 357.707,342.062 357.707,295.446 404.323,295.446 404.323,265.446 357.707,265.446" />
+              </g>
+            </svg>
+            <span style="padding-left: 1px;">{{cartCount}}</span>
+          </button>
+          <!-- Profile -->
+          <div *ngIf="isLogin == '!'" class="js-nav-dropdown group-dropdown relative">
+            <button class="dropdown-toggle border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" (click)="login()">
+              <ion-icon name="log-in-outline"></ion-icon>
+            </button>
+          </div>
+          <div *ngIf="isLogin == ''" class="js-nav-dropdown group-dropdown relative">
+            <button class="dropdown-toggle border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" id="profileDropdown" aria-expanded="false" data-bs-toggle="dropdown" aria-label="profile">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z" />
+              </svg>
+            </button>
+            <div class="dropdown-menu dark:bg-jacarta-800 group-dropdown-hover:opacity-100 group-dropdown-hover:visible !-right-4 !top-[85%] !left-auto z-10 hidden min-w-[14rem] whitespace-nowrap rounded-xl bg-white transition-all will-change-transform before:absolute before:-top-3 before:h-3 before:w-full lg:invisible lg:absolute lg:grid lg:!translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl" aria-labelledby="profileDropdown">
+              <button class="js-copy-clipboard font-display text-jacarta-700 my-4 flex select-none items-center whitespace-nowrap px-5 leading-none dark:text-white" data-tippy-content="Copy">
+                <span class="max-w-[10rem] overflow-hidden text-ellipsis">{{wallets}}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-300 fill-jacarta-500 ml-1 mb-px h-4 w-4">
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M7 7V3a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-4v3.993c0 .556-.449 1.007-1.007 1.007H3.007A1.006 1.006 0 0 1 2 20.993l.003-12.986C2.003 7.451 2.452 7 3.01 7H7zm2 0h6.993C16.549 7 17 7.449 17 8.007V15h3V4H9v3zM4.003 9L4 20h11V9H4.003z" />
+                </svg>
+              </button>
+              <div class="dark:border-jacarta-600 border-jacarta-100 mx-5 mb-6 rounded-lg border p-4">
+                <span class="dark:text-jacarta-200 text-sm font-medium tracking-tight">Balance</span>
+                <div class="flex items-center mb-3">
+                  <img src="assets/img/1627920359498.png" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                  <span class="text-green text-sm font-bold">{{balanceORGNPlayers}} ORGN</span>
+                </div>
+                <div class="flex items-center mb-3">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                    <g fill="#f3ba2f">
+                      <path d="M611.59 840.42l388.4-388.39 388.6 388.59 226-226L999.99 0 385.6 614.42l225.99 226M.006 999.969l226.007-226.007 225.992 225.993L226 1225.96zM611.59 1159.58l388.4 388.39 388.59-388.58 226.12 225.88-.11.12L999.99 2000l-614.41-614.4-.32-.32 226.33-225.7M1548.013 1000.093l226.007-226.006 225.992 225.992-226.006 226.007z"/><path d="M1229.22 999.88h.1L999.99 770.55 830.51 940.03h-.01l-19.47 19.48-40.16 40.17-.32.31.32.33 229.12 229.13 229.33-229.33.11-.13-.21-.11"/>
+                    </g>
+                  </svg>
+                  <span class="text-green text-sm font-bold">{{balanceBNBPlayers}} BNB</span>
+                </div>
+                <div class="flex items-center mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 420 420" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                    <g fill="#f0b90b">
+                      <path d="M168.2.71l41.5,42.5L105.2,147.71l-41.5-41.5Z"/><path d="M231.2,63.71l41.5,42.5L105.2,273.71l-41.5-41.5Z"/><path d="M42.2,126.71l41.5,42.5-41.5,41.5L.7,169.21Z"/><path d="M294.2,126.71l41.5,42.5L168.2,336.71l-41.5-41.5Z"/>
+                    </g>
+                  </svg>
+                  <span class="text-green text-sm font-bold">{{balanceBUSDPlayers}} BUSD</span>
+                </div>
+              </div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 mx-5 mb-6 rounded-lg border p-4">
+                <span class="dark:text-jacarta-200 text-sm font-medium tracking-tight">Royalty</span>
+                <div>
+                  <span class="dark:text-jacarta-200 text-sm font-medium tracking-tight">Your progress {{percentRoyalty}}%</span>
+                  <div class="flex items-center mt-2">
+                    <!-- Default Progressbar with 50 percent -->
+                    <ion-progress-bar value="{{valueRoyalty}}"></ion-progress-bar>
+                  </div>
+                </div>
+              </div>
+              <a [routerLink]="['/tabs/profile']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center space-x-2 rounded-xl px-5 py-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors dark:fill-white">
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"></path>
+                </svg>
+                <span class="font-display text-jacarta-700 mt-1 text-sm dark:text-white">My Profile</span>
+              </a>
+              <a (click)="logout()" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center space-x-2 rounded-xl px-5 py-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors dark:fill-white">
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7 11V8l-5 4 5 4v-3h8v-2H7z" />
+                </svg>
+                <span class="font-display text-jacarta-700 mt-1 text-sm dark:text-white">Sign out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Actions -->
+      <div class="ml-auto flex lg:hidden">
+        <!-- cart -->
+        <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
+            <g>
+              <path d="M84.176,379.875c-26.762,0-48.535,21.772-48.535,48.534s21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534S110.938,379.875,84.176,379.875z M84.176,446.944c-10.22,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534c10.22,0,18.534,8.314,18.534,18.534S94.396,446.944,84.176,446.944z" />
+              <path d="M474.946,30V0h-61.624l-9.835,60H1.999l28.736,175.88c4.044,24.67,26.794,43.995,51.794,43.995h130.756c-0.001,0.19-0.007,0.38-0.007,0.57c0,13.744,2.161,26.992,6.149,39.429H50.641v30H233.52c15.742,24.669,39.607,43.675,67.799,53.214c-4.53,7.377-7.147,16.048-7.147,25.32c0,26.762,21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534c0-9.273-2.617-17.944-7.147-25.32c51.133-17.302,88.042-65.743,88.042-122.644c0-44.48-22.556-83.789-56.828-107.097L438.804,30H474.946z M361.241,428.41c0,10.22-8.314,18.534-18.534,18.534c-10.221,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534C352.927,409.875,361.241,418.19,361.241,428.41zM442.136,280.446c0,54.826-44.604,99.43-99.429,99.43c-54.826,0-99.431-44.604-99.431-99.43s44.604-99.429,99.431-99.429C397.532,181.016,442.136,225.62,442.136,280.446z M342.707,151.016c-60.839,0-112,42.197-125.773,98.859H82.529c-10.174,0-20.543-8.808-22.188-18.841L37.298,90h361.271l-11.298,68.924C373.371,153.81,358.36,151.016,342.707,151.016z" />
+              <polygon points="357.707,218.83 327.707,218.83 327.707,265.446 281.091,265.446 281.091,295.446 327.707,295.446 327.707,342.062 357.707,342.062 357.707,295.446 404.323,295.446 404.323,265.446 357.707,265.446" />
+            </g>
+          </svg>
+          <span style="padding-left: 1px;">{{cartCount}}</span>
+        </button>
+        
+        <!-- Profile -->            
+        <div *ngIf="isLogin == '!'" class="js-nav-dropdown group-dropdown relative">
+          <button class="dropdown-toggle border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" (click)="login()">
+            <ion-icon name="log-in-outline"></ion-icon>
+          </button>
+        </div>
+        <div *ngIf="isLogin == ''" class="js-nav-dropdown group-dropdown relative">
+          <button class="dropdown-toggle border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" id="profileDropdown" aria-expanded="false" data-bs-toggle="dropdown" aria-label="profile">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z" />
+            </svg>
+          </button>
+          <div class="dropdown-menu dark:bg-jacarta-800 group-dropdown-hover:opacity-100 group-dropdown-hover:visible !-right-4 !top-[85%] !left-auto z-10 hidden min-w-[14rem] whitespace-nowrap rounded-xl bg-white transition-all will-change-transform before:absolute before:-top-3 before:h-3 before:w-full lg:invisible lg:absolute lg:grid lg:!translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl" aria-labelledby="profileDropdown">
+            <button class="js-copy-clipboard font-display text-jacarta-700 my-4 flex select-none items-center whitespace-nowrap px-5 leading-none dark:text-white" data-tippy-content="Copy">
+              <span class="max-w-[10rem] overflow-hidden text-ellipsis">{{wallets}}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-300 fill-jacarta-500 ml-1 mb-px h-4 w-4">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M7 7V3a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-4v3.993c0 .556-.449 1.007-1.007 1.007H3.007A1.006 1.006 0 0 1 2 20.993l.003-12.986C2.003 7.451 2.452 7 3.01 7H7zm2 0h6.993C16.549 7 17 7.449 17 8.007V15h3V4H9v3zM4.003 9L4 20h11V9H4.003z" />
+              </svg>
+            </button>
+            <div class="dark:border-jacarta-600 border-jacarta-100 mx-5 mb-6 rounded-lg border p-4">
+              <span class="dark:text-jacarta-200 text-sm font-medium tracking-tight">Balance</span>
+              <div class="flex items-center mb-3">
+                <img src="assets/img/1627920359498.png" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                <span class="text-green text-sm font-bold">{{balanceORGNPlayers}} ORGN</span>
+              </div>
+              <div class="flex items-center mb-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                  <g fill="#f3ba2f">
+                    <path d="M611.59 840.42l388.4-388.39 388.6 388.59 226-226L999.99 0 385.6 614.42l225.99 226M.006 999.969l226.007-226.007 225.992 225.993L226 1225.96zM611.59 1159.58l388.4 388.39 388.59-388.58 226.12 225.88-.11.12L999.99 2000l-614.41-614.4-.32-.32 226.33-225.7M1548.013 1000.093l226.007-226.006 225.992 225.992-226.006 226.007z"/><path d="M1229.22 999.88h.1L999.99 770.55 830.51 940.03h-.01l-19.47 19.48-40.16 40.17-.32.31.32.33 229.12 229.13 229.33-229.33.11-.13-.21-.11"/>
+                  </g>
+                </svg>
+                <span class="text-green text-sm font-bold">{{balanceBNBPlayers}} BNB</span>
+              </div>
+              <div class="flex items-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 420 420" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                  <g fill="#f0b90b">
+                    <path d="M168.2.71l41.5,42.5L105.2,147.71l-41.5-41.5Z"/><path d="M231.2,63.71l41.5,42.5L105.2,273.71l-41.5-41.5Z"/><path d="M42.2,126.71l41.5,42.5-41.5,41.5L.7,169.21Z"/><path d="M294.2,126.71l41.5,42.5L168.2,336.71l-41.5-41.5Z"/>
+                  </g>
+                </svg>
+                <span class="text-green text-sm font-bold">{{balanceBUSDPlayers}} BUSD</span>
+              </div>
+            </div>
+            <div class="dark:border-jacarta-600 border-jacarta-100 mx-5 mb-6 rounded-lg border p-4">
+              <span class="dark:text-jacarta-200 text-sm font-medium tracking-tight">Royalty</span>
+              <div>
+                <span class="dark:text-jacarta-200 text-sm font-medium tracking-tight">Your progress {{percentRoyalty}}%</span>
+                <div class="flex items-center mt-2">
+                  <!-- Default Progressbar with 50 percent -->
+                  <ion-progress-bar value="{{valueRoyalty}}"></ion-progress-bar>
+                </div>
+              </div>
+            </div>
+            <a [routerLink]="['/tabs/profile']" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center space-x-2 rounded-xl px-5 py-2 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"></path>
+              </svg>
+              <span class="font-display text-jacarta-700 mt-1 text-sm dark:text-white">My Profile</span>
+            </a>
+            <a (click)="logout()" class="dark:hover:bg-jacarta-600 hover:text-accent focus:text-accent hover:bg-jacarta-50 flex items-center space-x-2 rounded-xl px-5 py-2 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7 11V8l-5 4 5 4v-3h8v-2H7z" />
+              </svg>
+              <span class="font-display text-jacarta-700 mt-1 text-sm dark:text-white">Sign out</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-[5.5rem] lg:pt-24">
+    <!-- Blog -->
+    <section class="relative py-16 md:py-24">
+      <picture class="pointer-events-none absolute inset-0 -z-10 dark:hidden">
+        <img src="img/gradient_light.jpg" alt="gradient" class="h-full w-full" />
+      </picture>
+      <div class="container">
+        <!-- Featured Post -->
+        <article class="mb-[1.875rem] md:mb-16">
+          <div class="rounded-2.5xl flex flex-col overflow-hidden transition-shadow hover:shadow-lg md:flex-row">
+            <figure class="group overflow-hidden md:w-1/2">
+              <a href="single-post.html">
+                <img src="img/blog/post_1.jpg" alt="post 1" class="h-full w-full object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105" />
+              </a>
+            </figure>
+            <!-- Body -->
+            <div class="dark:border-jacarta-600 dark:bg-jacarta-700 border-jacarta-100 rounded-b-[1.25rem] border bg-white p-[10%] md:w-1/2 md:rounded-none md:rounded-r-[1.25rem]">
+              <!-- Meta -->
+              <div class="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                <a href="#" class="dark:text-jacarta-200 text-jacarta-700 font-display hover:text-accent">Deothemes</a>
+                <span class="dark:text-jacarta-400">in</span>
+                <span class="text-accent inline-flex flex-wrap items-center space-x-1">
+                  <a href="#">NFT's</a>
+                  <a href="#">DIGITAL ART</a>
+                </span>
+              </div>
+              <h2 class="font-display text-jacarta-700 dark:hover:text-accent hover:text-accent mb-4 text-xl dark:text-white sm:text-3xl">
+                <a href="single-post.html"> List your collection for secondary sales </a>
+              </h2>
+              <p class="dark:text-jacarta-200 mb-8"> Since we launched Tezos at the end of 2021, many awesome creators... </p>
+              <!-- Date / Time -->
+              <div class="text-jacarta-400 flex flex-wrap items-center space-x-2 text-sm">
+                <span>
+                  <time datetime="2022-02-05">5 Feb</time>
+                </span>
+                <span>•</span>
+                <span>3 min read</span>
+              </div>
+            </div>
+          </div>
+        </article>
+        <div class="grid grid-cols-1 gap-[1.875rem] sm:grid-cols-2 md:grid-cols-3">
+          <!-- Posts -->
+          <article>
+            <div class="rounded-2.5xl overflow-hidden transition-shadow hover:shadow-lg">
+              <figure class="group overflow-hidden">
+                <a href="single-post.html">
+                  <img src="img/blog/post_2.jpg" alt="post 2" class="h-full w-full object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105" />
+                </a>
+              </figure>
+              <!-- Body -->
+              <div class="dark:border-jacarta-600 dark:bg-jacarta-700 border-jacarta-100 rounded-b-[1.25rem] border border-t-0 bg-white p-[10%]">
+                <!-- Meta -->
+                <div class="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                  <a href="#" class="dark:text-jacarta-200 text-jacarta-700 font-display hover:text-accent">Deothemes</a>
+                  <span class="dark:text-jacarta-400">in</span>
+                  <span class="text-accent inline-flex flex-wrap items-center space-x-1">
+                    <a href="#">NFT's</a>
+                    <a href="#">DIGITAL ART</a>
+                  </span>
+                </div>
+                <h2 class="font-display text-jacarta-700 dark:hover:text-accent hover:text-accent mb-4 text-xl dark:text-white">
+                  <a href="single-post.html"> Mint your own Tezos collections </a>
+                </h2>
+                <p class="dark:text-jacarta-200 mb-8"> Since we launched Tezos at the end of 2021, many awesome creators... </p>
+                <!-- Date / Time -->
+                <div class="text-jacarta-400 flex flex-wrap items-center space-x-2 text-sm">
+                  <span>
+                    <time datetime="2022-02-05">5 Feb</time>
+                  </span>
+                  <span>•</span>
+                  <span>3 min read</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="rounded-2.5xl overflow-hidden transition-shadow hover:shadow-lg">
+              <figure class="group overflow-hidden">
+                <a href="single-post.html">
+                  <img src="img/blog/post_3.jpg" alt="post 3" class="h-full w-full object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105" />
+                </a>
+              </figure>
+              <!-- Body -->
+              <div class="dark:border-jacarta-600 dark:bg-jacarta-700 border-jacarta-100 rounded-b-[1.25rem] border border-t-0 bg-white p-[10%]">
+                <!-- Meta -->
+                <div class="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                  <a href="#" class="dark:text-jacarta-200 text-jacarta-700 font-display hover:text-accent">Deothemes</a>
+                  <span class="dark:text-jacarta-400">in</span>
+                  <span class="text-accent inline-flex flex-wrap items-center space-x-1">
+                    <a href="#">NFT's</a>
+                    <a href="#">DIGITAL ART</a>
+                  </span>
+                </div>
+                <h2 class="font-display text-jacarta-700 dark:hover:text-accent hover:text-accent mb-4 text-xl dark:text-white">
+                  <a href="single-post.html">List your collection for secondary sales</a>
+                </h2>
+                <p class="dark:text-jacarta-200 mb-8"> Since we launched Tezos at the end of 2021, many awesome creators... </p>
+                <!-- Date / Time -->
+                <div class="text-jacarta-400 flex flex-wrap items-center space-x-2 text-sm">
+                  <span>
+                    <time datetime="2022-02-05">22 Feb</time>
+                  </span>
+                  <span>•</span>
+                  <span>3 min read</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="rounded-2.5xl overflow-hidden transition-shadow hover:shadow-lg">
+              <figure class="group overflow-hidden">
+                <a href="single-post.html">
+                  <img src="img/blog/post_4.jpg" alt="post 4" class="h-full w-full object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105" />
+                </a>
+              </figure>
+              <!-- Body -->
+              <div class="dark:border-jacarta-600 dark:bg-jacarta-700 border-jacarta-100 rounded-b-[1.25rem] border border-t-0 bg-white p-[10%]">
+                <!-- Meta -->
+                <div class="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                  <a href="#" class="dark:text-jacarta-200 text-jacarta-700 font-display hover:text-accent">Deothemes</a>
+                  <span class="dark:text-jacarta-400">in</span>
+                  <span class="text-accent inline-flex flex-wrap items-center space-x-1">
+                    <a href="#">NFT's</a>
+                    <a href="#">DIGITAL ART</a>
+                  </span>
+                </div>
+                <h2 class="font-display text-jacarta-700 dark:hover:text-accent hover:text-accent mb-4 text-xl dark:text-white">
+                  <a href="single-post.html">The biggest moves in NFTs, Bitcoin, crypto rules</a>
+                </h2>
+                <p class="dark:text-jacarta-200 mb-8"> Since we launched Tezos at the end of 2021, many awesome creators... </p>
+                <!-- Date / Time -->
+                <div class="text-jacarta-400 flex flex-wrap items-center space-x-2 text-sm">
+                  <span>
+                    <time datetime="2022-02-05">18 Jan</time>
+                  </span>
+                  <span>•</span>
+                  <span>3 min read</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="rounded-2.5xl overflow-hidden transition-shadow hover:shadow-lg">
+              <figure class="group overflow-hidden">
+                <a href="single-post.html">
+                  <img src="img/blog/post_5.jpg" alt="post 5" class="h-full w-full object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105" />
+                </a>
+              </figure>
+              <!-- Body -->
+              <div class="dark:border-jacarta-600 dark:bg-jacarta-700 border-jacarta-100 rounded-b-[1.25rem] border border-t-0 bg-white p-[10%]">
+                <!-- Meta -->
+                <div class="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                  <a href="#" class="dark:text-jacarta-200 text-jacarta-700 font-display hover:text-accent">Deothemes</a>
+                  <span class="dark:text-jacarta-400">in</span>
+                  <span class="text-accent inline-flex flex-wrap items-center space-x-1">
+                    <a href="#">NFT's</a>
+                    <a href="#">DIGITAL ART</a>
+                  </span>
+                </div>
+                <h2 class="font-display text-jacarta-700 dark:hover:text-accent hover:text-accent mb-4 text-xl dark:text-white">
+                  <a href="single-post.html">Incredible Amount of Developer Energy' in Web3</a>
+                </h2>
+                <p class="dark:text-jacarta-200 mb-8"> Since we launched Tezos at the end of 2021, many awesome creators... </p>
+                <!-- Date / Time -->
+                <div class="text-jacarta-400 flex flex-wrap items-center space-x-2 text-sm">
+                  <span>
+                    <time datetime="2022-02-05">15 Jan</time>
+                  </span>
+                  <span>•</span>
+                  <span>3 min read</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="rounded-2.5xl overflow-hidden transition-shadow hover:shadow-lg">
+              <figure class="group overflow-hidden">
+                <a href="single-post.html">
+                  <img src="img/blog/post_6.jpg" alt="post 6" class="h-full w-full object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105" />
+                </a>
+              </figure>
+              <!-- Body -->
+              <div class="dark:border-jacarta-600 dark:bg-jacarta-700 border-jacarta-100 rounded-b-[1.25rem] border border-t-0 bg-white p-[10%]">
+                <!-- Meta -->
+                <div class="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                  <a href="#" class="dark:text-jacarta-200 text-jacarta-700 font-display hover:text-accent">Deothemes</a>
+                  <span class="dark:text-jacarta-400">in</span>
+                  <span class="text-accent inline-flex flex-wrap items-center space-x-1">
+                    <a href="#">NFT's</a>
+                    <a href="#">DIGITAL ART</a>
+                  </span>
+                </div>
+                <h2 class="font-display text-jacarta-700 dark:hover:text-accent hover:text-accent mb-4 text-xl dark:text-white">
+                  <a href="single-post.html">Inflation is up, it matters: High prices plague Biden's</a>
+                </h2>
+                <p class="dark:text-jacarta-200 mb-8"> Since we launched Tezos at the end of 2021, many awesome creators... </p>
+                <!-- Date / Time -->
+                <div class="text-jacarta-400 flex flex-wrap items-center space-x-2 text-sm">
+                  <span>
+                    <time datetime="2022-02-05">23 Dec</time>
+                  </span>
+                  <span>•</span>
+                  <span>3 min read</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="rounded-2.5xl overflow-hidden transition-shadow hover:shadow-lg">
+              <figure class="group overflow-hidden">
+                <a href="single-post.html">
+                  <img src="img/blog/post_7.jpg" alt="post 7" class="h-full w-full object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105" />
+                </a>
+              </figure>
+              <!-- Body -->
+              <div class="dark:border-jacarta-600 dark:bg-jacarta-700 border-jacarta-100 rounded-b-[1.25rem] border border-t-0 bg-white p-[10%]">
+                <!-- Meta -->
+                <div class="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                  <a href="#" class="dark:text-jacarta-200 text-jacarta-700 font-display hover:text-accent">Deothemes</a>
+                  <span class="dark:text-jacarta-400">in</span>
+                  <span class="text-accent inline-flex flex-wrap items-center space-x-1">
+                    <a href="#">NFT's</a>
+                    <a href="#">DIGITAL ART</a>
+                  </span>
+                </div>
+                <h2 class="font-display text-jacarta-700 dark:hover:text-accent hover:text-accent mb-4 text-xl dark:text-white">
+                  <a href="single-post.html">What to do when the market is going everywhere</a>
+                </h2>
+                <p class="dark:text-jacarta-200 mb-8"> Since we launched Tezos at the end of 2021, many awesome creators... </p>
+                <!-- Date / Time -->
+                <div class="text-jacarta-400 flex flex-wrap items-center space-x-2 text-sm">
+                  <span>
+                    <time datetime="2022-02-05">15 Dec</time>
+                  </span>
+                  <span>•</span>
+                  <span>3 min read</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <!-- Load More -->
+        <div class="mt-10 text-center">
+          <a href="blog.html" class="bg-accent shadow-accent-volume hover:bg-accent-dark inline-block rounded-full py-3 px-8 text-center font-semibold text-white transition-all">Load More</a>
+        </div>
+      </div>
+    </section>
+    <!-- end blog -->
+  </main>
+  
+  <!-- Footer -->
+  <footer class="dark:bg-jacarta-900 page-footer bg-white">
+    <div class="container">
+      <div class="grid grid-cols-6 gap-x-7 gap-y-14 pt-24 pb-12 md:grid-cols-12">
+        <div class="col-span-3 md:col-span-4">
+          <!-- Logo -->
+          <a href="#" class="mb-6 inline-block">
+            <img src="assets/img/logo1.png" class="max-h-7 dark:hidden" alt="Xhibiter | NFT Marketplace" />
+            <img src="assets/img/logo_white.png" class="hidden max-h-7 dark:block" alt="Xhibiter | NFT Marketplace" />
+          </a>
+          <p class="dark:text-jacarta-300 mb-12"> Create, sell and collect truly rare digital artworks. Powered by blockchain technology. </p>
+          <!-- Socials -->
+          <div class="flex space-x-5">
+            <!-- <a href="#" class="group"><svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fab"
+                data-icon="facebook"
+                class="group-hover:fill-accent fill-jacarta-300 h-5 w-5 dark:group-hover:fill-white"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              ><path
+                  d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+                ></path></svg></a> -->
+            <a href="https://twitter.com/OragonXBsc" class="group">
+              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" class="group-hover:fill-accent fill-jacarta-300 h-5 w-5 dark:group-hover:fill-white" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+              </svg>
+            </a>
+            <a href="https://discord.com/invite/hNXbcCtnNV" class="group">
+              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="discord" class="group-hover:fill-accent fill-jacarta-300 h-5 w-5 dark:group-hover:fill-white" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/oragonx_official/?hl=en" class="group">
+              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="group-hover:fill-accent fill-jacarta-300 h-5 w-5 dark:group-hover:fill-white" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UCI8UcLVmFXAQKJGnxtxReXg" class="group">
+              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" class="group-hover:fill-accent fill-jacarta-300 h-5 w-5 dark:group-hover:fill-white" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M9.426,7.625h0.271c0.596,0,1.079-0.48,1.079-1.073V4.808c0-0.593-0.483-1.073-1.079-1.073H9.426c-0.597,0-1.079,0.48-1.079,1.073v1.745C8.347,7.145,8.83,7.625,9.426,7.625 M9.156,4.741c0-0.222,0.182-0.402,0.404-0.402c0.225,0,0.405,0.18,0.405,0.402V6.62c0,0.222-0.181,0.402-0.405,0.402c-0.223,0-0.404-0.181-0.404-0.402V4.741z M12.126,7.625c0.539,0,1.013-0.47,1.013-0.47v0.403h0.81V3.735h-0.81v2.952c0,0-0.271,0.335-0.54,0.335c-0.271,0-0.271-0.202-0.271-0.202V3.735h-0.81v3.354C11.519,7.089,11.586,7.625,12.126,7.625 M6.254,7.559H7.2v-2.08l1.079-2.952H7.401L6.727,4.473L6.052,2.527H5.107l1.146,2.952V7.559z M11.586,12.003c-0.175,0-0.312,0.104-0.405,0.204v2.706c0.086,0.091,0.213,0.18,0.405,0.18c0.405,0,0.405-0.451,0.405-0.451v-2.188C11.991,12.453,11.924,12.003,11.586,12.003 M14.961,8.463c0,0-2.477-0.129-4.961-0.129c-2.475,0-4.96,0.129-4.96,0.129c-1.119,0-2.025,0.864-2.025,1.93c0,0-0.203,1.252-0.203,2.511c0,1.252,0.203,2.51,0.203,2.51c0,1.066,0.906,1.931,2.025,1.931c0,0,2.438,0.129,4.96,0.129c2.437,0,4.961-0.129,4.961-0.129c1.117,0,2.024-0.864,2.024-1.931c0,0,0.202-1.268,0.202-2.51c0-1.268-0.202-2.511-0.202-2.511C16.985,9.328,16.078,8.463,14.961,8.463 M7.065,10.651H6.052v5.085H5.107v-5.085H4.095V9.814h2.97V10.651z M9.628,15.736h-0.81v-0.386c0,0-0.472,0.45-1.012,0.45c-0.54,0-0.606-0.515-0.606-0.515v-3.991h0.809v3.733c0,0,0,0.193,0.271,0.193c0.27,0,0.54-0.322,0.54-0.322v-3.604h0.81V15.736z M12.801,14.771c0,0,0,1.03-0.742,1.03c-0.455,0-0.73-0.241-0.878-0.429v0.364h-0.876V9.814h0.876v1.92c0.135-0.142,0.464-0.439,0.878-0.439c0.54,0,0.742,0.45,0.742,1.03V14.771z M15.973,12.39v1.287h-1.688v0.965c0,0,0,0.451,0.405,0.451s0.405-0.451,0.405-0.451v-0.45h0.877v0.708c0,0-0.136,0.901-1.215,0.901c-1.08,0-1.282-0.901-1.282-0.901v-2.51c0,0,0-1.095,1.282-1.095S15.973,12.39,15.973,12.39 M14.69,12.003c-0.405,0-0.405,0.45-0.405,0.45v0.579h0.811v-0.579C15.096,12.453,15.096,12.003,14.69,12.003"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="col-span-full sm:col-span-3 md:col-span-2 md:col-start-7">
+          <h3 class="font-display text-jacarta-700 mb-6 text-sm dark:text-white">Marketplace</h3>
+          <ul class="dark:text-jacarta-300 flex flex-col space-y-1">
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">All NFTs</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Art</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Music</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Domain Names</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Collectibles</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Virtual World</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-span-full sm:col-span-3 md:col-span-2">
+          <h3 class="font-display text-jacarta-700 mb-6 text-sm dark:text-white">Company</h3>
+          <ul class="dark:text-jacarta-300 flex flex-col space-y-1">
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Explore</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">About</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Contact Us</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Our Blog</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">FAQ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-span-full sm:col-span-3 md:col-span-2">
+          <h3 class="font-display text-jacarta-700 mb-6 text-sm dark:text-white">My Account</h3>
+          <ul class="dark:text-jacarta-300 flex flex-col space-y-1">
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Authors</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Collection</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Author Profile</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-accent dark:hover:text-white">Create Item</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col items-center justify-between space-y-2 py-8 sm:flex-row sm:space-y-0">
+        <span class="dark:text-jacarta-400 text-sm">&copy; <script>
+            document.write(new Date().getFullYear())
+          </script> Copyright OragonX All Rights Reserved By <a href="https://oragonbsc.io" class="hover:text-accent">OragonX</a>
+        </span>
+        <ul class="dark:text-jacarta-400 flex flex-wrap space-x-4 text-sm">
+          <li>
+            <a href="tos.html" class="hover:text-accent">Terms and conditions</a>
+          </li>
+          <li>
+            <a href="tos.html" class="hover:text-accent">Privacy policy & EULA </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- end footer -->
+</ion-content>

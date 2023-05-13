@@ -1,0 +1,140 @@
+<ion-content [fullscreen]="true" id="main-content">  
+  <main>
+    <!-- Collection -->
+    <section class="relative py-24" style="padding-top: 20vh;">
+      <picture class="pointer-events-none absolute inset-0 -z-10 dark:hidden">
+        <img src="assets/img/gradient_light.jpg" alt="gradient" class="h-full w-full" />
+      </picture>
+      <div class="container">
+        <!-- Tabs Nav -->
+        <ul class="nav nav-tabs scrollbar-custom dark:border-jacarta-600 border-jacarta-100 mb-12 flex items-center justify-start overflow-x-auto overflow-y-hidden border-b pb-px md:justify-center" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button (click)="p2pTab(2)" class="nav-link active hover:text-jacarta-700 text-jacarta-400 relative flex items-center whitespace-nowrap py-3 px-6 dark:hover:text-white" id="bid-tab" data-bs-toggle="tab" data-bs-target="#bid" type="button" role="tab" aria-controls="bid" aria-selected="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-1 h-5 w-5 fill-current">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h16V5H4zm4.5 9H14a.5.5 0 1 0 0-1h-4a2.5 2.5 0 1 1 0-5h1V6h2v2h2.5v2H10a.5.5 0 1 0 0 1h4a2.5 2.5 0 1 1 0 5h-1v2h-2v-2H8.5v-2z" />
+              </svg>
+              <span class="font-display text-base font-medium">BID</span>
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <!-- BID Tab -->
+          <div class="tab-pane fade show active" id="bid" role="tabpanel" aria-labelledby="bid-tab">
+            <!-- Filters -->
+            <div class="mb-8 flex flex-wrap items-center justify-between">
+              <div class="flex flex-wrap items-center">
+                <!-- Category -->
+                <div class="my-1 mr-2.5">
+                  <button class="group dropdown-toggle dark:border-jacarta-600 dark:bg-jacarta-700 group dark:hover:bg-accent hover:bg-accent border-jacarta-100 font-display text-jacarta-700 flex h-9 items-center rounded-lg border bg-white px-4 text-sm font-semibold transition-colors hover:border-transparent hover:text-white dark:text-white" id="onSaleCategoriesFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 dark:fill-jacarta-100 mr-1 h-4 w-4 transition-colors group-hover:fill-white">
+                      <path fill="none" d="M0 0h24v24H0z" />
+                      <path d="M14 10v4h-4v-4h4zm2 0h5v4h-5v-4zm-2 11h-4v-5h4v5zm2 0v-5h5v4a1 1 0 0 1-1 1h-4zM14 3v5h-4V3h4zm2 0h4a1 1 0 0 1 1 1v4h-5V3zm-8 7v4H3v-4h5zm0 11H4a1 1 0 0 1-1-1v-4h5v5zM8 3v5H3V4a1 1 0 0 1 1-1h4z" />
+                    </svg>
+                    <span>Category</span>
+                  </button>
+                  <div class="dropdown-menu dark:bg-jacarta-800 z-10 hidden min-w-[220px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="onSaleCategoriesFilter">
+                    <ul class="flex flex-col flex-wrap">
+                      <li>
+                        <div style="padding-right: 1rem;">
+                          <div class="mb-2 flex items-center justify-between">
+                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white"><a (click)="clickcategorybid(2)" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white"> Eggs </a></span>
+                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{marketp2peggBIDLength}}</span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end filters -->
+            <!-- Grid -->
+            <div *ngIf="lastseen == 'egg'" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5" style="gap: 1.2rem">
+              <div *ngFor="let datas of eggsBID">
+                <article>
+                  <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
+                    <figure class="relative" style="margin: 0em 0px;">
+                      <!--  -->
+                      <div *ngIf="datas.ItemId == 'ITM6'">
+                        <img src="assets/img/eggs/RITRA_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]"/>
+                      </div>
+                      <div *ngIf="datas.ItemId == 'ITM8'">
+                        <img src="assets/img/eggs/METALICANA_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]"/>
+                      </div>
+                      <div *ngIf="datas.ItemId == 'ITM2'">
+                        <img src="assets/img/eggs/MERU_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]"/>
+                      </div>
+                      <div *ngIf="datas.ItemId == 'ITM5'">
+                        <img src="assets/img/eggs/FENG_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]"/>
+                      </div>
+                      <div *ngIf="datas.ItemId == 'ITM7'">
+                        <img src="assets/img/eggs/DORCH_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]"/>
+                      </div>
+                      <div *ngIf="datas.ItemId == 'ITM4'">
+                        <img src="assets/img/eggs/AKH_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]"/>
+                      </div>
+                    </figure>
+                    <div class="mt-2 text-sm">
+                      <div class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 rounded-2lg border bg-white p-4 w-full">
+                        <div class="dark:border-jacarta-600 sm:border-jacarta-100 sm:mt-0 sm:pl-4 lg:pl-4 text-center">
+                          <span class="js-countdown-ends-label text-jacarta-400 dark:text-jacarta-300 text-sm">Auction {{datas.bidTime}} hours</span>
+                          <div class="js-countdown-single-timer mt-3 flex space-x-4 justify-center" data-countdown="2022-09-07T19:40:30" data-expired="This auction has ended">
+                            <span class="countdown-hours text-jacarta-700 dark:text-white">
+                              <span class="js-countdown-hours-number text-lg font-medium lg:text-[1.5rem]">{{datas.hours}}</span>
+                              <span class="block text-xs font-medium tracking-tight">Hrs</span>
+                            </span>
+                            <span class="countdown-minutes text-jacarta-700 dark:text-white">
+                              <span class="js-countdown-minutes-number text-lg font-medium lg:text-[1.5rem]">{{datas.minutes}}</span>
+                              <span class="block text-xs font-medium tracking-tight">Min</span>
+                            </span>
+                            <span class="countdown-seconds text-jacarta-700 dark:text-white">
+                              <span class="js-countdown-seconds-number text-lg font-medium lg:text-[1.5rem]">{{datas.seconds}}</span>
+                              <span class="block text-xs font-medium tracking-tight">Sec</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-7 flex items-center justify-between">
+                      <span *ngIf="datas.ItemId == 'ITM6'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">RITRA EGG #{{datas.DocId}}</span>
+                      <span *ngIf="datas.ItemId == 'ITM8'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">METALICANA EGG #{{datas.DocId}}</span>
+                      <span *ngIf="datas.ItemId == 'ITM2'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">MERU EGG #{{datas.DocId}}</span>
+                      <span *ngIf="datas.ItemId == 'ITM5'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">FENG EGG #{{datas.DocId}}</span>
+                      <span *ngIf="datas.ItemId == 'ITM7'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">DORCH EGG #{{datas.DocId}}</span>
+                      <span *ngIf="datas.ItemId == 'ITM4'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">AKH EGG #{{datas.DocId}}</span>
+                      <div class="dark:hover:bg-jacarta-600 dropup hover:bg-jacarta-100 rounded-full">
+                        <a href="#" class="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm" role="button" id="dgActions" data-bs-toggle="dropdown" aria-expanded="false">
+                          <ion-icon size="large" name="ellipsis-vertical" class="group-hover:fill-accent dark:fill-jacarta-200 fill-jacarta-500" style="margin-bottom: -10px;"></ion-icon>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dark:bg-jacarta-800 z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="dgActions">
+                          <p class="dark:hover:bg-jacarta-600 font-display hover:bg-jacarta-50 block w-full rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white"> Egg Data<br><span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm" style="font-size: 10px;">Update at {{datas.EditAt}}</span> </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-2 text-sm">
+                      <span class="mb-1 flex items-center whitespace-nowrap">
+                        <span data-tippy-content="ETH">
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                            <g fill="#f3ba2f">
+                              <path d="M611.59 840.42l388.4-388.39 388.6 388.59 226-226L999.99 0 385.6 614.42l225.99 226M.006 999.969l226.007-226.007 225.992 225.993L226 1225.96zM611.59 1159.58l388.4 388.39 388.59-388.58 226.12 225.88-.11.12L999.99 2000l-614.41-614.4-.32-.32 226.33-225.7M1548.013 1000.093l226.007-226.006 225.992 225.992-226.006 226.007z"/><path d="M1229.22 999.88h.1L999.99 770.55 830.51 940.03h-.01l-19.47 19.48-40.16 40.17-.32.31.32.33 229.12 229.13 229.33-229.33.11-.13-.21-.11"/>
+                            </g>
+                          </svg>
+                        </span>
+                        <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">{{datas.PriceNow}} BNB - </span>
+                        <span class="text-green"> {{datas.Type}}</span>
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <!-- end grid -->
+          </div>
+          <!-- end bid tab -->
+        </div>
+      </div>
+    </section>
+    <!-- end collection -->
+  </main>
+</ion-content>
