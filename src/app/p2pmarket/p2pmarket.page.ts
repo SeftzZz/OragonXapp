@@ -502,6 +502,10 @@ export class P2pmarketPage {
     isRunning = false;
     timerId = 0;
     bidTime = false;
+
+    jakets : any;
+    fashionjaketsLength : any;
+    currentfashion : any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -668,10 +672,12 @@ export class P2pmarketPage {
 
     this.currentp2p = 0;
     this.sortp2pmarket = 1;
+    this.currentfashion = 0;
     // console.log("category p2p", this.currentp2p);
     // console.log("sort p2p", this.sortp2pmarket);
 
     let lastitems = localStorage.getItem("lastseen");
+    let lastfashion = localStorage.getItem("lastseenfashion");
     if (lastitems == "dragon") {
       this.lastseen = "dragon";
       this.senddata.getselldgmp().subscribe(
@@ -708,6 +714,12 @@ export class P2pmarketPage {
       this.senddata.getsellfoodmp().subscribe(
         (dataSell: any) => {
           this.marketp2pfoodLength = dataSell.length;
+        },
+        (error: any) => {}
+      );
+      this.senddata.getselljakets().subscribe(
+        (dataSell: any) => {
+          this.fashionjaketsLength = dataSell.length;
         },
         (error: any) => {}
       );
@@ -794,6 +806,13 @@ export class P2pmarketPage {
       );
 
       this.sessionCart();
+    } else if (lastfashion == "fashion") {
+      this.senddata.getselljakets().subscribe(
+        (dataSell: any) => {
+          this.fashionjaketsLength = dataSell.length;
+        },
+        (error: any) => {}
+      );
     } else {
       this.senddata.getselldgmp().subscribe(
         (dataSell: any) => {
@@ -829,6 +848,12 @@ export class P2pmarketPage {
       this.senddata.getsellfoodmp().subscribe(
         (dataSell: any) => {
           this.marketp2pfoodLength = dataSell.length;
+        },
+        (error: any) => {}
+      );
+      this.senddata.getselljakets().subscribe(
+        (dataSell: any) => {
+          this.fashionjaketsLength = dataSell.length;
         },
         (error: any) => {}
       );
@@ -6398,6 +6423,18 @@ export class P2pmarketPage {
 
       localStorage.setItem("tabs", "bid");
       loading.dismiss();
+    } else if (kind == "3") {
+      this.senddata.getselldgmp().subscribe(
+        async (dataSell: any) => {
+          const loading = await this.loadingController.create();
+          await loading.present();
+          this.dragons = dataSell;
+          this.marketp2pdragonLength = dataSell.length;
+          loading.dismiss();
+        },
+        (error: any) => {}
+      );
+      localStorage.setItem("tabs", "fashion");
     }
   }
 

@@ -778,8 +778,8 @@
                           </span>
                         </div>
                         <div class="mt-8 flex items-center justify-between">
-                          <!-- <button (click)="setdgbuydetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-3 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#sellNowDragonModal"> Sell </button> -->
-                          <!-- <button (click)="setdgbiddetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-2 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#setbidNowDragonModal"> Auction </button> -->
+                          <button (click)="setdgbuydetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-3 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#sellNowDragonModal"> Sell </button>
+                          <button (click)="setdgbiddetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-2 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#setbidNowDragonModal"> Auction </button>
                         </div>
                       </div>
                     </article>
@@ -948,8 +948,8 @@
                           </span>
                         </div>
                         <div class="mt-8 flex items-center justify-between">
-                          <!-- <button (click)="setdgbuydetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-3 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#sellNowDragonModal"> Sell </button> -->
-                          <!-- <button (click)="setdgbiddetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-2 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#setbidNowDragonModal"> Auction </button> -->
+                          <button (click)="setdgbuydetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-3 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#sellNowDragonModal"> Sell </button>
+                          <button (click)="setdgbiddetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-2 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#setbidNowDragonModal"> Auction </button>
                         </div>
                       </div>
                     </article>
@@ -1840,7 +1840,8 @@
           <div class="items-center justify-center space-x-4" *ngIf="marketp2pdragonImg == 'null'">
           </div>
           <div class="items-center justify-center space-x-4">
-            <button (click)="sellNowDragon(marketp2pdragonDocId)" *ngIf="marketp2pdragonLength > 0 && marketp2pdragonpriceUSD >= 125" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" data-bs-dismiss="modal" aria-label="Close"> Sell This Item </button>
+            <!-- <button (click)="sellNowDragon(marketp2pdragonDocId)" *ngIf="marketp2pdragonLength > 0 && marketp2pdragonpriceUSD >= 125" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" data-bs-dismiss="modal" aria-label="Close"> Sell This Item </button> -->
+            <button (click)="sellNowDragon(marketp2pdragonDocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" data-bs-dismiss="modal" aria-label="Close"> Sell This Item </button>
           </div>
         </div>
         <div class="dark:text-jacarta-300 text-center p-4">The price must be above the floor price of $125</div>

@@ -2087,7 +2087,7 @@ export class ProfilePage implements OnInit {
       this.marketp2pfoodpriceUSD = marketp2pfoodpriceUSD.toFixed(2);
     } else if (kind == "dragon") {
       this.input_price = input_price;
-      let marketp2pdragonpriceUSD = this.input_price / this.current_bnb;
+      let marketp2pdragonpriceUSD = this.input_price;
       this.marketp2pdragonpriceUSD = marketp2pdragonpriceUSD.toFixed(2);
       localStorage.setItem("input_price", input_price.toFixed());
 

@@ -15,7 +15,6 @@ export class SendData {
 
   // serverapi : string = "http://localhost/oragonnew/kelolaisi/api";
   serverapi: string = "https://oragonbsc.io/weboragonbsc/kelolaisi/api";
-  // serverapi : string = "https://kerincicms.onixlabs.tech/cms/apioragon";
   controllerapi: string = this.serverapi + "/";
 
   api_key: string = "XASDKJKANVK239493FJEJG2JV9EVODKSVNKKNV009QASXLXXAA";
@@ -2329,6 +2328,20 @@ export class SendData {
     body.append("iditemsFood", iditemsFood);
 
     return this.httpClient.post(this.controllerapi + "getsellfoodid_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  // FASHION
+  getselljakets(): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+
+    return this.httpClient.post(this.controllerapi + "getselljakets_mp", {
       headers: header,
       responseType: "text",
     });
