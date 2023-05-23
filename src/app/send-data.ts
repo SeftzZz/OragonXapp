@@ -2347,6 +2347,21 @@ export class SendData {
     });
   }
 
+  getselljaketsidmp(id_product: string = ""): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_product", id_product);
+
+    return this.httpClient.post(this.controllerapi + "getselljaketsid_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
   // STORE-API
   getstoredata(): Observable<any> {
     let header = new HttpHeaders()
@@ -3076,6 +3091,27 @@ export class SendData {
     body.append("MaxHunger", MaxHunger);
 
     return this.httpClient.post(this.controllerapi + "insertNewDragon_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  updateNewDataClaimmp(
+    uid: string = "",
+    ItemId: string = "", 
+    qtyClaim: string = ""
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("ItemId", ItemId);
+    body.append("qtyClaim", qtyClaim);
+
+    return this.httpClient.post(this.controllerapi + "updateNewDataClaim_mp", body, {
       headers: header,
       responseType: "text",
     });

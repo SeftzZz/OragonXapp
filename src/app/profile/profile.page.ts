@@ -531,6 +531,18 @@ export class ProfilePage implements OnInit {
               (error: any) => {}
             );
           }
+          if(this.dragonsowned[i].ItemId == 'ITM13') {
+            console.log("anda dapat membeli jaket metalicana")
+            this.senddata.updateNewDataClaimmp(
+              this.globalID, 
+              "ITM13",
+              this.marketp2pdragonLength
+              ).subscribe((respUpdate:any) => {
+              // console.log("respUpdate", respUpdate);
+            });
+          } else {
+            console.log("item tidak tersedia")
+          }
         }
         loading.dismiss();
       },

@@ -506,6 +506,22 @@ export class P2pmarketPage {
     jakets : any;
     fashionjaketsLength : any;
     currentfashion : any;
+    sortfashion : any;
+    jaketsDetail : any;
+    jaketsHigh : any;
+    marketfashionJaketsOID : any;
+    marketfashionJaketsID : any;
+    marketfashionJaketsImg : any;
+    marketfashionJaketsowner : any;
+    marketfashionJaketsHVP : any;
+    marketfashionJaketsQty : any;
+    marketfashionJaketsprice : any;
+    marketfashionJaketspriceUSD : any;
+    storeID : any;
+    storeFee : any;
+    storedetail : any;
+    storeDeskripsi : any;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -677,7 +693,7 @@ export class P2pmarketPage {
     // console.log("sort p2p", this.sortp2pmarket);
 
     let lastitems = localStorage.getItem("lastseen");
-    let lastfashion = localStorage.getItem("lastseenfashion");
+    let lastseenfashion = localStorage.getItem("lastseenfashion");
     if (lastitems == "dragon") {
       this.lastseen = "dragon";
       this.senddata.getselldgmp().subscribe(
@@ -717,9 +733,31 @@ export class P2pmarketPage {
         },
         (error: any) => {}
       );
-      this.senddata.getselljakets().subscribe(
+      this.senddata.getselldgUserownedmp(this.globalID).subscribe(
         (dataSell: any) => {
-          this.fashionjaketsLength = dataSell.length;
+          this.dragonsowned = JSON.parse(dataSell);
+          this.marketp2pdragonID = this.dragonsowned.ItemId;
+          this.marketp2pdragonLength = this.dragonsowned.length;
+          console.log(this.marketp2pdragonLength);
+          for(let i in this.dragonsowned) {
+            if(this.dragonsowned[i].ItemId == 'ITM13') {
+              console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
+              if(this.dragonsowned[i].qtyClaim > 0) {
+                this.senddata.getselljakets().subscribe(
+                  (dataSell: any) => {
+                    this.jakets = dataSell;
+                    this.fashionjaketsLength = dataSell.length;
+                    console.log(this.jakets)
+                  },
+                  (error: any) => {}
+                );
+              } else {
+                console.log("unknown error")
+              }
+            } else {
+              console.log("item tidak tersedia")
+            }
+          }
         },
         (error: any) => {}
       );
@@ -806,10 +844,32 @@ export class P2pmarketPage {
       );
 
       this.sessionCart();
-    } else if (lastfashion == "fashion") {
-      this.senddata.getselljakets().subscribe(
+    } else if (lastseenfashion == "jakets") {
+      this.senddata.getselldgUserownedmp(this.globalID).subscribe(
         (dataSell: any) => {
-          this.fashionjaketsLength = dataSell.length;
+          this.dragonsowned = JSON.parse(dataSell);
+          this.marketp2pdragonID = this.dragonsowned.ItemId;
+          this.marketp2pdragonLength = this.dragonsowned.length;
+          console.log(this.marketp2pdragonLength);
+          for(let i in this.dragonsowned) {
+            if(this.dragonsowned[i].ItemId == 'ITM13') {
+              console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
+              if(this.dragonsowned[i].qtyClaim > 0) {
+                this.senddata.getselljakets().subscribe(
+                  (dataSell: any) => {
+                    this.jakets = dataSell;
+                    this.fashionjaketsLength = dataSell.length;
+                    console.log(this.jakets)
+                  },
+                  (error: any) => {}
+                );
+              } else {
+                console.log("unknown error")
+              }
+            } else {
+              console.log("item tidak tersedia")
+            }
+          }
         },
         (error: any) => {}
       );
@@ -851,9 +911,31 @@ export class P2pmarketPage {
         },
         (error: any) => {}
       );
-      this.senddata.getselljakets().subscribe(
+      this.senddata.getselldgUserownedmp(this.globalID).subscribe(
         (dataSell: any) => {
-          this.fashionjaketsLength = dataSell.length;
+          this.dragonsowned = JSON.parse(dataSell);
+          this.marketp2pdragonID = this.dragonsowned.ItemId;
+          this.marketp2pdragonLength = this.dragonsowned.length;
+          console.log(this.marketp2pdragonLength);
+          for(let i in this.dragonsowned) {
+            if(this.dragonsowned[i].ItemId == 'ITM13') {
+              console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
+              if(this.dragonsowned[i].qtyClaim > 0) {
+                this.senddata.getselljakets().subscribe(
+                  (dataSell: any) => {
+                    this.jakets = dataSell;
+                    this.fashionjaketsLength = dataSell.length;
+                    console.log(this.jakets)
+                  },
+                  (error: any) => {}
+                );
+              } else {
+                console.log("unknown error")
+              }
+            } else {
+              console.log("item tidak tersedia")
+            }
+          }
         },
         (error: any) => {}
       );
@@ -6352,6 +6434,142 @@ export class P2pmarketPage {
     );
   }
 
+  async pay_cartStore(id_cart, user_uid, addressw) {
+    if(this.globalID == "WB7qCPQR9BYEDT1BW6nQjLjKqBw1") {
+      if(+(this.oragon_balance * 1).toFixed(0) > +(this.cartPrice * 1).toFixed(0) && (this.bnb_balance*1) > (this.storeFee*1)) {
+        let amountf = this.cartPrice * 1e9
+        console.log(amountf)
+        await this.tokenInst.methods.transfer('0x3f719DDCDB386eF2c4E2c5f24DB2DAe61187C894', amountf.toString()).send({from: this.wallet}).then(async(res:any) => {
+          console.log(res);
+          this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
+            this.storedetail = JSON.parse(data)
+            this.storeDeskripsi = this.storedetail.deskripsi
+
+            // set transaction history
+            const messaging = getMessaging();
+            getToken(messaging, 
+             { vapidKey: environment.firebase.vapidKey}).then(
+               (tokenPushNotification) => {
+                 if (tokenPushNotification) {
+                  this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
+                    this.tokenNotif = JSON.parse(dataToken);
+                    // Create Transaction History
+                    this.senddata.settrxhistory(
+                      this.storeID, //storeid
+                      this.globalID, //userid
+                      'S-BNB' + this.newTime(), //itemid
+                      this.cartPriceBNB, //amount BNB
+                      res.transactionHash, //tx_hash
+                      'BNB', //type
+                      'Package-Official-Store', //item
+                      this.email, //email
+                      this.tokenNotif.tokenPushNotification //token
+                    ).subscribe((data:any) => {},(error:any) => {})
+                  });
+                 } else {
+                   // console.log('No registration token available. Request permission to generate one.');
+                 }
+             }).catch((err) => {
+                // console.log('An error occurred while retrieving token. ', err);
+            });
+          },(error:any) => {});
+          
+          // packages-official-store
+            if(this.storeID == 17) {
+              // BATTERY
+              this.addJakets();
+            }
+
+          //if success
+            this.state_buy = 3;
+            this.status_direct_buy = 1;
+            this.stateHash = true;
+            this.connect = true;
+            const alert = await this.alertController.create({
+              header: 'Success',
+              message: 'Transaction Successfull, We have send this transaction receipt to your email',
+              buttons: ['OK'],
+            });
+            const loading = await this.loadingController.create();
+            await loading.present();
+            this.updatestorecart(this.cartID, this.globalID, this.wallets, res.transactionHash);
+            await alert.present();
+            setTimeout(()=>{
+              window.location.reload();
+            }, 5000);
+            loading.dismiss();
+        }).catch((err:any) => {
+          
+        });
+      } else {
+        const alert = await this.alertController.create({
+          header: 'Failed!',
+          message: 'BNB Balance is not Enough',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }
+    } else {
+      this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
+        this.storedetail = JSON.parse(data)
+        this.storeDeskripsi = this.storedetail.deskripsi
+
+        // set transaction history
+        const messaging = getMessaging();
+        getToken(messaging, 
+         { vapidKey: environment.firebase.vapidKey}).then(
+           (tokenPushNotification) => {
+             if (tokenPushNotification) {
+              this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
+                this.tokenNotif = JSON.parse(dataToken);
+                // Create Transaction History
+                this.senddata.settrxhistory(
+                  this.storeID, //storeid
+                  this.globalID, //userid
+                  'S-BNB' + this.newTime(), //itemid
+                  this.cartPriceBNB, //amount BNB
+                  'res.transactionHash', //tx_hash
+                  'BNB', //type
+                  'Package-Official-Store', //item
+                  this.email, //email
+                  this.tokenNotif.tokenPushNotification //token
+                ).subscribe((data:any) => {},(error:any) => {})
+              });
+             } else {
+               // console.log('No registration token available. Request permission to generate one.');
+             }
+         }).catch((err) => {
+            // console.log('An error occurred while retrieving token. ', err);
+        });
+      },(error:any) => {});
+
+      // packages-official-store
+        if(this.storeID == 17) {
+          // BATTERY
+          this.addJakets();
+        }
+
+      //if success
+        this.state_buy = 3;
+        this.status_direct_buy = 1;
+        this.stateHash = true;
+        this.connect = true;
+        const alert = await this.alertController.create({
+          header: 'Success',
+          message: '(DEMO) Transaction Successfull, We have send this transaction receipt to your email',
+          buttons: ['OK'],
+        });
+        const loading = await this.loadingController.create();
+        await loading.present();
+        this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash');
+        await alert.present();
+        setTimeout(()=>{
+          window.location.reload();
+        }, 5000);
+        loading.dismiss();
+    }
+  }
+
   // Market P2P
   async p2pTab(kind) {
     if (kind == "1") {
@@ -6428,7 +6646,7 @@ export class P2pmarketPage {
         async (dataSell: any) => {
           const loading = await this.loadingController.create();
           await loading.present();
-          this.dragons = dataSell;
+          this.jakets = dataSell;
           this.marketp2pdragonLength = dataSell.length;
           loading.dismiss();
         },
@@ -6820,6 +7038,44 @@ export class P2pmarketPage {
     }
   }
 
+  clickcategoryfashion(kind) {
+    if (kind == 1) {
+      this.lastseen = "jakets";
+      this.sortfashion = 1;
+      localStorage.setItem("lastseenfashion", "jakets");
+      // console.log("category p2p", this.currentp2p);
+      // console.log("sort p2p", this.sortp2pmarket);
+      this.senddata.getselldgUserownedmp(this.globalID).subscribe(
+        (dataSell: any) => {
+          this.dragonsowned = JSON.parse(dataSell);
+          this.marketp2pdragonID = this.dragonsowned.ItemId;
+          this.marketp2pdragonLength = this.dragonsowned.length;
+          console.log(this.marketp2pdragonLength);
+          for(let i in this.dragonsowned) {
+            if(this.dragonsowned[i].ItemId == 'ITM13') {
+              console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
+              if(this.dragonsowned[i].qtyClaim > 0) {
+                this.senddata.getselljakets().subscribe(
+                  (dataSell: any) => {
+                    this.jakets = dataSell;
+                    this.fashionjaketsLength = dataSell.length;
+                    console.log(this.jakets)
+                  },
+                  (error: any) => {}
+                );
+              } else {
+                console.log("unknown error")
+              }
+            } else {
+              console.log("item tidak tersedia")
+            }
+          }
+        },
+        (error: any) => {}
+      );
+    }
+  }
+
   clicksortp2pmarket(kind) {
     // ------------------------ Sort DRAGON
     if (kind == 1) {
@@ -6941,6 +7197,77 @@ export class P2pmarketPage {
     this.checkkindGroup(iditemsFood);
     // console.log(iditemsFood);
   }
+
+  async getjaketsbuydetail(ItemId) {
+    const loading = await this.loadingController.create();
+    await loading.present();
+    let lastseen = localStorage.setItem("lastseen", "jakets");
+    localStorage.setItem("lastjakets", ItemId);
+    this.checkkindJakets(ItemId);
+    loading.dismiss();;
+  }
+
+  async setstorecart(id_product, user_uid, addressw) {
+      if(this.isLogin == '!') {
+        const alert = await this.alertController.create({
+          header: 'Failed !',
+          message: 'Please login for add to cart',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      } else {
+        const loading = await this.loadingController.create();
+        await loading.present();
+
+        this.senddata.setstorecart(id_product, user_uid, addressw).subscribe((data:any) => {
+          let setstorecart = data
+          this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
+          this.storecart = JSON.parse(data)
+          for(let i in this.storecart) {
+            console.log(this.storecart[i].addressw)
+            if(this.storecart.length == 0) {
+              this.cartCount = 0;  
+            } else {
+              this.cartCount = this.storecart.length
+            }
+            this.cartUID = this.globalID
+            this.carts = this.storecart
+            this.cartID = this.storecart[i].id_cart
+            this.storeID = this.storecart[i].product_id
+            // this.cartName = this.storecart[i].nama
+            this.cartDeskripsi = this.storecart[i].deskripsi
+            this.cartPrice = this.storecart[i].harga
+            this.cartQty = this.storecart[i].qty_cart
+            let cartPriceBNB = (this.current_bnb * this.cartPrice) * this.cartQty
+            this.cartPriceBNB = (cartPriceBNB).toFixed(4);
+            this.cartImg = this.storecart[i].gambar
+          }        
+        },(error:any) => {})
+        },(error:any) => {})      
+
+        loading.dismiss();
+        const alert = await this.alertController.create({
+          header: 'Success',
+          message: 'Items already added to your cart',
+          buttons: ['OK'],
+        });
+        await alert.present();
+        this.stateHash = true;
+        this.state_buy = 2;
+      }
+    }
+
+    async updatestorecart(id_cart, user_uid, addressw, transactionHash) {
+      const loading = await this.loadingController.create();
+      await loading.present();
+
+      this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash).subscribe((data:any) => {
+        let updatestorecartHome = data
+        console.log(updatestorecartHome)
+      },(error:any) => {})
+
+      loading.dismiss();
+    }
 
   // DRAGON
     checkkind(ItemId) {
@@ -9011,6 +9338,21 @@ export class P2pmarketPage {
     );
   }
 
+  checkkindJakets(iditemsJakets) {
+    let lastseen = localStorage.getItem("lastseen");
+    this.senddata.getselljaketsidmp(iditemsJakets).subscribe(
+      (dataDetail: any) => {
+        this.jaketsDetail = JSON.parse(dataDetail);
+        this.marketfashionJaketsOID = this.jaketsDetail.id_product;
+        this.marketfashionJaketsID = this.jaketsDetail.deskripsi;
+        this.marketfashionJaketsImg = this.jaketsDetail.gambar;
+        this.marketfashionJaketsprice = this.jaketsDetail.harga;
+        // console.log(JSON.parse(dataDetail));
+      },
+      (error: any) => {}
+    );
+  }
+
   countDownSell() {
     // console.log("Countdown Sell", this.marketp2pdragontime);
     // Set the date we're counting down to
@@ -9398,5 +9740,47 @@ export class P2pmarketPage {
       // console.log('Message received. ', payload);
       this.message = payload;
     });
+  }
+
+  addJakets() {
+    var DocIdJakets = this.newTime() + 1;
+    var updateJakets = 1;
+    this.senddata.getsellfoodUserstoremp(this.globalID).subscribe(
+      (dataSell: any) => {
+        this.jaketsHigh = JSON.parse(dataSell);
+        if(this.jaketsHigh.length > 0) {
+          this.senddata.insertNewFoodmp(
+            this.globalID, 
+            this.jaketsHigh[0].DocId, 
+            'ITM13', 
+            updateJakets.toString(), 
+            JSON.stringify({uid:this.globalID}), 
+            ).subscribe((resp:any) => {
+            // console.log("updating 30 data food...", resp);
+          });
+          this.fs.collection('Items/'+ this.globalID + '/Fashions').doc(this.jaketsHigh[0].DocId).update({
+            Amount: firebase.firestore.FieldValue.increment(+1)
+          }).then(() => {});
+        } else {
+          this.senddata.insertNewFoodmp(
+            this.globalID, 
+            'Jakets' + DocIdJakets, 
+            'ITM13', 
+            '1', 
+            JSON.stringify({uid:this.globalID}), 
+            ).subscribe((resp:any) => {
+            // console.log("inserting 30 data food...", resp);
+          });
+          this.fs.collection('Items/'+ this.globalID + '/Fashions').doc('Jakets' + DocIdJakets).set({
+            ItemId: "ITM13",
+            Amount: 1,
+            Used: 0,
+            Id: 'Jakets' + DocIdJakets
+          }).then(() => {});
+        }
+        // console.log(this.jaketsHigh);
+      },
+      (error: any) => {}
+    );
   }
 }
