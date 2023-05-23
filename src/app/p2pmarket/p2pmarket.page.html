@@ -298,7 +298,7 @@
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h16V5H4zm4.5 9H14a.5.5 0 1 0 0-1h-4a2.5 2.5 0 1 1 0-5h1V6h2v2h2.5v2H10a.5.5 0 1 0 0 1h4a2.5 2.5 0 1 1 0 5h-1v2h-2v-2H8.5v-2z" />
               </svg>
-              <span class="font-display text-base font-medium">Fashion</span>
+              <span class="font-display text-base font-medium">Fashions</span>
             </button>
           </li>
         </ul>
@@ -1040,7 +1040,7 @@
                         <div style="padding-right: 1rem;">
                           <div class="mb-2 flex items-center justify-between">
                             <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white"><a (click)="clickcategoryfashion(1)" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white"> Jakets </a></span>
-                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{marketp2pdragonLength}}</span>
+                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{fashionjaketsLength}}</span>
                           </div>
                         </div>
                       </li>
@@ -1073,8 +1073,8 @@
                 </div>
               </div>
               
-              <!-- Sort Category Jakets -->
-              <div *ngIf="currentfashion == 0" class="dropdown my-1 cursor-pointer">
+              <!-- Sort Category Fashion Jakets -->
+              <div class="dropdown my-1 cursor-pointer">
                 <div class="dark:bg-jacarta-700 dropdown-toggle border-jacarta-100 dark:border-jacarta-600 inline-flex w-48 items-center justify-between rounded-lg border bg-white py-2 px-3 text-sm dark:text-white" role="button" id="onSaleSort" data-bs-toggle="dropdown" aria-expanded="false">
                   <span *ngIf="sortfashion == 1" class="font-display">Price: High to Low</span>
                   <span *ngIf="sortfashion == 2" class="font-display">Price: Low to High</span>
@@ -1118,13 +1118,13 @@
             </div>
             <!-- end filters -->
             <!-- Grid -->
-            <div *ngIf="lastseenfashion == 'jakets'" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5" style="gap: 1.2rem">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5" style="gap: 1.2rem">
               <div *ngFor="let datas of jakets">
                 <article>
                   <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
                     <figure class="relative" style="margin: 0em 0px;">
                       <!--  -->
-                      <div *ngIf="datas.ItemId == 'JMTL1'">
+                      <div *ngIf="datas.ItemId == 'ITM13">
                         <img src="assets/img/dragons/METALICANA.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
                         <span *ngIf="datas.statusbayarbackground == 'paid'">
                           <img src="https://oragon.network/website/asset/img/backgrounds/{{datas.imgBg}}" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" style="position: absolute;z-index: 0;top: 0;margin-bottom: 10px;" />
@@ -1174,7 +1174,7 @@
                       </span>
                     </div>
                     <div class="mt-8 flex items-center justify-between">
-                      <button (click)="getdgbuydetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-3 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#buyNowDragonModal"> Buy </button>
+                      <button (click)="getjaketsbuyDetail(datas.DocId)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-1 px-3 text-center font-semibold text-white transition-all" data-bs-toggle="modal" data-bs-target="#buyNowJaketModal"> Buy </button>
                     </div>
                   </div>
                 </article>

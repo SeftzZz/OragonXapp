@@ -719,6 +719,7 @@ export class P2pmarketPage {
       );
       this.senddata.getselljakets().subscribe(
         (dataSell: any) => {
+          this.jakets = dataSell;
           this.fashionjaketsLength = dataSell.length;
         },
         (error: any) => {}
@@ -808,7 +809,8 @@ export class P2pmarketPage {
       this.sessionCart();
     } else if (lastfashion == "fashion") {
       this.senddata.getselljakets().subscribe(
-        (dataSell: any) => {
+        (dataSell: any) =>  {
+          this.jakets = dataSell;
           this.fashionjaketsLength = dataSell.length;
         },
         (error: any) => {}
@@ -853,6 +855,7 @@ export class P2pmarketPage {
       );
       this.senddata.getselljakets().subscribe(
         (dataSell: any) => {
+          this.jakets = dataSell;
           this.fashionjaketsLength = dataSell.length;
         },
         (error: any) => {}
