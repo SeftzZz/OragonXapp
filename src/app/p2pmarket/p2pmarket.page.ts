@@ -523,7 +523,7 @@ export class P2pmarketPage {
     storeFee : any;
     storedetail : any;
     storeDeskripsi : any;
-    apiKey = '917acb8d3b52349cd28cd299a25bad0c';
+    apiKey = 'API_KEY';
     storeprogress : any;
     progressCount : any;
     ordersID : any;
