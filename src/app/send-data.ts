@@ -2362,6 +2362,47 @@ export class SendData {
     });
   }
 
+  getselljaketsUserownedmp(uid: string = ""): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+
+    return this.httpClient.post(this.controllerapi + "getselljaketsUserowned_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  insertNewJaketMetalicanamp(
+    uid: string = "", 
+    Id: string = "", 
+    ItemId: string = "", 
+    lengthJakets: string = "", 
+    owners: string = ""
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("Id", Id);
+    body.append("ItemId", ItemId);
+    body.append("lengthJakets", lengthJakets);
+    body.append("owners", owners);
+
+    return this.httpClient.post(this.controllerapi + "insertNewJaketMetalicana_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+
   // STORE-API
   getstoredata(): Observable<any> {
     let header = new HttpHeaders()
@@ -2420,6 +2461,21 @@ export class SendData {
     body.append("user_uid", user_uid);
 
     return this.httpClient.post(this.controllerapi + "getstorecart_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  getstoreprogress(user_uid: string = ""): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("user_uid", user_uid);
+
+    return this.httpClient.post(this.controllerapi + "getstoreprogress_mp", body, {
       headers: header,
       responseType: "text",
     });
@@ -2515,6 +2571,30 @@ export class SendData {
     );
   }
 
+  updatestoreprogress(
+    id_orders: string = "",
+    user_uid: string = "",
+    addressw: string = "",
+    file_orders: string = ""
+  ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_orders", id_orders);
+    body.append("user_uid", user_uid);
+    body.append("addressw", addressw);
+    body.append("file_orders", file_orders);
+
+    return this.httpClient.post(
+      this.controllerapi + "updatestoreprogress_mp",
+      body,
+      { headers: header, responseType: "text" }
+    );
+  }
+
   updatestorecartHome(
     id_cart: string = "",
     user_uid: string = "",
@@ -2534,6 +2614,30 @@ export class SendData {
 
     return this.httpClient.post(
       this.controllerapi + "updatestorecart_mp",
+      body,
+      { headers: header, responseType: "text" }
+    );
+  }
+
+  updatestoreprogressHome(
+    id_orders: string = "",
+    user_uid: string = "",
+    addressw: string = "",
+    file_orders: string = ""
+  ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_orders", id_orders);
+    body.append("user_uid", user_uid);
+    body.append("addressw", addressw);
+    body.append("file_orders", file_orders);
+
+    return this.httpClient.post(
+      this.controllerapi + "updatestoreprogress_mp",
       body,
       { headers: header, responseType: "text" }
     );

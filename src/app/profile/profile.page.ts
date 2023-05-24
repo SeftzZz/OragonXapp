@@ -338,6 +338,8 @@ export class ProfilePage implements OnInit {
   isRunning = false;
   timerId = 0;
   sortbatteriesownedIncubator : any;
+
+  jaketsHigh : any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -1838,6 +1840,14 @@ export class ProfilePage implements OnInit {
     } else if (kind == 80) {
       this.currentp2powned = 80;
       // console.log("category p2p owned", this.currentp2powned);
+    } else if (kind == 'jakets') {
+      this.senddata.getselljaketsUserownedmp(this.globalID).subscribe(
+        (dataSell: any) => {
+          this.jaketsHigh = JSON.parse(dataSell);
+          // console.log(this.dragons)
+        },
+        (error: any) => {}
+      );
     }
   }
 

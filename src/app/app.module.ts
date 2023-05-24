@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Push, PushObject, PushOptions } from '@awesome-cordova-plugins/push/ngx';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 // AngularFire
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -57,7 +58,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     AngularFireAuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe, Push],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe, Push, NativeStorage],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

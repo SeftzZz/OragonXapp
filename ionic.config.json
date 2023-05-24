@@ -3,5 +3,11 @@
   "integrations": {
     "capacitor": {}
   },
+  "proxies": [
+    {
+      "path": "/starter/suggest/address",
+      "proxyUrl": "https://api.rajaongkir.com"
+    }
+  ],
   "type": "angular"
 }

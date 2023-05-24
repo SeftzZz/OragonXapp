@@ -1,0 +1,7 @@
+{
+  "/starter/suggest/address": {
+    "target": "https://api.rajaongkir.com",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

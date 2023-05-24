@@ -477,12 +477,12 @@
             </button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link hover:text-jacarta-700 text-jacarta-400 relative flex items-center whitespace-nowrap py-3 px-6 dark:hover:text-white" type="button" role="tab" aria-selected="true">
+            <button (click)="tab(jakets)" class="nav-link hover:text-jacarta-700 text-jacarta-400 relative flex items-center whitespace-nowrap py-3 px-6 dark:hover:text-white" id="on-fnft-tab" data-bs-toggle="tab" data-bs-target="#on-fnft" type="button" role="tab" aria-controls="on-fnft" aria-selected="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-1 h-5 w-5 fill-current">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h16V5H4zm4.5 9H14a.5.5 0 1 0 0-1h-4a2.5 2.5 0 1 1 0-5h1V6h2v2h2.5v2H10a.5.5 0 1 0 0 1h4a2.5 2.5 0 1 1 0 5h-1v2h-2v-2H8.5v-2z" />
               </svg>
-              <span class="font-display text-base font-medium">Up Coming...</span>
+              <span class="font-display text-base font-medium">FNFT <span class="font-display text-base text-green">new</span></span>
             </button>
           </li>
           <li class="nav-item" role="presentation">
@@ -1339,6 +1339,257 @@
             <!-- end grid -->
           </div>
           <!-- end on sale tab -->
+
+          <!-- On Fnft Tab -->
+          <div class="tab-pane fade show" id="on-fnft" role="tabpanel" aria-labelledby="on-fnft-tab">
+            <!-- Grid -->
+              <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5" style="gap: 1.2rem;padding-bottom: 2vh;">
+                <div *ngFor="let datas of jaketsHigh">
+                  <article>
+                    <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
+                      <figure class="relative" style="margin: 0em 0px;">
+                        <!--  -->
+                        <div *ngIf="datas.ItemId == 'ITM1'">
+                          <img src="assets/img/dragons/MERU.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
+                          <span *ngIf="datas.statusbayarbackground == 'paid'">
+                            <img src="https://oragon.network/website/asset/img/backgrounds/{{datas.imgBg}}" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" style="position: absolute;z-index: 0;top: 0;margin-bottom: 10px;" />
+                          </span>
+                          <div style="z-index: 2;" *ngIf="datas.imgbackground == 'exists' && datas.statusbayarbackground == 'paid'" (click)="favorite_item(datas.DocId)" class="light:bg-jacarta-700 absolute top-3 right-3 flex items-center space-x-1 rounded-md bg-accent-dark p-2">
+                            <span class="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-1" data-tippy-content="Favorite">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-200 fill-jacarta-500 hover:fill-red dark:hover:fill-red h-4 w-4">
+                                <path fill="none" d="M0 0H24V24H0z" />
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
+                              </svg>
+                            </span>
+                            <span *ngIf="datas.favorited > 999;else favorited" class="dark:text-jacarta-200 text-sm">1K</span>
+                            <ng-template #favorited>
+                              <span class="dark:text-jacarta-200 text-sm">{{datas.favorited | number}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div *ngIf="datas.ItemId == 'ITM9'">
+                          <img src="assets/img/dragons/AKH.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
+                          <span *ngIf="datas.statusbayarbackground == 'paid'">
+                            <img src="https://oragon.network/website/asset/img/backgrounds/{{datas.imgBg}}" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" style="position: absolute;z-index: 0;top: 0;margin-bottom: 10px;" />
+                          </span>
+                          <div style="z-index: 2;" *ngIf="datas.imgbackground == 'exists' && datas.statusbayarbackground == 'paid'" (click)="favorite_item(datas.DocId)" class="light:bg-jacarta-700 absolute top-3 right-3 flex items-center space-x-1 rounded-md bg-accent-dark p-2">
+                            <span class="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-1" data-tippy-content="Favorite">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-200 fill-jacarta-500 hover:fill-red dark:hover:fill-red h-4 w-4">
+                                <path fill="none" d="M0 0H24V24H0z" />
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
+                              </svg>
+                            </span>
+                            <span *ngIf="datas.favorited > 999;else favorited" class="dark:text-jacarta-200 text-sm">1K</span>
+                            <ng-template #favorited>
+                              <span class="dark:text-jacarta-200 text-sm">{{datas.favorited | number}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div *ngIf="datas.ItemId == 'ITM10'">
+                          <img src="assets/img/dragons/FENG.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
+                          <span *ngIf="datas.statusbayarbackground == 'paid'">
+                            <img src="https://oragon.network/website/asset/img/backgrounds/{{datas.imgBg}}" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" style="position: absolute;z-index: 0;top: 0;margin-bottom: 10px;" />
+                          </span>
+                          <div style="z-index: 2;" *ngIf="datas.imgbackground == 'exists' && datas.statusbayarbackground == 'paid'" (click)="favorite_item(datas.DocId)" class="light:bg-jacarta-700 absolute top-3 right-3 flex items-center space-x-1 rounded-md bg-accent-dark p-2">
+                            <span class="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-1" data-tippy-content="Favorite">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-200 fill-jacarta-500 hover:fill-red dark:hover:fill-red h-4 w-4">
+                                <path fill="none" d="M0 0H24V24H0z" />
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
+                              </svg>
+                            </span>
+                            <span *ngIf="datas.favorited > 999;else favorited" class="dark:text-jacarta-200 text-sm">1K</span>
+                            <ng-template #favorited>
+                              <span class="dark:text-jacarta-200 text-sm">{{datas.favorited | number}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div *ngIf="datas.ItemId == 'ITM11'">
+                          <img src="assets/img/dragons/RITRA.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
+                          <span *ngIf="datas.statusbayarbackground == 'paid'">
+                            <img src="https://oragon.network/website/asset/img/backgrounds/{{datas.imgBg}}" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" style="position: absolute;z-index: 0;top: 0;margin-bottom: 10px;" />
+                          </span>
+                          <div style="z-index: 2;" *ngIf="datas.imgbackground == 'exists' && datas.statusbayarbackground == 'paid'" (click)="favorite_item(datas.DocId)" class="light:bg-jacarta-700 absolute top-3 right-3 flex items-center space-x-1 rounded-md bg-accent-dark p-2">
+                            <span class="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-1" data-tippy-content="Favorite">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-200 fill-jacarta-500 hover:fill-red dark:hover:fill-red h-4 w-4">
+                                <path fill="none" d="M0 0H24V24H0z" />
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
+                              </svg>
+                            </span>
+                            <span *ngIf="datas.favorited > 999;else favorited" class="dark:text-jacarta-200 text-sm">1K</span>
+                            <ng-template #favorited>
+                              <span class="dark:text-jacarta-200 text-sm">{{datas.favorited | number}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div *ngIf="datas.ItemId == 'ITM12'">
+                          <img src="assets/img/dragons/DORCH.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
+                          <span *ngIf="datas.statusbayarbackground == 'paid'">
+                            <img src="https://oragon.network/website/asset/img/backgrounds/{{datas.imgBg}}" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" style="position: absolute;z-index: 0;top: 0;margin-bottom: 10px;" />
+                          </span>
+                          <div style="z-index: 2;" *ngIf="datas.imgbackground == 'exists' && datas.statusbayarbackground == 'paid'" (click)="favorite_item(datas.DocId)" class="light:bg-jacarta-700 absolute top-3 right-3 flex items-center space-x-1 rounded-md bg-accent-dark p-2">
+                            <span class="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-1" data-tippy-content="Favorite">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-200 fill-jacarta-500 hover:fill-red dark:hover:fill-red h-4 w-4">
+                                <path fill="none" d="M0 0H24V24H0z" />
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
+                              </svg>
+                            </span>
+                            <span *ngIf="datas.favorited > 999;else favorited" class="dark:text-jacarta-200 text-sm">1K</span>
+                            <ng-template #favorited>
+                              <span class="dark:text-jacarta-200 text-sm">{{datas.favorited | number}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div *ngIf="datas.ItemId == 'ITM13'">
+                          <img src="assets/img/dragons/METALICANA.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
+                          <span *ngIf="datas.statusbayarbackground == 'paid'">
+                            <img src="https://oragon.network/website/asset/img/backgrounds/{{datas.imgBg}}" class="rounded-2.5xl cursor-pointer" data-bs-toggle="modal" data-bs-target="#imageModal" style="position: absolute;z-index: 0;top: 0;margin-bottom: 10px;" />
+                          </span>
+                          <div style="z-index: 2;" *ngIf="datas.imgbackground == 'exists' && datas.statusbayarbackground == 'paid'" (click)="favorite_item(datas.DocId)" class="light:bg-jacarta-700 absolute top-3 right-3 flex items-center space-x-1 rounded-md bg-accent-dark p-2">
+                            <span class="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-1" data-tippy-content="Favorite">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="dark:fill-jacarta-200 fill-jacarta-500 hover:fill-red dark:hover:fill-red h-4 w-4">
+                                <path fill="none" d="M0 0H24V24H0z" />
+                                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
+                              </svg>
+                            </span>
+                            <span *ngIf="datas.favorited > 999;else favorited" class="dark:text-jacarta-200 text-sm">1K</span>
+                            <ng-template #favorited>
+                              <span class="dark:text-jacarta-200 text-sm">{{datas.favorited | number}}</span>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </figure>
+                      <div class="mt-7 flex items-center justify-between">
+                        <span *ngIf="datas.ItemId == 'ITM1'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">MERU #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM9'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">AKH #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM10'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">FENG #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM11'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">RITRA #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM12'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">DORCH #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM13'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">METALICANA #{{datas.DocId}}</span>
+                        <div class="dark:hover:bg-jacarta-600 dropup hover:bg-jacarta-100 rounded-full">
+                          <a href="#" class="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm" role="button" id="dgActions" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ion-icon size="large" name="ellipsis-vertical" class="group-hover:fill-accent dark:fill-jacarta-200 fill-jacarta-500" style="margin-bottom: -10px;"></ion-icon>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-end dark:bg-jacarta-800 z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="dgActions">
+                            <p class="dark:hover:bg-jacarta-600 font-display hover:bg-jacarta-50 block w-full rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white"> Dragon Data<br><span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm" style="font-size: 10px;">Update at {{datas.EditAt}}</span> </p>
+                            <hr class="dark:bg-jacarta-600 bg-jacarta-100 my-2 mx-4 h-px border-0" style="margin-bottom: 1rem;" />
+                            <div style="padding-left: 1rem;padding-right: 1rem;">
+                              <div class="mb-2 flex items-center justify-between">
+                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Attack</span>
+                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{datas.Attack}}</span>
+                              </div>
+                            </div>
+                            <div style="padding-left: 1rem;padding-right: 1rem;">
+                              <div class="mb-2 flex items-center justify-between">
+                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Defense</span>
+                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{datas.Defense}}</span>
+                              </div>
+                            </div>
+                            <div style="padding-left: 1rem;padding-right: 1rem;">
+                              <div class="mb-2 flex items-center justify-between">
+                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Level</span>
+                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{datas.Level}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-2 text-sm">
+                        <span class="mb-1 flex items-center whitespace-nowrap">
+                          <span data-tippy-content="ETH">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
+                              <g fill="#f3ba2f">
+                                <path d="M611.59 840.42l388.4-388.39 388.6 388.59 226-226L999.99 0 385.6 614.42l225.99 226M.006 999.969l226.007-226.007 225.992 225.993L226 1225.96zM611.59 1159.58l388.4 388.39 388.59-388.58 226.12 225.88-.11.12L999.99 2000l-614.41-614.4-.32-.32 226.33-225.7M1548.013 1000.093l226.007-226.006 225.992 225.992-226.006 226.007z"/><path d="M1229.22 999.88h.1L999.99 770.55 830.51 940.03h-.01l-19.47 19.48-40.16 40.17-.32.31.32.33 229.12 229.13 229.33-229.33.11-.13-.21-.11"/>
+                              </g>
+                            </svg>
+                          </span>
+                          <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">{{datas.price}} BNB</span>
+                        </span>
+                      </div>
+                      <div class="mt-8 flex items-center justify-between">
+                        <a (click)="delistDragon(datas.DocId, datas.ItemId)" class="text-accent font-display text-sm font-semibold">Delist from Market</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div *ngFor="let datas of eggsHigh">
+                  <article>
+                    <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
+                      <figure class="relative" style="margin: 0em 0px;">
+                        <img *ngIf="datas.ItemId == 'ITM6'" src="assets/img/eggs/RITRA_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                        <!--  -->
+                        <img *ngIf="datas.ItemId == 'ITM8'" src="assets/img/eggs/METALICANA_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                        <!--  -->
+                        <img *ngIf="datas.ItemId == 'ITM2'" src="assets/img/eggs/MERU_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                        <!--  -->
+                        <img *ngIf="datas.ItemId == 'ITM5'" src="assets/img/eggs/FENG_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                        <!--  -->
+                        <img *ngIf="datas.ItemId == 'ITM7'" src="assets/img/eggs/DORCH_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                        <!--  -->
+                        <img *ngIf="datas.ItemId == 'ITM4'" src="assets/img/eggs/AKH_EGG.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                      </figure>
+                      <div class="mt-7 flex items-center justify-between">
+                        <span *ngIf="datas.ItemId == 'ITM6'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">RITRA EGG #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM8'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">METALICANA EGG #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM2'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">MERU EGG #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM5'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">FENG EGG #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM7'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">DORCH EGG #{{datas.DocId}}</span>
+                        <span *ngIf="datas.ItemId == 'ITM4'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">AKH EGG #{{datas.DocId}}</span>
+                        <div class="dark:hover:bg-jacarta-600 dropup hover:bg-jacarta-100 rounded-full">
+                          <a href="#" class="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm" role="button" id="itemActions" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ion-icon size="large" name="ellipsis-vertical" class="group-hover:fill-accent dark:fill-jacarta-200 fill-jacarta-500" style="margin-bottom: -10px;"></ion-icon>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-end dark:bg-jacarta-800 z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="itemActions">
+                            <p class="dark:hover:bg-jacarta-600 font-display hover:bg-jacarta-50 block w-full rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white"> Egg Data<span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm" style="font-size: 10px;">Update at {{datas.EditAt}}</span><br><span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm" style="font-size: 10px;">Owner {{datas.owner}}...</span></p>
+                            <hr class="dark:bg-jacarta-600 bg-jacarta-100 my-2 mx-4 h-px border-0" style="margin-bottom: 1rem;" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-2 text-sm">
+                        <h4 class="dark:text-jacarta-200 text-jacarta-700 mr-1">{{datas.price}} BNB</h4>
+                      </div>
+                      <div class="mt-8 flex items-center justify-between">
+                        <a (click)="delistEgg(datas.DocId)" class="text-accent font-display text-sm font-semibold">Delist from Market</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div *ngFor="let datas of batteriesHigh">
+                  <article>
+                    <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
+                      <figure class="relative" style="margin: 0em 0px;">
+                        <img *ngIf="datas.ItemId == 'ITM3'" src="assets/img/batteries/batre_merah.png" alt="item 5" class="res-400 w-full rounded-[0.625rem]" loading="lazy" />
+                        <!--  -->
+                        <img *ngIf="datas.ItemId == 'ITM15'" src="assets/img/batteries/batre_hijau.png" alt="item 5" class="res-400 w-full rounded-[0.625rem]" loading="lazy" />
+                        <!--  -->
+                        <img *ngIf="datas.ItemId == 'ITM32'" src="assets/img/batteries/batre_biru.png" alt="item 5" class="res-400 w-full rounded-[0.625rem]" loading="lazy" />
+                      </figure>
+                      <div class="mt-7 flex items-center justify-between">
+                        <span *ngIf="datas.ItemId == 'ITM3'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">{{datas.lengthBattery}} Batteries</span>
+                        <span *ngIf="datas.ItemId == 'ITM15'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">{{datas.lengthBattery}} Batteries</span>
+                        <span *ngIf="datas.ItemId == 'ITM32'" class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">{{datas.lengthBattery}} Batteries</span>
+                        <div class="dark:hover:bg-jacarta-600 dropup hover:bg-jacarta-100 rounded-full">
+                          <a href="#" class="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm" role="button" id="itemActions" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ion-icon size="large" name="ellipsis-vertical" class="group-hover:fill-accent dark:fill-jacarta-200 fill-jacarta-500" style="margin-bottom: -10px;"></ion-icon>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-end dark:bg-jacarta-800 z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="itemActions">
+                            <p class="dark:hover:bg-jacarta-600 font-display hover:bg-jacarta-50 block w-full rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white"> Egg Data<span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm" style="font-size: 10px;">Update at {{datas.EditAt}}</span><br><span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm" style="font-size: 10px;">Owner {{datas.owner}}...</span></p>
+                            <hr class="dark:bg-jacarta-600 bg-jacarta-100 my-2 mx-4 h-px border-0" style="margin-bottom: 1rem;" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-2 text-sm">
+                        <h4 class="dark:text-jacarta-200 text-jacarta-700 mr-1">{{datas.price}} BNB</h4>
+                      </div>
+                      <div class="mt-8 flex items-center justify-between">
+                        <a (click)="delistBattery(datas.DocId)" class="text-accent font-display text-sm font-semibold">Delist from Market</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            <!-- end grid -->
+          </div>
+          <!-- end on fnft tab -->
 
           <!-- On BID Tab -->
           <div class="tab-pane fade show" id="on-bid" role="tabpanel" aria-labelledby="on-bid-tab">

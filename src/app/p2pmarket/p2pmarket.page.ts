@@ -20,6 +20,8 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import * as QRCode from 'qrcode';
+import axios from 'axios';
 
 // Services
 import { AuthService } from "../services/auth.service";
@@ -521,7 +523,11 @@ export class P2pmarketPage {
     storeFee : any;
     storedetail : any;
     storeDeskripsi : any;
-
+    apiKey = '917acb8d3b52349cd28cd299a25bad0c';
+    storeprogress : any;
+    progressCount : any;
+    ordersID : any;
+    url : any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -689,6 +695,8 @@ export class P2pmarketPage {
     this.currentp2p = 0;
     this.sortp2pmarket = 1;
     this.currentfashion = 0;
+    this.getstorecart();
+    this.getstoreprogress();
     // console.log("category p2p", this.currentp2p);
     // console.log("sort p2p", this.sortp2pmarket);
 
@@ -6477,7 +6485,7 @@ export class P2pmarketPage {
           // packages-official-store
             if(this.storeID == 17) {
               // BATTERY
-              this.addJakets();
+              this.addJaketsMetalicana();
             }
 
           //if success
@@ -6544,10 +6552,10 @@ export class P2pmarketPage {
       },(error:any) => {});
 
       // packages-official-store
-        if(this.storeID == 17) {
+        // if(this.storeID == 17) {
           // BATTERY
-          this.addJakets();
-        }
+          this.addJaketsMetalicana();
+        // }
 
       //if success
         this.state_buy = 3;
@@ -6568,6 +6576,26 @@ export class P2pmarketPage {
         }, 5000);
         loading.dismiss();
     }
+  }
+
+  async pay_progressStore(event, id_orders, user_uid, addressw) {
+    const loading = await this.loadingController.create();
+    await loading.present();
+    // console.log(event, DocId, ItemId)
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, event.target.files[0].name);
+      // setTimeout(()=>{
+      //   window.location.reload();
+      // }, 5000);
+      loading.dismiss();
+      
+      console.log(event.target.files[0]);
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      }
+    }  
   }
 
   // Market P2P
@@ -6673,6 +6701,29 @@ export class P2pmarketPage {
           let cartPriceBNB = this.current_bnb * this.cartPrice * this.cartQty;
           this.cartPriceBNB = cartPriceBNB.toFixed(4);
           this.cartImg = this.storecart[i].gambar;
+        }
+      },
+      (error: any) => {}
+    );
+  }
+
+  getstoreprogress() {
+    this.senddata.getstoreprogress(this.globalID).subscribe(
+      (data: any) => {
+        this.storeprogress = JSON.parse(data);
+        for (let i in this.storeprogress) {
+          // console.log(this.storeprogress[i].addressw)
+          this.progressCount = this.storeprogress.length;
+          this.cartUID = this.globalID;
+          this.carts = this.storeprogress;
+          this.ordersID = this.storeprogress[i].id_orders;
+          // this.cartName = this.storeprogress[i].nama
+          // this.cartDeskripsi = this.storeprogress[i].deskripsi
+          this.cartPrice = this.storeprogress[i].harga;
+          this.cartQty = this.storeprogress[i].qty_cart;
+          let cartPriceBNB = this.current_bnb * this.cartPrice * this.cartQty;
+          this.cartPriceBNB = cartPriceBNB.toFixed(4);
+          this.cartImg = this.storeprogress[i].gambar;
         }
       },
       (error: any) => {}
@@ -7264,6 +7315,18 @@ export class P2pmarketPage {
       this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash).subscribe((data:any) => {
         let updatestorecartHome = data
         console.log(updatestorecartHome)
+      },(error:any) => {})
+
+      loading.dismiss();
+    }
+
+    async updatestoreprogress(id_orders, user_uid, addressw, file_orders) {
+      const loading = await this.loadingController.create();
+      await loading.present();
+
+      this.senddata.updatestoreprogressHome(id_orders, user_uid, addressw, file_orders).subscribe((data:any) => {
+        let updatestoreprogressHome = data
+        console.log(updatestoreprogressHome)
       },(error:any) => {})
 
       loading.dismiss();
@@ -9742,43 +9805,127 @@ export class P2pmarketPage {
     });
   }
 
-  addJakets() {
-    var DocIdJakets = this.newTime() + 1;
+  searchAddress(event: any) {
+    const query = event.target.value;
+
+    axios.get(`https://api.rajaongkir.com/starter/suggest/address`, {
+      headers: {
+        key: this.apiKey
+      },
+      params: {
+        q: query
+      }
+    })
+    .then(response => {
+      const results = response.data.data;
+      // Process and display the autocomplete results
+      console.log('RajaOngkir Results:', results);
+      // ...
+    })
+    .catch(error => {
+      console.error('Error fetching address data:', error);
+    });
+  }
+
+  addJaketsMetalicana() {
+    var DocIdJakets = this.newTime();
     var updateJakets = 1;
-    this.senddata.getsellfoodUserstoremp(this.globalID).subscribe(
+
+    this.senddata.getselljaketsUserownedmp(this.globalID).subscribe(
       (dataSell: any) => {
         this.jaketsHigh = JSON.parse(dataSell);
         if(this.jaketsHigh.length > 0) {
-          this.senddata.insertNewFoodmp(
-            this.globalID, 
-            this.jaketsHigh[0].DocId, 
-            'ITM13', 
-            updateJakets.toString(), 
-            JSON.stringify({uid:this.globalID}), 
-            ).subscribe((resp:any) => {
-            // console.log("updating 30 data food...", resp);
-          });
-          this.fs.collection('Items/'+ this.globalID + '/Fashions').doc(this.jaketsHigh[0].DocId).update({
-            Amount: firebase.firestore.FieldValue.increment(+1)
-          }).then(() => {});
-        } else {
-          this.senddata.insertNewFoodmp(
-            this.globalID, 
-            'Jakets' + DocIdJakets, 
-            'ITM13', 
-            '1', 
-            JSON.stringify({uid:this.globalID}), 
-            ).subscribe((resp:any) => {
-            // console.log("inserting 30 data food...", resp);
-          });
-          this.fs.collection('Items/'+ this.globalID + '/Fashions').doc('Jakets' + DocIdJakets).set({
+          const qrCodeData = {
             ItemId: "ITM13",
-            Amount: 1,
-            Used: 0,
-            Id: 'Jakets' + DocIdJakets
-          }).then(() => {});
+            QrCodeData: {
+              UID: this.globalID,
+              Address: "Jl. mudah sekali",
+              Claimmed: false,
+              CreatedAt: this.newTime(),
+              Expedition: "JNE",
+              Receipent: this.username
+            },
+            Id: 'HMTL' + DocIdJakets,
+            RFID: 'HMTL' + DocIdJakets,
+          };
+
+          const qrCodeDataString = JSON.stringify(qrCodeData);
+
+          QRCode.toDataURL(qrCodeDataString, (err, qrCodeUrl) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+
+            // The `qrCodeUrl` variable now contains the data URL of the generated QR code image
+            // console.log(qrCodeUrl);
+            this.fs.collection('Items/'+ this.globalID + '/Fashions').doc(this.jaketsHigh[0].Id).update({
+              ItemId: "ITM13",
+              QrCodeData: {
+                UID: this.globalID,
+                Address: "Jl. mudah sekali",
+                Claimmed: false,
+                CreatedAt: this.newTime(),
+                Expedition: "JNE",
+                Receipent: this.username
+              },
+              QrCodeUrl: qrCodeUrl,
+              Id: 'HMTL' + DocIdJakets,
+              RFID: 'HMTL' + DocIdJakets,
+            }).then(() => {});
+            // console.log(this.jaketsHigh);
+          });
+        } else {
+          const qrCodeData = {
+            ItemId: "ITM13",
+            QrCodeData: {
+              UID: this.globalID,
+              Address: "Jl. mudah sekali",
+              Claimmed: false,
+              CreatedAt: this.newTime(),
+              Expedition: "JNE",
+              Receipent: this.username
+            },
+            Id: 'HMTL' + DocIdJakets,
+            RFID: 'HMTL' + DocIdJakets,
+          };
+
+          const qrCodeDataString = JSON.stringify(qrCodeData);
+
+          QRCode.toDataURL(qrCodeDataString, (err, qrCodeUrl) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+
+            // The `qrCodeUrl` variable now contains the data URL of the generated QR code image
+            // console.log(qrCodeUrl);
+            this.senddata.insertNewJaketMetalicanamp(
+              this.globalID, 
+              'HMTL' + DocIdJakets, 
+              'ITM13', 
+              updateJakets.toString(), 
+              JSON.stringify({uid:this.globalID})
+              ).subscribe((resp:any) => {
+              // console.log("updating 1 data food...", resp);
+            });
+            this.fs.collection('Items/'+ this.globalID + '/Fashions').doc('HMTL' + DocIdJakets).set({
+              ItemId: "ITM13",
+              QrCodeData: {
+                UID: this.globalID,
+                Address: "Jl. mudah sekali",
+                Claimmed: false,
+                CreatedAt: this.newTime(),
+                Expedition: "JNE",
+                Receipent: this.username
+              },
+              QrCodeUrl: qrCodeUrl,
+              Id: 'HMTL' + DocIdJakets,
+              RFID: 'HMTL' + DocIdJakets,
+            }).then(() => {});
+            // console.log(this.jaketsHigh);
+          });
         }
-        // console.log(this.jaketsHigh);
       },
       (error: any) => {}
     );
