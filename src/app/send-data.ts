@@ -2377,6 +2377,21 @@ export class SendData {
     });
   }
 
+  getOngkirmp(city: string = ""): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("city", city);
+
+    return this.httpClient.post(this.controllerapi + "getOngkir_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
   insertNewJaketMetalicanamp(
     uid: string = "", 
     Id: string = "", 

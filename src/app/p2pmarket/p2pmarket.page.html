@@ -2653,12 +2653,47 @@
         </div>
         <div class="p-3" style="width: 100%;">
           <input type="text" (keyup)="searchAddress($event)" id="input_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
+          
+          <div class="modal-body p-6">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan Kurir</span>
+            </div>
+            <div *ngFor="let result of resultCost">
+              <div (click)="chooseKurir(result.service, result.cost[0].value)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                <div>
+                  <h3 *ngIf="kurir == result.cost[0].value; else nokurir" class="text-green font-medium tracking-tight">{{result.service}}</h3>
+                  <ng-template #nokurir>
+                    <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{result.service}}</h3>
+                  </ng-template>
+                  <div class="flex flex-wrap items-center">
+                    <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{result.description}}</span>
+                  </div>
+                </div>
+                <div *ngIf="kurir == result.cost[0].value; else slowservie" class="ml-auto">
+                  <span class="mb-1 flex items-center whitespace-nowrap">
+                    <span class="text-green font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                  </span>
+                  <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                </div>
+                <ng-template #slowservie>
+                  <div class="ml-auto">
+                    <span class="mb-1 flex items-center whitespace-nowrap">
+                      <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                    </span>
+                    <div class="dark:text-jacarta-300 text-right text-sm">Rp {{result.cost[0].value | number }}</div>
+                    <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <!-- </span> -->
         </div>
         <!-- end body -->
         <div class="modal-footer">
           <div class="flex items-center justify-center space-x-4">
             <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
-            <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == ''" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{cartPrice | number}}.00</button>
+            <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == ''" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
           </div>
         </div>
       </div>

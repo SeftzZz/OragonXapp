@@ -177,6 +177,7 @@ export class P2pmarketPage {
     cartDeskripsi: any;
     cartQty: any;
     cartPrice: any;
+    actualcartPrice : any;
     cartImg: any;
     cartPriceBNB: any;
     uidegg: any;
@@ -528,6 +529,10 @@ export class P2pmarketPage {
     progressCount : any;
     ordersID : any;
     url : any;
+
+    searchResults: any;
+    resultCost : any;
+    kurir : any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -9808,23 +9813,35 @@ export class P2pmarketPage {
   searchAddress(event: any) {
     const query = event.target.value;
 
-    axios.get(`https://api.rajaongkir.com/starter/suggest/address`, {
-      headers: {
-        key: this.apiKey
-      },
-      params: {
-        q: query
+    this.senddata.getOngkirmp(query).subscribe((data) => {
+      if (data) {
+        this.searchResults = JSON.parse(data);
+        const rajaongkir = this.searchResults.rajaongkir
+        const results = rajaongkir.results
+        const cost = results[0]
+        const resultCost = cost.costs
+        this.resultCost = resultCost
+        console.log(this.resultCost)
+        for(let i in this.resultCost) {
+          const viewCost = this.resultCost[i].cost
+          const actualCost = viewCost[0].value
+          console.log(actualCost);
+        }
+      } else {
+        this.searchResults = [];
+        console.log(this.searchResults);
       }
-    })
-    .then(response => {
-      const results = response.data.data;
-      // Process and display the autocomplete results
-      console.log('RajaOngkir Results:', results);
-      // ...
-    })
-    .catch(error => {
-      console.error('Error fetching address data:', error);
     });
+  }
+
+  chooseKurir(service, cost) {
+    const kurir = localStorage.setItem(service, cost);
+
+    this.kurir = localStorage.getItem(service);
+    const parsedKurir = Number(this.kurir);
+    const parsedCartPrice = Number(this.cartPrice); // Assuming this.cartPrice is a string, parse it as a number
+    this.actualcartPrice = parsedKurir + parsedCartPrice;
+    console.log(this.actualcartPrice);
   }
 
   addJaketsMetalicana() {
