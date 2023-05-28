@@ -507,7 +507,9 @@ export class P2pmarketPage {
     bidTime = false;
 
     jakets : any;
+    commonjakets : any;
     fashionjaketsLength : any;
+    fashioncommonjaketsLength : any;
     currentfashion : any;
     sortfashion : any;
     jaketsDetail : any;
@@ -756,7 +758,7 @@ export class P2pmarketPage {
             if(this.dragonsowned[i].ItemId == 'ITM13') {
               console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
               if(this.dragonsowned[i].qtyClaim > 0) {
-                this.senddata.getselljakets().subscribe(
+                this.senddata.getselljaketsmp().subscribe(
                   (dataSell: any) => {
                     this.jakets = dataSell;
                     this.fashionjaketsLength = dataSell.length;
@@ -771,6 +773,14 @@ export class P2pmarketPage {
               console.log("item tidak tersedia")
             }
           }
+        },
+        (error: any) => {}
+      );
+      this.senddata.getsellcommonjaketsmp().subscribe(
+        (dataSell: any) => {
+          this.commonjakets = dataSell;
+          this.fashioncommonjaketsLength = dataSell.length;
+          console.log(this.commonjakets)
         },
         (error: any) => {}
       );
@@ -868,7 +878,7 @@ export class P2pmarketPage {
             if(this.dragonsowned[i].ItemId == 'ITM13') {
               console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
               if(this.dragonsowned[i].qtyClaim > 0) {
-                this.senddata.getselljakets().subscribe(
+                this.senddata.getselljaketsmp().subscribe(
                   (dataSell: any) => {
                     this.jakets = dataSell;
                     this.fashionjaketsLength = dataSell.length;
@@ -883,6 +893,14 @@ export class P2pmarketPage {
               console.log("item tidak tersedia")
             }
           }
+        },
+        (error: any) => {}
+      );
+      this.senddata.getsellcommonjaketsmp().subscribe(
+        (dataSell: any) => {
+          this.commonjakets = dataSell;
+          this.fashioncommonjaketsLength = dataSell.length;
+          console.log(this.commonjakets)
         },
         (error: any) => {}
       );
@@ -934,7 +952,7 @@ export class P2pmarketPage {
             if(this.dragonsowned[i].ItemId == 'ITM13') {
               console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
               if(this.dragonsowned[i].qtyClaim > 0) {
-                this.senddata.getselljakets().subscribe(
+                this.senddata.getselljaketsmp().subscribe(
                   (dataSell: any) => {
                     this.jakets = dataSell;
                     this.fashionjaketsLength = dataSell.length;
@@ -949,6 +967,14 @@ export class P2pmarketPage {
               console.log("item tidak tersedia")
             }
           }
+        },
+        (error: any) => {}
+      );
+      this.senddata.getsellcommonjaketsmp().subscribe(
+        (dataSell: any) => {
+          this.commonjakets = dataSell;
+          this.fashioncommonjaketsLength = dataSell.length;
+          console.log(this.commonjakets)
         },
         (error: any) => {}
       );
@@ -6590,10 +6616,8 @@ export class P2pmarketPage {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
-      this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, event.target.files[0].name);
-      // setTimeout(()=>{
-      //   window.location.reload();
-      // }, 5000);
+      this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, event.target.files[0]);
+      this.updateProgressCount();
       loading.dismiss();
       
       console.log(event.target.files[0]);
@@ -6601,6 +6625,32 @@ export class P2pmarketPage {
         this.url = event.target.result;
       }
     }  
+  }
+
+  async updateProgressCount() {
+    console.log(this.progressCount);
+    const pc = this.progressCount;
+    this.progressCount = pc - 1;
+    const updateProgressCount = setInterval(async () => {
+      this.senddata.getstoreprogress(this.globalID).subscribe(
+        (data: any) => {
+          this.storeprogress = JSON.parse(data);
+          for (let i in this.storeprogress) {
+            // console.log(this.storeprogress[i].addressw)
+            this.progressCount = this.storeprogress.length;
+          }
+        },
+        (error: any) => {}
+      );
+      if(this.progressCount == 0) {
+        this.progressCount = 0;
+        this.ngOnInit();
+        clearInterval(updateProgressCount);
+      }
+    }, 3000);
+    setTimeout(()=>{
+      window.location.reload();
+    }, 3000);
   }
 
   // Market P2P
@@ -7111,7 +7161,7 @@ export class P2pmarketPage {
             if(this.dragonsowned[i].ItemId == 'ITM13') {
               console.log("anda dapat membeli " +this.dragonsowned[i].qtyClaim+ " jaket metalicana")
               if(this.dragonsowned[i].qtyClaim > 0) {
-                this.senddata.getselljakets().subscribe(
+                this.senddata.getselljaketsmp().subscribe(
                   (dataSell: any) => {
                     this.jakets = dataSell;
                     this.fashionjaketsLength = dataSell.length;
@@ -7126,6 +7176,14 @@ export class P2pmarketPage {
               console.log("item tidak tersedia")
             }
           }
+        },
+        (error: any) => {}
+      );
+      this.senddata.getsellcommonjaketsmp().subscribe(
+        (dataSell: any) => {
+          this.commonjakets = dataSell;
+          this.fashioncommonjaketsLength = dataSell.length;
+          console.log(this.commonjakets)
         },
         (error: any) => {}
       );

@@ -88,8 +88,8 @@
             </button>
 
             <!-- progress -->
-            <button *ngIf="progressCount > 0" (click)="getstoreprogress()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#progressModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-1 mb-[3px] h-4 w-4 fill-jacarta-500 group-hover:fill-accent dark:fill-jacarta-200">
+            <button *ngIf="progressCount > 0" (click)="getstoreprogress()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#progressModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="progress" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
                 <path fill="none" d="M0 0H24V24H0z"></path>
                 <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12h2c0 4.418 3.582 8 8 8s8-3.582 8-8-3.582-8-8-8C9.25 4 6.824 5.387 5.385 7.5H8v2H2v-6h2V6c1.824-2.43 4.729-4 8-4zm1 5v4.585l3.243 3.243-1.415 1.415L11 12.413V7h2z"></path>
               </svg>
@@ -97,7 +97,7 @@
             </button>
 
             <!-- cart -->
-            <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+            <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));margin-left: 1vh;">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
                 <g>
                   <path d="M84.176,379.875c-26.762,0-48.535,21.772-48.535,48.534s21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534S110.938,379.875,84.176,379.875z M84.176,446.944c-10.22,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534c10.22,0,18.534,8.314,18.534,18.534S94.396,446.944,84.176,446.944z" />
@@ -190,7 +190,7 @@
 
           <!-- progress -->
           <button *ngIf="progressCount > 0" (click)="getstoreprogress()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#progressModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-1 mb-[3px] h-4 w-4 fill-jacarta-500 group-hover:fill-accent dark:fill-jacarta-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
               <path fill="none" d="M0 0H24V24H0z"></path>
               <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12h2c0 4.418 3.582 8 8 8s8-3.582 8-8-3.582-8-8-8C9.25 4 6.824 5.387 5.385 7.5H8v2H2v-6h2V6c1.824-2.43 4.729-4 8-4zm1 5v4.585l3.243 3.243-1.415 1.415L11 12.413V7h2z"></path>
             </svg>
@@ -198,7 +198,7 @@
           </button>
 
           <!-- cart -->
-          <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+          <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));margin-left: 1vh">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
               <g>
                 <path d="M84.176,379.875c-26.762,0-48.535,21.772-48.535,48.534s21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534S110.938,379.875,84.176,379.875z M84.176,446.944c-10.22,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534c10.22,0,18.534,8.314,18.534,18.534S94.396,446.944,84.176,446.944z" />
@@ -1058,7 +1058,7 @@
                         <div style="padding-right: 1rem;">
                           <div class="mb-2 flex items-center justify-between">
                             <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white"><a (click)="clickcategoryfashion(1)" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white"> Hoodie </a></span>
-                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{fashionjaketsLength}}</span>
+                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{fashionjaketsLength + fashioncommonjaketsLength}}</span>
                           </div>
                         </div>
                       </li>
@@ -1136,8 +1136,47 @@
             </div>
             <!-- end filters -->
             <!-- Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5" style="gap: 1.2rem">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 pb-2" style="gap: 1.2rem">
               <div *ngFor="let s of jakets">
+                <article>
+                  <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
+                    <figure class="relative" style="margin: 0em 0px;">
+                      <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
+                        <img src="assets/img/store/{{s.gambar}}" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                      </a>
+                    </figure>
+                    <div class="mt-7 flex items-center justify-between">
+                      <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
+                        <span class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">{{s.nama}}</span>
+                      </a>
+                    </div>
+                    <div class="mt-2 text-sm">
+                      <span class="dark:text-jacarta-200 text-jacarta-700 mr-1">{{s.deskripsi}}</span>
+                    </div>
+                    <div class="mt-2 text-sm">
+                      <h4 class="dark:text-jacarta-200 text-jacarta-700 mr-1">Rp {{s.harga | number}}.00</h4>
+                    </div>
+                    <div class="mt-2 text-sm">
+                      <h4 class="text-green mr-1">QTY 30</h4>
+                    </div>
+                    <div class="mt-8 flex items-center justify-between">
+                      <!-- <a (click)="getstoredetail(s.id_product)" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel"> Buy</a> -->
+                      <a (click)="setstorecart(s.id_product, globalID, wallets)" class="group flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
+                          <g>
+                            <path d="M84.176,379.875c-26.762,0-48.535,21.772-48.535,48.534s21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534S110.938,379.875,84.176,379.875z M84.176,446.944c-10.22,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534c10.22,0,18.534,8.314,18.534,18.534S94.396,446.944,84.176,446.944z" />
+                            <path d="M474.946,30V0h-61.624l-9.835,60H1.999l28.736,175.88c4.044,24.67,26.794,43.995,51.794,43.995h130.756c-0.001,0.19-0.007,0.38-0.007,0.57c0,13.744,2.161,26.992,6.149,39.429H50.641v30H233.52c15.742,24.669,39.607,43.675,67.799,53.214c-4.53,7.377-7.147,16.048-7.147,25.32c0,26.762,21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534c0-9.273-2.617-17.944-7.147-25.32c51.133-17.302,88.042-65.743,88.042-122.644c0-44.48-22.556-83.789-56.828-107.097L438.804,30H474.946z M361.241,428.41c0,10.22-8.314,18.534-18.534,18.534c-10.221,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534C352.927,409.875,361.241,418.19,361.241,428.41zM442.136,280.446c0,54.826-44.604,99.43-99.429,99.43c-54.826,0-99.431-44.604-99.431-99.43s44.604-99.429,99.431-99.429C397.532,181.016,442.136,225.62,442.136,280.446z M342.707,151.016c-60.839,0-112,42.197-125.773,98.859H82.529c-10.174,0-20.543-8.808-22.188-18.841L37.298,90h361.271l-11.298,68.924C373.371,153.81,358.36,151.016,342.707,151.016z" />
+                            <polygon points="357.707,218.83 327.707,218.83 327.707,265.446 281.091,265.446 281.091,295.446 327.707,295.446 327.707,342.062 357.707,342.062 357.707,295.446 404.323,295.446 404.323,265.446 357.707,265.446" />
+                          </g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 pt-2" style="gap: 1.2rem">
+              <div *ngFor="let s of commonjakets">
                 <article>
                   <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
                     <figure class="relative" style="margin: 0em 0px;">
@@ -2685,6 +2724,18 @@
                   </div>
                 </ng-template>
               </div>
+            </div>
+            <div class="mt-7 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">Transfer Bank</span>
+            </div>
+            <div class="mt-2 text-sm">
+              <span class="dark:text-jacarta-200 text-jacarta-700 mr-1">Bank BCA</span>
+            </div>
+            <div class="mt-2 text-sm">
+              <h4 class="text-green mr-1">4972990519</h4>
+            </div>
+            <div class="mt-2 text-sm">
+              <h4 class="text-white mr-1">PT Oragon Teknologi Indonesia</h4>
             </div>
           </div>
           <!-- </span> -->

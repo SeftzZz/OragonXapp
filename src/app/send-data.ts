@@ -2334,7 +2334,7 @@ export class SendData {
   }
 
   // FASHION
-  getselljakets(): Observable<any> {
+  getselljaketsmp(): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
     header.append("Content-Type", "application/x-www-form-urlencoded");
@@ -2342,6 +2342,19 @@ export class SendData {
     header.append("No-Auth", "True");
 
     return this.httpClient.post(this.controllerapi + "getselljakets_mp", {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  getsellcommonjaketsmp(): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+
+    return this.httpClient.post(this.controllerapi + "getsellcommonjakets_mp", {
       headers: header,
       responseType: "text",
     });
@@ -2587,10 +2600,10 @@ export class SendData {
   }
 
   updatestoreprogress(
+    file_orders: string = "",
     id_orders: string = "",
     user_uid: string = "",
-    addressw: string = "",
-    file_orders: string = ""
+    addressw: string = ""
   ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2598,10 +2611,10 @@ export class SendData {
     header.append("enctype", "multipart/form-data");
     header.append("No-Auth", "True");
     let body = new FormData();
+    body.append("file_orders", file_orders);
     body.append("id_orders", id_orders);
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
-    body.append("file_orders", file_orders);
 
     return this.httpClient.post(
       this.controllerapi + "updatestoreprogress_mp",
