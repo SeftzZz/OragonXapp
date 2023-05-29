@@ -340,6 +340,16 @@ export class ProfilePage implements OnInit {
   sortbatteriesownedIncubator : any;
 
   jaketsHigh : any;
+  lastseen : any;
+  sortfashion : any;
+  jakets : any;
+  fashionjaketsLength : any;
+  fashioncommonjaketsLength : any;
+  commonjakets : any;
+  detailJaket : any;
+  qrcodeJaket : any;
+  nameJaket : any;
+  ClaimmedJaket : any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -510,43 +520,25 @@ export class ProfilePage implements OnInit {
     // const source = interval(2000);
     // this.subscription = source.subscribe(() => this.checkonsale());
 
-    this.senddata.getselldgUserownedmp(this.globalID).subscribe(
-      async (dataSell: any) => {
-        const loading = await this.loadingController.create();
-        await loading.present();
-        let dragonsowned = JSON.parse(dataSell);
-        this.dragonsowned = dragonsowned;
-        this.marketp2pdragonLength = this.dragonsowned.length;
-        // console.log(this.dragonsowned)
-        for (let i in this.dragonsowned) {
-          if (
-            this.dragonsowned[i].imgbackground == "exists" &&
-            this.dragonsowned[i].statusbayarbackground == "paid"
-          ) {
-            this.senddata.getallbackgroundmp(this.globalID).subscribe(
-              (dataSell: any) => {
-                this.dragonsownedbg = JSON.parse(dataSell);
-                this.marketp2pdragonBG = this.dragonsownedbg.imgBg;
-                this.marketp2pdragonIdBG = this.dragonsownedbg.ItemId;
-                // console.log(this.dragonsownedbg);
-              },
-              (error: any) => {}
-            );
-          }
-          if(this.dragonsowned[i].ItemId == 'ITM13') {
-            console.log("anda dapat membeli jaket metalicana")
-            this.senddata.updateNewDataClaimmp(
-              this.globalID, 
-              "ITM13",
-              this.marketp2pdragonLength
-              ).subscribe((respUpdate:any) => {
-              // console.log("respUpdate", respUpdate);
-            });
-          } else {
-            console.log("item tidak tersedia")
-          }
-        }
-        loading.dismiss();
+    this.lastseen = "jakets";
+    this.sortfashion = 1;
+    localStorage.setItem("lastseenfashion", "jakets");
+    // console.log("category p2p", this.currentp2p);
+    // console.log("sort p2p", this.sortp2pmarket);
+    this.senddata.getselljaketsUserownedmp(this.globalID).subscribe(
+      (dataSell: any) => {
+        this.jakets = JSON.parse(dataSell);
+        this.fashionjaketsLength = dataSell.length;
+        // console.log(this.jakets)
+      },
+      (error: any) => {}
+    );
+
+    this.senddata.getsellcommonjaketsownedmp(this.globalID).subscribe(
+      (dataSell: any) => {
+        this.commonjakets = JSON.parse(dataSell);
+        this.fashioncommonjaketsLength = dataSell.length;
+        // console.log(this.commonjakets)
       },
       (error: any) => {}
     );
@@ -1841,10 +1833,24 @@ export class ProfilePage implements OnInit {
       this.currentp2powned = 80;
       // console.log("category p2p owned", this.currentp2powned);
     } else if (kind == 'jakets') {
+      this.lastseen = "jakets";
+      this.sortfashion = 1;
+      localStorage.setItem("lastseenfashion", "jakets");
+      // console.log("category p2p", this.currentp2p);
+      // console.log("sort p2p", this.sortp2pmarket);
       this.senddata.getselljaketsUserownedmp(this.globalID).subscribe(
         (dataSell: any) => {
-          this.jaketsHigh = JSON.parse(dataSell);
-          // console.log(this.dragons)
+          this.jakets = JSON.parse(dataSell);
+          this.fashionjaketsLength = dataSell.length;
+          // console.log(this.jakets)
+        },
+        (error: any) => {}
+      );
+      this.senddata.getsellcommonjaketsownedmp(this.globalID).subscribe(
+        (dataSell: any) => {
+          this.commonjakets = JSON.parse(dataSell);
+          this.fashioncommonjaketsLength = dataSell.length;
+          // console.log(this.commonjakets)
         },
         (error: any) => {}
       );
@@ -2022,6 +2028,32 @@ export class ProfilePage implements OnInit {
     this.countdown = setInterval(async () => {
       this.countDownHatching();
     }, 1000);
+  }
+
+  clickcategoryfashion(kind) {
+    if (kind == 1) {
+      this.lastseen = "jakets";
+      this.sortfashion = 1;
+      localStorage.setItem("lastseenfashion", "jakets");
+      // console.log("category p2p", this.currentp2p);
+      // console.log("sort p2p", this.sortp2pmarket);
+      this.senddata.getselljaketsUserownedmp(this.globalID).subscribe(
+        (dataSell: any) => {
+          this.jakets = JSON.parse(dataSell);
+          this.fashionjaketsLength = dataSell.length;
+          // console.log(this.jakets)
+        },
+        (error: any) => {}
+      );
+      this.senddata.getsellcommonjaketsownedmp(this.globalID).subscribe(
+        (dataSell: any) => {
+          this.commonjakets = JSON.parse(dataSell);
+          this.fashioncommonjaketsLength = dataSell.length;
+          // console.log(this.commonjakets)
+        },
+        (error: any) => {}
+      );
+    }
   }
 
   async countDownHatching() {
@@ -3416,5 +3448,18 @@ export class ProfilePage implements OnInit {
       gasPrice
     });
     console.log('Transaction hash:', tx.transactionHash);
+  }
+
+  async getselljaketsUserownedqrcodemp(DocId) {
+    this.senddata.getselljaketsUserownedqrcodemp(DocId).subscribe(
+      (dataSell: any) => {
+        this.detailJaket = JSON.parse(dataSell);
+        this.qrcodeJaket = this.detailJaket.qrcode;
+        this.nameJaket = this.detailJaket.name;
+        this.ClaimmedJaket = this.detailJaket.Claimmed;
+        console.log(this.detailJaket)
+      },
+      (error: any) => {}
+    );
   }
 }

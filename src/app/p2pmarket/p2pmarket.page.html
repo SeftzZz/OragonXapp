@@ -83,9 +83,9 @@
           <!-- Actions -->
           <div class="ml-8 hidden lg:flex xl:ml-12">
             <!-- hatching -->
-            <button *ngIf="hatching == true" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#hatchModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+            <!-- <button *ngIf="hatching == true" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#hatchModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
               <ion-icon name="hourglass-outline"></ion-icon>
-            </button>
+            </button> -->
 
             <!-- progress -->
             <button *ngIf="progressCount > 0" (click)="getstoreprogress()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#progressModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="progress" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
@@ -184,9 +184,9 @@
         <!-- Mobile Menu Actions -->
         <div class="ml-auto flex lg:hidden">
           <!-- hatching -->
-          <button *ngIf="hatching == true" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#hatchModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+          <!-- <button *ngIf="hatching == true" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#hatchModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
             <ion-icon name="hourglass-outline"></ion-icon>
-          </button>
+          </button> -->
 
           <!-- progress -->
           <button *ngIf="progressCount > 0" (click)="getstoreprogress()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#progressModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
@@ -1104,7 +1104,7 @@
                 </div>
                 <div class="dropdown-menu dark:bg-jacarta-800 z-10 hidden min-w-[220px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="onSaleSort">
                   <span class="font-display text-jacarta-300 block px-5 py-2 text-sm font-semibold">Sort By</span>
-                  <button (click)="clicksortfashion(1)" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                  <button class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
                     Price: High to Low
                     <div *ngIf="sortfashion == 1">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-accent mb-[3px] h-4 w-4">
@@ -1113,7 +1113,7 @@
                       </svg>
                     </div>
                   </button>
-                  <button (click)="clicksortfashion(2)" class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                  <button class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
                     Price: Low to High
                     <div *ngIf="sortfashion == 2">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-accent mb-[3px] h-4 w-4">
@@ -1122,7 +1122,7 @@
                       </svg>
                     </div>
                   </button>
-                  <button (click)="clicksortfashion(3)" class="dropdown-item font-display text-jacarta-700 dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
+                  <button class="dropdown-item font-display text-jacarta-700 dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white">
                     A - Z
                     <div *ngIf="sortfashion == 3">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-accent mb-[3px] h-4 w-4">
@@ -1141,12 +1141,12 @@
                 <article>
                   <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
                     <figure class="relative" style="margin: 0em 0px;">
-                      <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
+                      <a data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
                         <img src="assets/img/store/{{s.gambar}}" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
                       </a>
                     </figure>
                     <div class="mt-7 flex items-center justify-between">
-                      <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
+                      <a data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
                         <span class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">{{s.nama}}</span>
                       </a>
                     </div>
@@ -1180,12 +1180,12 @@
                 <article>
                   <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
                     <figure class="relative" style="margin: 0em 0px;">
-                      <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
+                      <a data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
                         <img src="assets/img/store/{{s.gambar}}" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
                       </a>
                     </figure>
                     <div class="mt-7 flex items-center justify-between">
-                      <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
+                      <a data-bs-toggle="modal" data-bs-target="#cartfashionModalLabel">
                         <span class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">{{s.nama}}</span>
                       </a>
                     </div>
@@ -2691,8 +2691,18 @@
           </div>
         </div>
         <div class="p-3" style="width: 100%;">
-          <input type="text" (keyup)="searchAddress($event)" id="input_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
-          
+          <div class="mb-2 flex items-center justify-between">
+            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
+          </div>
+          <input type="text" (keyup)="inputAddress($event)" id="input_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
+          <div class="mb-2 flex items-center justify-between">
+            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
+          </div>
+          <input type="text" (keyup)="inputPostalCode($event)" id="input_posta_code" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your postal code" required />
+          <div class="mb-2 flex items-center justify-between">
+            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kota</span>
+          </div>
+          <input type="text" (keyup)="searchAddress($event)" id="search_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
           <div class="modal-body p-6">
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan Kurir</span>
@@ -2744,7 +2754,7 @@
         <div class="modal-footer">
           <div class="flex items-center justify-center space-x-4">
             <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
-            <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == ''" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
+            <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
           </div>
         </div>
       </div>
@@ -2801,7 +2811,7 @@
           </div>
         </div>
         <div class="p-3" style="width: 100%;">
-          <input type="file" (change)="pay_progressStore($event, ordersID, globalID, wallets)" id="file-upload" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
+          <input type="file" (change)="pay_progressStore($event, ordersID, globalID, product_id, wallets)" id="file-upload" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
         </div>
         <!-- end body -->
         <!-- <div class="modal-footer">

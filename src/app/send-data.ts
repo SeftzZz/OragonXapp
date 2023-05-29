@@ -2390,6 +2390,36 @@ export class SendData {
     });
   }
 
+  getsellcommonjaketsownedmp(uid: string = ""): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+
+    return this.httpClient.post(this.controllerapi + "getsellcommonjaketsowned_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  getselljaketsUserownedqrcodemp(DocId: string = ""): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("DocId", DocId);
+
+    return this.httpClient.post(this.controllerapi + "getselljaketsUserownedqrcode_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
   getOngkirmp(city: string = ""): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2410,7 +2440,8 @@ export class SendData {
     Id: string = "", 
     ItemId: string = "", 
     lengthJakets: string = "", 
-    owners: string = ""
+    owners: string = "",
+    qrcode: string = "",
     ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2423,6 +2454,7 @@ export class SendData {
     body.append("ItemId", ItemId);
     body.append("lengthJakets", lengthJakets);
     body.append("owners", owners);
+    body.append("qrcode", qrcode);
 
     return this.httpClient.post(this.controllerapi + "insertNewJaketMetalicana_mp", body, {
       headers: header,
