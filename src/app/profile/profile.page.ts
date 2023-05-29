@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import {
@@ -350,6 +350,7 @@ export class ProfilePage implements OnInit {
   qrcodeJaket : any;
   nameJaket : any;
   ClaimmedJaket : any;
+  scanned: boolean = false;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -1855,6 +1856,12 @@ export class ProfilePage implements OnInit {
         (error: any) => {}
       );
     }
+  }
+
+  onQRCodeScanned() {
+    // Set the scanned status to true
+    this.scanned = true;
+    console.log(this.scanned);
   }
 
   async clickcategoryowned(kind) {

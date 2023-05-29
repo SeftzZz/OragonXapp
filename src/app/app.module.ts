@@ -14,6 +14,7 @@ import { Push, PushObject, PushOptions } from '@awesome-cordova-plugins/push/ngx
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 
 // AngularFire
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';

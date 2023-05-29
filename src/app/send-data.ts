@@ -2436,6 +2436,7 @@ export class SendData {
   }
 
   insertNewJaketMetalicanamp(
+    id_orders: string = "",
     uid: string = "", 
     Id: string = "", 
     ItemId: string = "", 
@@ -2449,6 +2450,7 @@ export class SendData {
     header.append("enctype", "multipart/form-data");
     header.append("No-Auth", "True");
     let body = new FormData();
+    body.append("id_orders", id_orders);
     body.append("uid", uid);
     body.append("Id", Id);
     body.append("ItemId", ItemId);

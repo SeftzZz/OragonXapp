@@ -6620,7 +6620,7 @@ export class P2pmarketPage {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, event.target.files[0]);
-      // this.addJaketsMetalicana(user_uid, product_id);
+      this.addJaketsMetalicana(this.ordersID, user_uid, product_id);
       loading.dismiss();
       
       console.log(event.target.files[0]);
@@ -9923,7 +9923,7 @@ export class P2pmarketPage {
     this.cartStatus = 1;
   }
 
-  addJaketsMetalicana(globalID, product_id) {
+  addJaketsMetalicana(ordersID, globalID, product_id) {
     var DocIdJakets = this.newTime();
     var updateJakets = 1;
     const address = localStorage.getItem("alamat");
@@ -9946,15 +9946,10 @@ export class P2pmarketPage {
           ItemId: this.ItemIdJaket,
           QrCodeData: {
             UID: globalID,
-            Address: address+", "+postal_id,
-            City: cities,
             Claimmed: false,
-            CreatedAt: this.newTime(),
-            Expedition: "JNE",
-            Receipent: this.username
+            CreatedAt: this.newTime()
           },
           Id: this.codeHoodie + DocIdJakets,
-          RFID: this.codeHoodie + DocIdJakets,
         };
 
         const qrCodeDataString = JSON.stringify(qrCodeData);
@@ -9968,6 +9963,7 @@ export class P2pmarketPage {
           // The `qrCodeUrl` variable now contains the data URL of the generated QR code image
           // console.log(qrCodeUrl);
           this.senddata.insertNewJaketMetalicanamp(
+            ordersID,
             globalID, 
             this.codeHoodie + DocIdJakets, 
             this.ItemIdJaket, 
@@ -9981,16 +9977,10 @@ export class P2pmarketPage {
             ItemId: this.ItemIdJaket,
             QrCodeData: {
               UID: globalID,
-              Address: address+", "+postal_id,
-              City: cities,
               Claimmed: false,
-              CreatedAt: this.newTime(),
-              Expedition: "JNE",
-              Receipent: this.username
+              CreatedAt: this.newTime()
             },
-            QrCodeUrl: qrCodeUrl,
             Id: this.codeHoodie + DocIdJakets,
-            RFID: this.codeHoodie + DocIdJakets,
           }).then(() => {});
           // console.log(this.jaketsHigh);
         });
