@@ -82,7 +82,7 @@ export class LoginPage implements OnInit {
     if (user) {
       console.log(user.user.uid);
       setTimeout(function() {
-       window.location.replace('/tabs/profile');
+       window.location.replace('/tabs/home');
       }, 5000);
       // this.router.navigateByUrl('/tabs/home/', { replaceUrl: true });
     } else {

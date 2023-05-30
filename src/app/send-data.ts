@@ -2613,7 +2613,7 @@ export class SendData {
     id_cart: string = "",
     user_uid: string = "",
     addressw: string = "",
-    transactionhash: string = ""
+    email: string = "",
   ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2625,6 +2625,7 @@ export class SendData {
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
     body.append("transactionhash", transactionhash);
+    body.append("email", email);
 
     return this.httpClient.post(
       this.controllerapi + "updatestorecart_mp",

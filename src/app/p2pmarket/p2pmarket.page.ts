@@ -6532,7 +6532,7 @@ export class P2pmarketPage {
               message: 'Transaction Successfull, We have send this transaction receipt to your email',
               buttons: ['OK'],
             });
-            this.updatestorecart(this.cartID, this.globalID, this.wallets, res.transactionHash);
+            this.updatestorecart(this.cartID, this.globalID, this.wallets, this.email);
             await alert.present();
             setTimeout(async()=>{
               const loading = await this.loadingController.create();
@@ -6601,7 +6601,7 @@ export class P2pmarketPage {
           message: '(DEMO) Transaction Successfull, We have send this transaction receipt to your email',
           buttons: ['OK'],
         });
-        this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash');
+        this.updatestorecart(this.cartID, this.globalID, this.wallets, this.email);
         await alert.present();
         setTimeout(async()=>{
           const loading = await this.loadingController.create();
