@@ -2624,7 +2624,6 @@ export class SendData {
     body.append("id_cart", id_cart);
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
-    body.append("transactionhash", transactionhash);
     body.append("email", email);
 
     return this.httpClient.post(
