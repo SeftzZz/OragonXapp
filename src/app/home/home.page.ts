@@ -15,6 +15,8 @@ import { interval, Subscription } from 'rxjs';
 import {Location} from '@angular/common';
 import CryptoJS from 'crypto-js';
 import { HttpClient } from '@angular/common/http';
+import * as QRCode from 'qrcode';
+import axios from 'axios';
 
 // AngularFire
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -188,6 +190,9 @@ export class HomePage implements OnInit {
     uidbattery : any;
     uidfood : any;
 
+    messagePleaseWait : any;
+    cartPriceTemp : any;
+
   // P2P Market
     dragons : any;
     hargaLowest : any;
@@ -322,6 +327,37 @@ export class HomePage implements OnInit {
     batteriesHigh : any;
 
     tokenNotif : any;
+
+    jakets : any;
+    commonjakets : any;
+    fashionjaketsLength : any;
+    fashioncommonjaketsLength : any;
+    currentfashion : any;
+    sortfashion : any;
+    jaketsDetail : any;
+    jaketsHigh : any;
+    marketfashionJaketsOID : any;
+    marketfashionJaketsID : any;
+    marketfashionJaketsImg : any;
+    marketfashionJaketsowner : any;
+    marketfashionJaketsHVP : any;
+    marketfashionJaketsQty : any;
+    marketfashionJaketsprice : any;
+    marketfashionJaketspriceUSD : any;
+    apiKey = 'API_KEY';
+    storeprogress : any;
+    progressCount : any;
+    ordersID : any;
+    url : any;
+
+    searchResults: any;
+    resultCost : any;
+    kurir : any;
+    product_id : any;
+    codeHoodie : any;
+    ItemIdJaket  : any;
+    actualcartPrice : any;
+    cartStatus : any;
 
   constructor(
     private authService: AuthService,
@@ -485,9 +521,11 @@ export class HomePage implements OnInit {
         });
 
         this.getstorecart();
+        this.getstoreprogress();
         this.getcountRolling();
         this.checknewfood();
         this.checknewbattery();
+        this.messagePleaseWait = "false";
       }
       // console.log(this.globalID);
 
@@ -4653,28 +4691,38 @@ export class HomePage implements OnInit {
     }
 
     getstorecart() {
+      let harga = 0;
       this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
-        this.storecart = JSON.parse(data)
-        for(let i in this.storecart) {
-          if(this.storecart.length == 0) {
-            this.cartCount = 0;  
-          } else {
-            this.cartCount = this.storecart.length
-          }
-          this.cartUID = this.globalID
-          this.carts = this.storecart
-          this.cartID = this.storecart[i].id_cart
-          this.storeID = this.storecart[i].product_id
-          this.cartName = this.storecart[i].nama
-          this.cartDeskripsi = this.storecart[i].deskripsi
-          this.cartPrice = this.storecart[i].harga
-          this.cartQty = this.storecart[i].qty_cart
-          let cartPriceBNB = this.current_bnb * this.cartPrice
-          this.cartPriceBNB = (cartPriceBNB).toFixed(4);
-          this.cartImg = this.storecart[i].gambar
-          // console.log(this.cartPriceBNB)
-        }        
+        this.storecart = JSON.parse(data);
+        this.cartCount = this.storecart.length;
+        this.cartPrice = this.storecart.reduce((sum, product) => sum + Number(product.harga), 0);
+        this.cartPriceTemp = this.cartPrice;
       },(error:any) => {})
+    }
+
+    async setActive(id_cart) {
+      const loading = await this.loadingController.create();
+      await loading.present();
+        this.senddata.setActiveCart(id_cart).subscribe((data:any) => {
+          let harga = 0;
+          this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
+            this.storecart = JSON.parse(data);
+            if(this.storecart.active == 1) {
+              this.senddata.setactiveidcart(id_cart).subscribe((cartactive:any) => {
+                const cartPrice = this.storecart.reduce((difference, product) => difference - Number(product.harga), 0);
+                console.log("cart aktif", JSON.parse(cartactive));
+                this.cartPriceTemp = cartPrice;
+              });
+            } else {
+              this.senddata.setnoactiveidcart(id_cart).subscribe((cartnoactive:any) => {
+                const cartPrice = this.storecart.reduce((sum, product) => sum + Number(product.harga), 0);
+                console.log("cart tidak aktif", JSON.parse(cartnoactive));
+                this.cartPriceTemp = cartPrice;
+              });
+            }
+          },(error:any) => {});
+        });
+      loading.dismiss();
     }
 
     async setstorecart(id_product, user_uid, addressw) {
@@ -4692,27 +4740,27 @@ export class HomePage implements OnInit {
         this.senddata.setstorecart(id_product, user_uid, addressw).subscribe((data:any) => {
           let setstorecart = data
           this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
-          this.storecart = JSON.parse(data)
-          for(let i in this.storecart) {
-            console.log(this.storecart[i].addressw)
-            if(this.storecart.length == 0) {
-              this.cartCount = 0;  
-            } else {
-              this.cartCount = this.storecart.length
-            }
-            this.cartUID = this.globalID
-            this.carts = this.storecart
-            this.cartID = this.storecart[i].id_cart
-            this.storeID = this.storecart[i].product_id
-            // this.cartName = this.storecart[i].nama
-            this.cartDeskripsi = this.storecart[i].deskripsi
-            this.cartPrice = this.storecart[i].harga
-            this.cartQty = this.storecart[i].qty_cart
-            let cartPriceBNB = (this.current_bnb * this.cartPrice) * this.cartQty
-            this.cartPriceBNB = (cartPriceBNB).toFixed(4);
-            this.cartImg = this.storecart[i].gambar
-          }        
-        },(error:any) => {})
+            this.storecart = JSON.parse(data)
+            for(let i in this.storecart) {
+              console.log(this.storecart[i].addressw)
+              if(this.storecart.length == 0) {
+                this.cartCount = 0;  
+              } else {
+                this.cartCount = this.storecart.length
+              }
+              this.cartUID = this.globalID
+              this.carts = this.storecart
+              this.cartID = this.storecart[i].id_cart
+              this.storeID = this.storecart[i].product_id
+              // this.cartName = this.storecart[i].nama
+              this.cartDeskripsi = this.storecart[i].deskripsi
+              this.cartPrice = this.storecart[i].harga
+              this.cartQty = this.storecart[i].qty_cart
+              let cartPriceBNB = (this.current_bnb * this.cartPrice) * this.cartQty
+              this.cartPriceBNB = (cartPriceBNB).toFixed(4);
+              this.cartImg = this.storecart[i].gambar
+            }        
+          },(error:any) => {})
         },(error:any) => {})      
 
         loading.dismiss();
@@ -4737,6 +4785,85 @@ export class HomePage implements OnInit {
       },(error:any) => {})
 
       loading.dismiss();
+    }
+
+    async pay_progressStore(event, id_orders, user_uid, product_id, addressw) {
+      const loading = await this.loadingController.create();
+      await loading.present();
+      // console.log(event, DocId, ItemId)
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]); // read file as data url
+        this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, event.target.files[0]);
+        this.addJaketsMetalicana(this.ordersID, user_uid, product_id);
+        loading.dismiss();
+        
+        console.log(event.target.files[0]);
+        reader.onload = (event) => { // called once readAsDataURL is completed
+          this.url = event.target.result;
+        }
+      }
+      this.alertWaiting();
+      this.updateProgressCount();
+    }
+
+    async updateProgressCount() {
+      console.log(this.progressCount);
+      const pc = this.progressCount;
+      this.progressCount = pc - 1;
+      const updateProgressCount = setInterval(async () => {
+        const loading = await this.loadingController.create();
+        await loading.present();
+        this.senddata.getstoreprogress(this.globalID).subscribe(
+          (data: any) => {
+            this.storeprogress = JSON.parse(data);
+            for (let i in this.storeprogress) {
+              // console.log(this.storeprogress[i].addressw)
+              this.progressCount = this.storeprogress.length;
+            }
+          },
+          (error: any) => {}
+        );
+        loading.dismiss();
+      }, 5000);
+      setTimeout(async () => {
+        window.location.reload();
+      }, 5000);
+    }
+
+    async updatestoreprogress(id_orders, user_uid, addressw, file_orders) {
+      const loading = await this.loadingController.create();
+      await loading.present();
+
+      this.senddata.updatestoreprogressHome(id_orders, user_uid, addressw, file_orders).subscribe((data:any) => {
+        let updatestoreprogressHome = data
+        console.log(updatestoreprogressHome)
+      },(error:any) => {})
+
+      loading.dismiss();
+    }
+
+    getstoreprogress() {
+      this.senddata.getstoreprogress(this.globalID).subscribe(
+        (data: any) => {
+          this.storeprogress = JSON.parse(data);
+          for (let i in this.storeprogress) {
+            // console.log(this.storeprogress[i].addressw)
+            this.progressCount = this.storeprogress.length;
+            this.cartUID = this.globalID;
+            this.carts = this.storeprogress;
+            this.ordersID = this.storeprogress[i].id_orders;
+            this.product_id = this.storeprogress[i].product_id
+            // this.cartDeskripsi = this.storeprogress[i].deskripsi
+            this.cartPrice = this.storeprogress[i].harga;
+            this.cartQty = this.storeprogress[i].qty_cart;
+            let cartPriceBNB = this.current_bnb * this.cartPrice * this.cartQty;
+            this.cartPriceBNB = cartPriceBNB.toFixed(4);
+            this.cartImg = this.storeprogress[i].gambar;
+          }
+        },
+        (error: any) => {}
+      );
     }
 
     addMetalicana() {
@@ -5111,6 +5238,15 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
+  async alertWaiting() {
+    const alert = await this.alertController.create({
+      header: 'File has uploaded !',
+      message: 'Thank you.',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
   async showAlert(header, message) {
     const alert = await this.alertController.create({
       header: header,
@@ -5123,5 +5259,124 @@ export class HomePage implements OnInit {
   newTime() {
     //const current = new Date();
     return Math.floor(Date.now()/1000);
+  }
+
+  inputAddress(event: any) {
+    const query = event.target.value;
+    localStorage.setItem("alamat", query);
+  }
+
+  inputPostalCode(event: any) {
+    const query = event.target.value;
+    localStorage.setItem("kode_pos", query);
+  }
+
+  searchAddress(event: any) {
+    const query = event.target.value;
+
+    this.senddata.getOngkirmp(query).subscribe((data) => {
+      if (data) {
+        this.searchResults = JSON.parse(data);
+        const rajaongkir = this.searchResults.rajaongkir
+        const results = rajaongkir.results
+        const cost = results[0]
+        const resultCost = cost.costs
+        this.resultCost = resultCost
+        console.log(this.resultCost)
+        for(let i in this.resultCost) {
+          const viewCost = this.resultCost[i].cost
+          const actualCost = viewCost[0].value
+          console.log(actualCost);
+          localStorage.setItem("kota", query);
+        }
+      } else {
+        this.searchResults = [];
+        console.log(this.searchResults);
+      }
+    });
+  }
+
+  chooseKurir(service, cost) {
+    const kurir = localStorage.setItem(service, cost);
+
+    this.kurir = localStorage.getItem(service);
+    const parsedKurir = Number(this.kurir);
+    const parsedCartPrice = Number(this.cartPrice); // Assuming this.cartPrice is a string, parse it as a number
+    this.actualcartPrice = parsedKurir + parsedCartPrice;
+    console.log(this.actualcartPrice);
+    this.cartStatus = 1;
+  }
+
+  addJaketsMetalicana(ordersID, globalID, product_id) {
+    var DocIdJakets = this.newTime();
+    var updateJakets = 1;
+    const address = localStorage.getItem("alamat");
+    const postal_id = localStorage.getItem("kode_pos");
+    const cities = localStorage.getItem("kota");
+    if(product_id == 17) {
+      this.codeHoodie = "HMTL";
+      this.ItemIdJaket = "ITM13";
+    } else if(product_id == 18) {
+      this.codeHoodie = "HMER";
+      this.ItemIdJaket = "ITM1";
+    } else if(product_id == 19) {
+      this.codeHoodie = "HRTR";
+      this.ItemIdJaket = "ITM11";
+    } 
+    this.senddata.getselljaketsUserownedmp(globalID).subscribe(
+      (dataSell: any) => {
+        this.jaketsHigh = JSON.parse(dataSell);
+        const qrCodeData = {
+          ItemId: this.ItemIdJaket,
+          QrCodeData: {
+            UID: globalID,
+            Claimmed: false,
+            CreatedAt: this.newTime()
+          },
+          Id: this.codeHoodie + DocIdJakets,
+        };
+
+        const qrCodeDataString = JSON.stringify(qrCodeData);
+
+        QRCode.toDataURL(qrCodeDataString, (err, qrCodeUrl) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+
+          // The `qrCodeUrl` variable now contains the data URL of the generated QR code image
+          // console.log(qrCodeUrl);
+          this.senddata.insertNewJaketMetalicanamp(
+            ordersID,
+            globalID, 
+            this.codeHoodie + DocIdJakets, 
+            this.ItemIdJaket, 
+            updateJakets.toString(), 
+            JSON.stringify({uid:globalID}),
+            qrCodeUrl.toString(),
+            ).subscribe((resp:any) => {
+            // console.log("updating 1 data food...", resp);
+          });
+          this.fs.collection('Items/'+ globalID + '/Fashions').doc(this.codeHoodie + DocIdJakets).set({
+            ItemId: this.ItemIdJaket,
+            QrCodeData: {
+              UID: globalID,
+              Claimmed: false,
+              CreatedAt: this.newTime()
+            },
+            QrCodeUrl: qrCodeUrl,
+            Address: address,
+            PostalID: postal_id,
+            City: cities,
+            Id: this.codeHoodie + DocIdJakets,
+          }).then(() => {});
+          // console.log(this.jaketsHigh);
+        });
+      },
+      (error: any) => {}
+    );
+    localStorage.removeItem("alamat");
+    localStorage.removeItem("kode_pos");
+    localStorage.removeItem("kota");
   }
 }

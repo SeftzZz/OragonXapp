@@ -3458,15 +3458,23 @@ export class ProfilePage implements OnInit {
   }
 
   async getselljaketsUserownedqrcodemp(DocId) {
-    this.senddata.getselljaketsUserownedqrcodemp(DocId).subscribe(
-      (dataSell: any) => {
-        this.detailJaket = JSON.parse(dataSell);
-        this.qrcodeJaket = this.detailJaket.qrcode;
-        this.nameJaket = this.detailJaket.name;
-        this.ClaimmedJaket = this.detailJaket.Claimmed;
-        console.log(this.detailJaket)
-      },
-      (error: any) => {}
-    );
+    this.fs.collection("Items/" + this.globalID + "/Fashions").doc(DocId).valueChanges().subscribe(async (datanewFashions:any) => {
+      console.log("datanewFashions", datanewFashions);
+      this.detailJaket = datanewFashions;
+      this.qrcodeJaket = this.detailJaket.QrCodeUrl;
+      this.nameJaket = this.detailJaket.ItemId;
+      this.ClaimmedJaket = this.detailJaket.QrCodeData.Claimmed;
+      console.log(this.ClaimmedJaket);
+    });
+    // this.senddata.getselljaketsUserownedqrcodemp(DocId).subscribe(
+    //   (dataSell: any) => {
+    //     this.detailJaket = JSON.parse(dataSell);
+    //     this.qrcodeJaket = this.detailJaket.qrcode;
+    //     this.nameJaket = this.detailJaket.name;
+    //     this.ClaimmedJaket = this.detailJaket.Claimmed;
+    //     console.log(this.detailJaket)
+    //   },
+    //   (error: any) => {}
+    // );
   }
 }

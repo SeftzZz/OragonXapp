@@ -2633,6 +2633,60 @@ export class SendData {
     );
   }
 
+  setActiveCart(
+    id_cart: string = "",
+  ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_cart", id_cart);
+
+    return this.httpClient.post(
+      this.controllerapi + "setActiveCart_mp",
+      body,
+      { headers: header, responseType: "text" }
+    );
+  }
+
+  setactiveidcart(
+    id_cart: string = "",
+  ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_cart", id_cart);
+
+    return this.httpClient.post(
+      this.controllerapi + "setactiveidcart_mp",
+      body,
+      { headers: header, responseType: "text" }
+    );
+  }
+
+  setnoactiveidcart(
+    id_cart: string = "",
+  ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_cart", id_cart);
+
+    return this.httpClient.post(
+      this.controllerapi + "setnoactiveidcart_mp",
+      body,
+      { headers: header, responseType: "text" }
+    );
+  }
+
   updatestoreprogress(
     file_orders: string = "",
     id_orders: string = "",

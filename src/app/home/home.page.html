@@ -87,8 +87,17 @@
               <ion-icon name="hourglass-outline"></ion-icon>
             </button> -->
 
+            <!-- progress -->
+            <button *ngIf="progressCount > 0" (click)="getstoreprogress()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#progressModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="progress" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
+                <path fill="none" d="M0 0H24V24H0z"></path>
+                <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12h2c0 4.418 3.582 8 8 8s8-3.582 8-8-3.582-8-8-8C9.25 4 6.824 5.387 5.385 7.5H8v2H2v-6h2V6c1.824-2.43 4.729-4 8-4zm1 5v4.585l3.243 3.243-1.415 1.415L11 12.413V7h2z"></path>
+              </svg>
+              <span style="padding-left: 1px;">{{progressCount}}</span>
+            </button>
+
             <!-- cart -->
-            <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+            <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));margin-left: 1vh;">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
                 <g>
                   <path d="M84.176,379.875c-26.762,0-48.535,21.772-48.535,48.534s21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534S110.938,379.875,84.176,379.875z M84.176,446.944c-10.22,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534c10.22,0,18.534,8.314,18.534,18.534S94.396,446.944,84.176,446.944z" />
@@ -97,11 +106,6 @@
                 </g>
               </svg>
               <span style="padding-left: 1px;">{{cartCount}}</span>
-            </button>
-
-            <button *ngIf="count_roulette > 0" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#openGatchaModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
-              <ion-icon name="gift-outline"></ion-icon>
-              <span style="font-size: 10px;position: relative;">{{count_roulette}}</span>
             </button>
             
             <!-- Profile -->
@@ -177,15 +181,24 @@
           </div>
         </div>
 
-      <!-- Mobile Menu Actions -->
+        <!-- Mobile Menu Actions -->
         <div class="ml-auto flex lg:hidden">
           <!-- hatching -->
           <!-- <button *ngIf="hatching == true" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#hatchModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
             <ion-icon name="hourglass-outline"></ion-icon>
           </button> -->
 
+          <!-- progress -->
+          <button *ngIf="progressCount > 0" (click)="getstoreprogress()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#progressModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
+              <path fill="none" d="M0 0H24V24H0z"></path>
+              <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12h2c0 4.418 3.582 8 8 8s8-3.582 8-8-3.582-8-8-8C9.25 4 6.824 5.387 5.385 7.5H8v2H2v-6h2V6c1.824-2.43 4.729-4 8-4zm1 5v4.585l3.243 3.243-1.415 1.415L11 12.413V7h2z"></path>
+            </svg>
+            <span style="padding-left: 1px;">{{progressCount}}</span>
+          </button>
+
           <!-- cart -->
-          <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
+          <button *ngIf="cartCount > 0" (click)="getstorecart()" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#cartModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));margin-left: 1vh">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
               <g>
                 <path d="M84.176,379.875c-26.762,0-48.535,21.772-48.535,48.534s21.772,48.534,48.535,48.534c26.762,0,48.534-21.772,48.534-48.534S110.938,379.875,84.176,379.875z M84.176,446.944c-10.22,0-18.535-8.314-18.535-18.534s8.314-18.534,18.535-18.534c10.22,0,18.534,8.314,18.534,18.534S94.396,446.944,84.176,446.944z" />
@@ -194,11 +207,6 @@
               </g>
             </svg>
             <span style="padding-left: 1px;">{{cartCount}}</span>
-          </button>
-
-          <button *ngIf="count_roulette > 0" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#openGatchaModal" class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]" aria-label="cart" style="background-color: rgb(131 88 255 / var(--tw-bg-opacity));">
-            <ion-icon name="gift-outline"></ion-icon>
-            <span style="font-size: 10px;position: relative;">{{count_roulette}}</span>
           </button>
           
           <!-- Profile -->            
@@ -328,7 +336,7 @@
               <span class="-mt-px inline-block" data-tippy-content="ETH">
                 <img src="assets/img/eggs/MERU_EGG.gif" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
               </span>
-              <span class="font-bold">{{meru}}</span>
+              <span class="font-bold">0</span>
             </div>
             <div class="text-center text-2xs dark:text-jacarta-400 font-medium tracking-tight">Meru</div>
           </a>
@@ -337,7 +345,7 @@
               <span class="-mt-px inline-block" data-tippy-content="ETH">
                 <img src="assets/img/eggs/RITRA_EGG.gif" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
               </span>
-              <span class="font-bold">{{ritra}}</span>
+              <span class="font-bold">0</span>
             </div>
             <div class="text-center text-2xs dark:text-jacarta-400 font-medium tracking-tight">Ritra</div>
           </a>
@@ -346,7 +354,7 @@
               <span class="-mt-px inline-block" data-tippy-content="ETH">
                 <img src="assets/img/eggs/AKH_EGG.gif" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
               </span>
-              <span class="font-bold">{{akh}}</span>
+              <span class="font-bold">0</span>
             </div>
             <div class="text-center text-2xs dark:text-jacarta-400 font-medium tracking-tight">Akh</div>
           </a>
@@ -355,7 +363,7 @@
               <span class="-mt-px inline-block" data-tippy-content="ETH">
                 <img src="assets/img/eggs/FENG_EGG.gif" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
               </span>
-              <span class="font-bold">{{feng}}</span>
+              <span class="font-bold">0</span>
             </div>
             <div class="text-center text-2xs dark:text-jacarta-400 font-medium tracking-tight">Feng</div>
           </a>
@@ -364,7 +372,7 @@
               <span class="-mt-px inline-block" data-tippy-content="ETH">
                 <img src="assets/img/eggs/METALICANA_EGG.gif" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
               </span>
-              <span class="font-bold">{{metalicana}}</span>
+              <span class="font-bold">0</span>
             </div>
             <div class="text-center text-2xs dark:text-jacarta-400 font-medium tracking-tight">Metalicana</div>
           </a>
@@ -373,7 +381,7 @@
               <span class="-mt-px inline-block" data-tippy-content="ETH">
                 <img src="assets/img/eggs/DORCH_EGG.gif" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
               </span>
-              <span class="font-bold">{{dorch}}</span>
+              <span class="font-bold">0</span>
             </div>
             <div class="text-center text-2xs dark:text-jacarta-400 font-medium tracking-tight">Dorch</div>
           </a>
@@ -406,13 +414,13 @@
                   <span class="dark:text-jacarta-200 text-jacarta-700 mr-1">{{s.deskripsi}}</span>
                 </div>
                 <div class="mt-2 text-sm">
-                  <h4 class="dark:text-jacarta-200 text-jacarta-700 mr-1">${{s.harga}}</h4>
+                  <h4 class="dark:text-jacarta-200 text-jacarta-700 mr-1">Rp {{s.harga | number}}</h4>
                 </div>
                 <div class="mt-2 text-sm">
                   <h4 class="text-green mr-1">QTY 30</h4>
                 </div>
                 <div class="mt-8 flex items-center justify-between">
-                  <a (click)="getstoredetail(s.id_product)" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#buyNowModal"> Buy</a>
+                  <!-- <a (click)="getstoredetail(s.id_product)" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#buyNowModal"> Buy</a> -->
                   <a (click)="setstorecart(s.id_product, globalID, wallets)" class="group flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.944 476.944" width="24" height="24" class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white">
                       <g>
@@ -443,7 +451,6 @@
             <article>
               <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
                 <figure class="relative" style="margin: 0em 0px;">
-                  <!--  -->
                   <div *ngIf="datas.ItemId == 'ITM1'">
                     <img src="assets/img/dragons/MERU.gif" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" style="z-index: 1;position: relative;padding-bottom: 15px;" />
                     <span *ngIf="datas.statusbayarbackground == 'paid'">
@@ -1139,6 +1146,145 @@
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Item</span>
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Subtotal</span>
             </div>
+            <div *ngFor="let c of storecart">
+              <div *ngIf="c.active == '0';else activecart" (click)="setActive(c.id_cart)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4" style="opacity: 0.5;">
+                <figure class="mr-5 self-start">
+                  <img src="assets/img/store/{{c.gambar}}" alt="avatar 2" class="rounded-2lg" loading="lazy" />
+                </figure>
+                <div>
+                  <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{c.deskripsi}}</h3>
+                  <div class="flex flex-wrap items-center">
+                    <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{c.nama}}</span>
+                  </div>
+                </div>
+                <div class="ml-auto">
+                  <span class="mb-1 flex items-center whitespace-nowrap">
+                    <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{c.harga | number}}.00</span>
+                  </span>
+                  <div class="dark:text-jacarta-300 text-right text-sm">Rp {{c.harga | number}}.00</div>
+                </div>
+              </div>
+              <ng-template #activecart>
+                <div (click)="setActive(c.id_cart)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                  <figure class="mr-5 self-start">
+                    <img src="assets/img/store/{{c.gambar}}" alt="avatar 2" class="rounded-2lg" loading="lazy" />
+                  </figure>
+                  <div>
+                    <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{c.deskripsi}}</h3>
+                    <div class="flex flex-wrap items-center">
+                      <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{c.nama}}</span>
+                    </div>
+                  </div>
+                  <div class="ml-auto">
+                    <span class="mb-1 flex items-center whitespace-nowrap">
+                      <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{c.harga | number}}.00</span>
+                    </span>
+                    <div class="dark:text-jacarta-300 text-right text-sm">Rp {{c.harga | number}}.00</div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+            <!-- Total -->
+            <div class="dark:border-jacarta-600 border-jacarta-100 mb-2 flex items-center justify-between py-2.5">
+              <span class="font-display text-jacarta-700 hover:text-accent font-semibold dark:text-white">Total {{cartQty}} Items</span>
+              <div class="ml-auto">
+                <span class="flex items-center whitespace-nowrap">
+                  <span class="text-green font-medium tracking-tight">Rp {{cartPriceTemp | number}}.00</span>
+                </span>
+                <div class="dark:text-jacarta-300 text-right">Rp {{cartPriceTemp | number}}.00</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-3" style="width: 100%;">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
+            </div>
+            <input type="text" (keyup)="inputAddress($event)" id="input_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
+            </div>
+            <input type="text" (keyup)="inputPostalCode($event)" id="input_posta_code" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your postal code" required />
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kota</span>
+            </div>
+            <input type="text" (keyup)="searchAddress($event)" id="search_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
+            <div class="modal-body p-6">
+              <div class="mb-2 flex items-center justify-between">
+                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan Kurir</span>
+              </div>
+              <div *ngFor="let result of resultCost">
+                <div (click)="chooseKurir(result.service, result.cost[0].value)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                  <div>
+                    <h3 *ngIf="kurir == result.cost[0].value; else nokurir" class="text-green font-medium tracking-tight">{{result.service}}</h3>
+                    <ng-template #nokurir>
+                      <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{result.service}}</h3>
+                    </ng-template>
+                    <div class="flex flex-wrap items-center">
+                      <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{result.description}}</span>
+                    </div>
+                  </div>
+                  <div *ngIf="kurir == result.cost[0].value; else slowservie" class="ml-auto">
+                    <span class="mb-1 flex items-center whitespace-nowrap">
+                      <span class="text-green font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                    </span>
+                    <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                  </div>
+                  <ng-template #slowservie>
+                    <div class="ml-auto">
+                      <span class="mb-1 flex items-center whitespace-nowrap">
+                        <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                      </span>
+                      <div class="dark:text-jacarta-300 text-right text-sm">Rp {{result.cost[0].value | number }}</div>
+                      <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="mt-7 flex items-center justify-between">
+                <span class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">Transfer Bank</span>
+              </div>
+              <div class="mt-2 text-sm">
+                <span class="dark:text-jacarta-200 text-jacarta-700 mr-1">Bank BCA</span>
+              </div>
+              <div class="mt-2 text-sm">
+                <h4 class="text-green mr-1">4972990519</h4>
+              </div>
+              <div class="mt-2 text-sm">
+                <h4 class="text-white mr-1">PT Oragon Teknologi Indonesia</h4>
+              </div>
+            </div>
+            <!-- </span> -->
+          </div>
+          <!-- end body -->
+          <div class="modal-footer">
+            <div class="flex items-center justify-center space-x-4">
+              <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
+              <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div *ngIf="progressCount > 0" class="modal fade" id="progressModal" tabindex="-1" aria-labelledby="progressModalLabel" aria-hidden="true">
+      <div class="modal-dialog max-w-2xl">
+        <div class="modal-content" style="margin-bottom: 1rem;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="progressModalLabel">Progress</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-6 w-6 dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Body -->
+          <div class="modal-body p-6">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Item</span>
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Subtotal</span>
+            </div>
             <div>
               <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
                 <figure class="mr-5 self-start">
@@ -1152,16 +1298,9 @@
                 </div>
                 <div class="ml-auto">
                   <span class="mb-1 flex items-center whitespace-nowrap">
-                    <span data-tippy-content="ETH">
-                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
-                        <g fill="#f3ba2f">
-                          <path d="M611.59 840.42l388.4-388.39 388.6 388.59 226-226L999.99 0 385.6 614.42l225.99 226M.006 999.969l226.007-226.007 225.992 225.993L226 1225.96zM611.59 1159.58l388.4 388.39 388.59-388.58 226.12 225.88-.11.12L999.99 2000l-614.41-614.4-.32-.32 226.33-225.7M1548.013 1000.093l226.007-226.006 225.992 225.992-226.006 226.007z"/><path d="M1229.22 999.88h.1L999.99 770.55 830.51 940.03h-.01l-19.47 19.48-40.16 40.17-.32.31.32.33 229.12 229.13 229.33-229.33.11-.13-.21-.11"/>
-                        </g>
-                      </svg>
-                    </span>
-                    <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">{{cartPriceBNB}} BNB</span>
+                    <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{cartPrice | number}}.00</span>
                   </span>
-                  <div class="dark:text-jacarta-300 text-right text-sm">${{cartPrice}}</div>
+                  <div class="dark:text-jacarta-300 text-right text-sm">Rp {{cartPrice | number}}.00</div>
                 </div>
               </div>
             </div>
@@ -1170,26 +1309,21 @@
               <span class="font-display text-jacarta-700 hover:text-accent font-semibold dark:text-white">Total {{cartQty}} Items</span>
               <div class="ml-auto">
                 <span class="flex items-center whitespace-nowrap">
-                  <span data-tippy-content="ETH">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
-                      <g fill="#f3ba2f">
-                        <path d="M611.59 840.42l388.4-388.39 388.6 388.59 226-226L999.99 0 385.6 614.42l225.99 226M.006 999.969l226.007-226.007 225.992 225.993L226 1225.96zM611.59 1159.58l388.4 388.39 388.59-388.58 226.12 225.88-.11.12L999.99 2000l-614.41-614.4-.32-.32 226.33-225.7M1548.013 1000.093l226.007-226.006 225.992 225.992-226.006 226.007z"/><path d="M1229.22 999.88h.1L999.99 770.55 830.51 940.03h-.01l-19.47 19.48-40.16 40.17-.32.31.32.33 229.12 229.13 229.33-229.33.11-.13-.21-.11"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="text-green font-medium tracking-tight">{{cartPriceBNB}} BNB</span>
+                  <span class="text-green font-medium tracking-tight">Rp {{cartPrice | number}}.00</span>
                 </span>
-                <div class="dark:text-jacarta-300 text-right">${{cartPrice}}</div>
+                <div class="dark:text-jacarta-300 text-right">Rp {{cartPrice | number}}.00</div>
               </div>
             </div>
           </div>
-          <!-- end body -->
-          <div class="modal-footer">
-            <div class="flex items-center justify-center space-x-4">
-              <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
-              <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == ''" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items {{cartPriceBNB}} BNB</button>
-            </div>
+          <div class="p-3" style="width: 100%;">
+            <input type="file" (change)="pay_progressStore($event, ordersID, globalID, product_id, wallets)" id="file-upload" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
           </div>
+          <!-- end body -->
+          <!-- <div class="modal-footer">
+            <div class="flex items-center justify-center space-x-4">
+              <button (click)="pay_progressStore(ordersID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == ''" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Confirm Now</button>
+            </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -2531,11 +2531,16 @@
           <div>
             <div class="dark:border-jacarta-600 border-jacarta-100 relative items-center border-t border-b py-4">
               <figure class="mr-5 self-start">
-                <img src="{{qrcodeJaket}}" alt="item 5" class="rounded-[0.625rem]" loading="lazy" style="width: 100%;" />
+                <img *ngIf="ClaimmedJaket == true;else notclaimmed" src="{{qrcodeJaket}}" alt="item 5" class="rounded-[0.625rem]" loading="lazy" style="width: 100%;filter: blur(5px);" />
+                <ng-template #notclaimmed>
+                  <img src="{{qrcodeJaket}}" alt="item 5" class="rounded-[0.625rem]" loading="lazy" style="width: 100%;" />
+                </ng-template>
               </figure>
               <div class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 p-4 w-full">
                 <div class="dark:border-jacarta-600 sm:border-jacarta-100 sm:mt-0 sm:pl-4 lg:pl-4 text-center">
-                  <span class="js-countdown-ends-label text-jacarta-400 dark:text-jacarta-300 text-sm">{{nameJaket}}</span>
+                  <span *ngIf="nameJaket == 'ITM13'" class="js-countdown-ends-label text-jacarta-400 dark:text-jacarta-300 text-sm">Metalicana Hoodie #{{detailJaket.Id}}</span>
+                  <span *ngIf="nameJaket == 'ITM11'" class="js-countdown-ends-label text-jacarta-400 dark:text-jacarta-300 text-sm">Ritra Hoodie #{{detailJaket.Id}}</span>
+                  <span *ngIf="nameJaket == 'ITM1'" class="js-countdown-ends-label text-jacarta-400 dark:text-jacarta-300 text-sm">Meru Hoodie #{{detailJaket.Id}}</span>
                 </div>
               </div>
             </div>
@@ -2543,7 +2548,7 @@
         </div>
         <div class="modal-footer">
           <div class="mt-2 text-sm">
-            <h4 *ngIf="ClaimmedJaket == 0;else claimmed" class="text-green mr-1">Item belum diclaim</h4>
+            <h4 *ngIf="ClaimmedJaket == false;else claimmed" class="text-green mr-1">Item belum diclaim</h4>
             <ng-template #Claimmed>
               <h4 class="text-green mr-1">Item telah diclaim</h4>
             </ng-template>

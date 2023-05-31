@@ -7380,29 +7380,29 @@ export class P2pmarketPage {
       }
     }
 
-    async updatestorecart(id_cart, user_uid, addressw, transactionHash) {
-      const loading = await this.loadingController.create();
-      await loading.present();
+  async updatestorecart(id_cart, user_uid, addressw, transactionHash) {
+    const loading = await this.loadingController.create();
+    await loading.present();
 
-      this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash).subscribe((data:any) => {
-        let updatestorecartHome = data
-        console.log(updatestorecartHome)
-      },(error:any) => {})
+    this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash).subscribe((data:any) => {
+      let updatestorecartHome = data
+      console.log(updatestorecartHome)
+    },(error:any) => {})
 
-      loading.dismiss();
-    }
+    loading.dismiss();
+  }
 
-    async updatestoreprogress(id_orders, user_uid, addressw, file_orders) {
-      const loading = await this.loadingController.create();
-      await loading.present();
+  async updatestoreprogress(id_orders, user_uid, addressw, file_orders) {
+    const loading = await this.loadingController.create();
+    await loading.present();
 
-      this.senddata.updatestoreprogressHome(id_orders, user_uid, addressw, file_orders).subscribe((data:any) => {
-        let updatestoreprogressHome = data
-        console.log(updatestoreprogressHome)
-      },(error:any) => {})
+    this.senddata.updatestoreprogressHome(id_orders, user_uid, addressw, file_orders).subscribe((data:any) => {
+      let updatestoreprogressHome = data
+      console.log(updatestoreprogressHome)
+    },(error:any) => {})
 
-      loading.dismiss();
-    }
+    loading.dismiss();
+  }
 
   // DRAGON
     checkkind(ItemId) {
