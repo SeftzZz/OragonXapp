@@ -29,7 +29,7 @@ const routes = [{
   component: _tabs_page__WEBPACK_IMPORTED_MODULE_0__.TabsPage,
   children: [{
     path: 'home',
-    loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("default-node_modules_walletconnect_web3-provider_dist_esm_index_js-node_modules_web3_dist_web-388b94"), __webpack_require__.e("default-node_modules_swiper_swiper_esm_js"), __webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_js"), __webpack_require__.e("src_app_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../home/home.module */ 3467)).then(m => m.HomePageModule)
+    loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("default-node_modules_walletconnect_web3-provider_dist_esm_index_js-node_modules_web3_dist_web-388b94"), __webpack_require__.e("default-node_modules_swiper_swiper_esm_js"), __webpack_require__.e("default-node_modules_qrcode_lib_browser_js"), __webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_js"), __webpack_require__.e("src_app_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../home/home.module */ 3467)).then(m => m.HomePageModule)
   }, {
     path: 'login',
     loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("src_app_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../login/login.module */ 80107)).then(m => m.LoginPageModule)
@@ -38,7 +38,7 @@ const routes = [{
     loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("src_app_resetpassword_resetpassword_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../resetpassword/resetpassword.module */ 81869)).then(m => m.ResetpasswordPageModule)
   }, {
     path: 'p2pmarket',
-    loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("default-node_modules_walletconnect_web3-provider_dist_esm_index_js-node_modules_web3_dist_web-388b94"), __webpack_require__.e("common"), __webpack_require__.e("src_app_p2pmarket_p2pmarket_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../p2pmarket/p2pmarket.module */ 23279)).then(m => m.P2pmarketPageModule),
+    loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("default-node_modules_walletconnect_web3-provider_dist_esm_index_js-node_modules_web3_dist_web-388b94"), __webpack_require__.e("default-node_modules_qrcode_lib_browser_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_p2pmarket_p2pmarket_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../p2pmarket/p2pmarket.module */ 23279)).then(m => m.P2pmarketPageModule),
     ...(0,_angular_fire_auth_guard__WEBPACK_IMPORTED_MODULE_1__.canActivate)(redirectUnauthorizedToLogin)
   }, {
     path: 'gamehub',

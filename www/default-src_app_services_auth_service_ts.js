@@ -1992,6 +1992,45 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
+  setActiveCart(id_cart = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_cart", id_cart);
+    return this.httpClient.post(this.controllerapi + "setActiveCart_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  setactiveidcart(id_cart = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_cart", id_cart);
+    return this.httpClient.post(this.controllerapi + "setactiveidcart_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  setnoactiveidcart(id_cart = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("id_cart", id_cart);
+    return this.httpClient.post(this.controllerapi + "setnoactiveidcart_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
   updatestoreprogress(file_orders = "", id_orders = "", user_uid = "", addressw = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
