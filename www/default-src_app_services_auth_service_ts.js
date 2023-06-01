@@ -2616,6 +2616,23 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
+  insertNewEggmp(uid = "", Id = "", ItemId = "", owners = "", status = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("Id", Id);
+    body.append("ItemId", ItemId);
+    body.append("owners", owners);
+    body.append("status", status);
+    return this.httpClient.post(this.controllerapi + "insertNewEgg_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
 }, (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_class, "ctorParameters", () => [{
   type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient
 }, {

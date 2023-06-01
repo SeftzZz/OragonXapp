@@ -358,6 +358,9 @@ export class HomePage implements OnInit {
     ItemIdJaket  : any;
     actualcartPrice : any;
     cartStatus : any;
+    address : any;
+    postal_id : any;
+    cities : any;
 
   constructor(
     private authService: AuthService,
@@ -470,6 +473,9 @@ export class HomePage implements OnInit {
         console.log("stateHash", this.stateHash);
         console.log("state_buy", this.state_buy);
         console.log("status_direct_buy", this.status_direct_buy);
+        this.address = localStorage.getItem("alamat");
+        this.postal_id = localStorage.getItem("kode_pos");
+        this.cities = localStorage.getItem("kota");
 
         this.senddata.balancePlayers(this.wallets).subscribe((dataB:any) => {
             var Web3 = require('web3');
@@ -4691,6 +4697,31 @@ export class HomePage implements OnInit {
     }
 
     getstorecart() {
+      this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
+        this.storecart = JSON.parse(data)
+        for(let i in this.storecart) {
+          if(this.storecart.length == 0) {
+            this.cartCount = 0;  
+          } else {
+            this.cartCount = this.storecart.length
+          }
+          this.cartUID = this.globalID
+          this.carts = this.storecart
+          this.cartID = this.storecart[i].id_cart
+          this.storeID = this.storecart[i].product_id
+          this.cartName = this.storecart[i].nama
+          this.cartDeskripsi = this.storecart[i].deskripsi
+          this.cartPrice = this.storecart[i].harga
+          this.cartQty = this.storecart[i].qty_cart
+          let cartPriceBNB = this.current_bnb * this.cartPrice
+          this.cartPriceBNB = (cartPriceBNB).toFixed(4);
+          this.cartImg = this.storecart[i].gambar
+          // console.log(this.cartPriceBNB)
+        }        
+      },(error:any) => {})
+    }
+
+    getstoremulticart() {
       let harga = 0;
       this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
         this.storecart = JSON.parse(data);
@@ -5263,12 +5294,12 @@ export class HomePage implements OnInit {
 
   inputAddress(event: any) {
     const query = event.target.value;
-    localStorage.setItem("alamat", query);
+    this.address = localStorage.setItem("alamat", query);
   }
 
   inputPostalCode(event: any) {
     const query = event.target.value;
-    localStorage.setItem("kode_pos", query);
+    this.postal_id = localStorage.setItem("kode_pos", query);
   }
 
   searchAddress(event: any) {
@@ -5287,7 +5318,7 @@ export class HomePage implements OnInit {
           const viewCost = this.resultCost[i].cost
           const actualCost = viewCost[0].value
           console.log(actualCost);
-          localStorage.setItem("kota", query);
+          this.cities = localStorage.setItem("kota", query);
         }
       } else {
         this.searchResults = [];
@@ -5310,9 +5341,9 @@ export class HomePage implements OnInit {
   addJaketsMetalicana(ordersID, globalID, product_id) {
     var DocIdJakets = this.newTime();
     var updateJakets = 1;
-    const address = localStorage.getItem("alamat");
-    const postal_id = localStorage.getItem("kode_pos");
-    const cities = localStorage.getItem("kota");
+    this.address = localStorage.getItem("alamat");
+    this.postal_id = localStorage.getItem("kode_pos");
+    this.cities = localStorage.getItem("kota");
     if(product_id == 17) {
       this.codeHoodie = "HMTL";
       this.ItemIdJaket = "ITM13";
@@ -5365,9 +5396,9 @@ export class HomePage implements OnInit {
               CreatedAt: this.newTime()
             },
             QrCodeUrl: qrCodeUrl,
-            Address: address,
-            PostalID: postal_id,
-            City: cities,
+            Address: this.address,
+            PostalID: this.postal_id,
+            City: this.cities,
             Id: this.codeHoodie + DocIdJakets,
           }).then(() => {});
           // console.log(this.jaketsHigh);
@@ -5375,8 +5406,5 @@ export class HomePage implements OnInit {
       },
       (error: any) => {}
     );
-    localStorage.removeItem("alamat");
-    localStorage.removeItem("kode_pos");
-    localStorage.removeItem("kota");
   }
 }

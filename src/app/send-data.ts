@@ -3527,4 +3527,78 @@ export class SendData {
       responseType: "text",
     });
   }
+
+  getaddressmp(
+    uid: string = "",
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+
+    return this.httpClient.post(this.controllerapi + "getaddress_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  setaddressmp(
+    uid: string = "", 
+    nmAddress: string = "", 
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("nmAddress", nmAddress);
+
+    return this.httpClient.post(this.controllerapi + "setaddress_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  setaddresspostidmp(
+    uid: string = "", 
+    postidAddress: string = "", 
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("postidAddress", postidAddress);
+
+    return this.httpClient.post(this.controllerapi + "setaddresspostid_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  setaddresscitymp(
+    uid: string = "", 
+    cityAddress: string = "", 
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("cityAddress", cityAddress);
+
+    return this.httpClient.post(this.controllerapi + "setaddresscity_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
 }

@@ -597,13 +597,6 @@
                 </div>
                 <div class="mt-2 text-sm">
                   <span class="mb-1 flex items-center whitespace-nowrap">
-                    <span data-tippy-content="ETH">
-                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 1920 1920" xml:space="preserve" class="-ml-1 mr-1 h-[1.125rem] w-[1.125rem]">
-                        <g fill="#f3ba2f">
-                          <path d="M611.59 840.42l388.4-388.39 388.6 388.59 226-226L999.99 0 385.6 614.42l225.99 226M.006 999.969l226.007-226.007 225.992 225.993L226 1225.96zM611.59 1159.58l388.4 388.39 388.59-388.58 226.12 225.88-.11.12L999.99 2000l-614.41-614.4-.32-.32 226.33-225.7M1548.013 1000.093l226.007-226.006 225.992 225.992-226.006 226.007z"/><path d="M1229.22 999.88h.1L999.99 770.55 830.51 940.03h-.01l-19.47 19.48-40.16 40.17-.32.31.32.33 229.12 229.13 229.33-229.33.11-.13-.21-.11"/>
-                        </g>
-                      </svg>
-                    </span>
                     <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">{{datas.price}} BNB</span>
                   </span>
                 </div>
@@ -1128,11 +1121,11 @@
     </div>
 
     <!-- Cart Modal -->
-    <div *ngIf="cartCount > 0" class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div *ngIf="cartCount > 0" class="modal fade" id="cartmultiModal" tabindex="-1" aria-labelledby="cartmultiModalLabel" aria-hidden="true">
       <div class="modal-dialog max-w-2xl">
         <div class="modal-content" style="margin-bottom: 1rem;">
           <div class="modal-header">
-            <h5 class="modal-title" id="cartModalLabel">Cart</h5>
+            <h5 class="modal-title" id="cartmultiModalLabel">Cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-6 w-6 dark:fill-white">
                 <path fill="none" d="M0 0h24v24H0z" />
@@ -1199,15 +1192,136 @@
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
             </div>
-            <input type="text" (keyup)="inputAddress($event)" id="input_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
+            <input type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{address}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
             </div>
-            <input type="text" (keyup)="inputPostalCode($event)" id="input_posta_code" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your postal code" required />
+            <input type="text" (keyup)="inputPostalCode($event)" id="input_posta_code" value="{{postal_id}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your postal code" required />
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kota</span>
             </div>
-            <input type="text" (keyup)="searchAddress($event)" id="search_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
+            <input type="text" (keyup)="searchAddress($event)" id="search_addres" value="{{cities}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
+            <div class="modal-body p-6">
+              <div class="mb-2 flex items-center justify-between">
+                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan Kurir</span>
+              </div>
+              <div *ngFor="let result of resultCost">
+                <div (click)="chooseKurir(result.service, result.cost[0].value)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                  <div>
+                    <h3 *ngIf="kurir == result.cost[0].value; else nokurir" class="text-green font-medium tracking-tight">{{result.service}}</h3>
+                    <ng-template #nokurir>
+                      <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{result.service}}</h3>
+                    </ng-template>
+                    <div class="flex flex-wrap items-center">
+                      <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{result.description}}</span>
+                    </div>
+                  </div>
+                  <div *ngIf="kurir == result.cost[0].value; else slowservie" class="ml-auto">
+                    <span class="mb-1 flex items-center whitespace-nowrap">
+                      <span class="text-green font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                    </span>
+                    <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                  </div>
+                  <ng-template #slowservie>
+                    <div class="ml-auto">
+                      <span class="mb-1 flex items-center whitespace-nowrap">
+                        <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                      </span>
+                      <div class="dark:text-jacarta-300 text-right text-sm">Rp {{result.cost[0].value | number }}</div>
+                      <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="mt-7 flex items-center justify-between">
+                <span class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">Transfer Bank</span>
+              </div>
+              <div class="mt-2 text-sm">
+                <span class="dark:text-jacarta-200 text-jacarta-700 mr-1">Bank BCA</span>
+              </div>
+              <div class="mt-2 text-sm">
+                <h4 class="text-green mr-1">4972990519</h4>
+              </div>
+              <div class="mt-2 text-sm">
+                <h4 class="text-white mr-1">PT Oragon Teknologi Indonesia</h4>
+              </div>
+            </div>
+            <!-- </span> -->
+          </div>
+          <!-- end body -->
+          <div class="modal-footer">
+            <div class="flex items-center justify-center space-x-4">
+              <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
+              <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Multi Modal -->
+    <div *ngIf="cartCount > 0" class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog max-w-2xl">
+        <div class="modal-content" style="margin-bottom: 1rem;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cartModalLabel">Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-6 w-6 dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Body -->
+          <div class="modal-body p-6">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Item</span>
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Subtotal</span>
+            </div>
+            <div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                <figure class="mr-5 self-start">
+                  <img src="assets/img/store/{{cartImg}}" alt="avatar 2" class="rounded-2lg" loading="lazy" />
+                </figure>
+                <div>
+                  <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{cartDeskripsi}}</h3>
+                  <div class="flex flex-wrap items-center">
+                    <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{cartName}}</span>
+                  </div>
+                </div>
+                <div class="ml-auto">
+                  <span class="mb-1 flex items-center whitespace-nowrap">
+                    <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{cartPrice | number}}.00</span>
+                  </span>
+                  <div class="dark:text-jacarta-300 text-right text-sm">Rp {{cartPrice | number}}.00</div>
+                </div>
+              </div>
+            </div>
+            <!-- Total -->
+            <div class="dark:border-jacarta-600 border-jacarta-100 mb-2 flex items-center justify-between py-2.5">
+              <span class="font-display text-jacarta-700 hover:text-accent font-semibold dark:text-white">Total {{cartQty}} Items</span>
+              <div class="ml-auto">
+                <span class="flex items-center whitespace-nowrap">
+                  <span class="text-green font-medium tracking-tight">Rp {{cartPrice | number}}.00</span>
+                </span>
+                <div class="dark:text-jacarta-300 text-right">Rp {{cartPrice | number}}.00</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-3" style="width: 100%;">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap ke 1</span>
+            </div>
+            <textarea type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{address}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
+            <button *ngIf="address != ''" (click)="addAddress(tempAddress)" class="text-green transition-all"> Jadikan alamat utama</button>
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
+            </div>
+            <input type="text" (keyup)="inputPostalCode($event)" id="input_posta_code" value="{{postal_id}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your postal code" required />
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kota</span>
+            </div>
+            <input type="text" (keyup)="searchAddress($event)" id="search_addres" value="{{cities}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
             <div class="modal-body p-6">
               <div class="mb-2 flex items-center justify-between">
                 <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan Kurir</span>

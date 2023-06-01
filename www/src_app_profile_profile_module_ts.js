@@ -258,6 +258,7 @@ let ProfilePage = (_class = class ProfilePage {
       }],
       type: "function"
     }]);
+    // MAIN
     (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "subscription", void 0);
     (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "status_direct_buy", "1");
     (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "stateHash", void 0);
@@ -566,6 +567,7 @@ let ProfilePage = (_class = class ProfilePage {
         // this.checknotificationBid();
         // }, 3000);
         _this5.checknewdragon();
+        _this5.checknewegg();
         _this5.checknewfood();
         _this5.checknewbattery();
         _this5.checknewpoint();
@@ -1407,24 +1409,18 @@ let ProfilePage = (_class = class ProfilePage {
       };
     }());
   }
-  checknewfood() {
+  checknewegg() {
     var _this9 = this;
-    this.fs.collection("Items/" + this.globalID + "/Foods").valueChanges().subscribe( /*#__PURE__*/function () {
-      var _ref4 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewFood) {
-        // console.log("datanewFood", datanewFood);
-        for (let i in datanewFood) {
-          // console.log("datanewFood", datanewFood[i].Id, datanewFood[i].Attributes.AttackPoint);
-          _this9.senddata.getsellfoodUsermp(_this9.globalID).subscribe(dataSell => {
-            _this9.foodsHigh = JSON.parse(dataSell);
-            _this9.marketp2pfoodLength = _this9.foodsHigh.lengthFood;
-            if (_this9.foodsHigh.lengthFood != datanewFood[i].Amount) {
-              // console.log("data s not match from f");
-              _this9.senddata.insertNewFoodmp(_this9.globalID, datanewFood[i].Id, datanewFood[i].ItemId, datanewFood[i].Amount, '', 'checked').subscribe(resp => {
-                // console.log("inserting data...", resp);
-              });
-            } else {
-              // console.log("data s match from f");
-            }
+    this.fs.collection("Items/" + this.globalID + "/Eggs").valueChanges().subscribe( /*#__PURE__*/function () {
+      var _ref4 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewEgg) {
+        // console.log("datanewEgg", datanewEgg);
+        for (let i in datanewEgg) {
+          // console.log("datanewEgg", datanewEgg[i].Id, datanewEgg[i].Attributes.AttackPoint);
+          _this9.senddata.getselleggUsermp(_this9.globalID).subscribe(dataSell => {
+            _this9.sorteggsowned = JSON.parse(dataSell);
+            _this9.senddata.insertNewEggmp(_this9.globalID, datanewEgg[i].Id, datanewEgg[i].ItemId, '', 'checked').subscribe(resp => {
+              // console.log("inserting data...", resp);
+            });
           }, error => {});
         }
       });
@@ -1433,18 +1429,19 @@ let ProfilePage = (_class = class ProfilePage {
       };
     }());
   }
-  checknewbattery() {
+  checknewfood() {
     var _this10 = this;
-    this.fs.collection("Items/" + this.globalID + "/Batteries").valueChanges().subscribe( /*#__PURE__*/function () {
-      var _ref5 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewBattery) {
-        // console.log("datanewBattery", datanewBattery);
-        for (let i in datanewBattery) {
-          // console.log("datanewBattery", datanewBattery[i].Id, datanewBattery[i].Attributes.AttackPoint);
-          _this10.senddata.getsellbatteryUserallmp(_this10.globalID).subscribe(dataSell => {
-            _this10.sortbatteriesowned = JSON.parse(dataSell);
-            if (_this10.sortbatteriesowned[0].lengthBattery != datanewBattery[i].Amount) {
+    this.fs.collection("Items/" + this.globalID + "/Foods").valueChanges().subscribe( /*#__PURE__*/function () {
+      var _ref5 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewFood) {
+        // console.log("datanewFood", datanewFood);
+        for (let i in datanewFood) {
+          // console.log("datanewFood", datanewFood[i].Id, datanewFood[i].Attributes.AttackPoint);
+          _this10.senddata.getsellfoodUsermp(_this10.globalID).subscribe(dataSell => {
+            _this10.foodsHigh = JSON.parse(dataSell);
+            _this10.marketp2pfoodLength = _this10.foodsHigh.lengthFood;
+            if (_this10.foodsHigh.lengthFood != datanewFood[i].Amount) {
               // console.log("data s not match from f");
-              _this10.senddata.insertNewBatterymp(_this10.globalID, datanewBattery[i].Id, datanewBattery[i].ItemId, datanewBattery[i].Amount, '', 'checked').subscribe(resp => {
+              _this10.senddata.insertNewFoodmp(_this10.globalID, datanewFood[i].Id, datanewFood[i].ItemId, datanewFood[i].Amount, '', 'checked').subscribe(resp => {
                 // console.log("inserting data...", resp);
               });
             } else {
@@ -1458,18 +1455,43 @@ let ProfilePage = (_class = class ProfilePage {
       };
     }());
   }
-  checknewpoint() {
+  checknewbattery() {
     var _this11 = this;
+    this.fs.collection("Items/" + this.globalID + "/Batteries").valueChanges().subscribe( /*#__PURE__*/function () {
+      var _ref6 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewBattery) {
+        // console.log("datanewBattery", datanewBattery);
+        for (let i in datanewBattery) {
+          // console.log("datanewBattery", datanewBattery[i].Id, datanewBattery[i].Attributes.AttackPoint);
+          _this11.senddata.getsellbatteryUserallmp(_this11.globalID).subscribe(dataSell => {
+            _this11.sortbatteriesowned = JSON.parse(dataSell);
+            if (_this11.sortbatteriesowned[0].lengthBattery != datanewBattery[i].Amount) {
+              // console.log("data s not match from f");
+              _this11.senddata.insertNewBatterymp(_this11.globalID, datanewBattery[i].Id, datanewBattery[i].ItemId, datanewBattery[i].Amount, '', 'checked').subscribe(resp => {
+                // console.log("inserting data...", resp);
+              });
+            } else {
+              // console.log("data s match from f");
+            }
+          }, error => {});
+        }
+      });
+      return function (_x6) {
+        return _ref6.apply(this, arguments);
+      };
+    }());
+  }
+  checknewpoint() {
+    var _this12 = this;
     this.fs.collection("Players").doc(this.globalID).valueChanges().subscribe( /*#__PURE__*/function () {
-      var _ref6 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewPoint) {
+      var _ref7 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewPoint) {
         // console.log("datanewPoint", datanewPoint.Point);
-        _this11.points = datanewPoint.Point;
-        _this11.senddata.getpointhistory(_this11.globalID).subscribe(dataSell => {
-          _this11.pointhistory = JSON.parse(dataSell);
+        _this12.points = datanewPoint.Point;
+        _this12.senddata.getpointhistory(_this12.globalID).subscribe(dataSell => {
+          _this12.pointhistory = JSON.parse(dataSell);
           // console.log("qtyPoint", this.pointhistory.qtyPoint);
-          if (_this11.pointhistory.qtyPoint != _this11.points) {
+          if (_this12.pointhistory.qtyPoint != _this12.points) {
             // console.log("data point s not match from point f");
-            _this11.senddata.insertNewPointmp(_this11.globalID, datanewPoint.Point, 'checked').subscribe(resp => {
+            _this12.senddata.insertNewPointmp(_this12.globalID, datanewPoint.Point, 'checked').subscribe(resp => {
               // console.log("inserting data...", resp);
             });
           } else {
@@ -1477,38 +1499,38 @@ let ProfilePage = (_class = class ProfilePage {
           }
         }, error => {});
       });
-      return function (_x6) {
-        return _ref6.apply(this, arguments);
+      return function (_x7) {
+        return _ref7.apply(this, arguments);
       };
     }());
   }
   tab(kind) {
-    var _this12 = this;
+    var _this13 = this;
     // tab-owned
     if (kind == 10) {
       this.currentp2powned = 10;
       // console.log("category p2p owned", this.currentp2powned);
       this.senddata.getselldgUserownedmp(this.globalID).subscribe( /*#__PURE__*/function () {
-        var _ref7 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataSell) {
-          const loading = yield _this12.loadingController.create();
+        var _ref8 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataSell) {
+          const loading = yield _this13.loadingController.create();
           yield loading.present();
-          _this12.dragonsowned = JSON.parse(dataSell);
-          _this12.marketp2pdragonLength = _this12.dragonsowned.length;
+          _this13.dragonsowned = JSON.parse(dataSell);
+          _this13.marketp2pdragonLength = _this13.dragonsowned.length;
           // console.log(this.dragonsowned)
-          for (let i in _this12.dragonsowned) {
-            if (_this12.dragonsowned[i].imgbackground == "exists" && _this12.dragonsowned[i].statusbayarbackground == "paid") {
-              _this12.senddata.getallbackgroundmp(_this12.globalID).subscribe(dataSell => {
-                _this12.dragonsownedbg = JSON.parse(dataSell);
-                _this12.marketp2pdragonBG = _this12.dragonsownedbg.imgBg;
-                _this12.marketp2pdragonIdBG = _this12.dragonsownedbg.ItemId;
+          for (let i in _this13.dragonsowned) {
+            if (_this13.dragonsowned[i].imgbackground == "exists" && _this13.dragonsowned[i].statusbayarbackground == "paid") {
+              _this13.senddata.getallbackgroundmp(_this13.globalID).subscribe(dataSell => {
+                _this13.dragonsownedbg = JSON.parse(dataSell);
+                _this13.marketp2pdragonBG = _this13.dragonsownedbg.imgBg;
+                _this13.marketp2pdragonIdBG = _this13.dragonsownedbg.ItemId;
                 // console.log(this.dragonsownedbg);
               }, error => {});
             }
           }
           loading.dismiss();
         });
-        return function (_x7) {
-          return _ref7.apply(this, arguments);
+        return function (_x8) {
+          return _ref8.apply(this, arguments);
         };
       }(), error => {});
       this.senddata.getselleggUsermp(this.globalID).subscribe(dataSell => {
@@ -1647,88 +1669,35 @@ let ProfilePage = (_class = class ProfilePage {
     console.log(this.scanned);
   }
   clickcategoryowned(kind) {
-    var _this13 = this;
+    var _this14 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (kind == 11) {
-        _this13.currentp2powned = 11;
+        _this14.currentp2powned = 11;
         // console.log("click category p2p owned", this.currentp2powned);
-        const loading = yield _this13.loadingController.create();
+        const loading = yield _this14.loadingController.create();
         yield loading.present();
-        _this13.senddata.getselldgUserownedmp(_this13.globalID).subscribe(dataSell => {
-          _this13.sortdragonsowned = JSON.parse(dataSell);
+        _this14.senddata.getselldgUserownedmp(_this14.globalID).subscribe(dataSell => {
+          _this14.sortdragonsowned = JSON.parse(dataSell);
         }, error => {});
         loading.dismiss();
       } else if (kind == 20) {
-        _this13.currentp2powned = 20;
+        _this14.currentp2powned = 20;
         // console.log("click category p2p owned", this.currentp2powned);
-        const loading = yield _this13.loadingController.create();
+        const loading = yield _this14.loadingController.create();
         yield loading.present();
-        _this13.senddata.getselleggUserownedmp(_this13.globalID).subscribe(dataSell => {
-          _this13.sorteggsowned = JSON.parse(dataSell);
-          _this13.fs.collection("Players/" + _this13.globalID + "/Incubator").valueChanges().subscribe( /*#__PURE__*/function () {
-            var _ref8 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataIncubator) {
-              // console.log("data Egg Incubator", dataIncubator[0].EggItemId);
-              _this13.usedEgg = dataIncubator[0].EggItemId;
-              _this13.usedBattery = dataIncubator[0].BatteryItemId;
-              // console.log("this item is being used on the incubator", this.usedEgg, this.usedBattery);
-              // console.log("incubator started at", dataIncubator[0].StartedAt.seconds);
-              if (dataIncubator[0].IncubatorState == "Started") {
-                let unix_timestamp = dataIncubator[0].StartedAt.seconds;
-                let now = new Date(unix_timestamp * 1000);
-                _this13.latest_date = _this13.datepipe.transform(now, "yyyy-MM-dd HH:mm");
-                // console.log("date now", this.latest_date);
-                function addHours(numOfHours, date = new Date()) {
-                  date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
-                  return date;
-                }
-                // 👇️ Add 2 hours to another date
-                const date = now;
-                // 👇️ Mon Mar 14 2022 11:25:30
-                let latest_date = addHours(dataIncubator[0].HatchTime, now);
-                _this13.timeIncubator = _this13.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
-                // console.log("date end incubator", this.timeIncubator);
-                _this13.senddata.itemseggtoincubatormp(_this13.usedEgg, _this13.timeIncubator).subscribe(dataE => {
-                  // console.log("Egg successfully move to incubator status !", JSON.parse(dataE));
-                  _this13.hatchingDataEgg = JSON.parse(dataE);
-                  _this13.senddata.getselleggUserownedmp(_this13.globalID).subscribe(dataSell => {
-                    _this13.sorteggsowned = JSON.parse(dataSell);
-                  }, error => {});
-                });
-                _this13.senddata.itemsbatterytoincubatormp(_this13.usedBattery, _this13.timeIncubator).subscribe(dataE => {
-                  // console.log("Battery successfully move to incubator status !", JSON.parse(dataE));
-                  _this13.hatchingDataBattery = JSON.parse(dataE);
-                  _this13.senddata.getsellbatteryUserownedmp(_this13.globalID).subscribe(dataSell => {
-                    _this13.sortbatteriesownedIncubator = JSON.parse(dataSell);
-                  }, error => {});
-                });
-                _this13.hatching = true;
-              }
-            });
-            return function (_x8) {
-              return _ref8.apply(this, arguments);
-            };
-          }());
-        }, error => {});
-        loading.dismiss();
-      } else if (kind == 30) {
-        _this13.currentp2powned = 30;
-        // console.log("click category p2p owned", this.currentp2powned);
-        const loading = yield _this13.loadingController.create();
-        yield loading.present();
-        _this13.senddata.getsellbatteryUserallmp(_this13.globalID).subscribe(dataSell => {
-          _this13.sortbatteriesowned = JSON.parse(dataSell);
-          _this13.sortbatteriesownedLength = _this13.sortbatteriesowned.lengthBattery;
-          _this13.fs.collection("Players/" + _this13.globalID + "/Incubator").valueChanges().subscribe( /*#__PURE__*/function () {
+        _this14.senddata.getselleggUserownedmp(_this14.globalID).subscribe(dataSell => {
+          _this14.sorteggsowned = JSON.parse(dataSell);
+          _this14.fs.collection("Players/" + _this14.globalID + "/Incubator").valueChanges().subscribe( /*#__PURE__*/function () {
             var _ref9 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataIncubator) {
               // console.log("data Egg Incubator", dataIncubator[0].EggItemId);
-              _this13.usedEgg = dataIncubator[0].EggItemId;
-              _this13.usedBattery = dataIncubator[0].BatteryItemId;
+              _this14.usedEgg = dataIncubator[0].EggItemId;
+              _this14.usedBattery = dataIncubator[0].BatteryItemId;
               // console.log("this item is being used on the incubator", this.usedEgg, this.usedBattery);
               // console.log("incubator started at", dataIncubator[0].StartedAt.seconds);
               if (dataIncubator[0].IncubatorState == "Started") {
                 let unix_timestamp = dataIncubator[0].StartedAt.seconds;
                 let now = new Date(unix_timestamp * 1000);
-                _this13.latest_date = _this13.datepipe.transform(now, "yyyy-MM-dd HH:mm");
+                _this14.latest_date = _this14.datepipe.transform(now, "yyyy-MM-dd HH:mm");
                 // console.log("date now", this.latest_date);
                 function addHours(numOfHours, date = new Date()) {
                   date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
@@ -1738,23 +1707,23 @@ let ProfilePage = (_class = class ProfilePage {
                 const date = now;
                 // 👇️ Mon Mar 14 2022 11:25:30
                 let latest_date = addHours(dataIncubator[0].HatchTime, now);
-                _this13.timeIncubator = _this13.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
+                _this14.timeIncubator = _this14.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
                 // console.log("date end incubator", this.timeIncubator);
-                _this13.senddata.itemseggtoincubatormp(_this13.usedEgg, _this13.timeIncubator).subscribe(dataE => {
+                _this14.senddata.itemseggtoincubatormp(_this14.usedEgg, _this14.timeIncubator).subscribe(dataE => {
                   // console.log("Egg successfully move to incubator status !", JSON.parse(dataE));
-                  _this13.hatchingDataEgg = JSON.parse(dataE);
-                  _this13.senddata.getselleggUserownedmp(_this13.globalID).subscribe(dataSell => {
-                    _this13.sorteggsowned = JSON.parse(dataSell);
+                  _this14.hatchingDataEgg = JSON.parse(dataE);
+                  _this14.senddata.getselleggUserownedmp(_this14.globalID).subscribe(dataSell => {
+                    _this14.sorteggsowned = JSON.parse(dataSell);
                   }, error => {});
                 });
-                _this13.senddata.itemsbatterytoincubatormp(_this13.usedBattery, _this13.timeIncubator).subscribe(dataE => {
+                _this14.senddata.itemsbatterytoincubatormp(_this14.usedBattery, _this14.timeIncubator).subscribe(dataE => {
                   // console.log("Battery successfully move to incubator status !", JSON.parse(dataE));
-                  _this13.hatchingDataBattery = JSON.parse(dataE);
-                  _this13.senddata.getsellbatteryUserownedmp(_this13.globalID).subscribe(dataSell => {
-                    _this13.sortbatteriesownedIncubator = JSON.parse(dataSell);
+                  _this14.hatchingDataBattery = JSON.parse(dataE);
+                  _this14.senddata.getsellbatteryUserownedmp(_this14.globalID).subscribe(dataSell => {
+                    _this14.sortbatteriesownedIncubator = JSON.parse(dataSell);
                   }, error => {});
                 });
-                _this13.hatching = true;
+                _this14.hatching = true;
               }
             });
             return function (_x9) {
@@ -1763,24 +1732,77 @@ let ProfilePage = (_class = class ProfilePage {
           }());
         }, error => {});
         loading.dismiss();
-      } else if (kind == 40) {
-        _this13.currentp2powned = 40;
+      } else if (kind == 30) {
+        _this14.currentp2powned = 30;
         // console.log("click category p2p owned", this.currentp2powned);
-        const loading = yield _this13.loadingController.create();
+        const loading = yield _this14.loadingController.create();
         yield loading.present();
-        _this13.senddata.getsellfoodUsermp(_this13.globalID).subscribe(dataSell => {
-          _this13.sortfoodsowned = JSON.parse(dataSell);
-          _this13.marketp2pfoodLength = _this13.sortfoodsowned.lengthFood;
-          _this13.marketp2pfoodDate = _this13.sortfoodsowned.EditAt;
-          _this13.marketp2pfoodowner = _this13.sortfoodsowned.uid;
-          _this13.marketp2pfoodpriceUSD = 1;
+        _this14.senddata.getsellbatteryUserallmp(_this14.globalID).subscribe(dataSell => {
+          _this14.sortbatteriesowned = JSON.parse(dataSell);
+          _this14.sortbatteriesownedLength = _this14.sortbatteriesowned.lengthBattery;
+          _this14.fs.collection("Players/" + _this14.globalID + "/Incubator").valueChanges().subscribe( /*#__PURE__*/function () {
+            var _ref10 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataIncubator) {
+              // console.log("data Egg Incubator", dataIncubator[0].EggItemId);
+              _this14.usedEgg = dataIncubator[0].EggItemId;
+              _this14.usedBattery = dataIncubator[0].BatteryItemId;
+              // console.log("this item is being used on the incubator", this.usedEgg, this.usedBattery);
+              // console.log("incubator started at", dataIncubator[0].StartedAt.seconds);
+              if (dataIncubator[0].IncubatorState == "Started") {
+                let unix_timestamp = dataIncubator[0].StartedAt.seconds;
+                let now = new Date(unix_timestamp * 1000);
+                _this14.latest_date = _this14.datepipe.transform(now, "yyyy-MM-dd HH:mm");
+                // console.log("date now", this.latest_date);
+                function addHours(numOfHours, date = new Date()) {
+                  date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+                  return date;
+                }
+                // 👇️ Add 2 hours to another date
+                const date = now;
+                // 👇️ Mon Mar 14 2022 11:25:30
+                let latest_date = addHours(dataIncubator[0].HatchTime, now);
+                _this14.timeIncubator = _this14.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
+                // console.log("date end incubator", this.timeIncubator);
+                _this14.senddata.itemseggtoincubatormp(_this14.usedEgg, _this14.timeIncubator).subscribe(dataE => {
+                  // console.log("Egg successfully move to incubator status !", JSON.parse(dataE));
+                  _this14.hatchingDataEgg = JSON.parse(dataE);
+                  _this14.senddata.getselleggUserownedmp(_this14.globalID).subscribe(dataSell => {
+                    _this14.sorteggsowned = JSON.parse(dataSell);
+                  }, error => {});
+                });
+                _this14.senddata.itemsbatterytoincubatormp(_this14.usedBattery, _this14.timeIncubator).subscribe(dataE => {
+                  // console.log("Battery successfully move to incubator status !", JSON.parse(dataE));
+                  _this14.hatchingDataBattery = JSON.parse(dataE);
+                  _this14.senddata.getsellbatteryUserownedmp(_this14.globalID).subscribe(dataSell => {
+                    _this14.sortbatteriesownedIncubator = JSON.parse(dataSell);
+                  }, error => {});
+                });
+                _this14.hatching = true;
+              }
+            });
+            return function (_x10) {
+              return _ref10.apply(this, arguments);
+            };
+          }());
+        }, error => {});
+        loading.dismiss();
+      } else if (kind == 40) {
+        _this14.currentp2powned = 40;
+        // console.log("click category p2p owned", this.currentp2powned);
+        const loading = yield _this14.loadingController.create();
+        yield loading.present();
+        _this14.senddata.getsellfoodUsermp(_this14.globalID).subscribe(dataSell => {
+          _this14.sortfoodsowned = JSON.parse(dataSell);
+          _this14.marketp2pfoodLength = _this14.sortfoodsowned.lengthFood;
+          _this14.marketp2pfoodDate = _this14.sortfoodsowned.EditAt;
+          _this14.marketp2pfoodowner = _this14.sortfoodsowned.uid;
+          _this14.marketp2pfoodpriceUSD = 1;
           // console.log(this.marketp2pfoodpriceUSD)
         }, error => {});
         loading.dismiss();
       }
-      _this13.countDownHatching();
-      _this13.countdown = setInterval( /*#__PURE__*/(0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-        _this13.countDownHatching();
+      _this14.countDownHatching();
+      _this14.countdown = setInterval( /*#__PURE__*/(0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        _this14.countDownHatching();
       }), 1000);
     })();
   }
@@ -1804,10 +1826,10 @@ let ProfilePage = (_class = class ProfilePage {
     }
   }
   countDownHatching() {
-    var _this14 = this;
+    var _this15 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Set the date we're counting down to
-      var countDownDate = new Date(_this14.timeIncubator).getTime();
+      var countDownDate = new Date(_this15.timeIncubator).getTime();
       // Update the count down every 1 second
       // var x = setInterval(function() {
       // Get today's date and time
@@ -1820,15 +1842,15 @@ let ProfilePage = (_class = class ProfilePage {
       var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
       var seconds = Math.floor(distance % (1000 * 60) / 1000);
       // console.log(this.marketp2pdragontimeCount)
-      _this14.days = days;
-      _this14.hours = hours;
-      _this14.minutes = minutes;
-      _this14.seconds = seconds;
+      _this15.days = days;
+      _this15.hours = hours;
+      _this15.minutes = minutes;
+      _this15.seconds = seconds;
       // If the count down is over, write some text
-      if (distance < 0 || _this14.hours < 0) {
-        _this14.hours = 0;
-        _this14.minutes = 0;
-        _this14.seconds = 0;
+      if (distance < 0 || _this15.hours < 0) {
+        _this15.hours = 0;
+        _this15.minutes = 0;
+        _this15.seconds = 0;
       }
       // }, 1000);
     })();
@@ -1867,41 +1889,41 @@ let ProfilePage = (_class = class ProfilePage {
     this.checkkind(kind);
   }
   onPriceChange(input_price) {
-    var _this15 = this;
+    var _this16 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let kind = localStorage.getItem("kind");
       if (kind == "food") {
-        _this15.input_price = input_price;
-        let marketp2pfoodpriceBNB = _this15.current_bnb * _this15.input_price;
+        _this16.input_price = input_price;
+        let marketp2pfoodpriceBNB = _this16.current_bnb * _this16.input_price;
         // this.marketp2pfoodpriceBNB = (marketp2pfoodpriceBNB).toFixed(2);
-        let marketp2pfoodpriceUSD = _this15.input_price * _this15.input_stock;
-        _this15.marketp2pfoodpriceUSD = marketp2pfoodpriceUSD.toFixed(2);
+        let marketp2pfoodpriceUSD = _this16.input_price * _this16.input_stock;
+        _this16.marketp2pfoodpriceUSD = marketp2pfoodpriceUSD.toFixed(2);
       } else if (kind == "dragon") {
-        _this15.input_price = input_price;
-        let marketp2pdragonpriceUSD = _this15.input_price;
-        _this15.marketp2pdragonpriceUSD = marketp2pdragonpriceUSD.toFixed(2);
+        _this16.input_price = input_price;
+        let marketp2pdragonpriceUSD = _this16.input_price;
+        _this16.marketp2pdragonpriceUSD = marketp2pdragonpriceUSD.toFixed(2);
         localStorage.setItem("input_price", input_price.toFixed());
-        _this15.senddata.getdgroyaltymp(_this15.marketp2pdragonID).subscribe(dataRoyalty => {
+        _this16.senddata.getdgroyaltymp(_this16.marketp2pdragonID).subscribe(dataRoyalty => {
           let dr = dataRoyalty;
           // fee p2p market dragon
-          _this15.marketp2pdragonFee = 12 / 100 * Number(input_price);
-          let marketp2pdragonprice_actual = Number(input_price) - _this15.marketp2pdragonFee;
-          _this15.fee_display = _this15.marketp2pdragonFee;
-          _this15.price_display = marketp2pdragonprice_actual;
-          let priceRoyalty_display = _this15.price_display - _this15.marketp2pdragonRoyalty;
-          _this15.priceRoyalty_display = priceRoyalty_display.toFixed(1);
-          _this15.fee_royalty = _this15.fee_display + _this15.marketp2pdragonRoyalty;
-          _this15.marketp2pdragonRoyalty = 10 / 100 * Number(input_price);
-          _this15.marketp2pdragonRoyalty2 = 10 / 100 * _this15.marketp2pdragonRoyalty;
-          _this15.marketp2pdragonRoyalty3 = 10 / 100 * _this15.marketp2pdragonRoyalty2;
-          _this15.marketp2pdragonRoyalty4 = 10 / 100 * _this15.marketp2pdragonRoyalty3;
-          _this15.marketp2pdragonRoyalty5 = 10 / 100 * _this15.marketp2pdragonRoyalty4;
+          _this16.marketp2pdragonFee = 12 / 100 * Number(input_price);
+          let marketp2pdragonprice_actual = Number(input_price) - _this16.marketp2pdragonFee;
+          _this16.fee_display = _this16.marketp2pdragonFee;
+          _this16.price_display = marketp2pdragonprice_actual;
+          let priceRoyalty_display = _this16.price_display - _this16.marketp2pdragonRoyalty;
+          _this16.priceRoyalty_display = priceRoyalty_display.toFixed(1);
+          _this16.fee_royalty = _this16.fee_display + _this16.marketp2pdragonRoyalty;
+          _this16.marketp2pdragonRoyalty = 10 / 100 * Number(input_price);
+          _this16.marketp2pdragonRoyalty2 = 10 / 100 * _this16.marketp2pdragonRoyalty;
+          _this16.marketp2pdragonRoyalty3 = 10 / 100 * _this16.marketp2pdragonRoyalty2;
+          _this16.marketp2pdragonRoyalty4 = 10 / 100 * _this16.marketp2pdragonRoyalty3;
+          _this16.marketp2pdragonRoyalty5 = 10 / 100 * _this16.marketp2pdragonRoyalty4;
           if (dr == 1) {
-            _this15.positionRoyalty = 1;
+            _this16.positionRoyalty = 1;
             // console.log("first position");
             // console.log("royalti untuk pos 1", this.marketp2pdragonRoyalty);
           } else if (dr == 2) {
-            _this15.positionRoyalty = 2;
+            _this16.positionRoyalty = 2;
             // console.log("second position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -1909,7 +1931,7 @@ let ProfilePage = (_class = class ProfilePage {
             // );
             // console.log("royalti untuk pos 2", this.marketp2pdragonRoyalty2);
           } else if (dr == 3) {
-            _this15.positionRoyalty = 3;
+            _this16.positionRoyalty = 3;
             // console.log("third position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -1923,7 +1945,7 @@ let ProfilePage = (_class = class ProfilePage {
             // );
             // console.log("royalti untuk pos 3", this.marketp2pdragonRoyalty3);
           } else if (dr == 4) {
-            _this15.positionRoyalty = 4;
+            _this16.positionRoyalty = 4;
             // console.log("fourth position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -1944,7 +1966,7 @@ let ProfilePage = (_class = class ProfilePage {
             // );
             // console.log("royalti untuk pos 4", this.marketp2pdragonRoyalty4);
           } else if (dr == 5) {
-            _this15.positionRoyalty = 5;
+            _this16.positionRoyalty = 5;
             // console.log("fifth position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -1982,31 +2004,31 @@ let ProfilePage = (_class = class ProfilePage {
           // console.log("royalti pos 5", this.marketp2pdragonRoyalty5);
         });
       } else if (kind == "egg") {
-        _this15.input_price = input_price;
-        let marketp2peggpriceUSD = _this15.input_price / _this15.current_bnb;
-        _this15.marketp2peggpriceUSD = marketp2peggpriceUSD.toFixed(2);
+        _this16.input_price = input_price;
+        let marketp2peggpriceUSD = _this16.input_price / _this16.current_bnb;
+        _this16.marketp2peggpriceUSD = marketp2peggpriceUSD.toFixed(2);
         localStorage.setItem("input_price", input_price.toFixed());
-        _this15.senddata.getdgroyaltymp(_this15.marketp2pdragonID).subscribe(dataRoyalty => {
+        _this16.senddata.getdgroyaltymp(_this16.marketp2pdragonID).subscribe(dataRoyalty => {
           let dr = dataRoyalty;
           // fee p2p market dragon
-          _this15.marketp2pdragonFee = 12 / 100 * Number(input_price);
-          let marketp2pdragonprice_actual = Number(input_price) - _this15.marketp2pdragonFee;
-          _this15.fee_display = _this15.marketp2pdragonFee;
-          _this15.price_display = marketp2pdragonprice_actual;
-          let priceRoyalty_display = _this15.price_display - _this15.marketp2pdragonRoyalty;
-          _this15.priceRoyalty_display = priceRoyalty_display.toFixed(1);
-          _this15.fee_royalty = _this15.fee_display + _this15.marketp2pdragonRoyalty;
-          _this15.marketp2pdragonRoyalty = 10 / 100 * Number(input_price);
-          _this15.marketp2pdragonRoyalty2 = 10 / 100 * _this15.marketp2pdragonRoyalty;
-          _this15.marketp2pdragonRoyalty3 = 10 / 100 * _this15.marketp2pdragonRoyalty2;
-          _this15.marketp2pdragonRoyalty4 = 10 / 100 * _this15.marketp2pdragonRoyalty3;
-          _this15.marketp2pdragonRoyalty5 = 10 / 100 * _this15.marketp2pdragonRoyalty4;
+          _this16.marketp2pdragonFee = 12 / 100 * Number(input_price);
+          let marketp2pdragonprice_actual = Number(input_price) - _this16.marketp2pdragonFee;
+          _this16.fee_display = _this16.marketp2pdragonFee;
+          _this16.price_display = marketp2pdragonprice_actual;
+          let priceRoyalty_display = _this16.price_display - _this16.marketp2pdragonRoyalty;
+          _this16.priceRoyalty_display = priceRoyalty_display.toFixed(1);
+          _this16.fee_royalty = _this16.fee_display + _this16.marketp2pdragonRoyalty;
+          _this16.marketp2pdragonRoyalty = 10 / 100 * Number(input_price);
+          _this16.marketp2pdragonRoyalty2 = 10 / 100 * _this16.marketp2pdragonRoyalty;
+          _this16.marketp2pdragonRoyalty3 = 10 / 100 * _this16.marketp2pdragonRoyalty2;
+          _this16.marketp2pdragonRoyalty4 = 10 / 100 * _this16.marketp2pdragonRoyalty3;
+          _this16.marketp2pdragonRoyalty5 = 10 / 100 * _this16.marketp2pdragonRoyalty4;
           if (dr == 1) {
-            _this15.positionRoyalty = 1;
+            _this16.positionRoyalty = 1;
             // console.log("first position");
             // console.log("royalti untuk pos 1", this.marketp2pdragonRoyalty);
           } else if (dr == 2) {
-            _this15.positionRoyalty = 2;
+            _this16.positionRoyalty = 2;
             // console.log("second position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -2014,7 +2036,7 @@ let ProfilePage = (_class = class ProfilePage {
             // );
             // console.log("royalti untuk pos 2", this.marketp2pdragonRoyalty2);
           } else if (dr == 3) {
-            _this15.positionRoyalty = 3;
+            _this16.positionRoyalty = 3;
             // console.log("third position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -2028,7 +2050,7 @@ let ProfilePage = (_class = class ProfilePage {
             // );
             // console.log("royalti untuk pos 3", this.marketp2pdragonRoyalty3);
           } else if (dr == 4) {
-            _this15.positionRoyalty = 4;
+            _this16.positionRoyalty = 4;
             // console.log("fourth position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -2049,7 +2071,7 @@ let ProfilePage = (_class = class ProfilePage {
             // );
             // console.log("royalti untuk pos 4", this.marketp2pdragonRoyalty4);
           } else if (dr == 5) {
-            _this15.positionRoyalty = 5;
+            _this16.positionRoyalty = 5;
             // console.log("fifth position");
             // console.log(
             //   "royalti untuk pos 1",
@@ -2087,21 +2109,21 @@ let ProfilePage = (_class = class ProfilePage {
           // console.log("royalti pos 5", this.marketp2pdragonRoyalty5);
         });
       } else if (kind == "battery") {
-        _this15.input_price = input_price;
-        let marketp2pbatterypriceUSD = _this15.input_price / _this15.current_bnb;
-        _this15.marketp2pbatterypriceUSD = marketp2pbatterypriceUSD.toFixed(2);
+        _this16.input_price = input_price;
+        let marketp2pbatterypriceUSD = _this16.input_price / _this16.current_bnb;
+        _this16.marketp2pbatterypriceUSD = marketp2pbatterypriceUSD.toFixed(2);
         localStorage.setItem("input_price", input_price.toFixed());
       }
     })();
   }
   onStockChange(input_stock) {
-    var _this16 = this;
+    var _this17 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this16.input_stock = input_stock;
-      let marketp2pfoodpriceBNB = _this16.current_bnb * _this16.input_price * _this16.input_stock;
-      _this16.marketp2pfoodpriceBNB = marketp2pfoodpriceBNB.toFixed(2);
-      let marketp2pfoodpriceUSD = _this16.input_price * _this16.input_stock;
-      _this16.marketp2pfoodpriceUSD = marketp2pfoodpriceUSD.toFixed(2);
+      _this17.input_stock = input_stock;
+      let marketp2pfoodpriceBNB = _this17.current_bnb * _this17.input_price * _this17.input_stock;
+      _this17.marketp2pfoodpriceBNB = marketp2pfoodpriceBNB.toFixed(2);
+      let marketp2pfoodpriceUSD = _this17.input_price * _this17.input_stock;
+      _this17.marketp2pfoodpriceUSD = marketp2pfoodpriceUSD.toFixed(2);
     })();
   }
   myRange(demo) {
@@ -2121,65 +2143,12 @@ let ProfilePage = (_class = class ProfilePage {
   }
   // DRAGON
   sellNowDragon(marketp2pdragonDocId) {
-    var _this17 = this;
-    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // Build Json String Dragon
-      let crd = JSON.stringify({
-        ObjectId: Number(_this17.marketp2pdragonDocId),
-        ItemId: _this17.marketp2pdragonID,
-        HP: Number(_this17.marketp2pdragonHP),
-        Attack: Number(_this17.marketp2pdragonAttack),
-        Defense: Number(_this17.marketp2pdragonDefense),
-        Exp: Number(_this17.marketp2pdragonExp),
-        Level: Number(_this17.marketp2pdragonLevel),
-        Rarity: _this17.marketp2pdragonRarity
-      });
-      _this17.current_data = JSON.parse(crd);
-      // console.log(JSON.stringify(this.current_data));
-      let now = new Date();
-      _this17.latest_date = _this17.datepipe.transform(now, "yyyy-MM-dd HH:mm");
-      // console.log("date now", this.latest_date);
-      function addHours(numOfHours, date = new Date()) {
-        date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
-        return date;
-      }
-      // 👇️ Add 2 hours to another date
-      const date = now;
-      // 👇️ Mon Mar 14 2022 11:25:30
-      let latest_date = addHours(168, now);
-      _this17.timeSell = _this17.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
-      // console.log("date end items on sell", this.timeSell);
-      if (_this17.input_price == undefined) {
-        const alert = yield _this17.alertController.create({
-          header: "Failed !",
-          message: "Price must over than floorprice",
-          buttons: ["OK"]
-        });
-        yield alert.present();
-      } else {
-        const loading = yield _this17.loadingController.create();
-        yield loading.present();
-        _this17.fs.collection("Items/" + _this17.globalID + "/Dragons").doc(marketp2pdragonDocId).delete().then(() => {
-          // this.current_data.price = this.input_price;
-          // this.current_data.owner = this.globalID;
-          _this17.move_to_sell_test(marketp2pdragonDocId);
-          _this17.senddata.itemsdragontosellmp(marketp2pdragonDocId, _this17.input_price, _this17.timeSell).subscribe(dataE => {
-            // console.log(dataE);
-            loading.dismiss();
-          }, error => {});
-        });
-      }
-    })();
-  }
-  bidNowDragon(marketp2pdragonDocId) {
     var _this18 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // console.log(this.input_price);
       // Build Json String Dragon
       let crd = JSON.stringify({
         ObjectId: Number(_this18.marketp2pdragonDocId),
         ItemId: _this18.marketp2pdragonID,
-        Id: _this18.marketp2pdragonImg,
         HP: Number(_this18.marketp2pdragonHP),
         Attack: Number(_this18.marketp2pdragonAttack),
         Defense: Number(_this18.marketp2pdragonDefense),
@@ -2199,9 +2168,9 @@ let ProfilePage = (_class = class ProfilePage {
       // 👇️ Add 2 hours to another date
       const date = now;
       // 👇️ Mon Mar 14 2022 11:25:30
-      let latest_date = addHours(_this18.rangeValue, now);
-      _this18.timeBID = _this18.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
-      // console.log("date end bid", this.timeBID);
+      let latest_date = addHours(168, now);
+      _this18.timeSell = _this18.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
+      // console.log("date end items on sell", this.timeSell);
       if (_this18.input_price == undefined) {
         const alert = yield _this18.alertController.create({
           header: "Failed !",
@@ -2215,8 +2184,61 @@ let ProfilePage = (_class = class ProfilePage {
         _this18.fs.collection("Items/" + _this18.globalID + "/Dragons").doc(marketp2pdragonDocId).delete().then(() => {
           // this.current_data.price = this.input_price;
           // this.current_data.owner = this.globalID;
-          _this18.move_to_auction_test(marketp2pdragonDocId);
-          _this18.senddata.itemsdragontobidmp(marketp2pdragonDocId, _this18.input_price, _this18.selectedBid, _this18.timeBID).subscribe(dataE => {
+          _this18.move_to_sell_test(marketp2pdragonDocId);
+          _this18.senddata.itemsdragontosellmp(marketp2pdragonDocId, _this18.input_price, _this18.timeSell).subscribe(dataE => {
+            // console.log(dataE);
+            loading.dismiss();
+          }, error => {});
+        });
+      }
+    })();
+  }
+  bidNowDragon(marketp2pdragonDocId) {
+    var _this19 = this;
+    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // console.log(this.input_price);
+      // Build Json String Dragon
+      let crd = JSON.stringify({
+        ObjectId: Number(_this19.marketp2pdragonDocId),
+        ItemId: _this19.marketp2pdragonID,
+        Id: _this19.marketp2pdragonImg,
+        HP: Number(_this19.marketp2pdragonHP),
+        Attack: Number(_this19.marketp2pdragonAttack),
+        Defense: Number(_this19.marketp2pdragonDefense),
+        Exp: Number(_this19.marketp2pdragonExp),
+        Level: Number(_this19.marketp2pdragonLevel),
+        Rarity: _this19.marketp2pdragonRarity
+      });
+      _this19.current_data = JSON.parse(crd);
+      // console.log(JSON.stringify(this.current_data));
+      let now = new Date();
+      _this19.latest_date = _this19.datepipe.transform(now, "yyyy-MM-dd HH:mm");
+      // console.log("date now", this.latest_date);
+      function addHours(numOfHours, date = new Date()) {
+        date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+        return date;
+      }
+      // 👇️ Add 2 hours to another date
+      const date = now;
+      // 👇️ Mon Mar 14 2022 11:25:30
+      let latest_date = addHours(_this19.rangeValue, now);
+      _this19.timeBID = _this19.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
+      // console.log("date end bid", this.timeBID);
+      if (_this19.input_price == undefined) {
+        const alert = yield _this19.alertController.create({
+          header: "Failed !",
+          message: "Price must over than floorprice",
+          buttons: ["OK"]
+        });
+        yield alert.present();
+      } else {
+        const loading = yield _this19.loadingController.create();
+        yield loading.present();
+        _this19.fs.collection("Items/" + _this19.globalID + "/Dragons").doc(marketp2pdragonDocId).delete().then(() => {
+          // this.current_data.price = this.input_price;
+          // this.current_data.owner = this.globalID;
+          _this19.move_to_auction_test(marketp2pdragonDocId);
+          _this19.senddata.itemsdragontobidmp(marketp2pdragonDocId, _this19.input_price, _this19.selectedBid, _this19.timeBID).subscribe(dataE => {
             // console.log(dataE);
             loading.dismiss();
           }, error => {});
@@ -2225,72 +2247,13 @@ let ProfilePage = (_class = class ProfilePage {
     })();
   }
   move_to_sell_test(marketp2pdragonDocId) {
-    var _this19 = this;
-    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const loading = yield _this19.loadingController.create();
-      yield loading.present();
-      let kind = localStorage.getItem("kind");
-      if (kind == "dragon") {
-        _this19.fs.collection("Sell/" + _this19.globalID + "/Dragons").doc(marketp2pdragonDocId).set({
-          Id: marketp2pdragonDocId,
-          ItemId: _this19.marketp2pdragonID,
-          Attributes: {
-            AttackPoint: Number(_this19.marketp2pdragonAttack),
-            DefensePoint: Number(_this19.marketp2pdragonDefense),
-            Exp: Number(_this19.marketp2pdragonExp),
-            HP: Number(_this19.marketp2pdragonHP),
-            Hunger: Number(_this19.marketp2pdragonHunger),
-            Level: Number(_this19.marketp2pdragonLevel),
-            MaxHP: Number(_this19.marketp2pdragonMaxHP),
-            MaxHunger: Number(_this19.marketp2pdragonMaxHunger)
-          },
-          price: _this19.input_price
-        }).then(() => {
-          // console.log("Document successfully sold!");
-          // this.openDialog("Item Listed");
-        }).catch(error => {});
-        const alert = yield _this19.alertController.create({
-          header: "Success",
-          message: "Your item now in P2P Market",
-          buttons: ["OK"]
-        });
-        yield alert.present();
-        _this19.currentp2p = 0;
-        _this19.currentp2powned = 10;
-        // console.log("category p2p", this.currentp2p);
-        // console.log("category p2p owned", this.currentp2powned);
-        _this19.senddata.getselldgUserownedmp(_this19.globalID).subscribe(dataSell => {
-          _this19.dragonsowned = JSON.parse(dataSell);
-          _this19.marketp2pdragonID = _this19.dragonsowned.ItemId;
-          _this19.marketp2pdragonLength = _this19.dragonsowned.length;
-          // console.log(this.dragonsowned);
-          for (let i in _this19.dragonsowned) {
-            if (_this19.dragonsowned[i].imgbackground == "exists" && _this19.dragonsowned[i].statusbayarbackground == "paid") {
-              _this19.senddata.getallbackgroundmp(_this19.globalID).subscribe(dataSell => {
-                _this19.dragonsownedbg = JSON.parse(dataSell);
-                _this19.marketp2pdragonBG = _this19.dragonsownedbg.imgBg;
-                _this19.marketp2pdragonIdBG = _this19.dragonsownedbg.ItemId;
-                // console.log(this.dragonsownedbg)
-              }, error => {});
-            }
-          }
-        }, error => {});
-        _this19.senddata.getselldgUsermp(_this19.globalID).subscribe(dataSell => {
-          _this19.dragons = JSON.parse(dataSell);
-          // console.log(this.dragons)
-        }, error => {});
-        loading.dismiss();
-      }
-    })();
-  }
-  move_to_auction_test(marketp2pdragonDocId) {
     var _this20 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const loading = yield _this20.loadingController.create();
       yield loading.present();
       let kind = localStorage.getItem("kind");
       if (kind == "dragon") {
-        _this20.fs.collection("Bid/" + _this20.globalID + "/Dragons").doc(marketp2pdragonDocId).set({
+        _this20.fs.collection("Sell/" + _this20.globalID + "/Dragons").doc(marketp2pdragonDocId).set({
           Id: marketp2pdragonDocId,
           ItemId: _this20.marketp2pdragonID,
           Attributes: {
@@ -2303,7 +2266,7 @@ let ProfilePage = (_class = class ProfilePage {
             MaxHP: Number(_this20.marketp2pdragonMaxHP),
             MaxHunger: Number(_this20.marketp2pdragonMaxHunger)
           },
-          PriceNow: Number(_this20.input_price)
+          price: _this20.input_price
         }).then(() => {
           // console.log("Document successfully sold!");
           // this.openDialog("Item Listed");
@@ -2338,63 +2301,82 @@ let ProfilePage = (_class = class ProfilePage {
           _this20.dragons = JSON.parse(dataSell);
           // console.log(this.dragons)
         }, error => {});
-        _this20.selectedBid = "-";
+        loading.dismiss();
+      }
+    })();
+  }
+  move_to_auction_test(marketp2pdragonDocId) {
+    var _this21 = this;
+    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const loading = yield _this21.loadingController.create();
+      yield loading.present();
+      let kind = localStorage.getItem("kind");
+      if (kind == "dragon") {
+        _this21.fs.collection("Bid/" + _this21.globalID + "/Dragons").doc(marketp2pdragonDocId).set({
+          Id: marketp2pdragonDocId,
+          ItemId: _this21.marketp2pdragonID,
+          Attributes: {
+            AttackPoint: Number(_this21.marketp2pdragonAttack),
+            DefensePoint: Number(_this21.marketp2pdragonDefense),
+            Exp: Number(_this21.marketp2pdragonExp),
+            HP: Number(_this21.marketp2pdragonHP),
+            Hunger: Number(_this21.marketp2pdragonHunger),
+            Level: Number(_this21.marketp2pdragonLevel),
+            MaxHP: Number(_this21.marketp2pdragonMaxHP),
+            MaxHunger: Number(_this21.marketp2pdragonMaxHunger)
+          },
+          PriceNow: Number(_this21.input_price)
+        }).then(() => {
+          // console.log("Document successfully sold!");
+          // this.openDialog("Item Listed");
+        }).catch(error => {});
+        const alert = yield _this21.alertController.create({
+          header: "Success",
+          message: "Your item now in P2P Market",
+          buttons: ["OK"]
+        });
+        yield alert.present();
+        _this21.currentp2p = 0;
+        _this21.currentp2powned = 10;
+        // console.log("category p2p", this.currentp2p);
+        // console.log("category p2p owned", this.currentp2powned);
+        _this21.senddata.getselldgUserownedmp(_this21.globalID).subscribe(dataSell => {
+          _this21.dragonsowned = JSON.parse(dataSell);
+          _this21.marketp2pdragonID = _this21.dragonsowned.ItemId;
+          _this21.marketp2pdragonLength = _this21.dragonsowned.length;
+          // console.log(this.dragonsowned);
+          for (let i in _this21.dragonsowned) {
+            if (_this21.dragonsowned[i].imgbackground == "exists" && _this21.dragonsowned[i].statusbayarbackground == "paid") {
+              _this21.senddata.getallbackgroundmp(_this21.globalID).subscribe(dataSell => {
+                _this21.dragonsownedbg = JSON.parse(dataSell);
+                _this21.marketp2pdragonBG = _this21.dragonsownedbg.imgBg;
+                _this21.marketp2pdragonIdBG = _this21.dragonsownedbg.ItemId;
+                // console.log(this.dragonsownedbg)
+              }, error => {});
+            }
+          }
+        }, error => {});
+        _this21.senddata.getselldgUsermp(_this21.globalID).subscribe(dataSell => {
+          _this21.dragons = JSON.parse(dataSell);
+          // console.log(this.dragons)
+        }, error => {});
+        _this21.selectedBid = "-";
         loading.dismiss();
       }
     })();
   }
   // EGG
   sellNowEgg(marketp2peggDocId) {
-    var _this21 = this;
+    var _this22 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Build Json String Egg
       let crd = JSON.stringify({
         DocId: marketp2peggDocId,
-        ItemId: _this21.marketp2peggID,
-        price: _this21.input_price
+        ItemId: _this22.marketp2peggID,
+        price: _this22.input_price
       });
-      _this21.current_data = JSON.parse(crd);
+      _this22.current_data = JSON.parse(crd);
       // console.log(this.current_data);
-      if (_this21.input_price == undefined) {
-        const alert = yield _this21.alertController.create({
-          header: "Failed !",
-          message: "Price must over than floorprice",
-          buttons: ["OK"]
-        });
-        yield alert.present();
-      } else {
-        _this21.fs.collection("Items/" + _this21.globalID + "/Eggs").doc(marketp2peggDocId).delete().then(() => {
-          // this.current_data.price = this.input_price;
-          // this.current_data.owner = this.globalID;
-          _this21.move_to_sell_test_egg(marketp2peggDocId);
-          _this21.senddata.itemseggtosellmp(marketp2peggDocId, _this21.input_price).subscribe(dataE => {
-            // console.log(dataE);
-          }, error => {});
-        });
-      }
-    })();
-  }
-  bidNowEgg(marketp2peggDocId) {
-    var _this22 = this;
-    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // console.log(this.input_price);
-      let now = new Date();
-      _this22.latest_date = _this22.datepipe.transform(now, "yyyy-MM-dd HH:mm");
-      // console.log("date now", this.latest_date);
-      function addHours(numOfHours, date = new Date()) {
-        date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
-        return date;
-      }
-      // 👇️ Add 2 hours to another date
-      const date = now;
-      // 👇️ Mon Mar 14 2022 11:25:30
-      let latest_date = addHours(_this22.rangeValue, now);
-      _this22.timeBID = _this22.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
-      // console.log("date end bid", this.timeBID);
-      // Create difference time of bid
-      const diffInMs = Date.parse(_this22.timeBID) - Date.parse(_this22.latest_date);
-      const diffInHours = Math.ceil(diffInMs / 1000 / 60 / 60);
-      // console.log("diffInHours", diffInHours);
       if (_this22.input_price == undefined) {
         const alert = yield _this22.alertController.create({
           header: "Failed !",
@@ -2403,88 +2385,87 @@ let ProfilePage = (_class = class ProfilePage {
         });
         yield alert.present();
       } else {
-        const loading = yield _this22.loadingController.create();
-        yield loading.present();
         _this22.fs.collection("Items/" + _this22.globalID + "/Eggs").doc(marketp2peggDocId).delete().then(() => {
           // this.current_data.price = this.input_price;
           // this.current_data.owner = this.globalID;
-          _this22.move_to_auction_test_egg(marketp2peggDocId);
-          _this22.senddata.itemseggtobidmp(marketp2peggDocId, _this22.input_price, _this22.selectedBid, _this22.timeBID, diffInHours.toString()).subscribe(dataE => {
+          _this22.move_to_sell_test_egg(marketp2peggDocId);
+          _this22.senddata.itemseggtosellmp(marketp2peggDocId, _this22.input_price).subscribe(dataE => {
+            // console.log(dataE);
+          }, error => {});
+        });
+      }
+    })();
+  }
+  bidNowEgg(marketp2peggDocId) {
+    var _this23 = this;
+    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // console.log(this.input_price);
+      let now = new Date();
+      _this23.latest_date = _this23.datepipe.transform(now, "yyyy-MM-dd HH:mm");
+      // console.log("date now", this.latest_date);
+      function addHours(numOfHours, date = new Date()) {
+        date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+        return date;
+      }
+      // 👇️ Add 2 hours to another date
+      const date = now;
+      // 👇️ Mon Mar 14 2022 11:25:30
+      let latest_date = addHours(_this23.rangeValue, now);
+      _this23.timeBID = _this23.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
+      // console.log("date end bid", this.timeBID);
+      // Create difference time of bid
+      const diffInMs = Date.parse(_this23.timeBID) - Date.parse(_this23.latest_date);
+      const diffInHours = Math.ceil(diffInMs / 1000 / 60 / 60);
+      // console.log("diffInHours", diffInHours);
+      if (_this23.input_price == undefined) {
+        const alert = yield _this23.alertController.create({
+          header: "Failed !",
+          message: "Price must over than floorprice",
+          buttons: ["OK"]
+        });
+        yield alert.present();
+      } else {
+        const loading = yield _this23.loadingController.create();
+        yield loading.present();
+        _this23.fs.collection("Items/" + _this23.globalID + "/Eggs").doc(marketp2peggDocId).delete().then(() => {
+          // this.current_data.price = this.input_price;
+          // this.current_data.owner = this.globalID;
+          _this23.move_to_auction_test_egg(marketp2peggDocId);
+          _this23.senddata.itemseggtobidmp(marketp2peggDocId, _this23.input_price, _this23.selectedBid, _this23.timeBID, diffInHours.toString()).subscribe(dataE => {
             // console.log(dataE);
             loading.dismiss();
           }, error => {});
         });
-        _this22.createStopWatch(marketp2peggDocId);
+        _this23.createStopWatch(marketp2peggDocId);
       }
     })();
   }
   createStopWatch(marketp2peggDocId) {
-    var _this23 = this;
+    var _this24 = this;
     setInterval( /*#__PURE__*/(0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this23.secondsServer++;
-      if (_this23.secondsServer >= 60) {
-        _this23.minutesServer++;
-        _this23.secondsServer = 0;
+      _this24.secondsServer++;
+      if (_this24.secondsServer >= 60) {
+        _this24.minutesServer++;
+        _this24.secondsServer = 0;
       }
-      if (_this23.minutesServer >= 60) {
-        _this23.hoursServer++;
-        _this23.minutesServer = 0;
+      if (_this24.minutesServer >= 60) {
+        _this24.hoursServer++;
+        _this24.minutesServer = 0;
       }
-      _this23.senddata.hmsBIDmp(marketp2peggDocId, _this23.hoursServer.toString(), _this23.minutesServer.toString(), _this23.secondsServer.toString()).subscribe(res => {});
+      _this24.senddata.hmsBIDmp(marketp2peggDocId, _this24.hoursServer.toString(), _this24.minutesServer.toString(), _this24.secondsServer.toString()).subscribe(res => {});
     }), 1000);
   }
   move_to_sell_test_egg(marketp2peggDocId) {
-    var _this24 = this;
-    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const loading = yield _this24.loadingController.create();
-      yield loading.present();
-      let kind = localStorage.getItem("kind");
-      if (kind == "egg") {
-        _this24.fs.collection("Sell/" + _this24.globalID + "/Eggs").doc(marketp2peggDocId).set({
-          Id: marketp2peggDocId,
-          ItemId: _this24.marketp2peggID,
-          PriceNow: Number(_this24.input_price)
-        }).then(() => {
-          // console.log("Document successfully sold!");
-          // this.openDialog("Item Listed");
-        }).catch(error => {});
-        const alert = yield _this24.alertController.create({
-          header: "Success",
-          message: "Your item now in P2P Market",
-          buttons: ["OK"]
-        });
-        yield alert.present();
-        _this24.currentp2p = 0;
-        _this24.currentp2powned = 20;
-        // console.log("category p2p", this.currentp2p);
-        // console.log("category p2p owned", this.currentp2powned);
-        _this24.senddata.getselleggUserownedmp(_this24.globalID).subscribe(dataSell => {
-          _this24.eggsHigh = JSON.parse(dataSell);
-          _this24.marketp2peggLength = _this24.eggsHigh.length;
-        }, error => {});
-        _this24.senddata.getselleggUserownedmp(_this24.globalID).subscribe(dataSell => {
-          _this24.sorteggsowned = JSON.parse(dataSell);
-        }, error => {});
-        _this24.senddata.getselleggUsermp(_this24.globalID).subscribe(dataSell => {
-          _this24.eggsHigh = JSON.parse(dataSell);
-          // this.marketp2peggLength = this.eggsHigh.length;
-          // console.log(this.eggsHigh)
-        }, error => {});
-        loading.dismiss();
-      }
-    })();
-  }
-  move_to_auction_test_egg(marketp2peggDocId) {
     var _this25 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const loading = yield _this25.loadingController.create();
       yield loading.present();
       let kind = localStorage.getItem("kind");
       if (kind == "egg") {
-        _this25.fs.collection("Bid/" + _this25.globalID + "/Eggs").doc(marketp2peggDocId).set({
+        _this25.fs.collection("Sell/" + _this25.globalID + "/Eggs").doc(marketp2peggDocId).set({
           Id: marketp2peggDocId,
           ItemId: _this25.marketp2peggID,
-          price: _this25.input_price
+          PriceNow: Number(_this25.input_price)
         }).then(() => {
           // console.log("Document successfully sold!");
           // this.openDialog("Item Listed");
@@ -2511,61 +2492,64 @@ let ProfilePage = (_class = class ProfilePage {
           // this.marketp2peggLength = this.eggsHigh.length;
           // console.log(this.eggsHigh)
         }, error => {});
-        _this25.selectedBid = "-";
+        loading.dismiss();
+      }
+    })();
+  }
+  move_to_auction_test_egg(marketp2peggDocId) {
+    var _this26 = this;
+    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const loading = yield _this26.loadingController.create();
+      yield loading.present();
+      let kind = localStorage.getItem("kind");
+      if (kind == "egg") {
+        _this26.fs.collection("Bid/" + _this26.globalID + "/Eggs").doc(marketp2peggDocId).set({
+          Id: marketp2peggDocId,
+          ItemId: _this26.marketp2peggID,
+          price: _this26.input_price
+        }).then(() => {
+          // console.log("Document successfully sold!");
+          // this.openDialog("Item Listed");
+        }).catch(error => {});
+        const alert = yield _this26.alertController.create({
+          header: "Success",
+          message: "Your item now in P2P Market",
+          buttons: ["OK"]
+        });
+        yield alert.present();
+        _this26.currentp2p = 0;
+        _this26.currentp2powned = 20;
+        // console.log("category p2p", this.currentp2p);
+        // console.log("category p2p owned", this.currentp2powned);
+        _this26.senddata.getselleggUserownedmp(_this26.globalID).subscribe(dataSell => {
+          _this26.eggsHigh = JSON.parse(dataSell);
+          _this26.marketp2peggLength = _this26.eggsHigh.length;
+        }, error => {});
+        _this26.senddata.getselleggUserownedmp(_this26.globalID).subscribe(dataSell => {
+          _this26.sorteggsowned = JSON.parse(dataSell);
+        }, error => {});
+        _this26.senddata.getselleggUsermp(_this26.globalID).subscribe(dataSell => {
+          _this26.eggsHigh = JSON.parse(dataSell);
+          // this.marketp2peggLength = this.eggsHigh.length;
+          // console.log(this.eggsHigh)
+        }, error => {});
+        _this26.selectedBid = "-";
         loading.dismiss();
       }
     })();
   }
   // BATTERY
   sellNowBattery(marketp2pbatteryDocId) {
-    var _this26 = this;
+    var _this27 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Build Json String Egg
       let crd = JSON.stringify({
         DocId: marketp2pbatteryDocId,
-        ItemId: _this26.marketp2pbatteryID,
-        price: _this26.input_price
+        ItemId: _this27.marketp2pbatteryID,
+        price: _this27.input_price
       });
-      _this26.current_data = JSON.parse(crd);
-      console.log(_this26.input_price);
-      if (_this26.input_price == undefined) {
-        const alert = yield _this26.alertController.create({
-          header: "Failed !",
-          message: "Price must over than floorprice",
-          buttons: ["OK"]
-        });
-        yield alert.present();
-      } else {
-        _this26.fs.collection('Items/' + _this26.globalID + '/Batteries').doc(marketp2pbatteryDocId).update({
-          Amount: firebase_compat_app__WEBPACK_IMPORTED_MODULE_7__["default"].firestore.FieldValue.increment(-1)
-        }).then(() => {
-          // this.current_data.price = this.input_price;
-          // this.current_data.owner = this.globalID;
-          _this26.move_to_sell_test_battery(marketp2pbatteryDocId);
-          _this26.senddata.itemsbatterytosellmp(marketp2pbatteryDocId, _this26.input_price).subscribe(dataE => {
-            // console.log(dataE);
-          }, error => {});
-        });
-      }
-    })();
-  }
-  bidNowBattery(marketp2pbatteryDocId) {
-    var _this27 = this;
-    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // console.log(this.input_price);
-      let now = new Date();
-      _this27.latest_date = _this27.datepipe.transform(now, "yyyy-MM-dd HH:mm");
-      // console.log("date now", this.latest_date);
-      function addHours(numOfHours, date = new Date()) {
-        date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
-        return date;
-      }
-      // 👇️ Add 2 hours to another date
-      const date = now;
-      // 👇️ Mon Mar 14 2022 11:25:30
-      let latest_date = addHours(_this27.rangeValue, now);
-      _this27.timeBID = _this27.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
-      // console.log("date end bid", this.timeBID);
+      _this27.current_data = JSON.parse(crd);
+      console.log(_this27.input_price);
       if (_this27.input_price == undefined) {
         const alert = yield _this27.alertController.create({
           header: "Failed !",
@@ -2574,13 +2558,51 @@ let ProfilePage = (_class = class ProfilePage {
         });
         yield alert.present();
       } else {
-        const loading = yield _this27.loadingController.create();
-        yield loading.present();
-        _this27.fs.collection("Items/" + _this27.globalID + "/Batteries").doc(marketp2pbatteryDocId).delete().then(() => {
+        _this27.fs.collection('Items/' + _this27.globalID + '/Batteries').doc(marketp2pbatteryDocId).update({
+          Amount: firebase_compat_app__WEBPACK_IMPORTED_MODULE_7__["default"].firestore.FieldValue.increment(-1)
+        }).then(() => {
           // this.current_data.price = this.input_price;
           // this.current_data.owner = this.globalID;
-          _this27.move_to_auction_test_battery(marketp2pbatteryDocId);
-          _this27.senddata.itemsbatterytobidmp(marketp2pbatteryDocId, _this27.input_price, _this27.selectedBid, _this27.timeBID).subscribe(dataE => {
+          _this27.move_to_sell_test_battery(marketp2pbatteryDocId);
+          _this27.senddata.itemsbatterytosellmp(marketp2pbatteryDocId, _this27.input_price).subscribe(dataE => {
+            // console.log(dataE);
+          }, error => {});
+        });
+      }
+    })();
+  }
+  bidNowBattery(marketp2pbatteryDocId) {
+    var _this28 = this;
+    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // console.log(this.input_price);
+      let now = new Date();
+      _this28.latest_date = _this28.datepipe.transform(now, "yyyy-MM-dd HH:mm");
+      // console.log("date now", this.latest_date);
+      function addHours(numOfHours, date = new Date()) {
+        date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+        return date;
+      }
+      // 👇️ Add 2 hours to another date
+      const date = now;
+      // 👇️ Mon Mar 14 2022 11:25:30
+      let latest_date = addHours(_this28.rangeValue, now);
+      _this28.timeBID = _this28.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
+      // console.log("date end bid", this.timeBID);
+      if (_this28.input_price == undefined) {
+        const alert = yield _this28.alertController.create({
+          header: "Failed !",
+          message: "Price must over than floorprice",
+          buttons: ["OK"]
+        });
+        yield alert.present();
+      } else {
+        const loading = yield _this28.loadingController.create();
+        yield loading.present();
+        _this28.fs.collection("Items/" + _this28.globalID + "/Batteries").doc(marketp2pbatteryDocId).delete().then(() => {
+          // this.current_data.price = this.input_price;
+          // this.current_data.owner = this.globalID;
+          _this28.move_to_auction_test_battery(marketp2pbatteryDocId);
+          _this28.senddata.itemsbatterytobidmp(marketp2pbatteryDocId, _this28.input_price, _this28.selectedBid, _this28.timeBID).subscribe(dataE => {
             // console.log(dataE);
             loading.dismiss();
           }, error => {});
@@ -2589,98 +2611,16 @@ let ProfilePage = (_class = class ProfilePage {
     })();
   }
   move_to_sell_test_battery(marketp2pbatteryDocId) {
-    var _this28 = this;
-    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const loading = yield _this28.loadingController.create();
-      yield loading.present();
-      let kind = localStorage.getItem("kind");
-      if (kind == "battery") {
-        _this28.fs.collection("Sell/" + _this28.globalID + "/Batteries").doc(marketp2pbatteryDocId).set({
-          Id: marketp2pbatteryDocId,
-          ItemId: _this28.marketp2pbatteryID,
-          price: Number(_this28.input_price)
-        }).then(() => {
-          // console.log("Document successfully sold!");
-          // this.openDialog("Item Listed");
-        }).catch(error => {});
-        const alert = yield _this28.alertController.create({
-          header: "Success",
-          message: "Your item now in P2P Market",
-          buttons: ["OK"]
-        });
-        yield alert.present();
-        // console.log("category p2p", this.currentp2p);
-        // console.log("category p2p owned", this.currentp2powned);
-        _this28.senddata.getsellbatteryUserownedmp(_this28.globalID).subscribe(dataSell => {
-          _this28.batteriesHigh = JSON.parse(dataSell);
-        }, error => {});
-        _this28.senddata.getsellbatteryUserallmp(_this28.globalID).subscribe(dataSell => {
-          _this28.sortbatteriesowned = JSON.parse(dataSell);
-          _this28.sortbatteriesownedLength = _this28.sortbatteriesowned.lengthBattery;
-          _this28.fs.collection("Players/" + _this28.globalID + "/Incubator").valueChanges().subscribe( /*#__PURE__*/function () {
-            var _ref12 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataIncubator) {
-              // console.log("data Egg Incubator", dataIncubator[0].EggItemId);
-              _this28.usedEgg = dataIncubator[0].EggItemId;
-              _this28.usedBattery = dataIncubator[0].BatteryItemId;
-              // console.log("this item is being used on the incubator", this.usedEgg, this.usedBattery);
-              // console.log("incubator started at", dataIncubator[0].StartedAt.seconds);
-              if (dataIncubator[0].IncubatorState == "Started") {
-                let unix_timestamp = dataIncubator[0].StartedAt.seconds;
-                let now = new Date(unix_timestamp * 1000);
-                _this28.latest_date = _this28.datepipe.transform(now, "yyyy-MM-dd HH:mm");
-                // console.log("date now", this.latest_date);
-                function addHours(numOfHours, date = new Date()) {
-                  date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
-                  return date;
-                }
-                // 👇️ Add 2 hours to another date
-                const date = now;
-                // 👇️ Mon Mar 14 2022 11:25:30
-                let latest_date = addHours(dataIncubator[0].HatchTime, now);
-                _this28.timeIncubator = _this28.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
-                // console.log("date end incubator", this.timeIncubator);
-                _this28.senddata.itemseggtoincubatormp(_this28.usedEgg, _this28.timeIncubator).subscribe(dataE => {
-                  // console.log("Egg successfully move to incubator status !", JSON.parse(dataE));
-                  _this28.hatchingDataEgg = JSON.parse(dataE);
-                  _this28.senddata.getselleggUserownedmp(_this28.globalID).subscribe(dataSell => {
-                    _this28.sorteggsowned = JSON.parse(dataSell);
-                  }, error => {});
-                });
-                _this28.senddata.itemsbatterytoincubatormp(_this28.usedBattery, _this28.timeIncubator).subscribe(dataE => {
-                  // console.log("Battery successfully move to incubator status !", JSON.parse(dataE));
-                  _this28.hatchingDataBattery = JSON.parse(dataE);
-                  _this28.senddata.getsellbatteryUserownedmp(_this28.globalID).subscribe(dataSell => {
-                    _this28.sortbatteriesownedIncubator = JSON.parse(dataSell);
-                  }, error => {});
-                });
-                _this28.hatching = true;
-              }
-            });
-            return function (_x10) {
-              return _ref12.apply(this, arguments);
-            };
-          }());
-        }, error => {});
-        _this28.senddata.getsellbatteryUserallmp(_this28.globalID).subscribe(dataSell => {
-          _this28.batteriesHigh = JSON.parse(dataSell);
-          // this.marketp2peggLength = this.eggsHigh.length;
-          // console.log(this.eggsHigh)
-        }, error => {});
-        loading.dismiss();
-      }
-    })();
-  }
-  move_to_auction_test_battery(marketp2pbatteryDocId) {
     var _this29 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const loading = yield _this29.loadingController.create();
       yield loading.present();
       let kind = localStorage.getItem("kind");
       if (kind == "battery") {
-        _this29.fs.collection("Bid/" + _this29.globalID + "/Batteries").doc(marketp2pbatteryDocId).set({
+        _this29.fs.collection("Sell/" + _this29.globalID + "/Batteries").doc(marketp2pbatteryDocId).set({
           Id: marketp2pbatteryDocId,
           ItemId: _this29.marketp2pbatteryID,
-          price: _this29.input_price
+          price: Number(_this29.input_price)
         }).then(() => {
           // console.log("Document successfully sold!");
           // this.openDialog("Item Listed");
@@ -2691,29 +2631,111 @@ let ProfilePage = (_class = class ProfilePage {
           buttons: ["OK"]
         });
         yield alert.present();
-        _this29.currentp2p = 0;
-        _this29.currentp2powned = 20;
         // console.log("category p2p", this.currentp2p);
         // console.log("category p2p owned", this.currentp2powned);
         _this29.senddata.getsellbatteryUserownedmp(_this29.globalID).subscribe(dataSell => {
           _this29.batteriesHigh = JSON.parse(dataSell);
         }, error => {});
-        _this29.senddata.getsellbatteryUserownedmp(_this29.globalID).subscribe(dataSell => {
+        _this29.senddata.getsellbatteryUserallmp(_this29.globalID).subscribe(dataSell => {
           _this29.sortbatteriesowned = JSON.parse(dataSell);
+          _this29.sortbatteriesownedLength = _this29.sortbatteriesowned.lengthBattery;
+          _this29.fs.collection("Players/" + _this29.globalID + "/Incubator").valueChanges().subscribe( /*#__PURE__*/function () {
+            var _ref13 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataIncubator) {
+              // console.log("data Egg Incubator", dataIncubator[0].EggItemId);
+              _this29.usedEgg = dataIncubator[0].EggItemId;
+              _this29.usedBattery = dataIncubator[0].BatteryItemId;
+              // console.log("this item is being used on the incubator", this.usedEgg, this.usedBattery);
+              // console.log("incubator started at", dataIncubator[0].StartedAt.seconds);
+              if (dataIncubator[0].IncubatorState == "Started") {
+                let unix_timestamp = dataIncubator[0].StartedAt.seconds;
+                let now = new Date(unix_timestamp * 1000);
+                _this29.latest_date = _this29.datepipe.transform(now, "yyyy-MM-dd HH:mm");
+                // console.log("date now", this.latest_date);
+                function addHours(numOfHours, date = new Date()) {
+                  date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+                  return date;
+                }
+                // 👇️ Add 2 hours to another date
+                const date = now;
+                // 👇️ Mon Mar 14 2022 11:25:30
+                let latest_date = addHours(dataIncubator[0].HatchTime, now);
+                _this29.timeIncubator = _this29.datepipe.transform(latest_date, "yyyy-MM-dd HH:mm");
+                // console.log("date end incubator", this.timeIncubator);
+                _this29.senddata.itemseggtoincubatormp(_this29.usedEgg, _this29.timeIncubator).subscribe(dataE => {
+                  // console.log("Egg successfully move to incubator status !", JSON.parse(dataE));
+                  _this29.hatchingDataEgg = JSON.parse(dataE);
+                  _this29.senddata.getselleggUserownedmp(_this29.globalID).subscribe(dataSell => {
+                    _this29.sorteggsowned = JSON.parse(dataSell);
+                  }, error => {});
+                });
+                _this29.senddata.itemsbatterytoincubatormp(_this29.usedBattery, _this29.timeIncubator).subscribe(dataE => {
+                  // console.log("Battery successfully move to incubator status !", JSON.parse(dataE));
+                  _this29.hatchingDataBattery = JSON.parse(dataE);
+                  _this29.senddata.getsellbatteryUserownedmp(_this29.globalID).subscribe(dataSell => {
+                    _this29.sortbatteriesownedIncubator = JSON.parse(dataSell);
+                  }, error => {});
+                });
+                _this29.hatching = true;
+              }
+            });
+            return function (_x11) {
+              return _ref13.apply(this, arguments);
+            };
+          }());
         }, error => {});
         _this29.senddata.getsellbatteryUserallmp(_this29.globalID).subscribe(dataSell => {
           _this29.batteriesHigh = JSON.parse(dataSell);
           // this.marketp2peggLength = this.eggsHigh.length;
           // console.log(this.eggsHigh)
         }, error => {});
-        _this29.selectedBid = "-";
+        loading.dismiss();
+      }
+    })();
+  }
+  move_to_auction_test_battery(marketp2pbatteryDocId) {
+    var _this30 = this;
+    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const loading = yield _this30.loadingController.create();
+      yield loading.present();
+      let kind = localStorage.getItem("kind");
+      if (kind == "battery") {
+        _this30.fs.collection("Bid/" + _this30.globalID + "/Batteries").doc(marketp2pbatteryDocId).set({
+          Id: marketp2pbatteryDocId,
+          ItemId: _this30.marketp2pbatteryID,
+          price: _this30.input_price
+        }).then(() => {
+          // console.log("Document successfully sold!");
+          // this.openDialog("Item Listed");
+        }).catch(error => {});
+        const alert = yield _this30.alertController.create({
+          header: "Success",
+          message: "Your item now in P2P Market",
+          buttons: ["OK"]
+        });
+        yield alert.present();
+        _this30.currentp2p = 0;
+        _this30.currentp2powned = 20;
+        // console.log("category p2p", this.currentp2p);
+        // console.log("category p2p owned", this.currentp2powned);
+        _this30.senddata.getsellbatteryUserownedmp(_this30.globalID).subscribe(dataSell => {
+          _this30.batteriesHigh = JSON.parse(dataSell);
+        }, error => {});
+        _this30.senddata.getsellbatteryUserownedmp(_this30.globalID).subscribe(dataSell => {
+          _this30.sortbatteriesowned = JSON.parse(dataSell);
+        }, error => {});
+        _this30.senddata.getsellbatteryUserallmp(_this30.globalID).subscribe(dataSell => {
+          _this30.batteriesHigh = JSON.parse(dataSell);
+          // this.marketp2peggLength = this.eggsHigh.length;
+          // console.log(this.eggsHigh)
+        }, error => {});
+        _this30.selectedBid = "-";
         loading.dismiss();
       }
     })();
   }
   // FOOD
   sellNowFood(qty, marketp2pfoodpriceBNB) {
-    var _this30 = this;
+    var _this31 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let kind = localStorage.getItem("kind");
       let Id = "b037f3149945dbc52384d5242e746106";
@@ -2721,59 +2743,59 @@ let ProfilePage = (_class = class ProfilePage {
       let food = qty;
       let i = 0;
       // for (i; i < food; i++) {
-      var itemid1 = _this30.newTime() + _this30.globalID;
-      _this30.fs.collection("Sell").doc(_this30.globalID).update({
+      var itemid1 = _this31.newTime() + _this31.globalID;
+      _this31.fs.collection("Sell").doc(_this31.globalID).update({
         FoodGroup: firebase_compat_app__WEBPACK_IMPORTED_MODULE_7__["default"].firestore.FieldValue.arrayUnion(JSON.stringify({
-          ItemId: _this30.marketp2pfoodOID,
+          ItemId: _this31.marketp2pfoodOID,
           HVP: 24,
           Qty: food,
           price: marketp2pfoodpriceBNB,
-          owner: _this30.globalID
+          owner: _this31.globalID
         }))
       }).then(() => {});
       // console.log(this.marketp2pfoodOID);
       // update stok food
-      _this30.senddata.getsellfoodUserqtymp(_this30.globalID, qty).subscribe(data => {
+      _this31.senddata.getsellfoodUserqtymp(_this31.globalID, qty).subscribe(data => {
         let getSell = JSON.parse(data);
         // insert ke tabel sell
-        _this30.senddata.setsellfoodUsermp(_this30.globalID, getSell.iditemsFood, qty, marketp2pfoodpriceBNB, HVP.toString(), _this30.marketp2pfoodOID, _this30.globalID).subscribe(dataSellFood => {
-          _this30.iditemssellFood = dataSellFood;
+        _this31.senddata.setsellfoodUsermp(_this31.globalID, getSell.iditemsFood, qty, marketp2pfoodpriceBNB, HVP.toString(), _this31.marketp2pfoodOID, _this31.globalID).subscribe(dataSellFood => {
+          _this31.iditemssellFood = dataSellFood;
         });
       });
-      _this30.fs.collection('Items/' + _this30.globalID + '/Foods').doc(_this30.marketp2pfoodOID).update({
+      _this31.fs.collection('Items/' + _this31.globalID + '/Foods').doc(_this31.marketp2pfoodOID).update({
         Amount: firebase_compat_app__WEBPACK_IMPORTED_MODULE_7__["default"].firestore.FieldValue.increment(-qty),
-        Id: _this30.marketp2pfoodOID,
+        Id: _this31.marketp2pfoodOID,
         ItemId: 'ITM14'
       }).then(() => {
         console.log("Document successfully sold!");
         // this.openDialog("Item Listed");
       }).catch(error => {});
       // }
-      const alert = yield _this30.alertController.create({
+      const alert = yield _this31.alertController.create({
         header: "Success",
         message: "Your item now in P2P Market",
         buttons: ["OK"]
       });
       yield alert.present();
-      _this30.selectedBid = "-";
+      _this31.selectedBid = "-";
     })();
   }
   favorite_item(ItemId) {
-    var _this31 = this;
+    var _this32 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const loading = yield _this31.loadingController.create();
+      const loading = yield _this32.loadingController.create();
       yield loading.present();
-      _this31.senddata.favoritedmp(_this31.globalID, ItemId).subscribe( /*#__PURE__*/function () {
-        var _ref13 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
-          _this31.senddata.getselldgUserownedmp(_this31.globalID).subscribe(dataSell => {
-            _this31.dragonsowned = JSON.parse(dataSell);
-            _this31.marketp2pdragonLength = _this31.dragonsowned.length;
+      _this32.senddata.favoritedmp(_this32.globalID, ItemId).subscribe( /*#__PURE__*/function () {
+        var _ref14 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
+          _this32.senddata.getselldgUserownedmp(_this32.globalID).subscribe(dataSell => {
+            _this32.dragonsowned = JSON.parse(dataSell);
+            _this32.marketp2pdragonLength = _this32.dragonsowned.length;
             // console.log(this.dragonsowned);
           }, error => {});
           loading.dismiss();
         });
-        return function (_x11) {
-          return _ref13.apply(this, arguments);
+        return function (_x12) {
+          return _ref14.apply(this, arguments);
         };
       }(), error => {});
       // console.log(ItemId);
@@ -2792,9 +2814,9 @@ let ProfilePage = (_class = class ProfilePage {
   }
   openDialog(msg) {}
   alertWithdraw() {
-    var _this32 = this;
+    var _this33 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const alert = yield _this32.alertController.create({
+      const alert = yield _this33.alertController.create({
         header: "Congratulation !",
         message: "Now you can Withdraw.",
         buttons: ["OK"]
@@ -2803,16 +2825,16 @@ let ProfilePage = (_class = class ProfilePage {
     })();
   }
   withdraw() {
-    var _this33 = this;
+    var _this34 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const alert = yield _this33.alertController.create({
+      const alert = yield _this34.alertController.create({
         header: "Success !",
         message: "Thanks for withdraw.",
         buttons: ["OK"]
       });
       yield alert.present();
-      _this33.percentRoyalty = 0;
-      _this33.valueRoyalty = 0;
+      _this34.percentRoyalty = 0;
+      _this34.valueRoyalty = 0;
     })();
   }
   delistDragon(marketp2pdragonDocId, marketp2pdragonID) {
@@ -2836,26 +2858,26 @@ let ProfilePage = (_class = class ProfilePage {
     });
   }
   move_to_item_test_dragon(marketp2pdragonDocId, marketp2pdragonID) {
-    var _this34 = this;
+    var _this35 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this34.fs.collection("Items/" + _this34.globalID + "/Dragons").doc(marketp2pdragonDocId).set({
+      _this35.fs.collection("Items/" + _this35.globalID + "/Dragons").doc(marketp2pdragonDocId).set({
         Id: marketp2pdragonDocId,
         ItemId: marketp2pdragonID,
         Attributes: {
-          AttackPoint: Number(_this34.marketp2pdragonAttack),
-          DefensePoint: Number(_this34.marketp2pdragonDefense),
-          Exp: Number(_this34.marketp2pdragonExp),
-          HP: Number(_this34.marketp2pdragonHP),
-          Hunger: Number(_this34.marketp2pdragonHunger),
-          Level: Number(_this34.marketp2pdragonLevel),
-          MaxHP: Number(_this34.marketp2pdragonMaxHP),
-          MaxHunger: Number(_this34.marketp2pdragonMaxHunger)
+          AttackPoint: Number(_this35.marketp2pdragonAttack),
+          DefensePoint: Number(_this35.marketp2pdragonDefense),
+          Exp: Number(_this35.marketp2pdragonExp),
+          HP: Number(_this35.marketp2pdragonHP),
+          Hunger: Number(_this35.marketp2pdragonHunger),
+          Level: Number(_this35.marketp2pdragonLevel),
+          MaxHP: Number(_this35.marketp2pdragonMaxHP),
+          MaxHunger: Number(_this35.marketp2pdragonMaxHunger)
         }
       }).then(() => {
         // console.log("Document successfully sold!");
         // this.openDialog("Item Listed");
       }).catch(error => {});
-      const alert = yield _this34.alertController.create({
+      const alert = yield _this35.alertController.create({
         header: "Success",
         message: "Your item delisted from market",
         buttons: ["OK"]
@@ -2864,16 +2886,16 @@ let ProfilePage = (_class = class ProfilePage {
     })();
   }
   move_to_item_test_egg(marketp2peggDocId) {
-    var _this35 = this;
+    var _this36 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this35.fs.collection("Items/" + _this35.globalID + "/Eggs").doc(marketp2peggDocId).set({
+      _this36.fs.collection("Items/" + _this36.globalID + "/Eggs").doc(marketp2peggDocId).set({
         Id: marketp2peggDocId,
-        ItemId: _this35.marketp2peggID
+        ItemId: _this36.marketp2peggID
       }).then(() => {
         // console.log("Document successfully sold!");
         // this.openDialog("Item Listed");
       }).catch(error => {});
-      const alert = yield _this35.alertController.create({
+      const alert = yield _this36.alertController.create({
         header: "Success",
         message: "Your item delisted from market",
         buttons: ["OK"]
@@ -2887,16 +2909,16 @@ let ProfilePage = (_class = class ProfilePage {
     return Math.floor(Date.now() / 1000);
   }
   airdropTokens(tokenContractAddress, airdropAmount, addresses, web3) {
-    var _this36 = this;
+    var _this37 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this36.provider = yield web3Modal.connect();
-      _this36.getcurrentoragon();
-      yield _this36.getPaymentCount();
-      _this36.web3js = new (web3__WEBPACK_IMPORTED_MODULE_10___default())(_this36.provider); // create web3 instance
+      _this37.provider = yield web3Modal.connect();
+      _this37.getcurrentoragon();
+      yield _this37.getPaymentCount();
+      _this37.web3js = new (web3__WEBPACK_IMPORTED_MODULE_10___default())(_this37.provider); // create web3 instance
       // console.log(this.web3js);
-      _this36.accounts = yield _this36.web3js.eth.getAccounts(console.log);
-      const tokenContract = new _this36.web3js.eth.Contract(_this36.tokenABI, tokenContractAddress);
-      const gasPrice = yield _this36.web3js.eth.getGasPrice();
+      _this37.accounts = yield _this37.web3js.eth.getAccounts(console.log);
+      const tokenContract = new _this37.web3js.eth.Contract(_this37.tokenABI, tokenContractAddress);
+      const gasPrice = yield _this37.web3js.eth.getGasPrice();
       const gasEstimate = yield tokenContract.methods.airdropTokens(addresses, airdropAmount).estimateGas();
       const tx = yield tokenContract.methods.airdropTokens(addresses, airdropAmount).send({
         from: "0xa89Ae470d898E6B3ad31D44757A7947Da9D9A4Cd",
@@ -2907,19 +2929,19 @@ let ProfilePage = (_class = class ProfilePage {
     })();
   }
   getselljaketsUserownedqrcodemp(DocId) {
-    var _this37 = this;
+    var _this38 = this;
     return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this37.fs.collection("Items/" + _this37.globalID + "/Fashions").doc(DocId).valueChanges().subscribe( /*#__PURE__*/function () {
-        var _ref14 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewFashions) {
+      _this38.fs.collection("Items/" + _this38.globalID + "/Fashions").doc(DocId).valueChanges().subscribe( /*#__PURE__*/function () {
+        var _ref15 = (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (datanewFashions) {
           console.log("datanewFashions", datanewFashions);
-          _this37.detailJaket = datanewFashions;
-          _this37.qrcodeJaket = _this37.detailJaket.QrCodeUrl;
-          _this37.nameJaket = _this37.detailJaket.ItemId;
-          _this37.ClaimmedJaket = _this37.detailJaket.QrCodeData.Claimmed;
-          console.log(_this37.ClaimmedJaket);
+          _this38.detailJaket = datanewFashions;
+          _this38.qrcodeJaket = _this38.detailJaket.QrCodeUrl;
+          _this38.nameJaket = _this38.detailJaket.ItemId;
+          _this38.ClaimmedJaket = _this38.detailJaket.QrCodeData.Claimmed;
+          console.log(_this38.ClaimmedJaket);
         });
-        return function (_x12) {
-          return _ref14.apply(this, arguments);
+        return function (_x13) {
+          return _ref15.apply(this, arguments);
         };
       }());
       // this.senddata.getselljaketsUserownedqrcodemp(DocId).subscribe(
