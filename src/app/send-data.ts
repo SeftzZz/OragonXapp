@@ -3502,4 +3502,29 @@ export class SendData {
       responseType: "text",
     });
   }
+
+  insertNewEggmp(
+    uid: string = "", 
+    Id: string = "", 
+    ItemId: string = "",
+    owners: string = "", 
+    status: string = "", 
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("Id", Id);
+    body.append("ItemId", ItemId);
+    body.append("owners", owners);
+    body.append("status", status);
+
+    return this.httpClient.post(this.controllerapi + "insertNewEgg_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
 }

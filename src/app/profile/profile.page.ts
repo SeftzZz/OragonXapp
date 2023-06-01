@@ -77,280 +77,281 @@ export class ProfilePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   private slides: any;
   // object
-  profile = null;
-  ipAddress = "";
-  isLogin: any;
-  percentRoyalty: any;
-  valueRoyalty: any;
-  // AGM
-  latitude!: number;
-  longitude!: number;
-  zoom!: number;
+    profile = null;
+    ipAddress = "";
+    isLogin: any;
+    percentRoyalty: any;
+    valueRoyalty: any;
+    // AGM
+    latitude!: number;
+    longitude!: number;
+    zoom!: number;
 
   // WEB3
-  states: string = "";
-  wallet: string = "";
-  wallets: string = "";
-  username: string = "";
-  email: string = "";
-  points : any;
-  price: any = "";
-  fee: any = "";
-  item_name: any = "";
-  state_buy: any = "";
-  connect: any;
-  kind: any = "";
-  bnb_balance: any = "...";
-  oragon_balance_display: any = "...";
-  oragon_balance: any = "";
-  oragon_balance2: any = "";
-  in_dollar: any = "...";
-  price_display: any = "";
-  fee_display: any = "";
-  status_1: any = "0";
-  status_2: any = "0";
-  count_roulette: any;
-  used: any;
-  in_oragon_100c: any;
-  in_oragon_12c: any;
-  in_oragon10: any;
-  in_oragon1: any;
-  in_oragon102: any;
-  in_oragon12: any;
-  in_oragon12c: any;
-  in_oragon102c: any;
-  latesttenOragon: any;
-  latestoneOragon: any;
-  balanceORGNPlayers: any;
-  balanceBNBPlayers: any;
-  balanceBUSDPlayers: any;
+    states: string = "";
+    wallet: string = "";
+    wallets: string = "";
+    username: string = "";
+    email: string = "";
+    points : any;
+    price: any = "";
+    fee: any = "";
+    item_name: any = "";
+    state_buy: any = "";
+    connect: any;
+    kind: any = "";
+    bnb_balance: any = "...";
+    oragon_balance_display: any = "...";
+    oragon_balance: any = "";
+    oragon_balance2: any = "";
+    in_dollar: any = "...";
+    price_display: any = "";
+    fee_display: any = "";
+    status_1: any = "0";
+    status_2: any = "0";
+    count_roulette: any;
+    used: any;
+    in_oragon_100c: any;
+    in_oragon_12c: any;
+    in_oragon10: any;
+    in_oragon1: any;
+    in_oragon102: any;
+    in_oragon12: any;
+    in_oragon12c: any;
+    in_oragon102c: any;
+    latesttenOragon: any;
+    latestoneOragon: any;
+    balanceORGNPlayers: any;
+    balanceBNBPlayers: any;
+    balanceBUSDPlayers: any;
 
   //WALLET PARAM
-  private web3js: any;
-  private accounts: any;
-  address_to: any;
-  amount_to: any;
-  provider: any;
-  balance1: any;
-  balance2: any;
-  web3Modal: any;
-  tokenInst: any;
-  web3provider: any;
-  check: any;
-  datas_oragon: any;
-  current_oragon: any;
-  current_bnb: any;
-  payment_count = 0;
-  tokenABI = [
-    // balanceOf
-    {
-      constant: true,
-      inputs: [{ name: "_owner", type: "address" }],
-      name: "balanceOf",
-      outputs: [{ name: "balance", type: "uint256" }],
-      type: "function",
-    },
-    // transfer
-    {
-      constant: false,
-      inputs: [
-        {
-          name: "_to",
-          type: "address",
-        },
-        {
-          name: "_value",
-          type: "uint256",
-        },
-      ],
-      name: "transfer",
-      outputs: [
-        {
-          name: "",
-          type: "bool",
-        },
-      ],
-      type: "function",
-    },
-  ];
+    private web3js: any;
+    private accounts: any;
+    address_to: any;
+    amount_to: any;
+    provider: any;
+    balance1: any;
+    balance2: any;
+    web3Modal: any;
+    tokenInst: any;
+    web3provider: any;
+    check: any;
+    datas_oragon: any;
+    current_oragon: any;
+    current_bnb: any;
+    payment_count = 0;
+    tokenABI = [
+      // balanceOf
+      {
+        constant: true,
+        inputs: [{ name: "_owner", type: "address" }],
+        name: "balanceOf",
+        outputs: [{ name: "balance", type: "uint256" }],
+        type: "function",
+      },
+      // transfer
+      {
+        constant: false,
+        inputs: [
+          {
+            name: "_to",
+            type: "address",
+          },
+          {
+            name: "_value",
+            type: "uint256",
+          },
+        ],
+        name: "transfer",
+        outputs: [
+          {
+            name: "",
+            type: "bool",
+          },
+        ],
+        type: "function",
+      },
+    ];
 
-  subscription: Subscription;
+  // MAIN
+    subscription: Subscription;
 
-  status_direct_buy: any = "1";
-  stateHash: any;
-  localStorage: any;
-  parse_localStorage: any;
-  globalID: any;
-  current_bnb_wei: any;
+    status_direct_buy: any = "1";
+    stateHash: any;
+    localStorage: any;
+    parse_localStorage: any;
+    globalID: any;
+    current_bnb_wei: any;
 
-  carts: any;
-  cartID: any;
-  cartUID: any;
-  cartCount: any;
-  cartNull: any;
-  cartNotNull: any;
-  cartName: any;
-  cartDeskripsi: any;
-  cartQty: any;
-  cartPrice: any;
-  cartImg: any;
-  cartPriceBNB: any;
-  uidegg: any;
-  uidbattery: any;
-  uidfood: any;
-  storecart: any;
+    carts: any;
+    cartID: any;
+    cartUID: any;
+    cartCount: any;
+    cartNull: any;
+    cartNotNull: any;
+    cartName: any;
+    cartDeskripsi: any;
+    cartQty: any;
+    cartPrice: any;
+    cartImg: any;
+    cartPriceBNB: any;
+    uidegg: any;
+    uidbattery: any;
+    uidfood: any;
+    storecart: any;
 
-  dragons: any;
-  dragonsdate: any;
-  dragonsowned: any;
-  dragonsownedbg: any;
-  hargaEgg: any;
-  eggLowest: any;
-  atozEgg: any;
-  currentp2p: any;
-  currentp2powned: any;
-  dragonDetail: any;
-  marketp2pdragonDocId: any;
-  marketp2pdragonID: any;
-  marketp2pdragonImg: any;
-  marketp2pdragonAttack: any;
-  marketp2pdragonDefense: any;
-  marketp2pdragonLevel: any;
-  marketp2pdragonHP: any;
-  marketp2pdragonHunger : any;
-  marketp2pdragonMaxHP : any;
-  marketp2pdragonMaxHunger : any;
-  marketp2pdragonRarity: any;
-  marketp2pdragonExp: any;
-  marketp2pdragonprice: any;
-  marketp2pdragonpriceUSD: any;
-  marketp2pdragonpriceBNB: any;
-  marketp2pdragonowner: any;
-  marketp2pdragonFee: any;
-  marketp2pdragonDate: any;
-  marketp2pdragonBG: any;
-  marketp2pdragonIdBG: any;
-  marketp2pdragonImgBG: any;
-  marketp2pdragonfavorited: any;
-  marketp2pdragonRoyalty: any;
-  priceRoyalty_display: any;
-  fee_royalty: any;
-  current_data: any;
-  owner_address: any;
-  sortdragons: any;
-  sortdragonsowned: any;
-  timeSell: any;
+    dragons: any;
+    dragonsdate: any;
+    dragonsowned: any;
+    dragonsownedbg: any;
+    hargaEgg: any;
+    eggLowest: any;
+    atozEgg: any;
+    currentp2p: any;
+    currentp2powned: any;
+    dragonDetail: any;
+    marketp2pdragonDocId: any;
+    marketp2pdragonID: any;
+    marketp2pdragonImg: any;
+    marketp2pdragonAttack: any;
+    marketp2pdragonDefense: any;
+    marketp2pdragonLevel: any;
+    marketp2pdragonHP: any;
+    marketp2pdragonHunger : any;
+    marketp2pdragonMaxHP : any;
+    marketp2pdragonMaxHunger : any;
+    marketp2pdragonRarity: any;
+    marketp2pdragonExp: any;
+    marketp2pdragonprice: any;
+    marketp2pdragonpriceUSD: any;
+    marketp2pdragonpriceBNB: any;
+    marketp2pdragonowner: any;
+    marketp2pdragonFee: any;
+    marketp2pdragonDate: any;
+    marketp2pdragonBG: any;
+    marketp2pdragonIdBG: any;
+    marketp2pdragonImgBG: any;
+    marketp2pdragonfavorited: any;
+    marketp2pdragonRoyalty: any;
+    priceRoyalty_display: any;
+    fee_royalty: any;
+    current_data: any;
+    owner_address: any;
+    sortdragons: any;
+    sortdragonsowned: any;
+    timeSell: any;
 
-  sortp2pmarket: any;
-  dragonsHigh: any;
-  dragonsLow: any;
-  dragonsAtoZ: any;
-  marketp2pdragonLength: any;
+    sortp2pmarket: any;
+    dragonsHigh: any;
+    dragonsLow: any;
+    dragonsAtoZ: any;
+    marketp2pdragonLength: any;
 
-  eggsHigh: any;
-  eggsLow: any;
-  eggsHAtoZ: any;
-  eggDetail: any;
-  marketp2peggLength: any;
-  marketp2peggDocId: any;
-  marketp2peggID: any;
-  marketp2peggImg: any;
-  marketp2peggprice: any;
-  marketp2peggpriceUSD: any;
-  marketp2peggowner: any;
-  marketp2peggFee: any;
-  marketp2peggDate: any;
-  sorteggs: any;
-  sorteggsowned: any;
+    eggsHigh: any;
+    eggsLow: any;
+    eggsHAtoZ: any;
+    eggDetail: any;
+    marketp2peggLength: any;
+    marketp2peggDocId: any;
+    marketp2peggID: any;
+    marketp2peggImg: any;
+    marketp2peggprice: any;
+    marketp2peggpriceUSD: any;
+    marketp2peggowner: any;
+    marketp2peggFee: any;
+    marketp2peggDate: any;
+    sorteggs: any;
+    sorteggsowned: any;
 
-  batteriesHigh: any;
-  batteriesLow: any;
-  batteriesHAtoZ: any;
-  batteryDetail: any;
-  marketp2pbatteryLength: any;
-  marketp2pbatteryDocId: any;
-  marketp2pbatteryID: any;
-  marketp2pbatteryImg: any;
-  marketp2pbatteryprice: any;
-  marketp2pbatterypriceUSD: any;
-  marketp2pbatteryowner: any;
-  marketp2pbatteryFee: any;
-  marketp2pbatteryDate: any;
-  sortbatteriesowned: any;
+    batteriesHigh: any;
+    batteriesLow: any;
+    batteriesHAtoZ: any;
+    batteryDetail: any;
+    marketp2pbatteryLength: any;
+    marketp2pbatteryDocId: any;
+    marketp2pbatteryID: any;
+    marketp2pbatteryImg: any;
+    marketp2pbatteryprice: any;
+    marketp2pbatterypriceUSD: any;
+    marketp2pbatteryowner: any;
+    marketp2pbatteryFee: any;
+    marketp2pbatteryDate: any;
+    sortbatteriesowned: any;
 
-  foodsHigh: any;
-  foodLow: any;
-  foodHAtoZ: any;
-  foodDetail: any;
-  marketp2pfoodLength: any;
-  marketp2pfoodOID: any;
-  marketp2pfoodID: any;
-  marketp2pfoodImg: any;
-  marketp2pfoodprice: any;
-  marketp2pfoodpriceUSD: any;
-  marketp2pfoodpriceBNB: any;
-  marketp2pfoodowner: any;
-  marketp2pfoodFee: any;
-  marketp2pfoodDate: any;
-  btnclickcategory: any;
-  sortfoodsowned: any;
-  public current_qty: any;
-  input_stock: any;
-  getSellfood: any;
-  iditemssellFood: any;
+    foodsHigh: any;
+    foodLow: any;
+    foodHAtoZ: any;
+    foodDetail: any;
+    marketp2pfoodLength: any;
+    marketp2pfoodOID: any;
+    marketp2pfoodID: any;
+    marketp2pfoodImg: any;
+    marketp2pfoodprice: any;
+    marketp2pfoodpriceUSD: any;
+    marketp2pfoodpriceBNB: any;
+    marketp2pfoodowner: any;
+    marketp2pfoodFee: any;
+    marketp2pfoodDate: any;
+    btnclickcategory: any;
+    sortfoodsowned: any;
+    public current_qty: any;
+    input_stock: any;
+    getSellfood: any;
+    iditemssellFood: any;
 
-  input_price: any;
-  rangeValue: any;
-  selectedBid: any;
-  latest_date: any;
-  timeBID: any;
-  royalties: any;
-  positionRoyalty: any;
-  marketp2pdragonRoyalty2: any;
-  marketp2pdragonRoyalty3: any;
-  marketp2pdragonRoyalty4: any;
-  marketp2pdragonRoyalty5: any;
+    input_price: any;
+    rangeValue: any;
+    selectedBid: any;
+    latest_date: any;
+    timeBID: any;
+    royalties: any;
+    positionRoyalty: any;
+    marketp2pdragonRoyalty2: any;
+    marketp2pdragonRoyalty3: any;
+    marketp2pdragonRoyalty4: any;
+    marketp2pdragonRoyalty5: any;
 
-  trxhistory: any;
-  pointhistory : any;
-  pointhistoryall : any;
-  pointhistorybyid : any;
-  sessionPointHistory : any;
-  dataNotif: any;
-  notificationBid: any;
-  statusCheckNew : any;
-  sortbatteriesownedLength : any;
-  usedBattery : any;
-  usedEgg : any;
-  timeIncubator : any;
-  hatching : any;
-  countdown : any;
-  days : any;
-  hours : any;
-  minutes : any;
-  seconds : any;
-  hatchingDataEgg : any;
-  hatchingDataBattery : any;
+    trxhistory: any;
+    pointhistory : any;
+    pointhistoryall : any;
+    pointhistorybyid : any;
+    sessionPointHistory : any;
+    dataNotif: any;
+    notificationBid: any;
+    statusCheckNew : any;
+    sortbatteriesownedLength : any;
+    usedBattery : any;
+    usedEgg : any;
+    timeIncubator : any;
+    hatching : any;
+    countdown : any;
+    days : any;
+    hours : any;
+    minutes : any;
+    seconds : any;
+    hatchingDataEgg : any;
+    hatchingDataBattery : any;
 
-  hoursServer = 0;
-  minutesServer = 0;
-  secondsServer = 0;
-  isRunning = false;
-  timerId = 0;
-  sortbatteriesownedIncubator : any;
+    hoursServer = 0;
+    minutesServer = 0;
+    secondsServer = 0;
+    isRunning = false;
+    timerId = 0;
+    sortbatteriesownedIncubator : any;
 
-  jaketsHigh : any;
-  lastseen : any;
-  sortfashion : any;
-  jakets : any;
-  fashionjaketsLength : any;
-  fashioncommonjaketsLength : any;
-  commonjakets : any;
-  detailJaket : any;
-  qrcodeJaket : any;
-  nameJaket : any;
-  ClaimmedJaket : any;
-  scanned: boolean = false;
+    jaketsHigh : any;
+    lastseen : any;
+    sortfashion : any;
+    jakets : any;
+    fashionjaketsLength : any;
+    fashioncommonjaketsLength : any;
+    commonjakets : any;
+    detailJaket : any;
+    qrcodeJaket : any;
+    nameJaket : any;
+    ClaimmedJaket : any;
+    scanned: boolean = false;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -504,6 +505,7 @@ export class ProfilePage implements OnInit {
         // this.checknotificationBid();
       // }, 3000);
       this.checknewdragon();
+      this.checknewegg();
       this.checknewfood();
       this.checknewbattery();
       this.checknewpoint();
@@ -1537,6 +1539,30 @@ export class ProfilePage implements OnInit {
         } else {
 
         }
+      }
+    });
+  }
+
+  checknewegg() {
+    this.fs.collection("Items/" + this.globalID + "/Eggs").valueChanges().subscribe(async (datanewEgg:any) => {
+      // console.log("datanewEgg", datanewEgg);
+      for(let i in datanewEgg) {
+        // console.log("datanewEgg", datanewEgg[i].Id, datanewEgg[i].Attributes.AttackPoint);
+        this.senddata.getselleggUsermp(this.globalID).subscribe(
+          (dataSell: any) => {
+            this.sorteggsowned = JSON.parse(dataSell);
+            this.senddata.insertNewEggmp(
+              this.globalID, 
+              datanewEgg[i].Id, 
+              datanewEgg[i].ItemId,
+              '', 
+              'checked',  
+              ).subscribe((resp:any) => {
+              // console.log("inserting data...", resp);
+            });
+          },
+          (error: any) => {}
+        );
       }
     });
   }
