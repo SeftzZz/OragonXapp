@@ -401,9 +401,14 @@
             <article>
               <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
                 <figure class="relative" style="margin: 0em 0px;">
-                  <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                  <a *ngIf="s.id_product == '17' || s.id_product == '18';else items" (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#detailModal">
                     <img src="assets/img/store/{{s.gambar}}" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
                   </a>
+                  <ng-template>
+                    <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                      <img src="assets/img/store/{{s.gambar}}" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                    </a>
+                  </ng-template>
                 </figure>
                 <div class="mt-7 flex items-center justify-between">
                   <a (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#buyNowModal">
@@ -417,7 +422,7 @@
                   <h4 class="dark:text-jacarta-200 text-jacarta-700 mr-1">Rp {{s.harga | number}}</h4>
                 </div>
                 <div class="mt-2 text-sm">
-                  <h4 class="text-green mr-1">QTY 30</h4>
+                  <h4 class="text-green mr-1">QTY {{s.stock}}</h4>
                 </div>
                 <div class="mt-8 flex items-center justify-between">
                   <!-- <a (click)="getstoredetail(s.id_product)" class="text-accent font-display text-sm font-semibold" data-bs-toggle="modal" data-bs-target="#buyNowModal"> Buy</a> -->
@@ -1120,7 +1125,7 @@
       </div>
     </div>
 
-    <!-- Cart Modal -->
+    <!-- Cart Multi Modal -->
     <div *ngIf="cartCount > 0" class="modal fade" id="cartmultiModal" tabindex="-1" aria-labelledby="cartmultiModalLabel" aria-hidden="true">
       <div class="modal-dialog max-w-2xl">
         <div class="modal-content" style="margin-bottom: 1rem;">
@@ -1259,7 +1264,7 @@
       </div>
     </div>
 
-    <!-- Cart Multi Modal -->
+    <!-- Cart Modal -->
     <div *ngIf="cartCount > 0" class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
       <div class="modal-dialog max-w-2xl">
         <div class="modal-content" style="margin-bottom: 1rem;">
@@ -1281,7 +1286,16 @@
             <div>
               <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
                 <figure class="mr-5 self-start">
-                  <img src="assets/img/store/{{cartImg}}" alt="avatar 2" class="rounded-2lg" loading="lazy" />
+                  <img *ngIf="color == '1'" src="assets/img/store/{{cartImg}}" alt="color 1" class="rounded-2lg" loading="lazy" />
+                  <img *ngIf="color == '2'" src="assets/img/store/hoodie-meru-depan.jpg" alt="color 2" class="rounded-2lg" loading="lazy" />
+                  <img *ngIf="color == '3'" src="assets/img/store/hoodie-metalicana-depan.jpg" alt="color 3" class="rounded-2lg" loading="lazy" />
+                  <div class="pt-5 items-center">
+                    <span class="mb-1 flex items-center whitespace-nowrap">
+                      <button (click)="setColor(1)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-auto" style="background-color: #fff;border-radius: 3px;"></button>
+                      <button (click)="setColor(2)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-2" style="background-color: #119b75;border-radius: 3px;"></button>
+                      <button (click)="setColor(3)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-2" style="border-radius: 3px;"></button>
+                    </span>
+                  </div>
                 </figure>
                 <div>
                   <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{cartDeskripsi}}</h3>
@@ -1310,10 +1324,18 @@
           </div>
           <div class="p-3" style="width: 100%;">
             <div class="mb-2 flex items-center justify-between">
-              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap ke 1</span>
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
             </div>
-            <textarea type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{address}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
-            <button *ngIf="address != ''" (click)="addAddress(tempAddress)" class="text-green transition-all"> Jadikan alamat utama</button>
+            <textarea *ngIf="getaddress != '';else inputaddress" type="text" disabled (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
+            <ng-template #inputaddress>
+              <textarea type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
+            </ng-template>
+            <div class="dark:border-jacarta-600 border-jacarta-100 mb-2 flex items-center justify-between py-2.5">
+              <span class="font-display text-jacarta-700 hover:text-accent font-semibold dark:text-white"></span>
+              <div class="ml-auto">
+                <button class="text-green transition-all ml-auto" data-bs-toggle="modal" data-bs-target="#addAddressModal" aria-label="addAddress">Ganti alamat utama</button>
+              </div>
+            </div>
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
             </div>
@@ -1321,7 +1343,7 @@
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kota</span>
             </div>
-            <input type="text" (keyup)="searchAddress($event)" id="search_addres" value="{{cities}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
+            <input type="text" (keyup)="searchAddress($event)" id="search_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
             <div class="modal-body p-6">
               <div class="mb-2 flex items-center justify-between">
                 <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan Kurir</span>
@@ -1373,7 +1395,7 @@
           <div class="modal-footer">
             <div class="flex items-center justify-center space-x-4">
               <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
-              <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
+              <button (click)="pay_cartStore(cartID, globalID, wallets, color)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
             </div>
           </div>
         </div>
@@ -1793,6 +1815,72 @@
           <div class="modal-footer">
             <div class="flex items-center justify-center space-x-4">
               <a class="text-accent font-display text-sm font-semibold mb-2">{{historyDate | date}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Address Modal -->
+    <div *ngIf="progressCount > 0" class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+      <div class="modal-dialog max-w-2xl">
+        <div class="modal-content" style="margin-bottom: 1rem;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addAddressModalLabel">Alamat Lengkap</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-6 w-6 dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Body -->
+          <div class="modal-body p-6">
+            <textarea type="text" (keyup)="addAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
+          </div>
+          <div class="modal-footer">
+            <div class="flex items-center justify-center space-x-4">
+              <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div *ngIf="progressCount > 0" class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog max-w-2xl">
+        <div class="modal-content" style="margin-bottom: 1rem;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">Alamat Lengkap</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-6 w-6 dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Body -->
+          <div class="modal-body p-6">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Item</span>
+            </div>
+            <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+              <figure class="mr-5 self-start">
+                <img src="assets/img/store/{{storeImg}}" alt="avatar 2" class="rounded-2lg" loading="lazy" />
+              </figure>
+            </div>
+            <!-- Total -->
+            <div class="dark:border-jacarta-600 border-jacarta-100 mb-2 flex items-center justify-between py-2.5">
+              <span class="font-display text-jacarta-700 hover:text-accent font-semibold dark:text-white">Total</span>
+              <div class="ml-auto">
+                <div class="dark:text-jacarta-300 text-right">Rp {{storePrice | number}}.00</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="flex items-center justify-center space-x-4">
+              <button (click)="setstorecart(storeID, globalID, wallets)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Add to cart </button>
             </div>
           </div>
         </div>

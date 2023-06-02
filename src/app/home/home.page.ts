@@ -361,6 +361,7 @@ export class HomePage implements OnInit {
     getaddress : any;
     postal_id : any;
     cities : any;
+    color : any;
 
   constructor(
     private authService: AuthService,
@@ -473,16 +474,12 @@ export class HomePage implements OnInit {
         console.log("stateHash", this.stateHash);
         console.log("state_buy", this.state_buy);
         console.log("status_direct_buy", this.status_direct_buy);
+        this.color = localStorage.setItem('color', '1');
         this.senddata.getaddressmp(this.globalID).subscribe(
           async(getaddress)=>{
             var viewaddress = JSON.parse(getaddress);
-            this.getaddress = viewaddress.nmAddress;
-            const alert = await this.alertController.create({
-              header : 'Address',
-              message : this.getaddress,
-              buttons : ['Ok']
-            });
-            await alert.present();
+            this.getaddress = viewaddress[0].nmAddress;
+            console.log(this.getaddress);
           });
         this.postal_id = localStorage.getItem("kode_pos");
         this.cities = localStorage.getItem("kota");
@@ -2853,475 +2850,233 @@ export class HomePage implements OnInit {
         }
       }
 
-      async pay_cartStore(id_cart, user_uid, addressw, getaddress) {
-        if(this.globalID == "WB7qCPQR9BYEDT1BW6nQjLjKqBw1") {
-          if(+(this.oragon_balance * 1).toFixed(0) > +(this.cartPrice * 1).toFixed(0) && (this.bnb_balance*1) > (this.storeFee*1)) {
-            let amountf = this.cartPrice * 1e9
-            console.log(amountf)
-            await this.tokenInst.methods.transfer('0x3f719DDCDB386eF2c4E2c5f24DB2DAe61187C894', amountf.toString()).send({from: this.wallet}).then(async(res:any) => {
-              console.log(res);
-              this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
-                this.storedetail = JSON.parse(data)
-                this.storeDeskripsi = this.storedetail.deskripsi
+      async pay_cartStore(id_cart, user_uid, addressw, getaddress, color) {
+        this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
+          this.storedetail = JSON.parse(data)
+          this.storeDeskripsi = this.storedetail.deskripsi
 
-                // set transaction history
-                const messaging = getMessaging();
-                getToken(messaging, 
-                 { vapidKey: environment.firebase.vapidKey}).then(
-                   (tokenPushNotification) => {
-                     if (tokenPushNotification) {
-                      this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
-                        this.tokenNotif = JSON.parse(dataToken);
-                        // Create Transaction History
-                        this.senddata.settrxhistory(
-                          this.storeID, //storeid
-                          this.globalID, //userid
-                          'S-BNB' + this.newTime(), //itemid
-                          this.cartPriceBNB, //amount BNB
-                          res.transactionHash, //tx_hash
-                          'BNB', //type
-                          'Package-Official-Store', //item
-                          this.email, //email
-                          this.tokenNotif.tokenPushNotification //token
-                        ).subscribe((data:any) => {},(error:any) => {})
-                      });
-                     } else {
-                       // console.log('No registration token available. Request permission to generate one.');
-                     }
-                 }).catch((err) => {
-                    // console.log('An error occurred while retrieving token. ', err);
+          // set transaction history
+          const messaging = getMessaging();
+          getToken(messaging, 
+           { vapidKey: environment.firebase.vapidKey}).then(
+             (tokenPushNotification) => {
+               if (tokenPushNotification) {
+                this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
+                  this.tokenNotif = JSON.parse(dataToken);
+                  // Create Transaction History
+                  this.senddata.settrxhistory(
+                    this.storeID, //storeid
+                    this.globalID, //userid
+                    'S-BNB' + this.newTime(), //itemid
+                    this.cartPriceBNB, //amount BNB
+                    'res.transactionHash', //tx_hash
+                    'BNB', //type
+                    'Package-Official-Store', //item
+                    this.email, //email
+                    this.tokenNotif.tokenPushNotification //token
+                  ).subscribe((data:any) => {},(error:any) => {})
                 });
-              },(error:any) => {});
-              
-              // packages-official-store
-                if(this.storeID == 16) {
-                  // BATTERY
-                  this.addDorch();
-                } else if(this.storeID == 15) {
-                  // BATTERY
-                  this.addMetalicana();
-                } else if(this.storeID == 14) {
-                  // BATTERY
-                  this.addFood1();
-                } else if(this.storeID == 13) {
-                  // BATTERY
-                  this.addBattery8();
-                } else if(this.storeID == 12) {
-                  // BATTERY
-                  this.addBattery12();
-                } else if(this.storeID == 11) {
-                  // BATTERY
-                  this.addBattery24();
-                } else if(this.storeID == 10) {
-                  // EGGS
-                  this.addAkh();
-                  this.addMeru();
-                  this.addRitra();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Akh: firebase.firestore.FieldValue.increment(-1),
-                    Meru: firebase.firestore.FieldValue.increment(-1),
-                    Ritra: firebase.firestore.FieldValue.increment(-1)
-                  });
+               } else {
+                 // console.log('No registration token available. Request permission to generate one.');
+               }
+           }).catch((err) => {
+              // console.log('An error occurred while retrieving token. ', err);
+          });
+        },(error:any) => {});
 
-                  // BATTERY
-                  this.addBattery8();
-                  this.addBattery12();
-                  this.addBattery24();
-
-                  // FOODS
-                  this.addFood();
-                } else if(this.storeID == 9) {
-                  // EGGS
-                  this.addAkh();
-                  this.addFeng();
-                  this.addMeru();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Akh: firebase.firestore.FieldValue.increment(-1),
-                    Feng: firebase.firestore.FieldValue.increment(-1),
-                    Meru: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-                  this.addBattery12();
-                  this.addBattery24();
-
-                  // FOODS
-                  this.addFood();
-                } else if(this.storeID == 8) {
-                  // EGGS
-                  this.addRitra();
-                  this.addFeng();
-                  this.addMeru();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Ritra: firebase.firestore.FieldValue.increment(-1),
-                    Feng: firebase.firestore.FieldValue.increment(-1),
-                    Meru: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-                  this.addBattery12();
-                  this.addBattery24();
-
-                  // FOODS
-                  this.addFood();
-                } else if(this.storeID == 7) {
-                  // EGGS
-                  this.addRitra();
-                  this.addFeng();
-                  this.addAkh();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Ritra: firebase.firestore.FieldValue.increment(-1),
-                    Feng: firebase.firestore.FieldValue.increment(-1),
-                    Akh: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-                  this.addBattery12();
-                  this.addBattery24();
-
-                  // FOODS
-                  this.addFood();
-                } else if(this.storeID == 6) {
-                  // EGGS
-                  this.addAkh();
-                  this.addMeru();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Akh: firebase.firestore.FieldValue.increment(-1),
-                    Meru: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-                  this.addBattery12();
-
-                  // FOODS
-                  this.addFood20();
-                } else if(this.storeID == 5) {
-                  // EGGS
-                  this.addRitra();
-                  this.addFeng();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Ritra: firebase.firestore.FieldValue.increment(-1),
-                    Feng: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-                  this.addBattery12();
-
-                  // FOODS
-                  this.addFood20();
-                } else if(this.storeID == 4) {
-                  // EGGS
-                  this.addFeng();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Feng: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-
-                  // FOODS
-                  this.addFood10();
-                } else if(this.storeID == 3) {
-                  // EGGS
-                  this.addRitra();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Ritra: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-
-                  // FOODS
-                  this.addFood10();
-                } else if(this.storeID == 2) {
-                  // EGGS
-                  this.addMeru();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Meru: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-
-                  // FOODS
-                  this.addFood10();
-                } else if(this.storeID == 1) {
-                  // EGGS
-                  this.addAkh();
-                  this.fs.collection("Roulette").doc("Oragon").update({ 
-                    Akh: firebase.firestore.FieldValue.increment(-1)
-                  });
-
-                  // BATTERY
-                  this.addBattery8();
-
-                  // FOODS
-                  this.addFood10();
-                } 
-
-              //if success
-                this.state_buy = 3;
-                this.status_direct_buy = 1;
-                this.stateHash = true;
-                this.connect = true;
-                const alert = await this.alertController.create({
-                  header: 'Success',
-                  message: 'Transaction Successfull, We have send this transaction receipt to your email',
-                  buttons: ['OK'],
-                });
-                const loading = await this.loadingController.create();
-                await loading.present();
-                this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash');
-                this.senddata.setaddressmp(this.globalID, this.getaddress);
-                await alert.present();
-                setTimeout(()=>{
-                  window.location.reload();
-                }, 5000);
-                loading.dismiss();
-            }).catch((err:any) => {
-              
+        // packages-official-store
+          if(this.storeID == 16) {
+            // BATTERY
+            this.addDorch();
+          } else if(this.storeID == 15) {
+            // BATTERY
+            this.addMetalicana();
+          } else if(this.storeID == 14) {
+            // BATTERY
+            this.addFood1();
+          } else if(this.storeID == 13) {
+            // BATTERY
+            this.addBattery8();
+          } else if(this.storeID == 12) {
+            // BATTERY
+            this.addBattery12();
+          } else if(this.storeID == 11) {
+            // BATTERY
+            this.addBattery24();
+          } else if(this.storeID == 10) {
+            // EGGS
+            this.addAkh();
+            this.addMeru();
+            this.addRitra();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1),
+              Ritra: firebase.firestore.FieldValue.increment(-1)
             });
-          } else {
-            const alert = await this.alertController.create({
-              header: 'Failed!',
-              message: 'BNB Balance is not Enough',
-              buttons: ['OK'],
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
+
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 9) {
+            // EGGS
+            this.addAkh();
+            this.addFeng();
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1)
             });
-            await alert.present();
-          }
-        } else {
-          this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
-            this.storedetail = JSON.parse(data)
-            this.storeDeskripsi = this.storedetail.deskripsi
 
-            // set transaction history
-            const messaging = getMessaging();
-            getToken(messaging, 
-             { vapidKey: environment.firebase.vapidKey}).then(
-               (tokenPushNotification) => {
-                 if (tokenPushNotification) {
-                  this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
-                    this.tokenNotif = JSON.parse(dataToken);
-                    // Create Transaction History
-                    this.senddata.settrxhistory(
-                      this.storeID, //storeid
-                      this.globalID, //userid
-                      'S-BNB' + this.newTime(), //itemid
-                      this.cartPriceBNB, //amount BNB
-                      'res.transactionHash', //tx_hash
-                      'BNB', //type
-                      'Package-Official-Store', //item
-                      this.email, //email
-                      this.tokenNotif.tokenPushNotification //token
-                    ).subscribe((data:any) => {},(error:any) => {})
-                  });
-                 } else {
-                   // console.log('No registration token available. Request permission to generate one.');
-                 }
-             }).catch((err) => {
-                // console.log('An error occurred while retrieving token. ', err);
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
+
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 8) {
+            // EGGS
+            this.addRitra();
+            this.addFeng();
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1)
             });
-          },(error:any) => {});
 
-          // packages-official-store
-            if(this.storeID == 16) {
-              // BATTERY
-              this.addDorch();
-            } else if(this.storeID == 15) {
-              // BATTERY
-              this.addMetalicana();
-            } else if(this.storeID == 14) {
-              // BATTERY
-              this.addFood1();
-            } else if(this.storeID == 13) {
-              // BATTERY
-              this.addBattery8();
-            } else if(this.storeID == 12) {
-              // BATTERY
-              this.addBattery12();
-            } else if(this.storeID == 11) {
-              // BATTERY
-              this.addBattery24();
-            } else if(this.storeID == 10) {
-              // EGGS
-              this.addAkh();
-              this.addMeru();
-              this.addRitra();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Akh: firebase.firestore.FieldValue.increment(-1),
-                Meru: firebase.firestore.FieldValue.increment(-1),
-                Ritra: firebase.firestore.FieldValue.increment(-1)
-              });
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
 
-              // BATTERY
-              this.addBattery8();
-              this.addBattery12();
-              this.addBattery24();
-
-              // FOODS
-              this.addFood();
-            } else if(this.storeID == 9) {
-              // EGGS
-              this.addAkh();
-              this.addFeng();
-              this.addMeru();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Akh: firebase.firestore.FieldValue.increment(-1),
-                Feng: firebase.firestore.FieldValue.increment(-1),
-                Meru: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-              this.addBattery12();
-              this.addBattery24();
-
-              // FOODS
-              this.addFood();
-            } else if(this.storeID == 8) {
-              // EGGS
-              this.addRitra();
-              this.addFeng();
-              this.addMeru();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Ritra: firebase.firestore.FieldValue.increment(-1),
-                Feng: firebase.firestore.FieldValue.increment(-1),
-                Meru: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-              this.addBattery12();
-              this.addBattery24();
-
-              // FOODS
-              this.addFood();
-            } else if(this.storeID == 7) {
-              // EGGS
-              this.addRitra();
-              this.addFeng();
-              this.addAkh();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Ritra: firebase.firestore.FieldValue.increment(-1),
-                Feng: firebase.firestore.FieldValue.increment(-1),
-                Akh: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-              this.addBattery12();
-              this.addBattery24();
-
-              // FOODS
-              this.addFood();
-            } else if(this.storeID == 6) {
-              // EGGS
-              this.addAkh();
-              this.addMeru();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Akh: firebase.firestore.FieldValue.increment(-1),
-                Meru: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-              this.addBattery12();
-
-              // FOODS
-              this.addFood20();
-            } else if(this.storeID == 5) {
-              // EGGS
-              this.addRitra();
-              this.addFeng();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Ritra: firebase.firestore.FieldValue.increment(-1),
-                Feng: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-              this.addBattery12();
-
-              // FOODS
-              this.addFood20();
-            } else if(this.storeID == 4) {
-              // EGGS
-              this.addFeng();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Feng: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-
-              // FOODS
-              this.addFood10();
-            } else if(this.storeID == 3) {
-              // EGGS
-              this.addRitra();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Ritra: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-
-              // FOODS
-              this.addFood10();
-            } else if(this.storeID == 2) {
-              // EGGS
-              this.addMeru();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Meru: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-
-              // FOODS
-              this.addFood10();
-            } else if(this.storeID == 1) {
-              // EGGS
-              this.addAkh();
-              this.fs.collection("Roulette").doc("Oragon").update({ 
-                Akh: firebase.firestore.FieldValue.increment(-1)
-              });
-
-              // BATTERY
-              this.addBattery8();
-
-              // FOODS
-              this.addFood10();
-            } 
-
-          //if success
-            this.state_buy = 3;
-            this.status_direct_buy = 1;
-            this.stateHash = true;
-            this.connect = true;
-            
-            const loading = await this.loadingController.create();
-            await loading.present();
-            this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash');
-            this.senddata.setaddressmp(this.globalID, this.getaddress).subscribe(
-              async(viewdata:any)=>{
-                const alert = await this.alertController.create({
-                  header: 'Saved!',
-                  message: viewdata,
-                  buttons: ['OK'],
-                });
-                await alert.present();
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 7) {
+            // EGGS
+            this.addRitra();
+            this.addFeng();
+            this.addAkh();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1),
+              Akh: firebase.firestore.FieldValue.increment(-1)
             });
-            setTimeout(()=>{
-              window.location.reload();
-            }, 5000);
-            loading.dismiss();
-        }
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
+
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 6) {
+            // EGGS
+            this.addAkh();
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+
+            // FOODS
+            this.addFood20();
+          } else if(this.storeID == 5) {
+            // EGGS
+            this.addRitra();
+            this.addFeng();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+
+            // FOODS
+            this.addFood20();
+          } else if(this.storeID == 4) {
+            // EGGS
+            this.addFeng();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Feng: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } else if(this.storeID == 3) {
+            // EGGS
+            this.addRitra();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } else if(this.storeID == 2) {
+            // EGGS
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Meru: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } else if(this.storeID == 1) {
+            // EGGS
+            this.addAkh();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } 
+
+        //if success
+          this.state_buy = 3;
+          this.status_direct_buy = 1;
+          this.stateHash = true;
+          this.connect = true;
+          
+          const loading = await this.loadingController.create();
+          await loading.present();
+          this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash', this.color, this.email);
+          this.senddata.setaddressmp(this.globalID, this.getaddress).subscribe(
+            async(viewdata:any)=>{
+              const alert = await this.alertController.create({
+                header: 'Thankyou !',
+                message: 'Your cart is ready on the OragonX Marketplace.',
+                buttons: ['OK'],
+              });
+              await alert.present();
+          });
+          setTimeout(()=>{
+            window.location.reload();
+          }, 5000);
+          loading.dismiss();
       }
 
     // Payment Market P2P
@@ -4678,6 +4433,7 @@ export class HomePage implements OnInit {
     getstoredata() {
       this.senddata.getstoredata().subscribe((data:any) => {
         this.storedata = JSON.parse(data);
+        this.color = localStorage.getItem('color');
       },(error:any) => {})
     }
 
@@ -4821,11 +4577,11 @@ export class HomePage implements OnInit {
       }
     }
 
-    async updatestorecart(id_cart, user_uid, addressw, transactionHash) {
+    async updatestorecart(id_cart, user_uid, addressw, transactionHash, color, email) {
       const loading = await this.loadingController.create();
       await loading.present();
 
-      this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash).subscribe((data:any) => {
+      this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash, this.color, email).subscribe((data:any) => {
         let updatestorecartHome = data
         console.log(updatestorecartHome)
       },(error:any) => {})
@@ -4833,15 +4589,15 @@ export class HomePage implements OnInit {
       loading.dismiss();
     }
 
-    async pay_progressStore(event, id_orders, user_uid, product_id, addressw) {
+    async pay_progressStore(event, id_orders, user_uid, id_product, addressw) {
       const loading = await this.loadingController.create();
       await loading.present();
       // console.log(event, DocId, ItemId)
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]); // read file as data url
-        this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, event.target.files[0]);
-        this.addJaketsMetalicana(this.ordersID, user_uid, product_id);
+        this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, id_product, event.target.files[0]);
+        this.addJaketsMetalicana(this.ordersID, user_uid, id_product);
         loading.dismiss();
         
         console.log(event.target.files[0]);
@@ -4877,11 +4633,11 @@ export class HomePage implements OnInit {
       }, 5000);
     }
 
-    async updatestoreprogress(id_orders, user_uid, addressw, file_orders) {
+    async updatestoreprogress(id_orders, user_uid, addressw, product_id, file_orders) {
       const loading = await this.loadingController.create();
       await loading.present();
 
-      this.senddata.updatestoreprogressHome(id_orders, user_uid, addressw, file_orders).subscribe((data:any) => {
+      this.senddata.updatestoreprogressHome(id_orders, user_uid, addressw, product_id, file_orders).subscribe((data:any) => {
         let updatestoreprogressHome = data
         console.log(updatestoreprogressHome)
       },(error:any) => {})
@@ -5312,6 +5068,21 @@ export class HomePage implements OnInit {
     localStorage.setItem("alamat", query);
     const setaddress = localStorage.getItem("alamat");
     this.getaddress = setaddress;
+  }
+
+  addAddress(event: any) {
+    const query = event.target.value;
+    localStorage.setItem("alamat", query);
+    const setaddress = localStorage.getItem("alamat");
+    this.getaddress = setaddress;
+  }
+
+  async setColor(query) {
+    const color = localStorage.setItem("color", query);
+    const loading = await this.loadingController.create();
+    await loading.present();
+      this.color = localStorage.getItem("color");
+    loading.dismiss();
   }
 
   inputPostalCode(event: any) {

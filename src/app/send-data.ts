@@ -2614,6 +2614,7 @@ export class SendData {
     user_uid: string = "",
     addressw: string = "",
     email: string = "",
+    color: string = ""
   ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2625,6 +2626,7 @@ export class SendData {
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
     body.append("email", email);
+    body.append("color", color);
 
     return this.httpClient.post(
       this.controllerapi + "updatestorecart_mp",
@@ -2715,7 +2717,9 @@ export class SendData {
     id_cart: string = "",
     user_uid: string = "",
     addressw: string = "",
-    transactionhash: string = ""
+    transactionhash: string = "",
+    color: string = "",
+    email: string = "",
   ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2727,6 +2731,8 @@ export class SendData {
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
     body.append("transactionhash", transactionhash);
+    body.append("color", color);
+    body.append("email", email);
 
     return this.httpClient.post(
       this.controllerapi + "updatestorecart_mp",
@@ -2739,6 +2745,7 @@ export class SendData {
     id_orders: string = "",
     user_uid: string = "",
     addressw: string = "",
+    id_product: string = "",
     file_orders: string = ""
   ): Observable<any> {
     let header = new HttpHeaders();
@@ -2750,6 +2757,7 @@ export class SendData {
     body.append("id_orders", id_orders);
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
+    body.append("id_product", id_product);
     body.append("file_orders", file_orders);
 
     return this.httpClient.post(
