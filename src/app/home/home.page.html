@@ -1192,7 +1192,7 @@
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
             </div>
-            <input type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{address}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
+            <input type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required />
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
             </div>
@@ -1252,7 +1252,7 @@
           <div class="modal-footer">
             <div class="flex items-center justify-center space-x-4">
               <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
-              <button (click)="pay_cartStore(cartID, globalID, wallets)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
+              <button (click)="pay_cartStore(cartID, globalID, wallets, getaddress)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
             </div>
           </div>
         </div>

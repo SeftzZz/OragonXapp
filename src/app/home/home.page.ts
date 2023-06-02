@@ -358,7 +358,7 @@ export class HomePage implements OnInit {
     ItemIdJaket  : any;
     actualcartPrice : any;
     cartStatus : any;
-    address : any;
+    getaddress : any;
     postal_id : any;
     cities : any;
 
@@ -473,7 +473,17 @@ export class HomePage implements OnInit {
         console.log("stateHash", this.stateHash);
         console.log("state_buy", this.state_buy);
         console.log("status_direct_buy", this.status_direct_buy);
-        this.address = localStorage.getItem("alamat");
+        this.senddata.getaddressmp(this.globalID).subscribe(
+          async(getaddress)=>{
+            var viewaddress = JSON.parse(getaddress);
+            this.getaddress = viewaddress.nmAddress;
+            const alert = await this.alertController.create({
+              header : 'Address',
+              message : this.getaddress,
+              buttons : ['Ok']
+            });
+            await alert.present();
+          });
         this.postal_id = localStorage.getItem("kode_pos");
         this.cities = localStorage.getItem("kota");
 
@@ -2843,7 +2853,7 @@ export class HomePage implements OnInit {
         }
       }
 
-      async pay_cartStore(id_cart, user_uid, addressw) {
+      async pay_cartStore(id_cart, user_uid, addressw, getaddress) {
         if(this.globalID == "WB7qCPQR9BYEDT1BW6nQjLjKqBw1") {
           if(+(this.oragon_balance * 1).toFixed(0) > +(this.cartPrice * 1).toFixed(0) && (this.bnb_balance*1) > (this.storeFee*1)) {
             let amountf = this.cartPrice * 1e9
@@ -3067,6 +3077,7 @@ export class HomePage implements OnInit {
                 const loading = await this.loadingController.create();
                 await loading.present();
                 this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash');
+                this.senddata.setaddressmp(this.globalID, this.getaddress);
                 await alert.present();
                 setTimeout(()=>{
                   window.location.reload();
@@ -3293,15 +3304,19 @@ export class HomePage implements OnInit {
             this.status_direct_buy = 1;
             this.stateHash = true;
             this.connect = true;
-            const alert = await this.alertController.create({
-              header: 'Success',
-              message: '(DEMO) Transaction Successfull, We have send this transaction receipt to your email',
-              buttons: ['OK'],
-            });
+            
             const loading = await this.loadingController.create();
             await loading.present();
             this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash');
-            await alert.present();
+            this.senddata.setaddressmp(this.globalID, this.getaddress).subscribe(
+              async(viewdata:any)=>{
+                const alert = await this.alertController.create({
+                  header: 'Saved!',
+                  message: viewdata,
+                  buttons: ['OK'],
+                });
+                await alert.present();
+            });
             setTimeout(()=>{
               window.location.reload();
             }, 5000);
@@ -5294,7 +5309,9 @@ export class HomePage implements OnInit {
 
   inputAddress(event: any) {
     const query = event.target.value;
-    this.address = localStorage.setItem("alamat", query);
+    localStorage.setItem("alamat", query);
+    const setaddress = localStorage.getItem("alamat");
+    this.getaddress = setaddress;
   }
 
   inputPostalCode(event: any) {
@@ -5341,7 +5358,7 @@ export class HomePage implements OnInit {
   addJaketsMetalicana(ordersID, globalID, product_id) {
     var DocIdJakets = this.newTime();
     var updateJakets = 1;
-    this.address = localStorage.getItem("alamat");
+    this.getaddress = localStorage.getItem("alamat");
     this.postal_id = localStorage.getItem("kode_pos");
     this.cities = localStorage.getItem("kota");
     if(product_id == 17) {
@@ -5396,7 +5413,7 @@ export class HomePage implements OnInit {
               CreatedAt: this.newTime()
             },
             QrCodeUrl: qrCodeUrl,
-            Address: this.address,
+            Address: this.getaddress,
             PostalID: this.postal_id,
             City: this.cities,
             Id: this.codeHoodie + DocIdJakets,
