@@ -1976,7 +1976,7 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
-  updatestorecart(id_cart = "", user_uid = "", addressw = "", email = "") {
+  updatestorecart(id_cart = "", user_uid = "", addressw = "", email = "", color = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
     header.append("Content-Type", "application/x-www-form-urlencoded");
@@ -1987,6 +1987,7 @@ let SendData = (_class = class SendData {
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
     body.append("email", email);
+    body.append("color", color);
     return this.httpClient.post(this.controllerapi + "updatestorecart_mp", body, {
       headers: header,
       responseType: "text"
@@ -2047,7 +2048,7 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
-  updatestorecartHome(id_cart = "", user_uid = "", addressw = "", transactionhash = "") {
+  updatestorecartHome(id_cart = "", user_uid = "", addressw = "", transactionhash = "", color = "", email = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
     header.append("Content-Type", "application/x-www-form-urlencoded");
@@ -2058,12 +2059,14 @@ let SendData = (_class = class SendData {
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
     body.append("transactionhash", transactionhash);
+    body.append("color", color);
+    body.append("email", email);
     return this.httpClient.post(this.controllerapi + "updatestorecart_mp", body, {
       headers: header,
       responseType: "text"
     });
   }
-  updatestoreprogressHome(id_orders = "", user_uid = "", addressw = "", file_orders = "") {
+  updatestoreprogressHome(id_orders = "", user_uid = "", addressw = "", id_product = "", file_orders = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
     header.append("Content-Type", "application/x-www-form-urlencoded");
@@ -2073,6 +2076,7 @@ let SendData = (_class = class SendData {
     body.append("id_orders", id_orders);
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
+    body.append("id_product", id_product);
     body.append("file_orders", file_orders);
     return this.httpClient.post(this.controllerapi + "updatestoreprogress_mp", body, {
       headers: header,
@@ -2629,6 +2633,61 @@ let SendData = (_class = class SendData {
     body.append("owners", owners);
     body.append("status", status);
     return this.httpClient.post(this.controllerapi + "insertNewEgg_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  getaddressmp(uid = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    return this.httpClient.post(this.controllerapi + "getaddress_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  setaddressmp(uid = "", nmAddress = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("nmAddress", nmAddress);
+    return this.httpClient.post(this.controllerapi + "setaddress_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  setaddresspostidmp(uid = "", postidAddress = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("postidAddress", postidAddress);
+    return this.httpClient.post(this.controllerapi + "setaddresspostid_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  setaddresscitymp(uid = "", cityAddress = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("cityAddress", cityAddress);
+    return this.httpClient.post(this.controllerapi + "setaddresscity_mp", body, {
       headers: header,
       responseType: "text"
     });
