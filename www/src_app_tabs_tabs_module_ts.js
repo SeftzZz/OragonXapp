@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TabsPage": () => (/* binding */ TabsPage)
 /* harmony export */ });
-/* harmony import */ var D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty.js */ 77797);
+/* harmony import */ var _workspaces_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty.js */ 77797);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page.html?ngResource */ 65230);
 /* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs.page.scss?ngResource */ 62146);
@@ -153,12 +153,12 @@ var _class;
 
 let TabsPage = (_class = class TabsPage {
   constructor() {
-    (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "connect", void 0);
+    (0,_workspaces_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "connect", void 0);
   }
   ngOnInit() {
     this.connect = false;
   }
-}, (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_class, "ctorParameters", () => []), _class);
+}, (0,_workspaces_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_class, "ctorParameters", () => []), _class);
 TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
   selector: 'app-tabs',
   template: _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
@@ -179,7 +179,7 @@ var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../nod
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ 60931);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@media (min-width: 1080px) {\n  ion-tab-bar {\n    display: none;\n  }\n}", "",{"version":3,"sources":["webpack://./src/app/tabs/tabs.page.scss"],"names":[],"mappings":"AAAA;EACC;IACC,aAAA;EACA;AACF","sourcesContent":["@media (min-width: 1080px) {\r\n\tion-tab-bar {\r\n\t\tdisplay : none;\r\n\t}\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "@media (min-width: 1080px) {\n  ion-tab-bar {\n    display: none;\n  }\n}", "",{"version":3,"sources":["webpack://./src/app/tabs/tabs.page.scss"],"names":[],"mappings":"AAAA;EACC;IACC,aAAA;EACA;AACF","sourcesContent":["@media (min-width: 1080px) {\n\tion-tab-bar {\n\t\tdisplay : none;\n\t}\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -193,7 +193,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-tabs>\r\n\r\n  <ion-tab-bar slot=\"bottom\">\r\n    <a href=\"/tabs/home\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"home-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Home</ion-label> -->\r\n    </a>\r\n\r\n    <a href=\"/tabs/p2pmarket\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"cart-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">P2P Market</ion-label> -->\r\n    </a>\r\n\r\n    <a href=\"/tabs/gamehub\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"game-controller-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Game Hub</ion-label> -->\r\n    </a>\r\n\r\n    <a id=\"nested-button\" href=\"/tabs/background\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"add-circle-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Utility</ion-label> -->\r\n    </a>\r\n\r\n    <a href=\"/tabs/tab2\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"chatbubbles-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Suppport</ion-label> -->\r\n    </a>\r\n\r\n  </ion-tab-bar>\r\n\r\n</ion-tabs>";
+module.exports = "<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <a href=\"/tabs/home\" style=\"padding: 1.5rem;\">\n      <ion-icon name=\"home-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Home</ion-label> -->\n    </a>\n\n    <a href=\"/tabs/p2pmarket\" style=\"padding: 1.5rem;\">\n      <ion-icon name=\"cart-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">P2P Market</ion-label> -->\n    </a>\n\n    <a href=\"/tabs/gamehub\" style=\"padding: 1.5rem;\">\n      <ion-icon name=\"game-controller-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Game Hub</ion-label> -->\n    </a>\n\n    <a id=\"nested-button\" href=\"/tabs/background\" style=\"padding: 1.5rem;\">\n      <ion-icon name=\"add-circle-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Utility</ion-label> -->\n    </a>\n\n    <a href=\"/tabs/tab2\" style=\"padding: 1.5rem;\">\n      <ion-icon name=\"chatbubbles-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\n      <!-- <ion-label style=\"display: block;font-size: 0.5rem;\">Suppport</ion-label> -->\n    </a>\n\n  </ion-tab-bar>\n\n</ion-tabs>";
 
 /***/ })
 
