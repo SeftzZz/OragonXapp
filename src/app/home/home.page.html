@@ -1265,7 +1265,7 @@
     </div>
 
     <!-- Cart Modal -->
-    <div *ngIf="cartCount > 0" class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div *ngIf="cartCount > 0" class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true" style="overflow: hidden;">
       <div class="modal-dialog max-w-2xl">
         <div class="modal-content" style="margin-bottom: 1rem;">
           <div class="modal-header">
@@ -1326,7 +1326,7 @@
             <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
             </div>
-            <textarea *ngIf="getaddress != '';else inputaddress" type="text" disabled (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
+            <textarea *ngIf="getaddress != '';else inputaddress" type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
             <ng-template #inputaddress>
               <textarea type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
             </ng-template>
@@ -1822,7 +1822,7 @@
     </div>
 
     <!-- Add Address Modal -->
-    <div *ngIf="progressCount > 0" class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true" style="overflow:hidden;">
       <div class="modal-dialog max-w-2xl">
         <div class="modal-content" style="margin-bottom: 1rem;">
           <div class="modal-header">
