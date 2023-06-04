@@ -1976,7 +1976,21 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
-  updatestorecart(id_cart = "", user_uid = "", addressw = "", email = "", color = "") {
+  createSessionmp(uid = "", valueSession = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("valueSession", valueSession);
+    return this.httpClient.post(this.controllerapi + "createSession_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  updatestorecart(id_cart = "", user_uid = "", addressw = "", transactionHash = "", email = "", color = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
     header.append("Content-Type", "application/x-www-form-urlencoded");
@@ -1986,6 +2000,7 @@ let SendData = (_class = class SendData {
     body.append("id_cart", id_cart);
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
+    body.append("transactionHash", transactionHash);
     body.append("email", email);
     body.append("color", color);
     return this.httpClient.post(this.controllerapi + "updatestorecart_mp", body, {

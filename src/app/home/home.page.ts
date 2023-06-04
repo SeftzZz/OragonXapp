@@ -362,6 +362,12 @@ export class HomePage implements OnInit {
     postal_id : any;
     cities : any;
     color : any;
+    saveCarts : any;
+    descSession : any;
+    lengthValueSession : any;
+    hargaValueSession : any;
+    deskripsiValueSession : any;
+    namaValueSession : any;
 
   constructor(
     private authService: AuthService,
@@ -2850,7 +2856,7 @@ export class HomePage implements OnInit {
         }
       }
 
-      async pay_cartStore(id_cart, user_uid, addressw, getaddress, color) {
+      async pay_cartStore(user_uid, addressw, getaddress, color) {
         this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
           this.storedetail = JSON.parse(data)
           this.storeDeskripsi = this.storedetail.deskripsi
@@ -3063,16 +3069,251 @@ export class HomePage implements OnInit {
           
           const loading = await this.loadingController.create();
           await loading.present();
-          this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash', this.color, this.email);
-          this.senddata.setaddressmp(this.globalID, this.getaddress).subscribe(
-            async(viewdata:any)=>{
-              const alert = await this.alertController.create({
-                header: 'Thankyou !',
-                message: 'Your cart is ready on the OragonX Marketplace.',
-                buttons: ['OK'],
-              });
-              await alert.present();
+          const getsaveCart = localStorage.getItem("carts");
+          console.log(getsaveCart);
+
+          // this.updatestorecart(this.cartID, this.globalID, this.wallets, 'res.transactionHash', this.color, this.email);
+          // this.senddata.setaddressmp(this.globalID, this.getaddress).subscribe(
+          //   async(viewdata:any)=>{
+          //     const alert = await this.alertController.create({
+          //       header: 'Thankyou !',
+          //       message: 'Your cart is ready on the OragonX Marketplace.',
+          //       buttons: ['OK'],
+          //     });
+          //     await alert.present();
+          // });
+          setTimeout(()=>{
+            window.location.reload();
+          }, 5000);
+          loading.dismiss();
+      }
+
+      async pay_cartmultiStore(user_uid, addressw, getaddress, color) {
+        this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
+          this.storedetail = JSON.parse(data)
+          this.storeDeskripsi = this.storedetail.deskripsi
+
+          // set transaction history
+          const messaging = getMessaging();
+          getToken(messaging, 
+           { vapidKey: environment.firebase.vapidKey}).then(
+             (tokenPushNotification) => {
+               if (tokenPushNotification) {
+                this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
+                  this.tokenNotif = JSON.parse(dataToken);
+                  // Create Transaction History
+                  this.senddata.settrxhistory(
+                    this.storeID, //storeid
+                    this.globalID, //userid
+                    'S-BNB' + this.newTime(), //itemid
+                    this.cartPriceBNB, //amount BNB
+                    'res.transactionHash', //tx_hash
+                    'BNB', //type
+                    'Package-Official-Store', //item
+                    this.email, //email
+                    this.tokenNotif.tokenPushNotification //token
+                  ).subscribe((data:any) => {},(error:any) => {})
+                });
+               } else {
+                 // console.log('No registration token available. Request permission to generate one.');
+               }
+           }).catch((err) => {
+              // console.log('An error occurred while retrieving token. ', err);
           });
+        },(error:any) => {});
+
+        // packages-official-store
+          if(this.storeID == 16) {
+            // BATTERY
+            this.addDorch();
+          } else if(this.storeID == 15) {
+            // BATTERY
+            this.addMetalicana();
+          } else if(this.storeID == 14) {
+            // BATTERY
+            this.addFood1();
+          } else if(this.storeID == 13) {
+            // BATTERY
+            this.addBattery8();
+          } else if(this.storeID == 12) {
+            // BATTERY
+            this.addBattery12();
+          } else if(this.storeID == 11) {
+            // BATTERY
+            this.addBattery24();
+          } else if(this.storeID == 10) {
+            // EGGS
+            this.addAkh();
+            this.addMeru();
+            this.addRitra();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1),
+              Ritra: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
+
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 9) {
+            // EGGS
+            this.addAkh();
+            this.addFeng();
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
+
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 8) {
+            // EGGS
+            this.addRitra();
+            this.addFeng();
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
+
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 7) {
+            // EGGS
+            this.addRitra();
+            this.addFeng();
+            this.addAkh();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1),
+              Akh: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+            this.addBattery24();
+
+            // FOODS
+            this.addFood();
+          } else if(this.storeID == 6) {
+            // EGGS
+            this.addAkh();
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1),
+              Meru: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+
+            // FOODS
+            this.addFood20();
+          } else if(this.storeID == 5) {
+            // EGGS
+            this.addRitra();
+            this.addFeng();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1),
+              Feng: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+            this.addBattery12();
+
+            // FOODS
+            this.addFood20();
+          } else if(this.storeID == 4) {
+            // EGGS
+            this.addFeng();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Feng: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } else if(this.storeID == 3) {
+            // EGGS
+            this.addRitra();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Ritra: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } else if(this.storeID == 2) {
+            // EGGS
+            this.addMeru();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Meru: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } else if(this.storeID == 1) {
+            // EGGS
+            this.addAkh();
+            this.fs.collection("Roulette").doc("Oragon").update({ 
+              Akh: firebase.firestore.FieldValue.increment(-1)
+            });
+
+            // BATTERY
+            this.addBattery8();
+
+            // FOODS
+            this.addFood10();
+          } 
+
+        //if success
+          this.state_buy = 3;
+          this.status_direct_buy = 1;
+          this.stateHash = true;
+          this.connect = true;
+          
+          const loading = await this.loadingController.create();
+          await loading.present();
+          const getsaveCart = localStorage.getItem("carts");
+          console.log(JSON.parse(getsaveCart));
+          const descsaveCart = JSON.parse(getsaveCart);
+          for(let c in descsaveCart) {
+            this.updatestorecart(descsaveCart[c].id_cart, this.globalID, this.wallets, 'res.transactionHash', this.color, this.email);
+          }
+          this.senddata.setaddressmp(this.globalID, this.getaddress);
+          const alert = await this.alertController.create({
+            header: 'Thankyou !',
+            message: 'Your cart is ready on the OragonX Marketplace.',
+            buttons: ['OK'],
+          });
+          await alert.present();
           setTimeout(()=>{
             window.location.reload();
           }, 5000);
@@ -4469,27 +4710,39 @@ export class HomePage implements OnInit {
 
     getstorecart() {
       this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
-        this.storecart = JSON.parse(data)
-        for(let i in this.storecart) {
-          if(this.storecart.length == 0) {
-            this.cartCount = 0;  
-          } else {
-            this.cartCount = this.storecart.length
+        this.storecart = JSON.parse(data);
+        let sumCartPrice = 0; // Variable to store the sum of cart prices
+
+        for (let i in this.storecart) {
+          const tempStatus = this.storecart[i].active;
+
+          if (tempStatus == '1') {
+            sumCartPrice += parseFloat(this.storecart[i].harga); // Accumulate cart prices when status is '1'
           }
-          this.cartUID = this.globalID
-          this.carts = this.storecart
-          this.cartID = this.storecart[i].id_cart
-          this.storeID = this.storecart[i].product_id
-          this.cartName = this.storecart[i].nama
-          this.cartDeskripsi = this.storecart[i].deskripsi
-          this.cartPrice = this.storecart[i].harga
-          this.cartQty = this.storecart[i].qty_cart
-          let cartPriceBNB = this.current_bnb * this.cartPrice
-          this.cartPriceBNB = (cartPriceBNB).toFixed(4);
-          this.cartImg = this.storecart[i].gambar
-          // console.log(this.cartPriceBNB)
-        }        
-      },(error:any) => {})
+
+          if (this.storecart.length == 0) {
+            this.cartCount = 0;
+          } else {
+            this.cartCount = this.storecart.length;
+          }
+
+          this.cartUID = this.globalID;
+          this.carts = this.storecart;
+          this.cartID = this.storecart[i].id_cart;
+          this.storeID = this.storecart[i].product_id;
+          this.cartName = this.storecart[i].nama;
+          this.cartDeskripsi = this.storecart[i].deskripsi;
+          this.cartQty = this.storecart[i].qty_cart;
+
+          let cartPriceBNB = this.current_bnb * parseFloat(this.storecart[i].harga);
+          this.cartPriceBNB = cartPriceBNB.toFixed(4);
+
+          this.cartImg = this.storecart[i].gambar;
+        }
+
+        this.cartPrice = sumCartPrice.toFixed(2); // Assign the sum of cart prices to this.cartPrice
+        console.log(this.cartPrice);
+      }, (error:any) => {})
     }
 
     getstoremulticart() {
@@ -4497,8 +4750,9 @@ export class HomePage implements OnInit {
       this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
         this.storecart = JSON.parse(data);
         this.cartCount = this.storecart.length;
-        this.cartPrice = this.storecart.reduce((sum, product) => sum + Number(product.harga), 0);
-        this.cartPriceTemp = this.cartPrice;
+        this.cartPrice = this.storecart.harga;
+        console.log(this.cartPrice);
+        // this.cartPriceTemp = this.cartPrice;
       },(error:any) => {})
     }
 
@@ -4506,22 +4760,50 @@ export class HomePage implements OnInit {
       const loading = await this.loadingController.create();
       await loading.present();
         this.senddata.setActiveCart(id_cart).subscribe((data:any) => {
-          let harga = 0;
           this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
             this.storecart = JSON.parse(data);
+            let sumCartPrice = 0; // Variable to store the sum of cart prices
             if(this.storecart.active == 1) {
               this.senddata.setactiveidcart(id_cart).subscribe((cartactive:any) => {
                 const cartPrice = this.storecart.reduce((difference, product) => difference - Number(product.harga), 0);
                 console.log("cart aktif", JSON.parse(cartactive));
-                this.cartPriceTemp = cartPrice;
+                let sumCartPrice = 0; // Variable to store the sum of cart prices
+
+                for (let i in this.storecart) {
+                  const tempStatus = this.storecart[i].active;
+
+                  if (tempStatus == '1') {
+                    sumCartPrice += parseFloat(this.storecart[i].harga); // Accumulate cart prices when status is '1'
+                  }
+                }
+                this.cartPrice = sumCartPrice.toFixed(2); // Assign the sum of cart prices to this.cartPrice
+                console.log(this.cartPrice);
               });
             } else {
               this.senddata.setnoactiveidcart(id_cart).subscribe((cartnoactive:any) => {
                 const cartPrice = this.storecart.reduce((sum, product) => sum + Number(product.harga), 0);
                 console.log("cart tidak aktif", JSON.parse(cartnoactive));
-                this.cartPriceTemp = cartPrice;
+                let sumCartPrice = 0; // Variable to store the sum of cart prices
+
+                for (let i in this.storecart) {
+                  const tempStatus = this.storecart[i].active;
+
+                  if (tempStatus == '1') {
+                    sumCartPrice += parseFloat(this.storecart[i].harga); // Accumulate cart prices when status is '1'
+                  }
+                }
+                this.cartPrice = sumCartPrice.toFixed(2); // Assign the sum of cart prices to this.cartPrice
+                console.log(this.cartPrice);
               });
             }
+
+            this.cartPrice = sumCartPrice.toFixed(2); // Assign the sum of cart prices to this.cartPrice
+            console.log(this.cartPrice);
+          }, (error:any) => {});
+
+          this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
+            this.storecart = JSON.parse(data);
+            
           },(error:any) => {});
         });
       loading.dismiss();
@@ -4543,6 +4825,14 @@ export class HomePage implements OnInit {
           let setstorecart = data
           this.senddata.getstorecart(this.globalID).subscribe((data:any) => {
             this.storecart = JSON.parse(data)
+            const saveCarts = localStorage.setItem("carts", data);
+            this.saveCarts = localStorage.getItem("carts");
+            console.log(this.saveCarts);
+            this.senddata.createSessionmp(this.globalID, this.saveCarts).subscribe((session:any) => {
+              const descSession = JSON.parse(session);
+              this.descSession = JSON.parse(descSession.valueSession);
+              console.log(this.descSession);
+            });
             for(let i in this.storecart) {
               console.log(this.storecart[i].addressw)
               if(this.storecart.length == 0) {
@@ -4596,8 +4886,13 @@ export class HomePage implements OnInit {
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]); // read file as data url
-        this.updatestoreprogress(this.ordersID, this.globalID, this.wallets, id_product, event.target.files[0]);
-        this.addJaketsMetalicana(this.ordersID, user_uid, id_product);
+        const getsaveCart = localStorage.getItem("carts");
+        console.log(JSON.parse(getsaveCart));
+        const descsaveCart = JSON.parse(getsaveCart);
+        for(let c in descsaveCart) {
+          this.updatestoreprogress(descsaveCart[c].id_orders, this.globalID, this.wallets, descsaveCart[c].product_id, event.target.files[0]);
+          this.addJaketsMetalicana(descsaveCart[c].id_orders, user_uid, descsaveCart[c].product_id);
+        }
         loading.dismiss();
         
         console.log(event.target.files[0]);
@@ -4640,6 +4935,7 @@ export class HomePage implements OnInit {
       this.senddata.updatestoreprogressHome(id_orders, user_uid, addressw, product_id, file_orders).subscribe((data:any) => {
         let updatestoreprogressHome = data
         console.log(updatestoreprogressHome)
+        localStorage.removeItem("carts");
       },(error:any) => {})
 
       loading.dismiss();
@@ -4649,20 +4945,30 @@ export class HomePage implements OnInit {
       this.senddata.getstoreprogress(this.globalID).subscribe(
         (data: any) => {
           this.storeprogress = JSON.parse(data);
-          for (let i in this.storeprogress) {
-            // console.log(this.storeprogress[i].addressw)
-            this.progressCount = this.storeprogress.length;
-            this.cartUID = this.globalID;
-            this.carts = this.storeprogress;
-            this.ordersID = this.storeprogress[i].id_orders;
-            this.product_id = this.storeprogress[i].product_id
-            // this.cartDeskripsi = this.storeprogress[i].deskripsi
-            this.cartPrice = this.storeprogress[i].harga;
-            this.cartQty = this.storeprogress[i].qty_cart;
-            let cartPriceBNB = this.current_bnb * this.cartPrice * this.cartQty;
-            this.cartPriceBNB = cartPriceBNB.toFixed(4);
-            this.cartImg = this.storeprogress[i].gambar;
-          }
+          this.saveCarts = localStorage.getItem("carts");
+          console.log(this.saveCarts);
+          this.senddata.createSessionmp(this.globalID, this.saveCarts).subscribe((session:any) => {
+            const descSession = JSON.parse(session);
+            this.descSession = JSON.parse(descSession.valueSession);
+            this.lengthValueSession = this.descSession.length;
+            let sumCartPrice = 0; // Variable to store the sum of cart prices
+            for(let i in this.descSession) {
+              console.log(this.descSession[i].harga);
+              this.ordersID = this.descSession[i].id_orders;
+              this.product_id = this.descSession[i].product_id
+              // this.cartDeskripsi = this.descSession[i].deskripsi
+              this.cartPrice = this.descSession[i].harga;
+              this.cartQty = this.descSession[i].qty_cart;
+              let cartPriceBNB = this.current_bnb * this.cartPrice * this.cartQty;
+              this.cartPriceBNB = cartPriceBNB.toFixed(4);
+              this.cartImg = this.descSession[i].gambar;
+
+              const tempStatus = this.descSession[i].active;
+              sumCartPrice += parseFloat(this.descSession[i].harga); // Accumulate cart prices when status is '1'
+            }
+            this.cartPrice = sumCartPrice.toFixed(2); // Assign the sum of cart prices to this.cartPrice
+            console.log(this.cartPrice);
+          });
         },
         (error: any) => {}
       );

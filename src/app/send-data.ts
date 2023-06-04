@@ -2609,10 +2609,30 @@ export class SendData {
     });
   }
 
+  createSessionmp(
+    uid: string = "",
+    valueSession: string = ""
+  ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("valueSession", valueSession);
+
+    return this.httpClient.post(this.controllerapi + "createSession_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
   updatestorecart(
     id_cart: string = "",
     user_uid: string = "",
     addressw: string = "",
+    transactionHash: string = "",
     email: string = "",
     color: string = ""
   ): Observable<any> {
@@ -2625,6 +2645,7 @@ export class SendData {
     body.append("id_cart", id_cart);
     body.append("user_uid", user_uid);
     body.append("addressw", addressw);
+    body.append("transactionHash", transactionHash);
     body.append("email", email);
     body.append("color", color);
 

@@ -1451,9 +1451,9 @@
   "resolved" "https://registry.npmjs.org/@emotion/unitless/-/unitless-0.7.5.tgz"
   "version" "0.7.5"
 
-"@esbuild/linux-x64@0.17.18":
-  "integrity" "sha512-66RmRsPlYy4jFl0vG80GcNRdirx4nVWAzJmXkevgphP1qf4dsLQCpSKGM3DUQCojwU1hnepI63gNZdrr02wHUA=="
-  "resolved" "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.17.18.tgz"
+"@esbuild/win32-x64@0.17.18":
+  "integrity" "sha512-qU25Ma1I3NqTSHJUOKi9sAH1/Mzuvlke0ioMJRthLXKm7JiSKVwFghlGbDLOO2sARECGhja4xYfRAZNPAkooYg=="
+  "resolved" "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.17.18.tgz"
   "version" "0.17.18"
 
 "@eslint/eslintrc@^0.4.3":
@@ -2271,13 +2271,6 @@
   dependencies:
     "@types/cordova" "latest"
 
-"@ionic-native/qr-scanner@^5.36.0":
-  "integrity" "sha512-6DhJC/6BLdH6dT4X1VBMU/M15IGMT9ivAvw2Va3DOaqZ2yCKDdRTTuJcHVW7f+PwBoLsO/HXmiO065RXLyEHJg=="
-  "resolved" "https://registry.npmjs.org/@ionic-native/qr-scanner/-/qr-scanner-5.36.0.tgz"
-  "version" "5.36.0"
-  dependencies:
-    "@types/cordova" "latest"
-
 "@ionic/angular-toolkit@^6.0.0":
   "integrity" "sha512-QZkoNdXej4MQqKGdm+suzTK39R0iRGpBFhOzP+f75v4ZGgEQ+ntA213UdaTa6EvsvS7n14p0zbHiBroLUOCNzQ=="
   "resolved" "https://registry.npmjs.org/@ionic/angular-toolkit/-/angular-toolkit-6.1.0.tgz"
@@ -2798,14 +2791,9 @@
     "semver" "7.3.4"
     "tslib" "^2.0.0"
 
-"@nrwl/nx-linux-x64-gnu@15.9.3":
-  "integrity" "sha512-P8AOPRufvV4a5cSczNsw84zFAI7NgAiEBTybYcyymdNJmo0iArJXEmvj/G4mB20O8VCsCkwqMYAu6nQEnES1Kw=="
-  "resolved" "https://registry.npmjs.org/@nrwl/nx-linux-x64-gnu/-/nx-linux-x64-gnu-15.9.3.tgz"
-  "version" "15.9.3"
-
-"@nrwl/nx-linux-x64-musl@15.9.3":
-  "integrity" "sha512-4ZYDp7T319+xbw7Z7KVtRefzaXJipZfgrM49r+Y1FAfYDc8y18zvKz3slK26wfWz+EUZwKsa/DfA2KmyRG3DvQ=="
-  "resolved" "https://registry.npmjs.org/@nrwl/nx-linux-x64-musl/-/nx-linux-x64-musl-15.9.3.tgz"
+"@nrwl/nx-win32-x64-msvc@15.9.3":
+  "integrity" "sha512-gdnvqURKnu0EQGOFJ6NUKq6wSB+viNb7Z8qtKhzSmFwVjT8akOnLWn7ZhL9v28TAjLM7/s1Mwvmz/IMj1PGlcQ=="
+  "resolved" "https://registry.npmjs.org/@nrwl/nx-win32-x64-msvc/-/nx-win32-x64-msvc-15.9.3.tgz"
   "version" "15.9.3"
 
 "@nrwl/tao@13.1.3":
@@ -5609,14 +5597,6 @@
     "semver" "^7.3.8"
     "stringify-package" "^1.0.1"
     "write-file-atomic" "^3.0.3"
-
-"cordova-plugin-qrscanner@^3.0.1":
-  "integrity" "sha512-xrwOP3nD+VmRSiV0w7chZ5PLw2YwpI9vtLdeoGNYLLzmmjjYbyIof+x9vOEOgjtwrg9S61rukmOZhQAmkzaosA=="
-  "resolved" "https://registry.npmjs.org/cordova-plugin-qrscanner/-/cordova-plugin-qrscanner-3.0.1.tgz"
-  "version" "3.0.1"
-  dependencies:
-    "qrcode-reader" "^1.0.4"
-    "webrtc-adapter" "^3.1.4"
 
 "cordova-res@^0.15.4":
   "integrity" "sha512-TjFZhjUtK8qq4DVrgR+KI7tKcUL704cnkTPRhHbKlCPzefHoz1tBOX93wc76dOMmOWKTsbJz83DIm6mqdp5Pmg=="
@@ -10371,14 +10351,6 @@
   "resolved" "https://registry.npmjs.org/next-tick/-/next-tick-1.1.0.tgz"
   "version" "1.1.0"
 
-"nice-napi@^1.0.2":
-  "integrity" "sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA=="
-  "resolved" "https://registry.npmjs.org/nice-napi/-/nice-napi-1.0.2.tgz"
-  "version" "1.0.2"
-  dependencies:
-    "node-addon-api" "^3.0.0"
-    "node-gyp-build" "^4.2.2"
-
 "node-abi@^3.3.0":
   "integrity" "sha512-zNy02qivjjRosswoYmPi8hIKJRr8MpQyeKT6qlcq/OnOgA3Rhoae+IYOqsM9V5+JnHWmxKnWOT2GxvtqdtOCXA=="
   "resolved" "https://registry.npmjs.org/node-abi/-/node-abi-3.40.0.tgz"
@@ -10391,7 +10363,7 @@
   "resolved" "https://registry.npmjs.org/node-addon-api/-/node-addon-api-2.0.2.tgz"
   "version" "2.0.2"
 
-"node-addon-api@^3.0.0", "node-addon-api@^3.2.1":
+"node-addon-api@^3.2.1":
   "integrity" "sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A=="
   "resolved" "https://registry.npmjs.org/node-addon-api/-/node-addon-api-3.2.1.tgz"
   "version" "3.2.1"
@@ -10427,7 +10399,7 @@
   "resolved" "https://registry.npmjs.org/node-forge/-/node-forge-1.3.1.tgz"
   "version" "1.3.1"
 
-"node-gyp-build@^4.2.0", "node-gyp-build@^4.2.2", "node-gyp-build@^4.3.0":
+"node-gyp-build@^4.2.0", "node-gyp-build@^4.3.0":
   "integrity" "sha512-NTZVKn9IylLwUzaKjkas1e4u2DLNcV4rdYagA4PWdPwW87Bi7z+BznyKSRwS/761tV/lzCGXplWsiaMjLqP2zQ=="
   "resolved" "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.6.0.tgz"
   "version" "4.6.0"
@@ -11607,11 +11579,6 @@
   "resolved" "https://registry.npmjs.org/qjobs/-/qjobs-1.2.0.tgz"
   "version" "1.2.0"
 
-"qrcode-reader@^1.0.4":
-  "integrity" "sha512-rRjALGNh9zVqvweg1j5OKIQKNsw3bLC+7qwlnead5K/9cb1cEIAGkwikt/09U0K+2IDWGD9CC6SP7tHAjUeqvQ=="
-  "resolved" "https://registry.npmjs.org/qrcode-reader/-/qrcode-reader-1.0.4.tgz"
-  "version" "1.0.4"
-
 "qrcode@^1.5.3":
   "integrity" "sha512-puyri6ApkEHYiVl4CFzo1tDkAZ+ATcnbJrJ6RiBM1Fhctdn/ix9MTE3hRph33omisEbC/2fcfemsseiKgBPKZg=="
   "resolved" "https://registry.npmjs.org/qrcode/-/qrcode-1.5.3.tgz"
@@ -12367,11 +12334,6 @@
   "integrity" "sha512-cdwTTnqPu0Hyvf5in5asVdZocVDTNRmR7XEcJuIzMjJeSHybHl7vpB66AzwTaIg6CLSbtjcxc8fqcySfnTkccA=="
   "resolved" "https://registry.npmjs.org/scrypt-js/-/scrypt-js-3.0.1.tgz"
   "version" "3.0.1"
-
-"sdp@^1.5.0":
-  "integrity" "sha512-9x0+fpJHW2bbqtIktmL+H9m+BswgurPVPhWrur4cCZPDWDSsdGYvRBaKhDXlnNCD1b/Xi8cOTG2u703CTQuwgg=="
-  "resolved" "https://registry.npmjs.org/sdp/-/sdp-1.5.4.tgz"
-  "version" "1.5.4"
 
 "secp256k1@^4.0.1":
   "integrity" "sha512-NLZVf+ROMxwtEj3Xa562qgv2BK5e2WNmXPiOdVIPLgs6lyTzMvBq0aWTYMI5XCP9jZMVKOcqZLw/Wc4vDkuxhA=="
@@ -14424,13 +14386,6 @@
     "terser-webpack-plugin" "^5.3.7"
     "watchpack" "^2.4.0"
     "webpack-sources" "^3.2.3"
-
-"webrtc-adapter@^3.1.4":
-  "integrity" "sha512-rz+SxzIEuHDbyTKhYffLmzSGX6+D/pOwoXKzS1pbR2PmMhBQTXCd7aYVhSoCcTHRcmcAR3OsFE8pbYFdy1qjbQ=="
-  "resolved" "https://registry.npmjs.org/webrtc-adapter/-/webrtc-adapter-3.4.3.tgz"
-  "version" "3.4.3"
-  dependencies:
-    "sdp" "^1.5.0"
 
 "websocket-driver@^0.7.4", "websocket-driver@>=0.5.1":
   "integrity" "sha512-b17KeDIQVjvb0ssuSDF2cYXSg2iztliJ4B9WdsuB6J952qCPKmnVq4DyW5motImXHDC1cBT/1UezrJVsKw5zjg=="
