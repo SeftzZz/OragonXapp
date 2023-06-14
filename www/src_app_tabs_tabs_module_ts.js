@@ -139,30 +139,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TabsPage": () => (/* binding */ TabsPage)
 /* harmony export */ });
-/* harmony import */ var D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty.js */ 77797);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 34929);
-/* harmony import */ var _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page.html?ngResource */ 65230);
-/* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs.page.scss?ngResource */ 62146);
-/* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 86839);
+/* harmony import */ var D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
+/* harmony import */ var D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty.js */ 77797);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs.page.html?ngResource */ 65230);
+/* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs.page.scss?ngResource */ 62146);
+/* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 86839);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 93819);
+
 
 var _class;
 
 
 
 
+
 let TabsPage = (_class = class TabsPage {
-  constructor() {
-    (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "connect", void 0);
+  constructor(loadingController, alertController, toastCtrl) {
+    (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "loadingController", void 0);
+    (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "alertController", void 0);
+    (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "toastCtrl", void 0);
+    (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "connect", void 0);
+    this.loadingController = loadingController;
+    this.alertController = alertController;
+    this.toastCtrl = toastCtrl;
   }
   ngOnInit() {
     this.connect = false;
   }
-}, (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_class, "ctorParameters", () => []), _class);
-TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+  maintenance() {
+    var _this = this;
+    return (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const alert = yield _this.alertController.create({
+        header: 'Maintenance',
+        message: 'The page is coming soon !',
+        buttons: ['OK']
+      });
+      yield alert.present();
+    })();
+  }
+}, (0,D_SeftzZz_PROGRAM_OragonXapp_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_1__["default"])(_class, "ctorParameters", () => [{
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.LoadingController
+}, {
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.AlertController
+}, {
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ToastController
+}]), _class);
+TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
   selector: 'app-tabs',
-  template: _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
-  styles: [(_tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
+  template: _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_2__,
+  styles: [(_tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_3___default())]
 })], TabsPage);
 
 
@@ -193,7 +220,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-tabs>\r\n\r\n  <ion-tab-bar slot=\"bottom\">\r\n    <a href=\"/tabs/home\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"home-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n      \r\n    </a>\r\n\r\n    <a href=\"/tabs/p2pmarket\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"cart-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n    <a href=\"/tabs/gamehub\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"game-controller-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n    <a id=\"nested-button\" href=\"/tabs/background\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"add-circle-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n    <a href=\"/tabs/tab2\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"chatbubbles-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n  </ion-tab-bar>\r\n\r\n</ion-tabs>";
+module.exports = "<ion-tabs>\r\n\r\n  <ion-tab-bar slot=\"bottom\">\r\n    <a href=\"/tabs/home\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"home-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n    <a (click)=\"maintenance()\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"cart-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n    <a (click)=\"maintenance()\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"game-controller-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n    <a (click)=\"maintenance()\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"add-circle-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n    <a (click)=\"maintenance()\" style=\"padding: 1.5rem;\">\r\n      <ion-icon name=\"chatbubbles-outline\" style=\"font-size: 1.5rem;\"></ion-icon>\r\n    </a>\r\n\r\n  </ion-tab-bar>\r\n\r\n</ion-tabs>";
 
 /***/ })
 

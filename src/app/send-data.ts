@@ -2528,6 +2528,32 @@ export class SendData {
     });
   }
 
+  getstorecartwarna(): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+
+    return this.httpClient.post(this.controllerapi + "getstorecartwarna_mp", {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  getstorecartukuran(): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+
+    return this.httpClient.post(this.controllerapi + "getstorecartukuran_mp", {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
   getstoreprogress(user_uid: string = ""): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2634,7 +2660,7 @@ export class SendData {
     addressw: string = "",
     transactionHash: string = "",
     email: string = "",
-    color: string = ""
+    color: string = "",
   ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2741,6 +2767,8 @@ export class SendData {
     transactionhash: string = "",
     color: string = "",
     email: string = "",
+    actualcartPrice: string = "",
+    getaddress: string = ""
   ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2754,6 +2782,8 @@ export class SendData {
     body.append("transactionhash", transactionhash);
     body.append("color", color);
     body.append("email", email);
+    body.append("actualcartPrice", actualcartPrice);
+    body.append("getaddress", getaddress);
 
     return this.httpClient.post(
       this.controllerapi + "updatestorecart_mp",
@@ -3626,6 +3656,44 @@ export class SendData {
     body.append("cityAddress", cityAddress);
 
     return this.httpClient.post(this.controllerapi + "setaddresscity_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  getNewAddressmp(
+    uid: string = "",
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+
+    return this.httpClient.post(this.controllerapi + "getNewAddress_mp", body, {
+      headers: header,
+      responseType: "text",
+    });
+  }
+
+  setNewAddressmp(
+    uid: string = "", 
+    owner_alamat: string = "",
+    nm_alamat: string = "",
+    ): Observable<any> {
+    let header = new HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("owner_alamat", owner_alamat);
+    body.append("nm_alamat", nm_alamat);
+
+    return this.httpClient.post(this.controllerapi + "setNewAddress_mp", body, {
       headers: header,
       responseType: "text",
     });

@@ -3,7 +3,7 @@
   <header class="js-page-header z-20 fixed top-0 w-full backdrop-blur transition-colors">
     <div class="flex items-center px-6 py-6 xl:px-24">
       <!-- Logo -->
-      <a color="dark" href="/tabs/home">
+      <a color="dark" href="/tabs/profile">
         <img src="assets/img/logo1.png" class="max-h-7 dark:hidden" alt="Xhibiter | NFT Marketplace" />
         <img src="assets/img/logo_white.png" class="hidden max-h-7 dark:block" alt="Xhibiter | NFT Marketplace" />
       </a>
@@ -12,7 +12,7 @@
           <!-- Mobile Logo / Menu Close -->
           <div class="t-0 dark:bg-jacarta-800 fixed left-0 z-10 flex w-full items-center justify-between bg-white p-6 lg:hidden">
             <!-- Mobile Logo -->
-            <a color="dark" href="/tabs/home">
+            <a color="dark" href="/tabs/profile">
               <img src="assets/img/logo1.png" class="max-h-7 dark:hidden" alt="Xhibiter | NFT Marketplace" />
               <img src="assets/img/logo_white.png" class="hidden max-h-7 dark:block" alt="Xhibiter | NFT Marketplace" />
             </a>
@@ -21,7 +21,7 @@
           <nav class="navbar w-full">
             <ul class="flex flex-col lg:flex-row">
               <li class="js-nav-dropdown group relative">
-                <a href="/tabs/home" class="dropdown-toggle text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5">Home <i class="lg:hidden">
+                <a href="/tabs/profile" class="dropdown-toggle text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5">Home <i class="lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="h-4 w-4 dark:fill-white">
                       <path fill="none" d="M0 0h24v24H0z" />
                       <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
@@ -385,7 +385,7 @@
           <ion-button class="mt-2" *ngIf="percentRoyalty == 0" size="small" disabled>Withdraw</ion-button>
           <ion-button class="mt-2" *ngIf="percentRoyalty >= 100" (click)="withdraw()" size="small">Withdraw</ion-button>
           <br>
-          <span class="text-jacarta-400">Link Refferal <a class="text-green" [routerLink]="['/tabs/profile']">https://marketplace.oragon.network/tabs/register/12345</a> </span>
+          <!-- <span class="text-jacarta-400">Link Refferal <a class="text-green" [routerLink]="['/tabs/profile']">https://marketplace.oragon.network/tabs/register/12345</a> </span> -->
           <div class="mt-6 flex items-center justify-center space-x-2.5">
             <div class="dark:border-jacarta-600 dark:hover:bg-jacarta-600 border-jacarta-100 hover:bg-jacarta-100 dark:bg-jacarta-700 rounded-xl border bg-white">
               <div class="js-likes relative inline-flex h-10 w-10 cursor-pointer items-center justify-center text-sm before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-0" role="button" data-tippy-content="Favorite">

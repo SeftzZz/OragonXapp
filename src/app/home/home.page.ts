@@ -368,7 +368,14 @@ export class HomePage implements OnInit {
     hargaValueSession : any;
     deskripsiValueSession : any;
     namaValueSession : any;
-
+    getdescription : any;
+    warna : any;
+    ukuran : any;
+    chooseUkuran : any;
+    getnama: any;
+    owner_alamat: any;
+    alamat: any;
+    activeAlamat: any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -410,7 +417,16 @@ export class HomePage implements OnInit {
       this.setCurrentLocation();
       this.getstoredata();
       this.currentp2p = 0;
-
+      this.color = localStorage.getItem("color");
+      this.chooseUkuran = localStorage.getItem("chooseUkuran");
+      this.senddata.getstorecartwarna().subscribe((data:any) => {
+        this.warna = data;
+        console.log(this.warna)
+      },(error:any) => {})
+      this.senddata.getstorecartukuran().subscribe((data:any) => {
+        this.ukuran = data;
+        console.log(this.ukuran)
+      },(error:any) => {})
       this.senddata.getselldglimitmp().subscribe(
         (dataSell: any) => {
           this.dragons = JSON.parse(dataSell);
@@ -489,6 +505,7 @@ export class HomePage implements OnInit {
           });
         this.postal_id = localStorage.getItem("kode_pos");
         this.cities = localStorage.getItem("kota");
+        this.getnama = localStorage.getItem("nama");
 
         this.senddata.balancePlayers(this.wallets).subscribe((dataB:any) => {
             var Web3 = require('web3');
@@ -544,6 +561,7 @@ export class HomePage implements OnInit {
         this.getcountRolling();
         this.checknewfood();
         this.checknewbattery();
+        this.getNewAddressmp();
         this.messagePleaseWait = "false";
       }
       // console.log(this.globalID);
@@ -4716,7 +4734,7 @@ export class HomePage implements OnInit {
         for (let i in this.storecart) {
           const tempStatus = this.storecart[i].active;
 
-          if (tempStatus == '1') {
+          if (tempStatus == '0' || tempStatus == '1') {
             sumCartPrice += parseFloat(this.storecart[i].harga); // Accumulate cart prices when status is '1'
           }
 
@@ -4871,7 +4889,7 @@ export class HomePage implements OnInit {
       const loading = await this.loadingController.create();
       await loading.present();
 
-      this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash, this.color, email).subscribe((data:any) => {
+      this.senddata.updatestorecartHome(id_cart, user_uid, addressw, transactionHash, this.color, email, this.actualcartPrice, this.getaddress).subscribe((data:any) => {
         let updatestorecartHome = data
         console.log(updatestorecartHome)
       },(error:any) => {})
@@ -5369,6 +5387,20 @@ export class HomePage implements OnInit {
     return Math.floor(Date.now()/1000);
   }
 
+  getNewAddressmp() {
+    this.senddata.getNewAddressmp(this.globalID).subscribe((owner_alamat:any)=>{
+      this.owner_alamat = JSON.parse(owner_alamat);
+      console.log(this.owner_alamat);
+    });
+  }
+
+  inputDescription(event: any) {
+    const query = event.target.value;
+    localStorage.setItem("description", query);
+    const setdescription = localStorage.getItem("description");
+    this.getdescription = setdescription;
+  }
+
   inputAddress(event: any) {
     const query = event.target.value;
     localStorage.setItem("alamat", query);
@@ -5383,11 +5415,54 @@ export class HomePage implements OnInit {
     this.getaddress = setaddress;
   }
 
+  addName(event: any) {
+    const query = event.target.value;
+    localStorage.setItem("nama", query);
+    const setnama = localStorage.getItem("nama");
+    this.getnama = setnama;
+  }
+
+  addNewAddressmp() {
+    this.senddata.setNewAddressmp(this.globalID, this.getnama, this.getaddress).subscribe(async(data:any)=>{
+      const loading = await this.loadingController.create();
+      await loading.present();
+        this.getNewAddressmp();
+      loading.dismiss();
+    })
+  }
+
+  async setNewAddress(nm_alamat, owner_alamat) {
+    const activeAlamat = localStorage.setItem("activeAlamat", nm_alamat);
+    localStorage.setItem("nama", owner_alamat);
+    const loading = await this.loadingController.create();
+    await loading.present();
+      this.activeAlamat = localStorage.getItem("activeAlamat");
+      const setnama = localStorage.getItem("nama");
+      this.getnama = setnama;
+    loading.dismiss();
+  }
+
   async setColor(query) {
     const color = localStorage.setItem("color", query);
     const loading = await this.loadingController.create();
     await loading.present();
       this.color = localStorage.getItem("color");
+    loading.dismiss();
+  }
+
+  async setSize(query) {
+    const chooseUkuran = localStorage.setItem("chooseUkuran", query);
+    const loading = await this.loadingController.create();
+    await loading.present();
+      this.chooseUkuran = localStorage.getItem("chooseUkuran");
+    loading.dismiss();
+  }
+
+  async setAlamat(query) {
+    const alamat = localStorage.setItem("alamat", query);
+    const loading = await this.loadingController.create();
+    await loading.present();
+      this.alamat = localStorage.getItem("alamat");
     loading.dismiss();
   }
 
@@ -5435,6 +5510,7 @@ export class HomePage implements OnInit {
   addJaketsMetalicana(ordersID, globalID, product_id) {
     var DocIdJakets = this.newTime();
     var updateJakets = 1;
+    this.getdescription = localStorage.getItem("description")
     this.getaddress = localStorage.getItem("alamat");
     this.postal_id = localStorage.getItem("kode_pos");
     this.cities = localStorage.getItem("kota");
@@ -5490,6 +5566,9 @@ export class HomePage implements OnInit {
               CreatedAt: this.newTime()
             },
             QrCodeUrl: qrCodeUrl,
+            Size: this.chooseUkuran,
+            Color: this.color,
+            Description: this.getdescription,
             Address: this.getaddress,
             PostalID: this.postal_id,
             City: this.cities,

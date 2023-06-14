@@ -296,8 +296,10 @@
             <h1 class="text-jacarta-700 font-display mb-6 text-center text-5xl dark:text-white md:text-left lg:text-6xl xl:text-7xl">OragonX Marketplace. </h1>
             <p class="dark:text-jacarta-200 mb-8 text-center text-lg md:text-left"> Now you can buy or sell and make it bundle every items in oragonx here. Let's Explore...</p>
             <div class="flex space-x-4 pb-12">
-              <a [routerLink]="['/tabs/p2pmarket']" class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-7 text-center font-semibold text-white transition-all"> P2P Market </a>
-              <a class="text-accent shadow-white-volume hover:bg-accent-dark hover:shadow-accent-volume w-36 rounded-full bg-white py-3 px-7 text-center font-semibold transition-all hover:text-white" data-bs-toggle="modal" data-bs-target="#gatchaModal" aria-label="gatcha"> Gatcha </a>
+              <!-- <a [routerLink]="['/tabs/p2pmarket']" class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-7 text-center font-semibold text-white transition-all"> P2P Market </a> -->
+              <a class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-7 text-center font-semibold text-white transition-all"> P2P Market </a>
+              <!-- <a class="text-accent shadow-white-volume hover:bg-accent-dark hover:shadow-accent-volume w-36 rounded-full bg-white py-3 px-7 text-center font-semibold transition-all hover:text-white" data-bs-toggle="modal" data-bs-target="#gatchaModal" aria-label="gatcha"> Gatcha </a> -->
+              <a class="text-accent shadow-white-volume hover:bg-accent-dark hover:shadow-accent-volume w-36 rounded-full bg-white py-3 px-7 text-center font-semibold transition-all hover:text-white" aria-label="gatcha"> Gatcha </a>
             </div>
           </div>
           <!-- Hero image -->
@@ -399,7 +401,7 @@
             <article>
               <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
                 <figure class="relative" style="margin: 0em 0px;">
-                  <a *ngIf="s.id_product == '17' || s.id_product == '18';else items" (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#detailModal">
+                  <a *ngIf="s.id_product == '17' || s.id_product == '18' || s.id_product == '19';else items" (click)="getstoredetail(s.id_product)" data-bs-toggle="modal" data-bs-target="#detailModal">
                     <img src="assets/img/store/{{s.gambar}}" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
                   </a>
                   <ng-template>
@@ -448,8 +450,9 @@
         <h2 class="font-display text-jacarta-700 mb-8 text-center text-3xl dark:text-white">
           P2P Market
         </h2>
+        <p class="font-display block w-full rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white text-center">(Coming Soon)</p>
         <!-- Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5" style="gap: 1.2rem">
+        <div *ngIf="connect == 'true'" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5" style="gap: 1.2rem">
           <div *ngFor="let datas of dragons">
             <article>
               <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
@@ -621,6 +624,7 @@
         <h2 class="font-display text-jacarta-700 mb-8 text-center text-3xl dark:text-white">
           Chart Point
         </h2>
+        <p class="font-display block w-full rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white text-center">(Coming Soon)</p>
         <!-- Grid -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1" style="gap: 1.2rem">
           <div class="col-md-6">
@@ -644,9 +648,10 @@
       <div class="container">
         <h2 class="font-display text-jacarta-700 mb-8 text-center text-3xl dark:text-white">
           Recently Sold
-        </h2>        
+        </h2>
+        <p class="font-display block w-full rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white text-center">(Coming Soon)</p>     
         <div class="scrollbar-custom overflow-x-auto">
-          <div role="table" class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 lg:rounded-2lg w-full min-w-[736px] border bg-white text-sm dark:text-white">
+          <div *ngIf="connect == 'true'" role="table" class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 lg:rounded-2lg w-full min-w-[736px] border bg-white text-sm dark:text-white">
             <div class="dark:bg-jacarta-600 bg-jacarta-50 rounded-t-2lg flex" role="row">
               <div class="w-[28%] py-3 px-4" role="columnheader">
                 <span class="text-jacarta-700 dark:text-jacarta-100 w-full overflow-hidden text-ellipsis">Collection</span>
@@ -1143,9 +1148,21 @@
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Subtotal</span>
             </div>
             <div *ngFor="let c of storecart">
-              <div *ngIf="c.active == '0';else activecart" (click)="setActive(c.id_cart)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4" style="opacity: 0.5;">
-                <figure class="mr-5 self-start">
-                  <img src="assets/img/store/{{c.gambar}}" alt="avatar 2" class="rounded-2lg" loading="lazy" />
+              <div *ngIf="c.active == '0';else activecart" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4" style="opacity: 0.5;">
+                <div class="ml-auto">
+                  <input type="checkbox" class="p-3 rounded-2lg" (click)="setActive(c.id_cart)" style="margin: 1rem;">
+                </div>
+                <figure class="mr-5 self-start" style="width: 40%;">
+                  <img *ngIf="color == '1'" src="assets/img/store/{{c.gambar}}" alt="color 1" class="rounded-2lg" loading="lazy" />
+                  <img *ngIf="color == '2'" src="assets/img/store/hoodie-meru-depan.jpg" alt="color 2" class="rounded-2lg" loading="lazy" />
+                  <img *ngIf="color == '3'" src="assets/img/store/hoodie-metalicana-depan.jpg" alt="color 3" class="rounded-2lg" loading="lazy" />
+                  <div class="pt-5 items-center">
+                    <span class="mb-1 flex items-center whitespace-nowrap">
+                      <button (click)="setColor(1)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-auto" style="background-color: #fff;border-radius: 3px;"></button>
+                      <button (click)="setColor(2)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-2" style="background-color: #119b75;border-radius: 3px;"></button>
+                      <button (click)="setColor(3)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-2" style="border-radius: 3px;"></button>
+                    </span>
+                  </div>
                 </figure>
                 <div>
                   <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{c.deskripsi}}</h3>
@@ -1154,16 +1171,25 @@
                   </div>
                 </div>
                 <div class="ml-auto">
-                  <span class="mb-1 flex items-center whitespace-nowrap">
-                    <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{c.harga | number}}.00</span>
-                  </span>
                   <div class="dark:text-jacarta-300 text-right text-sm">Rp {{c.harga | number}}.00</div>
                 </div>
               </div>
               <ng-template #activecart>
-                <div (click)="setActive(c.id_cart)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
-                  <figure class="mr-5 self-start">
-                    <img src="assets/img/store/{{c.gambar}}" alt="avatar 2" class="rounded-2lg" loading="lazy" />
+                <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                  <div class="ml-auto">
+                    <input type="checkbox" checked class="p-3 rounded-2lg" (click)="setActive(c.id_cart)" style="margin: 1rem;">
+                  </div>
+                  <figure class="mr-5 self-start" style="width: 40%;">
+                    <img *ngIf="color == '1'" src="assets/img/store/{{c.gambar}}" alt="color 1" class="rounded-2lg" loading="lazy" />
+                    <img *ngIf="color == '2'" src="assets/img/store/hoodie-meru-depan.jpg" alt="color 2" class="rounded-2lg" loading="lazy" />
+                    <img *ngIf="color == '3'" src="assets/img/store/hoodie-metalicana-depan.jpg" alt="color 3" class="rounded-2lg" loading="lazy" />
+                    <div class="pt-5 items-center">
+                      <span class="mb-1 flex items-center whitespace-nowrap">
+                        <button (click)="setColor(1)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-auto" style="background-color: #fff;border-radius: 3px;"></button>
+                        <button (click)="setColor(2)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-2" style="background-color: #119b75;border-radius: 3px;"></button>
+                        <button (click)="setColor(3)" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-2" style="border-radius: 3px;"></button>
+                      </span>
+                    </div>
                   </figure>
                   <div>
                     <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{c.deskripsi}}</h3>
@@ -1172,13 +1198,24 @@
                     </div>
                   </div>
                   <div class="ml-auto">
-                    <span class="mb-1 flex items-center whitespace-nowrap">
-                      <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{c.harga | number}}.00</span>
-                    </span>
                     <div class="dark:text-jacarta-300 text-right text-sm">Rp {{c.harga | number}}.00</div>
                   </div>
                 </div>
               </ng-template>
+              <div class="pt-5 items-center">
+              <span class="mb-1 flex items-center whitespace-nowrap">
+                <p class="hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all" style="border-radius: 3px;">Pilih opsi warna dan ukuran</p>
+                <button *ngIf="color == '1' || chooseUkuran == '1';else sizecolor" data-bs-toggle="modal" data-bs-target="#cartOptionModal" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-auto" style="border-radius: 3px;">Hitam, L</button>
+                <ng-template #sizecolor>
+                  <button data-bs-toggle="modal" data-bs-target="#cartOptionModal" class="bg-accent hover:bg-accent-dark py-3 px-3 text-center font-semibold text-white transition-all ml-auto" style="border-radius: 3px;">
+                    <span *ngIf="color == '1'">Hitam, </span>
+                    <span *ngIf="color == '2'">Merah, </span>
+                    <span *ngIf="chooseUkuran == '1'">L</span>
+                    <span *ngIf="chooseUkuran == '2'">XL</span>
+                  </button>
+                </ng-template>
+              </span>
+            </div>
             </div>
             <!-- Total -->
             <div class="dark:border-jacarta-600 border-jacarta-100 mb-2 flex items-center justify-between py-2.5">
@@ -1193,12 +1230,14 @@
           </div>
           <div class="p-3" style="width: 100%;">
             <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Keterangan</span>
+            </div>
+            <textarea type="text" (keyup)="inputDescription($event)" id="input_description" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter description" required></textarea>
+            <div class="mb-2 flex items-center justify-between">
               <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
             </div>
-            <textarea *ngIf="getaddress != '';else inputaddress" type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
-            <ng-template #inputaddress>
-              <textarea type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
-            </ng-template>
+            <input readonly type="text" id="input_posta_code" value="{{getnama}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" style="margin-bottom: 1vh;" required />
+            <textarea readonly type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{activeAlamat}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
             <div class="dark:border-jacarta-600 border-jacarta-100 mb-2 flex items-center justify-between py-2.5">
               <span class="font-display text-jacarta-700 hover:text-accent font-semibold dark:text-white"></span>
               <div class="ml-auto">
@@ -1265,6 +1304,102 @@
             <div class="flex items-center justify-center space-x-4">
               <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
               <button (click)="pay_cartmultiStore(cartID, globalID, wallets, color)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option Modal -->
+    <div class="modal fade" id="cartOptionModal" tabindex="-1" aria-labelledby="cartOptionModalLabel" aria-hidden="true">
+      <div class="modal-dialog max-w-2xl">
+        <div class="modal-content" style="margin-bottom: 1rem;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cartOptionModalLabel">Option</h5>
+            <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#cartmultiModal">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-6 w-6 dark:fill-white">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Body -->
+          <div class="modal-body p-6">
+            <div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                <figure class="mr-5 self-start">
+                  <img *ngIf="color == '1'" src="assets/img/store/{{cartImg}}" alt="color 1" class="rounded-2lg" loading="lazy" />
+                  <img *ngIf="color == '2'" src="assets/img/store/hoodie-meru-depan.jpg" alt="color 2" class="rounded-2lg" loading="lazy" />
+                  <img *ngIf="color == '3'" src="assets/img/store/hoodie-metalicana-depan.jpg" alt="color 3" class="rounded-2lg" loading="lazy" />
+                </figure>
+                <div>
+                  <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{cartDeskripsi}}</h3>
+                  <div class="flex flex-wrap items-center">
+                    <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{cartName}}</span>
+                  </div>
+                </div>
+                <div class="ml-auto">
+                  <span class="mb-1 flex items-center whitespace-nowrap">
+                    <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{cartPrice | number}}.00</span>
+                  </span>
+                  <div class="dark:text-jacarta-300 text-right text-sm">Rp {{cartPrice | number}}.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 100%;">
+            <div class="modal-body p-6">
+              <div class="mb-2 flex items-center justify-between">
+                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan warna</span>
+                <span *ngIf="color == '1'" class="ml-auto">Hitam</span>
+                <span *ngIf="color == '2'" class="ml-auto">Merah</span>
+              </div>
+              <div class="grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+                <div *ngFor="let w of warna">
+                  <article>
+                    <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white p-[1.1875rem] transition-shadow hover:shadow-lg">
+                      <figure class="relative" style="margin: 0em 0px;">
+                        <a (click)="setColor(w.id_warna)">
+                          <img src="assets/img/store/{{w.img_warna}}" alt="item 5" class="w-full rounded-[0.625rem]" loading="lazy" />
+                        </a>
+                      </figure>
+                      <div class="items-center">
+                        <div class="items-center pt-5">
+                          <span class="text-center dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{w.nm_warna}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="mb-2 flex items-center justify-between">
+                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan ukuran</span>
+                <span *ngIf="chooseUkuran == '1'" class="ml-auto">L</span>
+                <span *ngIf="chooseUkuran == '2'" class="ml-auto">XL</span>
+              </div>
+              <div class="grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+                <div *ngFor="let u of ukuran">
+                  <article>
+                    <div class="dark:bg-jacarta-700 dark:border-jacarta-700 border-jacarta-100 rounded-2.5xl block border bg-white transition-shadow hover:shadow-lg">
+                      <div class="flex items-center justify-between">
+                        <span class="mb-1 flex items-center whitespace-nowrap">
+                          <a (click)="setSize(u.id_ukuran)" class="group flex h-9 items-center rounded-lg border border-jacarta-100 bg-white px-4 font-display text-sm font-semibold text-jacarta-500 transition-colors hover:border-transparent hover:bg-accent hover:text-white dark:border-jacarta-600 dark:bg-jacarta-900 dark:text-white dark:hover:border-transparent dark:hover:bg-accent dark:hover:text-white my-1 mr-2.5">
+                            <span>{{u.nm_ukuran}}</span>
+                          </a>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <!-- </span> -->
+          </div>
+          <!-- end body -->
+          <div class="modal-footer">
+            <div class="flex items-center justify-center space-x-4">
+              <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
+              <button (click)="pay_cartStore(cartID, globalID, wallets, color)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
             </div>
           </div>
         </div>
@@ -1836,8 +1971,8 @@
       <div class="modal-dialog max-w-2xl">
         <div class="modal-content" style="margin-bottom: 1rem;">
           <div class="modal-header">
-            <h5 class="modal-title" id="addAddressModalLabel">Alamat Lengkap</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="addAddressModalLabel">Tambahkan alamat baru</h5>
+            <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#cartmultiModal">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="fill-jacarta-700 h-6 w-6 dark:fill-white">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
@@ -1846,11 +1981,44 @@
           </div>
           <!-- Body -->
           <div class="modal-body p-6">
-            <textarea type="text" (keyup)="addAddress($event)" id="input_addres" value="{{getaddress}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
+            <div class="flex flex-wrap items-center">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white" style="padding-top: 0.5vh;padding-bottom: 0.5vh;">Pilih alamat tersedia</span>
+            </div>
+            <div *ngFor="let oa of owner_alamat">
+              <div *ngIf="activeAlamat == oa.nm_alamat;else noactiveAlamat" (click)="setNewAddress(oa.nm_alamat, oa.owner_alamat)" class="rounded-2.5xl border border-jacarta-100 py-3 px-3 mb-2">
+                <div class="mt-2 text-sm">
+                  <span class="dark:text-jacarta-200 text-jacarta-700 mr-1 text-green">{{oa.owner_alamat}}</span>
+                </div>
+                <div class="mt-2 text-sm">
+                  <h4 class="text-green mr-1">{{oa.nm_alamat}}</h4>
+                </div>
+              </div>
+              <ng-template #noactiveAlamat>
+                <div (click)="setNewAddress(oa.nm_alamat, oa.owner_alamat)" style="opacity: 0.3;" class="rounded-2.5xl border border-jacarta-100 py-3 px-3 mb-2">
+                  <div class="mt-2 text-sm">
+                    <span class="dark:text-jacarta-200 text-jacarta-700 mr-1">{{oa.owner_alamat}}</span>
+                  </div>
+                  <div class="mt-2 text-sm">
+                    <h4 class="text-white mr-1">{{oa.nm_alamat}}</h4>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+            <div class="items-center">
+              <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm mt-4 text-white text-center" style="padding-top: 0.5vh;padding-bottom: 0.5vh;">ATAU</span>
+            </div>
+            <div class="flex flex-wrap items-center">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white" style="padding-top: 0.5vh;padding-bottom: 0.5vh;">Kontak baru</span>
+            </div>
+            <input type="text" id="input_contact" (keyup)="addName($event)" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Masukan nama" required>
+            <div class="flex flex-wrap items-center">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white" style="padding-top: 0.5vh;padding-bottom: 0.5vh;">Alamat baru</span>
+            </div>
+            <textarea type="text" (keyup)="addAddress($event)" id="input_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Masukan detail lainnya (lantai, blok, informasi penunjuk arah lainnya)" required></textarea>
           </div>
           <div class="modal-footer">
             <div class="flex items-center justify-center space-x-4">
-              <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
+              <button (click)="addNewAddressmp()" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Simpan </button>
             </div>
           </div>
         </div>

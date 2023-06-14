@@ -1909,6 +1909,28 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
+  getstorecartwarna() {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    return this.httpClient.post(this.controllerapi + "getstorecartwarna_mp", {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  getstorecartukuran() {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    return this.httpClient.post(this.controllerapi + "getstorecartukuran_mp", {
+      headers: header,
+      responseType: "text"
+    });
+  }
   getstoreprogress(user_uid = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
@@ -2063,7 +2085,7 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
-  updatestorecartHome(id_cart = "", user_uid = "", addressw = "", transactionhash = "", color = "", email = "") {
+  updatestorecartHome(id_cart = "", user_uid = "", addressw = "", transactionhash = "", color = "", email = "", actualcartPrice = "", getaddress = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
     header.append("Content-Type", "application/x-www-form-urlencoded");
@@ -2076,6 +2098,8 @@ let SendData = (_class = class SendData {
     body.append("transactionhash", transactionhash);
     body.append("color", color);
     body.append("email", email);
+    body.append("actualcartPrice", actualcartPrice);
+    body.append("getaddress", getaddress);
     return this.httpClient.post(this.controllerapi + "updatestorecart_mp", body, {
       headers: header,
       responseType: "text"
@@ -2703,6 +2727,34 @@ let SendData = (_class = class SendData {
     body.append("uid", uid);
     body.append("cityAddress", cityAddress);
     return this.httpClient.post(this.controllerapi + "setaddresscity_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  getNewAddressmp(uid = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    return this.httpClient.post(this.controllerapi + "getNewAddress_mp", body, {
+      headers: header,
+      responseType: "text"
+    });
+  }
+  setNewAddressmp(uid = "", owner_alamat = "", nm_alamat = "") {
+    let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
+    header.append("Accept", "plain/text");
+    header.append("Content-Type", "application/x-www-form-urlencoded");
+    header.append("enctype", "multipart/form-data");
+    header.append("No-Auth", "True");
+    let body = new FormData();
+    body.append("uid", uid);
+    body.append("owner_alamat", owner_alamat);
+    body.append("nm_alamat", nm_alamat);
+    return this.httpClient.post(this.controllerapi + "setNewAddress_mp", body, {
       headers: header,
       responseType: "text"
     });
