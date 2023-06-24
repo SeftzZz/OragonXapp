@@ -1,0 +1,26 @@
+video::-webkit-media-controls-panel {
+    display: none !important;
+    opacity: 1 !important;}
+
+    /* @media screen and (min-width: 1024px) {
+        .responsive{
+            width: 75%;pointer-events: none;text-align: -webkit-center;
+        }
+        .mat-dialog-content {
+            max-height: 100%;
+            max-width: 90%;
+            text-align: -webkit-center;
+        }
+        ::ng-deep .mat-dialog-container {
+            text-align: -webkit-center;
+        }
+        ::ng-deep .mat-dialog-actions {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .responsive{
+            width: 100%;pointer-events: none;
+        }
+    } */

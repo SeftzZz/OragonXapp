@@ -1,0 +1,26 @@
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: lightgreen !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: lightgreen !important;
+  } 
+
+  ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: lightgreen !important;;
+   }
+
+   .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    color: azure;
+   }
+
+   ::ng-deep.mat-radio-label-content{
+       color: azure;
+   }

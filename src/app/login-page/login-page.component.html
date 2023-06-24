@@ -1,0 +1,36 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design by foolishdeveloper.com -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+</head>
+<body>
+    <div class="background">
+        <!-- <div class="shape"></div>
+        <div class="shape"></div> -->
+    </div>
+    <div class="forms">
+        <img src="./assets/logo_oragon.png" style="margin-left: 20%;"><h3><b>CMS</b></h3>
+
+        <label for="username">Adm ID</label>
+        <input [(ngModel)]="email" value="{{email}}" type="text" autocomplete="off" placeholder="Adm ID" id="email">
+
+        <label for="password">Password</label>
+        <input [(ngModel)]="password" value="{{password}}" type="password" autocomplete="off" placeholder="Password" id="password">
+
+        <table border=0 style="width: 100%;">
+            <tr>
+                <td style="width: 50%;"><button (click)="login()" type="button" style="background-color: green;">Log In</button></td>
+            </tr>
+        </table>
+        <!-- <div class="social">
+          <div class="go"><i class="fa fa-google" aria-hidden="true"></i>  Google</div>
+          <div class="fb"><i class="fa fa-facebook" aria-hidden="true"></i>  Facebook</div>
+        </div> -->
+    </div>
+</body>
+</html>

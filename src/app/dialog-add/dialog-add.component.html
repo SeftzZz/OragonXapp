@@ -1,0 +1,25 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<h1 mat-dialog-title style="color: azure;">OragonX</h1>
+<div mat-dialog-content>
+    <div *ngIf="kind == 'egg'">
+        <mat-radio-group aria-label="Select Egg" [(ngModel)]="type">
+            <mat-radio-button value="Ritra">Ritra</mat-radio-button>
+            <mat-radio-button value="Feng">Feng</mat-radio-button>
+            <mat-radio-button value="Metalicana">Metalicana</mat-radio-button>
+            <mat-radio-button value="Dorch">Dorch</mat-radio-button>
+            <mat-radio-button value="Akh">Akh</mat-radio-button>
+            <mat-radio-button value="Meru">Meru</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div *ngIf="kind == 'battery'">
+        <mat-radio-group aria-label="Select Battery" [(ngModel)]="type">
+            <mat-radio-button value="8HB">8 Hours</mat-radio-button>
+            <mat-radio-button value="12HB">12 Hours</mat-radio-button>
+            <mat-radio-button value="24HB">24 Hours</mat-radio-button>
+        </mat-radio-group>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="closed()" clickcdkFocusInitial>ADD</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>
