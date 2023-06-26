@@ -352,6 +352,8 @@ export class ProfilePage implements OnInit {
     nameJaket : any;
     ClaimmedJaket : any;
     scanned: boolean = false;
+    marketp2pdragonsellLength: any;
+    marketp2peggsellLength: any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -359,6 +361,7 @@ export class ProfilePage implements OnInit {
     private alertController: AlertController,
     private toastCtrl: ToastController,
     private fs: AngularFirestore,
+    private fs2: AngularFirestore,
     private http: HttpClient,
     public global: ProviderService,
     public senddata: SendData,
@@ -373,7 +376,7 @@ export class ProfilePage implements OnInit {
 
   async logout() {
     await this.authService.logout();
-    window.location.replace("/tabs/home");
+    window.location.replace("/login");
   }
 
   async login() {
@@ -508,6 +511,8 @@ export class ProfilePage implements OnInit {
       this.checknewegg();
       this.checknewfood();
       this.checknewbattery();
+      this.checknewbattery12();
+      this.insertNewBattery8mp();
       this.checknewpoint();
       this.getcountRolling();
     }
@@ -546,10 +551,19 @@ export class ProfilePage implements OnInit {
       (error: any) => {}
     );
 
+    this.senddata.getselldgUsermp(this.globalID).subscribe(
+        (dataSell: any) => {
+          this.dragonsHigh = JSON.parse(dataSell);
+          this.marketp2pdragonsellLength = this.dragonsHigh.length;
+          // console.log(this.dragons)
+        },
+        (error: any) => {}
+      );
+    
     this.senddata.getselleggUsermp(this.globalID).subscribe(
       (dataSell: any) => {
         this.eggsHigh = JSON.parse(dataSell);
-        // this.marketp2peggLength = this.eggsHigh.length;
+        this.marketp2peggsellLength = this.eggsHigh.length;
         // console.log(this.eggsHigh)
       },
       (error: any) => {}
@@ -1515,7 +1529,8 @@ export class ProfilePage implements OnInit {
                 this.dragonsowned = JSON.parse(dataSell);
                 this.marketp2pdragonID = this.dragonsowned.ItemId;
                 this.marketp2pdragonLength = this.dragonsowned.length;
-                // console.log(this.dragonsowned);
+                // console.log("from sql", this.dragonsowned);
+                // console.log("from fb", datanewDragon);
                 for (let i in this.dragonsowned) {
                   if (
                     this.dragonsowned[i].imgbackground == "exists" &&
@@ -1606,9 +1621,69 @@ export class ProfilePage implements OnInit {
         this.senddata.getsellbatteryUserallmp(this.globalID).subscribe(
           (dataSell: any) => {
             this.sortbatteriesowned = JSON.parse(dataSell);
-            if(this.sortbatteriesowned[0].lengthBattery != datanewBattery[i].Amount) {
+            if(this.sortbatteriesowned.length != datanewBattery[i].Amount) {
               // console.log("data s not match from f");
               this.senddata.insertNewBatterymp(
+                this.globalID, 
+                datanewBattery[i].Id, 
+                datanewBattery[i].ItemId, 
+                datanewBattery[i].Amount,
+                '', 
+                'checked',  
+                ).subscribe((resp:any) => {
+                // console.log("inserting data...", resp);
+              });
+            } else {
+              // console.log("data s match from f");
+            }
+          },
+          (error: any) => {}
+        );
+      }
+    });
+  }
+
+  checknewbattery12() {
+    this.fs.collection("Items/" + this.globalID + "/Batteries").valueChanges().subscribe(async (datanewBattery:any) => {
+      // console.log("datanewBattery", datanewBattery);
+      for(let i in datanewBattery) {
+        // console.log("datanewBattery", datanewBattery[i].Id, datanewBattery[i].Attributes.AttackPoint);
+        this.senddata.getsellbatteryUserallmp(this.globalID).subscribe(
+          (dataSell: any) => {
+            this.sortbatteriesowned = JSON.parse(dataSell);
+            if(this.sortbatteriesowned.length != datanewBattery[i].Amount) {
+              // console.log("data s not match from f");
+              this.senddata.insertNewBattery12mp(
+                this.globalID, 
+                datanewBattery[i].Id, 
+                datanewBattery[i].ItemId, 
+                datanewBattery[i].Amount,
+                '', 
+                'checked',  
+                ).subscribe((resp:any) => {
+                // console.log("inserting data...", resp);
+              });
+            } else {
+              // console.log("data s match from f");
+            }
+          },
+          (error: any) => {}
+        );
+      }
+    });
+  }
+
+  insertNewBattery8mp() {
+    this.fs.collection("Items/" + this.globalID + "/Batteries").valueChanges().subscribe(async (datanewBattery:any) => {
+      // console.log("datanewBattery", datanewBattery);
+      for(let i in datanewBattery) {
+        // console.log("datanewBattery", datanewBattery[i].Id, datanewBattery[i].Attributes.AttackPoint);
+        this.senddata.getsellbatteryUserallmp(this.globalID).subscribe(
+          (dataSell: any) => {
+            this.sortbatteriesowned = JSON.parse(dataSell);
+            if(this.sortbatteriesowned.length != datanewBattery[i].Amount) {
+              // console.log("data s not match from f");
+              this.senddata.insertNewBattery8mp(
                 this.globalID, 
                 datanewBattery[i].Id, 
                 datanewBattery[i].ItemId, 

@@ -1234,10 +1234,24 @@
             </div>
             <textarea type="text" (keyup)="inputDescription($event)" id="input_description" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter description" required></textarea>
             <div class="mb-2 flex items-center justify-between">
-              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Alamat Lengkap</span>
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Alamat Lengkap</span>
             </div>
-            <input readonly type="text" id="input_posta_code" value="{{getnama}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" style="margin-bottom: 1vh;" required />
-            <textarea readonly type="text" (keyup)="inputAddress($event)" id="input_addres" value="{{activeAlamat}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your address" required></textarea>
+            <div *ngFor="let oa of owner_alamat">
+              <div *ngIf="activeAlamat == oa.nm_alamat;else noactiveAlamat" class="rounded-2.5xl py-3 px-3 mb-2">
+                <div class="mt-2 text-sm">
+                  <span class="dark:text-jacarta-200 text-jacarta-700 mr-1 text-green">{{oa.owner_alamat}}</span>
+                </div>
+                <div class="mt-2 text-sm">
+                  <h4 class="text-green mr-1">{{oa.nm_alamat}}</h4>
+                </div>
+                <div class="mt-2 text-sm">
+                  <h4 class="text-green mr-1">{{oa.phone_alamat}}</h4>
+                </div>
+                <div class="mt-2 text-sm">
+                  <h4 class="text-green mr-1">{{oa.national_alamat}}</h4>
+                </div>
+              </div>
+            </div>
             <div class="dark:border-jacarta-600 border-jacarta-100 mb-2 flex items-center justify-between py-2.5">
               <span class="font-display text-jacarta-700 hover:text-accent font-semibold dark:text-white"></span>
               <div class="ml-auto">
@@ -1245,45 +1259,25 @@
               </div>
             </div>
             <div class="mb-2 flex items-center justify-between">
-              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Ongkos kirim</span>
             </div>
-            <input type="text" (keyup)="inputPostalCode($event)" id="input_posta_code" value="{{postal_id}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your postal code" required />
-            <div class="mb-2 flex items-center justify-between">
-              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kota</span>
-            </div>
-            <input type="text" (keyup)="searchAddress($event)" id="search_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
-            <div class="modal-body p-6">
-              <div class="mb-2 flex items-center justify-between">
-                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Pilihan Kurir</span>
-              </div>
-              <div *ngFor="let result of resultCost">
-                <div (click)="chooseKurir(result.service, result.cost[0].value)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
-                  <div>
-                    <h3 *ngIf="kurir == result.cost[0].value; else nokurir" class="text-green font-medium tracking-tight">{{result.service}}</h3>
-                    <ng-template #nokurir>
-                      <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{result.service}}</h3>
-                    </ng-template>
-                    <div class="flex flex-wrap items-center">
-                      <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{result.description}}</span>
-                    </div>
+            <div>
+              <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-b py-4">
+                <div>
+                  <h3 class="text-green font-medium tracking-tight">{{service}}</h3>
+                  <div class="flex flex-wrap items-center">
+                    <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{description}}</span>
                   </div>
-                  <div *ngIf="kurir == result.cost[0].value; else slowservie" class="ml-auto">
-                    <span class="mb-1 flex items-center whitespace-nowrap">
-                      <span class="text-green font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
-                    </span>
-                    <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
-                  </div>
-                  <ng-template #slowservie>
-                    <div class="ml-auto">
-                      <span class="mb-1 flex items-center whitespace-nowrap">
-                        <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
-                      </span>
-                      <div class="dark:text-jacarta-300 text-right text-sm">Rp {{result.cost[0].value | number }}</div>
-                      <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
-                    </div>
-                  </ng-template>
+                </div>
+                <div class="ml-auto">
+                  <span class="mb-1 flex items-center whitespace-nowrap">
+                    <span class="text-green font-medium tracking-tight">Rp {{cost | number}}</span>
+                  </span>
+                  <div class="dark:text-jacarta-300 text-right text-sm">{{etd}} hari</div>
                 </div>
               </div>
+            </div>
+            <div class="modal-body">
               <div class="mt-7 flex items-center justify-between">
                 <span class="font-display text-jacarta-700 hover:text-accent text-base dark:text-white">Transfer Bank</span>
               </div>
@@ -1300,7 +1294,7 @@
             <!-- </span> -->
           </div>
           <!-- end body -->
-          <div class="modal-footer">
+          <div class="modal-footer pt-5">
             <div class="flex items-center justify-center space-x-4">
               <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
               <button (click)="pay_cartmultiStore(cartID, globalID, wallets, color)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
@@ -1398,8 +1392,7 @@
           <!-- end body -->
           <div class="modal-footer">
             <div class="flex items-center justify-center space-x-4">
-              <button (click)="connectAccount()" *ngIf="connect == false" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Connect Wallet </button>
-              <button (click)="pay_cartStore(cartID, globalID, wallets, color)" *ngIf="state_buy == 2 && isLogin == '' && cartStatus == 1" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Pay Items Rp {{actualcartPrice | number}}.00</button>
+              <button data-bs-toggle="modal" data-bs-target="#cartmultiModal" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Kembali </button>
             </div>
           </div>
         </div>
@@ -1990,6 +1983,12 @@
                   <span class="dark:text-jacarta-200 text-jacarta-700 mr-1 text-green">{{oa.owner_alamat}}</span>
                 </div>
                 <div class="mt-2 text-sm">
+                  <h4 class="text-green mr-1">{{oa.phone_alamat}}</h4>
+                </div>
+                <div class="mt-2 text-sm">
+                  <h4 class="text-green mr-1">{{oa.national_alamat}}</h4>
+                </div>
+                <div class="mt-2 text-sm">
                   <h4 class="text-green mr-1">{{oa.nm_alamat}}</h4>
                 </div>
               </div>
@@ -1999,11 +1998,18 @@
                     <span class="dark:text-jacarta-200 text-jacarta-700 mr-1">{{oa.owner_alamat}}</span>
                   </div>
                   <div class="mt-2 text-sm">
+                    <h4 class="text-white mr-1">{{oa.phone_alamat}}</h4>
+                  </div>
+                  <div class="mt-2 text-sm">
+                    <h4 class="text-white mr-1">{{oa.national_alamat}}</h4>
+                  </div>
+                  <div class="mt-2 text-sm">
                     <h4 class="text-white mr-1">{{oa.nm_alamat}}</h4>
                   </div>
                 </div>
               </ng-template>
             </div>
+            
             <div class="items-center">
               <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm mt-4 text-white text-center" style="padding-top: 0.5vh;padding-bottom: 0.5vh;">ATAU</span>
             </div>
@@ -2012,9 +2018,59 @@
             </div>
             <input type="text" id="input_contact" (keyup)="addName($event)" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Masukan nama" required>
             <div class="flex flex-wrap items-center">
-              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white" style="padding-top: 0.5vh;padding-bottom: 0.5vh;">Alamat baru</span>
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white" style="padding-top: 1vh;padding-bottom: 0.5vh;">Alamat baru</span>
             </div>
             <textarea type="text" (keyup)="addAddress($event)" id="input_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Masukan detail lainnya (lantai, blok, informasi penunjuk arah lainnya)" required></textarea>
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white" style="padding-top: 0.5vh;padding-bottom: 0.5vh;">Telepon</span>
+            </div>
+            <input type="number" (keyup)="addPhone($event)" id="input_phone" value="{{phone}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your phone" required />
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white" style="padding-top: 1vh;padding-bottom: 0.5vh;">Nasionality</span>
+            </div>
+            <input type="text" (keyup)="addNationality($event)" id="input_nationality" value="{{nationality}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your nationality" required />
+
+            <div class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-b py-4"></div>
+
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kode Pos</span>
+            </div>
+            <input type="text" (keyup)="inputPostalCode($event)" id="input_posta_code" value="{{postal_id}}" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your postal code" required />
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Kota</span>
+            </div>
+            <input type="text" (keyup)="searchAddress($event)" id="search_addres" class="dark:bg-jacarta-700 border-jacarta-100 hover:ring-accent/10 focus:ring-accent dark:border-jacarta-600 dark:placeholder:text-jacarta-300 w-full rounded-lg py-3 hover:ring-2 dark:text-white" placeholder="Enter your city" required />
+            <div class="mb-2 flex items-center justify-between">
+              <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white pt-5">Pilihan Ongkir</span>
+            </div>
+            <div *ngFor="let result of resultCost">
+              <div (click)="chooseKurir(result.service, result.cost[0].value, result.description, result.cost[0].etd)" class="dark:border-jacarta-600 border-jacarta-100 relative flex items-center border-t border-b py-4">
+                <div>
+                  <h3 *ngIf="kurir == result.cost[0].value; else nokurir" class="text-green font-medium tracking-tight">{{result.service}}</h3>
+                  <ng-template #nokurir>
+                    <h3 class="font-display text-jacarta-700 mb-1 text-base font-semibold dark:text-white">{{result.service}}</h3>
+                  </ng-template>
+                  <div class="flex flex-wrap items-center">
+                    <span class="dark:text-jacarta-300 text-jacarta-500 mr-1 block text-sm">{{result.description}}</span>
+                  </div>
+                </div>
+                <div *ngIf="kurir == result.cost[0].value; else slowservie" class="ml-auto">
+                  <span class="mb-1 flex items-center whitespace-nowrap">
+                    <span class="text-green font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                  </span>
+                  <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                </div>
+                <ng-template #slowservie>
+                  <div class="ml-auto">
+                    <span class="mb-1 flex items-center whitespace-nowrap">
+                      <span class="dark:text-jacarta-100 text-sm font-medium tracking-tight">Rp {{result.cost[0].value | number}}</span>
+                    </span>
+                    <div class="dark:text-jacarta-300 text-right text-sm">Rp {{result.cost[0].value | number }}</div>
+                    <div class="dark:text-jacarta-300 text-right text-sm">{{result.cost[0].etd}} hari</div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <div class="flex items-center justify-center space-x-4">
@@ -2058,7 +2114,7 @@
           </div>
           <div class="modal-footer">
             <div class="flex items-center justify-center space-x-4">
-              <button (click)="setstorecart(storeID, globalID, wallets)" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Add to cart </button>
+              <button data-bs-toggle="modal" data-bs-target="#cartmultiModal" class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"> Kembali </button>
             </div>
           </div>
         </div>

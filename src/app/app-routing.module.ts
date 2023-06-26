@@ -18,6 +18,11 @@ const routes: Routes = [
     // ...canActivate(redirectLoggedInToHome),
   },
   {
+    path: 'resetpassword',
+    loadChildren: () => import('./resetpassword/resetpassword.module').then( m => m.ResetpasswordPageModule),
+    // ...canActivate(redirectLoggedInToHome),
+  },
+  {
     path: 'cron-bid',
     loadChildren: () => import('./cron-bid/cron-bid.module').then( m => m.CronBidPageModule)
   },
@@ -33,6 +38,17 @@ const routes: Routes = [
   {
     path: 'swap',
     loadChildren: () => import('./swap/swap.module').then( m => m.SwapPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    ...canActivate(redirectUnauthorizedToLogin),
+    children: [
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule),
+      },
+    ],
   },
   {
     path: '**',

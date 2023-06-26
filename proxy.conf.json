@@ -3,5 +3,10 @@
     "target": "https://api.rajaongkir.com",
     "secure": false,
     "changeOrigin": true
+  },
+  "/weboragonbsc/kelolaisi/api": {
+    "target": "https://oragonbsc.io",
+    "secure": true,
+    "changeOrigin": true
   }
 }

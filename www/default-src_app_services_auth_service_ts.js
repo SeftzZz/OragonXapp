@@ -2744,7 +2744,7 @@ let SendData = (_class = class SendData {
       responseType: "text"
     });
   }
-  setNewAddressmp(uid = "", owner_alamat = "", nm_alamat = "") {
+  setNewAddressmp(uid = "", owner_alamat = "", nm_alamat = "", phone_alamat = "", national_alamat = "") {
     let header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders();
     header.append("Accept", "plain/text");
     header.append("Content-Type", "application/x-www-form-urlencoded");
@@ -2754,6 +2754,8 @@ let SendData = (_class = class SendData {
     body.append("uid", uid);
     body.append("owner_alamat", owner_alamat);
     body.append("nm_alamat", nm_alamat);
+    body.append("phone_alamat", phone_alamat);
+    body.append("national_alamat", national_alamat);
     return this.httpClient.post(this.controllerapi + "setNewAddress_mp", body, {
       headers: header,
       responseType: "text"

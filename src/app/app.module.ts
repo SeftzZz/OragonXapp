@@ -40,7 +40,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebase2)),
     provideAuth(() => {
       if (Capacitor.isNativePlatform()) {
         return initializeAuth(getApp(), {
@@ -52,11 +52,12 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     }),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase2),
+    // AngularFireModule.initializeApp(environment.firebase, 'secondary'),
     AngularFireMessagingModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe, Push, NativeStorage],
   bootstrap: [AppComponent],

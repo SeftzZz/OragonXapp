@@ -35,6 +35,7 @@
     "@uniswap/smart-order-router": "^2.10.0",
     "@uniswap/v3-periphery": "^1.4.2",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
     "ethers": "^5.7.1",
     "express": "^4.18.1",
     "firebase": "^9.21.0",
@@ -81,6 +82,7 @@
     "bs5-lightbox": "^1.7.8",
     "chart.js": "^3.7.0",
     "cordova": "^11.0.0",
+    "cordova-plugin-file": "^7.0.0",
     "cordova-res": "^0.15.4",
     "countdown-updated": "^2.7.0",
     "crypto": "^1.0.1",
@@ -123,5 +125,10 @@
     "webpack-dev-server": "^4.7.2",
     "workbox-sw": "^6.5.4"
   },
-  "description": "OragonX To the Moon"
+  "description": "OragonX To the Moon",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-file": {}
+    }
+  }
 }

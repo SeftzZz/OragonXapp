@@ -3682,6 +3682,8 @@ export class SendData {
     uid: string = "", 
     owner_alamat: string = "",
     nm_alamat: string = "",
+    phone_alamat: string = "",
+    national_alamat: string = "",
     ): Observable<any> {
     let header = new HttpHeaders();
     header.append("Accept", "plain/text");
@@ -3692,6 +3694,8 @@ export class SendData {
     body.append("uid", uid);
     body.append("owner_alamat", owner_alamat);
     body.append("nm_alamat", nm_alamat);
+    body.append("phone_alamat", phone_alamat);
+    body.append("national_alamat", national_alamat);
 
     return this.httpClient.post(this.controllerapi + "setNewAddress_mp", body, {
       headers: header,

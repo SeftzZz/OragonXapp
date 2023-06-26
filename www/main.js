@@ -27,6 +27,10 @@ const routes = [{
   loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("src_app_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then(m => m.LoginPageModule)
   // ...canActivate(redirectLoggedInToHome),
 }, {
+  path: 'resetpassword',
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("src_app_resetpassword_resetpassword_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./resetpassword/resetpassword.module */ 81869)).then(m => m.ResetpasswordPageModule)
+  // ...canActivate(redirectLoggedInToHome),
+}, {
   path: 'cron-bid',
   loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("default-node_modules_walletconnect_web3-provider_dist_esm_index_js-node_modules_web3_dist_web-388b94"), __webpack_require__.e("common"), __webpack_require__.e("src_app_cron-bid_cron-bid_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./cron-bid/cron-bid.module */ 54217)).then(m => m.CronBidPageModule)
 }, {
@@ -39,6 +43,14 @@ const routes = [{
 }, {
   path: 'swap',
   loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_swap_swap_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./swap/swap.module */ 75650)).then(m => m.SwapPageModule)
+}, {
+  path: 'tabs',
+  loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_tabs_tabs_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./tabs/tabs.module */ 15564)).then(m => m.TabsPageModule),
+  ...(0,_angular_fire_auth_guard__WEBPACK_IMPORTED_MODULE_0__.canActivate)(redirectUnauthorizedToLogin),
+  children: [{
+    path: 'profile',
+    loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_auth_service_ts"), __webpack_require__.e("default-node_modules_walletconnect_web3-provider_dist_esm_index_js-node_modules_web3_dist_web-388b94"), __webpack_require__.e("default-node_modules_swiper_swiper_esm_js"), __webpack_require__.e("default-node_modules_swiper_angular_fesm2015_swiper_angular_js"), __webpack_require__.e("src_app_profile_profile_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./profile/profile.module */ 84523)).then(m => m.ProfilePageModule)
+  }]
 }, {
   path: '**',
   redirectTo: '',
@@ -104,16 +116,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 86839);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser */ 42512);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/router */ 86679);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/router */ 86679);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 93819);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 90158);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 55041);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ 33765);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/common */ 86477);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/common */ 86477);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ 69542);
 /* harmony import */ var _awesome_cordova_plugins_push_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/push/ngx */ 12359);
 /* harmony import */ var _angular_fire_compat_messaging__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/fire/compat/messaging */ 76637);
-/* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/service-worker */ 64413);
 /* harmony import */ var _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/native-storage/ngx */ 4897);
 /* harmony import */ var _angular_fire_app__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/fire/app */ 89674);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../environments/environment */ 92340);
@@ -126,7 +137,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/fire/compat */ 11879);
 /* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/fire/compat/auth */ 5873);
 /* harmony import */ var _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/fire/compat/firestore */ 92393);
-
 
 
 
@@ -158,7 +168,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core_
   imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicModule.forRoot({
     rippleEffect: true,
     mode: 'md'
-  }), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_12__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.ReactiveFormsModule, (0,_angular_fire_app__WEBPACK_IMPORTED_MODULE_14__.provideFirebaseApp)(() => (0,_angular_fire_app__WEBPACK_IMPORTED_MODULE_14__.initializeApp)(_environments_environment__WEBPACK_IMPORTED_MODULE_4__.environment.firebase)), (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_15__.provideAuth)(() => {
+  }), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_12__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.ReactiveFormsModule, (0,_angular_fire_app__WEBPACK_IMPORTED_MODULE_14__.provideFirebaseApp)(() => (0,_angular_fire_app__WEBPACK_IMPORTED_MODULE_14__.initializeApp)(_environments_environment__WEBPACK_IMPORTED_MODULE_4__.environment.firebase2)), (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_15__.provideAuth)(() => {
     if (_capacitor_core__WEBPACK_IMPORTED_MODULE_5__.Capacitor.isNativePlatform()) {
       return (0,firebase_auth__WEBPACK_IMPORTED_MODULE_6__.initializeAuth)((0,firebase_app__WEBPACK_IMPORTED_MODULE_7__.getApp)(), {
         persistence: firebase_auth__WEBPACK_IMPORTED_MODULE_6__.indexedDBLocalPersistence
@@ -166,13 +176,16 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core_
     } else {
       return (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_15__.getAuth)();
     }
-  }), (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__.provideFirestore)(() => (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__.getFirestore)()), (0,_angular_fire_storage__WEBPACK_IMPORTED_MODULE_17__.provideStorage)(() => (0,_angular_fire_storage__WEBPACK_IMPORTED_MODULE_17__.getStorage)()), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_18__.AngularFireModule.initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_4__.environment.firebase), _angular_fire_compat_messaging__WEBPACK_IMPORTED_MODULE_19__.AngularFireMessagingModule, _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_20__.AngularFirestoreModule, _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_21__.AngularFireAuthModule, _angular_service_worker__WEBPACK_IMPORTED_MODULE_22__.ServiceWorkerModule.register('ngsw-worker.js', {
-    enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_4__.environment.production
-  })],
+  }), (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__.provideFirestore)(() => (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__.getFirestore)()), (0,_angular_fire_storage__WEBPACK_IMPORTED_MODULE_17__.provideStorage)(() => (0,_angular_fire_storage__WEBPACK_IMPORTED_MODULE_17__.getStorage)()), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_18__.AngularFireModule.initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_4__.environment.firebase2),
+  // AngularFireModule.initializeApp(environment.firebase, 'secondary'),
+  _angular_fire_compat_messaging__WEBPACK_IMPORTED_MODULE_19__.AngularFireMessagingModule, _angular_fire_compat_firestore__WEBPACK_IMPORTED_MODULE_20__.AngularFirestoreModule, _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_21__.AngularFireAuthModule
+  // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+  ],
+
   providers: [{
-    provide: _angular_router__WEBPACK_IMPORTED_MODULE_23__.RouteReuseStrategy,
+    provide: _angular_router__WEBPACK_IMPORTED_MODULE_22__.RouteReuseStrategy,
     useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicRouteStrategy
-  }, _angular_common__WEBPACK_IMPORTED_MODULE_24__.DatePipe, _awesome_cordova_plugins_push_ngx__WEBPACK_IMPORTED_MODULE_2__.Push, _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_3__.NativeStorage],
+  }, _angular_common__WEBPACK_IMPORTED_MODULE_23__.DatePipe, _awesome_cordova_plugins_push_ngx__WEBPACK_IMPORTED_MODULE_2__.Push, _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_3__.NativeStorage],
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent]
 })], AppModule);
 
@@ -197,14 +210,16 @@ const environment = {
   production: true,
   firebase: {
     // Production
-    // apiKey: "AIzaSyD9acGWMDPjhyFG2eKz0Hd8TgSSRuUlQVs",
-    // authDomain: "oragonx-19744.firebaseapp.com",
-    // projectId: "oragonx-19744",
-    // storageBucket: "oragonx-19744.appspot.com",
-    // messagingSenderId: "1036604830593",
-    // appId: "1:1036604830593:web:c954871ef393453cd6ae80",
-    // measurementId: "${config.measurementId}",
-    // vapidKey: "BH7Dmk7pcc69ah-AYrnp5VlzRc3zBmy9VFHtCFJ25_20rpKaasc-avWh6CF85g_QgV3C7xfRPxuFTOsVTj_Bs28"
+    apiKey: "AIzaSyD9acGWMDPjhyFG2eKz0Hd8TgSSRuUlQVs",
+    authDomain: "oragonx-19744.firebaseapp.com",
+    projectId: "oragonx-19744",
+    storageBucket: "oragonx-19744.appspot.com",
+    messagingSenderId: "1036604830593",
+    appId: "1:1036604830593:web:c954871ef393453cd6ae80",
+    measurementId: "${config.measurementId}",
+    vapidKey: "BH7Dmk7pcc69ah-AYrnp5VlzRc3zBmy9VFHtCFJ25_20rpKaasc-avWh6CF85g_QgV3C7xfRPxuFTOsVTj_Bs28"
+  },
+  firebase2: {
     // Staging
     apiKey: "AIzaSyDA_nhLRt9466wGY5ywZtcXWdOtbPas_xU",
     authDomain: "oragonx-staging.firebaseapp.com",
@@ -214,16 +229,18 @@ const environment = {
     appId: "1:292415733843:web:1f06b3e1b5d11fd3bf86a6",
     measurementId: "${config.measurementId}",
     vapidKey: "BH7Dmk7pcc69ah-AYrnp5VlzRc3zBmy9VFHtCFJ25_20rpKaasc-avWh6CF85g_QgV3C7xfRPxuFTOsVTj_Bs28"
+  },
+  firebase3: {
     // Development
-    // apiKey: "AIzaSyBaoejxFFUKF73iJ2KuqsJajbi7VJ6FSxQ",
-    // authDomain: "oragonx-development.firebaseapp.com",
-    // databaseURL: "https://oragonx-development-default-rtdb.asia-southeast1.firebasedatabase.app",
-    // projectId: "oragonx-development",
-    // storageBucket: "oragonx-development.appspot.com",
-    // messagingSenderId: "891862595791",
-    // appId: "1:891862595791:web:fff8fa1e870e1521395fba",
-    // measurementId: "${config.measurementId}",
-    // vapidKey: "BH7Dmk7pcc69ah-AYrnp5VlzRc3zBmy9VFHtCFJ25_20rpKaasc-avWh6CF85g_QgV3C7xfRPxuFTOsVTj_Bs28"
+    apiKey: "AIzaSyBaoejxFFUKF73iJ2KuqsJajbi7VJ6FSxQ",
+    authDomain: "oragonx-development.firebaseapp.com",
+    databaseURL: "https://oragonx-development-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "oragonx-development",
+    storageBucket: "oragonx-development.appspot.com",
+    messagingSenderId: "891862595791",
+    appId: "1:891862595791:web:fff8fa1e870e1521395fba",
+    measurementId: "${config.measurementId}",
+    vapidKey: "BH7Dmk7pcc69ah-AYrnp5VlzRc3zBmy9VFHtCFJ25_20rpKaasc-avWh6CF85g_QgV3C7xfRPxuFTOsVTj_Bs28"
   }
 };
 /*

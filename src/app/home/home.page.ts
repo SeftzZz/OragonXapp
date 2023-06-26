@@ -376,6 +376,12 @@ export class HomePage implements OnInit {
     owner_alamat: any;
     alamat: any;
     activeAlamat: any;
+    service : any;
+    cost : any;
+    description : any;
+    etd : any;
+    getphone : any;
+    getnationality: any;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -576,6 +582,7 @@ export class HomePage implements OnInit {
       );
 
       this.getEggCount();
+      console.log("activeAlamat", this.activeAlamat);
     // await loading.dismiss();
   }
 
@@ -3107,235 +3114,244 @@ export class HomePage implements OnInit {
       }
 
       async pay_cartmultiStore(user_uid, addressw, getaddress, color) {
-        this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
-          this.storedetail = JSON.parse(data)
-          this.storeDeskripsi = this.storedetail.deskripsi
-
-          // set transaction history
-          const messaging = getMessaging();
-          getToken(messaging, 
-           { vapidKey: environment.firebase.vapidKey}).then(
-             (tokenPushNotification) => {
-               if (tokenPushNotification) {
-                this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
-                  this.tokenNotif = JSON.parse(dataToken);
-                  // Create Transaction History
-                  this.senddata.settrxhistory(
-                    this.storeID, //storeid
-                    this.globalID, //userid
-                    'S-BNB' + this.newTime(), //itemid
-                    this.cartPriceBNB, //amount BNB
-                    'res.transactionHash', //tx_hash
-                    'BNB', //type
-                    'Package-Official-Store', //item
-                    this.email, //email
-                    this.tokenNotif.tokenPushNotification //token
-                  ).subscribe((data:any) => {},(error:any) => {})
-                });
-               } else {
-                 // console.log('No registration token available. Request permission to generate one.');
-               }
-           }).catch((err) => {
-              // console.log('An error occurred while retrieving token. ', err);
-          });
-        },(error:any) => {});
-
-        // packages-official-store
-          if(this.storeID == 16) {
-            // BATTERY
-            this.addDorch();
-          } else if(this.storeID == 15) {
-            // BATTERY
-            this.addMetalicana();
-          } else if(this.storeID == 14) {
-            // BATTERY
-            this.addFood1();
-          } else if(this.storeID == 13) {
-            // BATTERY
-            this.addBattery8();
-          } else if(this.storeID == 12) {
-            // BATTERY
-            this.addBattery12();
-          } else if(this.storeID == 11) {
-            // BATTERY
-            this.addBattery24();
-          } else if(this.storeID == 10) {
-            // EGGS
-            this.addAkh();
-            this.addMeru();
-            this.addRitra();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Akh: firebase.firestore.FieldValue.increment(-1),
-              Meru: firebase.firestore.FieldValue.increment(-1),
-              Ritra: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-            this.addBattery12();
-            this.addBattery24();
-
-            // FOODS
-            this.addFood();
-          } else if(this.storeID == 9) {
-            // EGGS
-            this.addAkh();
-            this.addFeng();
-            this.addMeru();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Akh: firebase.firestore.FieldValue.increment(-1),
-              Feng: firebase.firestore.FieldValue.increment(-1),
-              Meru: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-            this.addBattery12();
-            this.addBattery24();
-
-            // FOODS
-            this.addFood();
-          } else if(this.storeID == 8) {
-            // EGGS
-            this.addRitra();
-            this.addFeng();
-            this.addMeru();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Ritra: firebase.firestore.FieldValue.increment(-1),
-              Feng: firebase.firestore.FieldValue.increment(-1),
-              Meru: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-            this.addBattery12();
-            this.addBattery24();
-
-            // FOODS
-            this.addFood();
-          } else if(this.storeID == 7) {
-            // EGGS
-            this.addRitra();
-            this.addFeng();
-            this.addAkh();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Ritra: firebase.firestore.FieldValue.increment(-1),
-              Feng: firebase.firestore.FieldValue.increment(-1),
-              Akh: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-            this.addBattery12();
-            this.addBattery24();
-
-            // FOODS
-            this.addFood();
-          } else if(this.storeID == 6) {
-            // EGGS
-            this.addAkh();
-            this.addMeru();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Akh: firebase.firestore.FieldValue.increment(-1),
-              Meru: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-            this.addBattery12();
-
-            // FOODS
-            this.addFood20();
-          } else if(this.storeID == 5) {
-            // EGGS
-            this.addRitra();
-            this.addFeng();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Ritra: firebase.firestore.FieldValue.increment(-1),
-              Feng: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-            this.addBattery12();
-
-            // FOODS
-            this.addFood20();
-          } else if(this.storeID == 4) {
-            // EGGS
-            this.addFeng();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Feng: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-
-            // FOODS
-            this.addFood10();
-          } else if(this.storeID == 3) {
-            // EGGS
-            this.addRitra();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Ritra: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-
-            // FOODS
-            this.addFood10();
-          } else if(this.storeID == 2) {
-            // EGGS
-            this.addMeru();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Meru: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-
-            // FOODS
-            this.addFood10();
-          } else if(this.storeID == 1) {
-            // EGGS
-            this.addAkh();
-            this.fs.collection("Roulette").doc("Oragon").update({ 
-              Akh: firebase.firestore.FieldValue.increment(-1)
-            });
-
-            // BATTERY
-            this.addBattery8();
-
-            // FOODS
-            this.addFood10();
-          } 
-
-        //if success
-          this.state_buy = 3;
-          this.status_direct_buy = 1;
-          this.stateHash = true;
-          this.connect = true;
-          
-          const loading = await this.loadingController.create();
-          await loading.present();
-          const getsaveCart = localStorage.getItem("carts");
-          console.log(JSON.parse(getsaveCart));
-          const descsaveCart = JSON.parse(getsaveCart);
-          for(let c in descsaveCart) {
-            this.updatestorecart(descsaveCart[c].id_cart, this.globalID, this.wallets, 'res.transactionHash', this.color, this.email);
-          }
-          this.senddata.setaddressmp(this.globalID, this.getaddress);
+        if(this.activeAlamat == undefined) {
           const alert = await this.alertController.create({
-            header: 'Thankyou !',
-            message: 'Your cart is ready on the OragonX Marketplace.',
+            header: 'Failed !',
+            message: 'Please submit your address.',
             buttons: ['OK'],
           });
           await alert.present();
-          setTimeout(()=>{
-            window.location.reload();
-          }, 5000);
-          loading.dismiss();
+        } else {
+          this.senddata.getstoredetail(this.storeID).subscribe((data:any) => {
+            this.storedetail = JSON.parse(data)
+            this.storeDeskripsi = this.storedetail.deskripsi
+
+            // set transaction history
+            const messaging = getMessaging();
+            getToken(messaging, 
+             { vapidKey: environment.firebase.vapidKey}).then(
+               (tokenPushNotification) => {
+                 if (tokenPushNotification) {
+                  this.senddata.gettokenOwnermp(this.globalID).subscribe((dataToken:any) => {
+                    this.tokenNotif = JSON.parse(dataToken);
+                    // Create Transaction History
+                    this.senddata.settrxhistory(
+                      this.storeID, //storeid
+                      this.globalID, //userid
+                      'S-BNB' + this.newTime(), //itemid
+                      this.cartPriceBNB, //amount BNB
+                      'res.transactionHash', //tx_hash
+                      'BNB', //type
+                      'Package-Official-Store', //item
+                      this.email, //email
+                      this.tokenNotif.tokenPushNotification //token
+                    ).subscribe((data:any) => {},(error:any) => {})
+                  });
+                 } else {
+                   // console.log('No registration token available. Request permission to generate one.');
+                 }
+             }).catch((err) => {
+                // console.log('An error occurred while retrieving token. ', err);
+            });
+          },(error:any) => {});
+
+          // packages-official-store
+            if(this.storeID == 16) {
+              // BATTERY
+              this.addDorch();
+            } else if(this.storeID == 15) {
+              // BATTERY
+              this.addMetalicana();
+            } else if(this.storeID == 14) {
+              // BATTERY
+              this.addFood1();
+            } else if(this.storeID == 13) {
+              // BATTERY
+              this.addBattery8();
+            } else if(this.storeID == 12) {
+              // BATTERY
+              this.addBattery12();
+            } else if(this.storeID == 11) {
+              // BATTERY
+              this.addBattery24();
+            } else if(this.storeID == 10) {
+              // EGGS
+              this.addAkh();
+              this.addMeru();
+              this.addRitra();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Akh: firebase.firestore.FieldValue.increment(-1),
+                Meru: firebase.firestore.FieldValue.increment(-1),
+                Ritra: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+              this.addBattery12();
+              this.addBattery24();
+
+              // FOODS
+              this.addFood();
+            } else if(this.storeID == 9) {
+              // EGGS
+              this.addAkh();
+              this.addFeng();
+              this.addMeru();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Akh: firebase.firestore.FieldValue.increment(-1),
+                Feng: firebase.firestore.FieldValue.increment(-1),
+                Meru: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+              this.addBattery12();
+              this.addBattery24();
+
+              // FOODS
+              this.addFood();
+            } else if(this.storeID == 8) {
+              // EGGS
+              this.addRitra();
+              this.addFeng();
+              this.addMeru();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Ritra: firebase.firestore.FieldValue.increment(-1),
+                Feng: firebase.firestore.FieldValue.increment(-1),
+                Meru: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+              this.addBattery12();
+              this.addBattery24();
+
+              // FOODS
+              this.addFood();
+            } else if(this.storeID == 7) {
+              // EGGS
+              this.addRitra();
+              this.addFeng();
+              this.addAkh();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Ritra: firebase.firestore.FieldValue.increment(-1),
+                Feng: firebase.firestore.FieldValue.increment(-1),
+                Akh: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+              this.addBattery12();
+              this.addBattery24();
+
+              // FOODS
+              this.addFood();
+            } else if(this.storeID == 6) {
+              // EGGS
+              this.addAkh();
+              this.addMeru();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Akh: firebase.firestore.FieldValue.increment(-1),
+                Meru: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+              this.addBattery12();
+
+              // FOODS
+              this.addFood20();
+            } else if(this.storeID == 5) {
+              // EGGS
+              this.addRitra();
+              this.addFeng();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Ritra: firebase.firestore.FieldValue.increment(-1),
+                Feng: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+              this.addBattery12();
+
+              // FOODS
+              this.addFood20();
+            } else if(this.storeID == 4) {
+              // EGGS
+              this.addFeng();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Feng: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+
+              // FOODS
+              this.addFood10();
+            } else if(this.storeID == 3) {
+              // EGGS
+              this.addRitra();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Ritra: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+
+              // FOODS
+              this.addFood10();
+            } else if(this.storeID == 2) {
+              // EGGS
+              this.addMeru();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Meru: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+
+              // FOODS
+              this.addFood10();
+            } else if(this.storeID == 1) {
+              // EGGS
+              this.addAkh();
+              this.fs.collection("Roulette").doc("Oragon").update({ 
+                Akh: firebase.firestore.FieldValue.increment(-1)
+              });
+
+              // BATTERY
+              this.addBattery8();
+
+              // FOODS
+              this.addFood10();
+            } 
+
+          //if success
+            this.state_buy = 3;
+            this.status_direct_buy = 1;
+            this.stateHash = true;
+            this.connect = true;
+            
+            const loading = await this.loadingController.create();
+            await loading.present();
+            const getsaveCart = localStorage.getItem("carts");
+            console.log(JSON.parse(getsaveCart));
+            const descsaveCart = JSON.parse(getsaveCart);
+            for(let c in descsaveCart) {
+              this.updatestorecart(descsaveCart[c].id_cart, this.globalID, this.wallets, 'res.transactionHash', this.color, this.email);
+            }
+            this.senddata.setaddressmp(this.globalID, this.getaddress);
+            const alert = await this.alertController.create({
+              header: 'Thankyou !',
+              message: 'Your cart is ready on the OragonX Marketplace.',
+              buttons: ['OK'],
+            });
+            await alert.present();
+            setTimeout(()=>{
+              window.location.reload();
+            }, 5000);
+            loading.dismiss();
+          }
       }
 
     // Payment Market P2P
@@ -5422,8 +5438,22 @@ export class HomePage implements OnInit {
     this.getnama = setnama;
   }
 
+  addPhone(event: any) {
+    const query = event.target.value;
+    localStorage.setItem("phone", query);
+    const setphone = localStorage.getItem("phone");
+    this.getphone = setphone;
+  }
+
+  addNationality(event: any) {
+    const query = event.target.value;
+    localStorage.setItem("nationality", query);
+    const setnationality = localStorage.getItem("nationality");
+    this.getnationality = setnationality;
+  }
+
   addNewAddressmp() {
-    this.senddata.setNewAddressmp(this.globalID, this.getnama, this.getaddress).subscribe(async(data:any)=>{
+    this.senddata.setNewAddressmp(this.globalID, this.getnama, this.getaddress, this.getphone, this.getnationality).subscribe(async(data:any)=>{
       const loading = await this.loadingController.create();
       await loading.present();
         this.getNewAddressmp();
@@ -5439,6 +5469,7 @@ export class HomePage implements OnInit {
       this.activeAlamat = localStorage.getItem("activeAlamat");
       const setnama = localStorage.getItem("nama");
       this.getnama = setnama;
+      console.log("activeAlamat", this.activeAlamat);
     loading.dismiss();
   }
 
@@ -5496,14 +5527,27 @@ export class HomePage implements OnInit {
     });
   }
 
-  chooseKurir(service, cost) {
+  chooseKurir(service, cost, description, etd) {
     const kurir = localStorage.setItem(service, cost);
-
+    localStorage.setItem("chooseKurir", JSON.stringify({"service":service, "cost":cost, "description":description, "etd":etd}));
     this.kurir = localStorage.getItem(service);
     const parsedKurir = Number(this.kurir);
     const parsedCartPrice = Number(this.cartPrice); // Assuming this.cartPrice is a string, parse it as a number
     this.actualcartPrice = parsedKurir + parsedCartPrice;
     console.log(this.actualcartPrice);
+    const chooseKurirData = localStorage.getItem("chooseKurir");
+    if (chooseKurirData) {
+      const chooseKurir = JSON.parse(chooseKurirData);
+      // Now you can access the properties of chooseKurir object
+      this.service = chooseKurir.service;
+      this.cost = chooseKurir.cost;
+      this.description = chooseKurir.description;
+      this.etd = chooseKurir.etd;
+      console.log("activeAlamat", this.activeAlamat);
+      // Do something with the retrieved data
+    } else {
+      // "chooseKurir" data is not available in localStorage
+    }
     this.cartStatus = 1;
   }
 
@@ -5573,6 +5617,7 @@ export class HomePage implements OnInit {
             PostalID: this.postal_id,
             City: this.cities,
             Id: this.codeHoodie + DocIdJakets,
+            Price: this.actualcartPrice
           }).then(() => {});
           // console.log(this.jaketsHigh);
         });
